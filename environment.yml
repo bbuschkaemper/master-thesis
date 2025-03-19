@@ -1,40 +1,118 @@
 name: master-thesis
 channels:
+  - conda-forge
   - defaults
   - https://repo.anaconda.com/pkgs/main
   - https://repo.anaconda.com/pkgs/r
 dependencies:
   - _libgcc_mutex=0.1=main
   - _openmp_mutex=5.1=1_gnu
+  - absl-py=2.1.0=pyhd8ed1ab_1
+  - asttokens=3.0.0=pyhd8ed1ab_1
+  - blas=1.0=openblas
   - bzip2=1.0.8=h5eee18b_6
+  - c-ares=1.34.4=hb9d3cd8_0
   - ca-certificates=2025.2.25=h06a4308_0
+  - comm=0.2.2=pyhd8ed1ab_1
+  - debugpy=1.8.13=py313h46c70d0_0
+  - decorator=5.2.1=pyhd8ed1ab_0
+  - exceptiongroup=1.2.2=pyhd8ed1ab_1
+  - executing=2.1.0=pyhd8ed1ab_1
   - expat=2.6.4=h6a678d5_0
+  - grpcio=1.71.0=py313hc48a350_0
+  - importlib-metadata=8.6.1=pyha770c72_0
+  - ipykernel=6.29.5=pyh3099207_0
+  - ipython=9.0.2=pyhfb0248b_0
+  - ipython_pygments_lexers=1.1.1=pyhd8ed1ab_0
+  - jedi=0.19.2=pyhd8ed1ab_1
+  - jupyter_client=8.6.3=pyhd8ed1ab_1
+  - jupyter_core=5.7.2=pyh31011fe_1
+  - krb5=1.21.3=h143b758_0
   - ld_impl_linux-64=2.40=h12ee557_0
+  - libabseil=20250127.1=cxx17_hbbce691_0
+  - libblas=3.9.0=16_linux64_openblas
+  - libcblas=3.9.0=16_linux64_openblas
+  - libedit=3.1.20230828=h5eee18b_0
+  - libexpat=2.6.4=h5888daf_0
   - libffi=3.4.4=h6a678d5_1
-  - libgcc-ng=11.2.0=h1234567_1
-  - libgomp=11.2.0=h1234567_1
+  - libgcc=14.2.0=h767d61c_2
+  - libgcc-ng=14.2.0=h69a702a_2
+  - libgfortran-ng=11.2.0=h00389a5_1
+  - libgfortran5=11.2.0=h1234567_1
+  - libgomp=14.2.0=h767d61c_2
+  - libgrpc=1.71.0=he753a82_0
+  - liblapack=3.9.0=16_linux64_openblas
+  - liblzma=5.6.4=hb9d3cd8_0
   - libmpdec=4.0.0=h5eee18b_0
+  - libopenblas=0.3.21=h043d6bf_0
+  - libprotobuf=5.29.3=h501fc15_0
+  - libre2-11=2024.07.02=hba17884_3
+  - libsodium=1.0.20=h4ab18f5_0
+  - libsqlite=3.49.1=hee588c1_2
+  - libstdcxx=14.2.0=h8f9b012_2
   - libstdcxx-ng=11.2.0=h1234567_1
-  - libuuid=1.41.5=h5eee18b_0
-  - ncurses=6.4=h6a678d5_0
-  - openssl=3.0.16=h5eee18b_0
+  - libuuid=2.38.1=h0b41bf4_0
+  - libzlib=1.3.1=hb9d3cd8_2
+  - markdown=3.6=pyhd8ed1ab_0
+  - markupsafe=3.0.2=py313h8060acc_1
+  - matplotlib-inline=0.1.7=pyhd8ed1ab_1
+  - ncurses=6.5=h2d0b736_3
+  - nest-asyncio=1.6.0=pyhd8ed1ab_1
+  - openssl=3.4.1=h7b32b05_0
+  - packaging=24.2=pyhd8ed1ab_2
+  - parso=0.8.4=pyhd8ed1ab_1
+  - pexpect=4.9.0=pyhd8ed1ab_1
+  - pickleshare=0.7.5=pyhd8ed1ab_1004
   - pip=25.0=py313h06a4308_0
-  - python=3.13.2=hf623796_100_cp313
+  - platformdirs=4.3.6=pyhd8ed1ab_1
+  - prompt-toolkit=3.0.50=pyha770c72_0
+  - protobuf=5.29.3=py313h386a9ef_0
+  - psutil=7.0.0=py313h536fd9c_0
+  - ptyprocess=0.7.0=pyhd8ed1ab_1
+  - pure_eval=0.2.3=pyhd8ed1ab_1
+  - pygments=2.19.1=pyhd8ed1ab_0
+  - python=3.13.2=hf636f53_101_cp313
+  - python-dateutil=2.9.0.post0=pyhff2d567_1
   - python_abi=3.13=0_cp313
+  - pyzmq=26.3.0=py313h8e95178_0
+  - re2=2024.07.02=h9925aae_3
   - readline=8.2=h5eee18b_0
+  - scipy=1.15.1=py313h3a69d60_0
   - setuptools=75.8.0=py313h06a4308_0
-  - sqlite=3.45.3=h5eee18b_0
-  - tk=8.6.14=h39e8969_0
-  - tzdata=2025a=h04d1e81_0
+  - six=1.17.0=pyhd8ed1ab_0
+  - sqlite=3.49.1=h9eae976_2
+  - stack_data=0.6.3=pyhd8ed1ab_1
+  - tensorboard=2.19.0=pyhd8ed1ab_0
+  - tensorboard-data-server=0.7.0=py313h6556f6e_2
+  - tk=8.6.13=noxft_h4845f30_101
+  - tornado=6.4.2=py313h536fd9c_0
+  - traitlets=5.14.3=pyhd8ed1ab_1
+  - typing_extensions=4.12.2=pyha770c72_1
+  - wcwidth=0.2.13=pyhd8ed1ab_1
+  - werkzeug=3.1.3=pyhd8ed1ab_1
   - wheel=0.45.1=py313h06a4308_0
   - xz=5.6.4=h5eee18b_1
-  - zlib=1.2.13=h5eee18b_1
+  - zeromq=4.3.5=h3b0a872_7
+  - zipp=3.21.0=pyhd8ed1ab_1
+  - zlib=1.3.1=hb9d3cd8_2
   - pip:
+      - aiohappyeyeballs==2.6.1
+      - aiohttp==3.11.14
+      - aiosignal==1.3.2
+      - attrs==25.3.0
+      - beautifulsoup4==4.13.3
+      - certifi==2025.1.31
+      - charset-normalizer==3.4.1
       - filelock==3.13.1
+      - frozenlist==1.5.0
       - fsspec==2024.6.1
+      - gdown==5.2.0
+      - idna==3.10
       - jinja2==3.1.4
-      - markupsafe==3.0.2
+      - lightning==2.5.1
+      - lightning-utilities==0.14.1
       - mpmath==1.3.0
+      - multidict==6.2.0
       - networkx==3.3
       - numpy==2.1.2
       - nvidia-cublas-cu12==12.6.4.1
@@ -50,10 +128,23 @@ dependencies:
       - nvidia-nccl-cu12==2.21.5
       - nvidia-nvjitlink-cu12==12.6.85
       - nvidia-nvtx-cu12==12.6.77
+      - pandas==2.2.3
       - pillow==11.0.0
+      - propcache==0.3.0
+      - pysocks==1.7.1
+      - pytorch-lightning==2.5.1
+      - pytz==2025.1
+      - pyyaml==6.0.2
+      - requests==2.32.3
+      - soupsieve==2.6
       - sympy==1.13.1
       - torch==2.6.0+cu126
+      - torch-tb-profiler==0.4.3
       - torchaudio==2.6.0+cu126
+      - torchmetrics==1.6.3
       - torchvision==0.21.0+cu126
+      - tqdm==4.67.1
       - triton==3.2.0
-      - typing-extensions==4.12.2
+      - tzdata==2025.1
+      - urllib3==2.3.0
+      - yarl==1.18.3
