@@ -177,7 +177,7 @@ cython_debug/
 datasets/
 
 # Lightning logs
-lightning_logs/
+logs/
 
 # Checkpoints
 checkpoints/
