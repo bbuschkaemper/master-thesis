@@ -10,7 +10,7 @@ from torch.optim import AdamW, SGD
 from torch.optim.lr_scheduler import MultiStepLR, StepLR
 
 
-class ResNetModule(pl.LightningModule):
+class ResNetModel(pl.LightningModule):
     def __init__(
         self,
         num_classes,
@@ -131,3 +131,9 @@ class ResNetModule(pl.LightningModule):
 
         self.log_dict({"val_loss": loss, "val_accuracy": accuracy})
         self.log("hp_metric", accuracy)
+
+    def predict_step(self, batch):
+        (inputs, _) = batch
+        output = self(inputs)
+
+        return output
