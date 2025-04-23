@@ -182,4 +182,5 @@ logs/
 # Checkpoints
 checkpoints/
 
-outputs/
+# Outputs
+output/
