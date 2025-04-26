@@ -82,8 +82,8 @@ class Taxonomy:
             dataset_targets = self.targets[dataset_domain_id]
             assert (
                 predictions.shape == dataset_targets.shape
-            ), f"""Predictions of domain {model_domain_id} 
-            to domain {dataset_domain_id} must match targets in shape"""
+            ), f"""Predictions of domain {model_domain_id}
+             to domain {dataset_domain_id} must match targets in shape"""
 
             # Build correlation matrix between these domains
             correlations = self.__form_correlation_matrix(predictions, dataset_targets)
