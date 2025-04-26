@@ -1,5 +1,5 @@
 import pickle
-from typing import Optional, List
+from typing import List, Tuple, Dict
 import numpy as np
 import numpy.typing as npt
 import networkx as nx
@@ -9,10 +9,7 @@ from pyvis.network import Network
 class DomainClass(tuple[np.intp, np.intp]):
     """A class from a specific domain represented as a tuple (domain_id, class_id).
 
-    The first element (domain_id) identifies which domain the class belongs to:
-    - 0 for Domain A
-    - 1 for Domain B
-
+    The first element (domain_id) identifies which domain the class belongs to.
     The second element (class_id) is the identifier of the class within its domain.
     """
 
@@ -42,29 +39,26 @@ class Relationship(tuple[Class, Class, np.float32]):
 class Taxonomy:
     def __init__(
         self,
-        a_to_b_predictions: npt.NDArray[np.intp],
-        b_to_a_predictions: npt.NDArray[np.intp],
-        a_targets: npt.NDArray[np.intp],
-        b_targets: npt.NDArray[np.intp],
+        cross_domain_predictions: List[Tuple[int, int, npt.NDArray[np.intp]]],
+        domain_targets: List[Tuple[int, npt.NDArray[np.intp]]],
     ):
         """Creates a taxonomy object with an integrated graph structure.
 
-        This taxonomy is built from cross-domain predictions between two domains (A and B).
+        This taxonomy is built from cross-domain predictions between multiple domains.
         It analyzes how models trained on one domain classify samples from another domain,
         revealing conceptual relationships between classes across domains.
 
         Parameters
         ----------
-        a_to_b_predictions : npt.NDArray[np.intp]
-            Predictions made by model A (trained on domain A) when classifying domain B samples.
-            Each prediction uses domain A's class labels.
-        b_to_a_predictions : npt.NDArray[np.intp]
-            Predictions made by model B (trained on domain B) when classifying domain A samples.
-            Each prediction uses domain B's class labels.
-        a_targets : npt.NDArray[np.intp]
-            True labels for domain A samples. These are the ground truth classes for domain A.
-        b_targets : npt.NDArray[np.intp]
-            True labels for domain B samples. These are the ground truth classes for domain B.
+        cross_domain_predictions : List[Tuple[int, int, npt.NDArray[np.intp]]]
+            List of tuples where each tuple contains:
+            - model_domain_id: The domain ID of the model used for predictions
+            - dataset_domain_id: The domain ID of the dataset being predicted
+            - predictions: Array of class predictions made by the model
+        domain_targets : List[Tuple[int, npt.NDArray[np.intp]]]
+            List of tuples where each tuple contains:
+            - domain_id: The domain ID
+            - targets: Array of ground truth class labels for that domain
 
         Notes
         -----
@@ -74,55 +68,38 @@ class Taxonomy:
         3. Extracts the most common cross-domain predictions
         4. Constructs initial relationships in the taxonomy graph
         """
-        # Validate that prediction arrays match their respective target arrays
-        assert (
-            a_to_b_predictions.shape == b_targets.shape
-        ), "A→B predictions must match B targets in shape"
-        assert (
-            b_to_a_predictions.shape == a_targets.shape
-        ), "B→A predictions must match A targets in shape"
-
-        self.a_to_b_predictions = a_to_b_predictions
-        self.b_to_a_predictions = b_to_a_predictions
-        self.a_targets = a_targets
-        self.b_targets = b_targets
+        # Store domain targets in a dictionary for easier access
+        self.targets = {}
+        for domain_id, targets in domain_targets:
+            self.targets[domain_id] = targets
 
         # Initialize the NetworkX graph for storing taxonomy relationships
         self.graph = nx.DiGraph()
 
-        # Build the correlation matrices that track how often classes from one domain
-        # are predicted as classes from another domain
-        a_to_b_correlations = self.__form_correlation_matrix(
-            self.a_to_b_predictions, self.b_targets
-        )
-        b_to_a_correlations = self.__form_correlation_matrix(
-            self.b_to_a_predictions, self.a_targets
-        )
+        # Process each cross-domain prediction
+        for model_domain_id, dataset_domain_id, predictions in cross_domain_predictions:
+            # Validate that prediction arrays match their respective target arrays
+            dataset_targets = self.targets[dataset_domain_id]
+            assert (
+                predictions.shape == dataset_targets.shape
+            ), f"""Predictions of domain {model_domain_id} 
+            to domain {dataset_domain_id} must match targets in shape"""
 
-        # Extract the most commonly predicted class for each foreign class
-        # and the confidence of that prediction
-        most_common_a_classes_for_b, confidence_a_for_b = (
-            self.__foreign_prediction_distributions(a_to_b_correlations)
-        )
-        most_common_b_classes_for_a, confidence_b_for_a = (
-            self.__foreign_prediction_distributions(b_to_a_correlations)
-        )
+            # Build correlation matrix between these domains
+            correlations = self.__form_correlation_matrix(predictions, dataset_targets)
 
-        # Build initial taxonomy graph from domain B to domain A relationships
-        self.__build_initial_relationships(
-            domain_id=1,  # Domain B
-            foreign_domain_id=0,  # Domain A
-            most_common_classes=most_common_a_classes_for_b,
-            confidence_values=confidence_a_for_b,
-        )
+            # Extract most common predictions and their confidence values
+            most_common_classes, confidence_values = (
+                self.__foreign_prediction_distributions(correlations)
+            )
 
-        # Build initial taxonomy graph from domain A to domain B relationships
-        self.__build_initial_relationships(
-            domain_id=0,  # Domain A
-            foreign_domain_id=1,  # Domain B
-            most_common_classes=most_common_b_classes_for_a,
-            confidence_values=confidence_b_for_a,
-        )
+            # Build initial taxonomy relationships between these domains
+            self.__build_initial_relationships(
+                domain_id=dataset_domain_id,
+                foreign_domain_id=model_domain_id,
+                most_common_classes=most_common_classes,
+                confidence_values=confidence_values,
+            )
 
     def __build_initial_relationships(
         self,
@@ -540,6 +517,10 @@ class Taxonomy:
             True if any changes were made, False otherwise
         """
         for relationship in self.__get_relationships():
+            # Skip if source is not a domain class
+            if not isinstance(relationship[0], DomainClass):
+                continue
+
             # Get relationships from the target of this relationship
             next_relationships = self.__get_relationships_from(relationship[1])
 
@@ -551,15 +532,21 @@ class Taxonomy:
             if not next_relationships:
                 continue
 
-            # If this would create a cycle with classes in the same domain,
-            # remove the weaker relationship
-            next_rel = next_relationships[0]
-            if relationship[2] < next_rel[2]:
-                self.__remove_relationship(relationship)
-            else:
-                self.__remove_relationship(next_rel)
+            # Check for potential cycles where A→B→C and A and C are in the same domain
+            source_domain_id = relationship[0][0]  # Domain ID of the source node
 
-            return True  # Changes were made
+            for next_rel in next_relationships:
+                target_domain_id = next_rel[1][0]  # Domain ID of the final target node
+
+                # Only break cycles when source and final target are in the same domain
+                if source_domain_id == target_domain_id:
+                    # Remove the weaker relationship
+                    if relationship[2] < next_rel[2]:
+                        self.__remove_relationship(relationship)
+                    else:
+                        self.__remove_relationship(next_rel)
+
+                    return True  # Changes were made
 
         return False
 
@@ -639,10 +626,8 @@ class Taxonomy:
         """
         # Create an empty taxonomy
         taxonomy = cls(
-            a_to_b_predictions=np.array([], dtype=np.intp),
-            b_to_a_predictions=np.array([], dtype=np.intp),
-            a_targets=np.array([], dtype=np.intp),
-            b_targets=np.array([], dtype=np.intp),
+            cross_domain_predictions=[],
+            domain_targets=[],
         )
 
         # Load the graph directly
@@ -663,8 +648,7 @@ class Taxonomy:
 
     def visualize_graph(
         self,
-        domain_a_labels: Optional[List[str]] = None,
-        domain_b_labels: Optional[List[str]] = None,
+        domain_labels: Dict[int, List[str]] = None,
         title: str = "Universal Taxonomy Graph",
         height: int = 800,
         width: int = 1200,
@@ -676,10 +660,9 @@ class Taxonomy:
 
         Parameters
         ----------
-        domain_a_labels : Optional[List[str]], optional
-            Human-readable labels for domain A classes (e.g., class names instead of indices)
-        domain_b_labels : Optional[List[str]], optional
-            Human-readable labels for domain B classes (e.g., class names instead of indices)
+        domain_labels : Dict[int, List[str]], optional
+            Dictionary mapping domain IDs to lists of human-readable labels for their classes
+            For example: {0: ["dog", "cat", ...], 1: ["canine", "feline", ...]}
         title : str, optional
             Title to display on the visualization, by default "Universal Taxonomy Graph"
         height : int, optional
@@ -694,8 +677,7 @@ class Taxonomy:
 
         Notes
         -----
-        - Domain A nodes are colored skyblue
-        - Domain B nodes are colored lightgreen
+        - Different domain nodes are colored with distinct colors
         - Universal class nodes are colored salmon
         - Edge weights are displayed as labels on the connections
         """
@@ -703,17 +685,19 @@ class Taxonomy:
         graph = self.to_networkx()
 
         # Step 1: Create human-readable labels for all nodes
-        node_labels = self.__create_node_labels(graph, domain_a_labels, domain_b_labels)
+        node_labels = self.__create_node_labels(graph, domain_labels)
 
-        # Step 2: Set node colors based on their type
-        node_colors = self.__assign_node_colors_and_groups(graph)
+        # Step 2: Set node colors and groups based on domain or universal class
+        node_colors, node_groups = self.__assign_node_colors_and_groups(graph)
 
         # Step 3: Create and configure the PyVis network
         network = Network(height=height, width=width, directed=True)
         network.heading = title
 
         # Step 4: Add nodes with their styling
-        self.__add_nodes_to_visualization(network, graph, node_labels, node_colors)
+        self.__add_nodes_to_visualization(
+            network, graph, node_labels, node_colors, node_groups
+        )
 
         # Step 5: Add edges with weight labels
         self.__add_edges_to_visualization(network, graph)
@@ -726,8 +710,7 @@ class Taxonomy:
     def __create_node_labels(
         self,
         graph: nx.DiGraph,
-        domain_a_labels: Optional[List[str]] = None,
-        domain_b_labels: Optional[List[str]] = None,
+        domain_labels: Dict[int, List[str]] = None,
     ) -> dict:
         """Create human-readable labels for all nodes in the graph.
 
@@ -735,10 +718,8 @@ class Taxonomy:
         ----------
         graph : nx.DiGraph
             The graph containing nodes to label
-        domain_a_labels : Optional[List[str]], optional
-            Labels for domain A classes
-        domain_b_labels : Optional[List[str]], optional
-            Labels for domain B classes
+        domain_labels : Dict[int, List[str]], optional
+            Dictionary mapping domain IDs to lists of human-readable labels for their classes
 
         Returns
         -------
@@ -746,31 +727,23 @@ class Taxonomy:
             Dictionary mapping nodes to their display labels
         """
         node_labels = {}
+        domain_labels = domain_labels or {}
 
         # First pass: Create labels for domain classes
         for node in graph.nodes():
             if isinstance(node, DomainClass):
                 domain_id, class_id = node
-                domain_name = "A" if domain_id == 0 else "B"
 
                 # Use provided human-readable labels if available
-                if (
-                    domain_id == 0
-                    and domain_a_labels
-                    and class_id < len(domain_a_labels)
+                if domain_id in domain_labels and class_id < len(
+                    domain_labels[domain_id]
                 ):
-                    label = domain_a_labels[class_id]
-                elif (
-                    domain_id == 1
-                    and domain_b_labels
-                    and class_id < len(domain_b_labels)
-                ):
-                    label = domain_b_labels[class_id]
+                    label = domain_labels[domain_id][class_id]
                 else:
                     # Fall back to class ID if no label is available
                     label = f"{class_id}"
 
-                node_labels[node] = f"{domain_name}:{label}"
+                node_labels[node] = f"D{domain_id}:{label}"
 
         # Second pass: Create labels for universal classes using domain class labels
         for node in graph.nodes():
@@ -788,34 +761,61 @@ class Taxonomy:
 
         return node_labels
 
-    def __assign_node_colors_and_groups(self, graph: nx.DiGraph) -> list:
-        """Assign colors to nodes based on their type.
+    def __assign_node_colors_and_groups(self, graph: nx.DiGraph) -> tuple[list, list]:
+        """Assign colors and groups to nodes based on their domain or type.
 
         Parameters
         ----------
         graph : nx.DiGraph
-            The graph containing nodes to color
+            The graph containing nodes to color and group
 
         Returns
         -------
-        list
-            List of colors for each node
+        tuple[list, list]
+            Lists of colors and groups for each node
         """
         node_colors = []
+        node_groups = []
+
+        # Define a color palette for different domains
+        domain_colors = [
+            "skyblue",  # Domain 0
+            "lightgreen",  # Domain 1
+            "lightyellow",  # Domain 2
+            "lightpink",  # Domain 3
+            "lightcyan",  # Domain 4
+            "thistle",  # Domain 5
+            "peachpuff",  # Domain 6
+            "lightcoral",  # Domain 7
+            "lightsteelblue",  # Domain 8
+            "palegreen",  # Domain 9
+        ]
+
+        # Keep track of which domains exist in the graph
+        domains_seen = set()
 
         for node in graph.nodes():
             if isinstance(node, DomainClass):
-                if node[0] == 0:  # Domain A
-                    node_colors.append("skyblue")
-                else:  # Domain B
-                    node_colors.append("lightgreen")
+                domain_id = node[0]
+                domains_seen.add(domain_id)
+
+                # Get color for this domain (cycling through colors if needed)
+                color = domain_colors[domain_id % len(domain_colors)]
+                node_colors.append(color)
+                node_groups.append(f"Domain {domain_id}")
             else:  # Universal class
                 node_colors.append("salmon")
+                node_groups.append("Universal")
 
-        return node_colors
+        return node_colors, node_groups
 
     def __add_nodes_to_visualization(
-        self, network: Network, graph: nx.DiGraph, node_labels: dict, node_colors: list
+        self,
+        network: Network,
+        graph: nx.DiGraph,
+        node_labels: dict,
+        node_colors: list,
+        node_groups: list,
     ) -> None:
         """Add nodes to the PyVis network with appropriate styling.
 
@@ -829,21 +829,17 @@ class Taxonomy:
             Dictionary of node labels
         node_colors : list
             List of colors for each node
+        node_groups : list
+            List of group names for each node
         """
         for i, node in enumerate(graph.nodes()):
-            # Determine the group type for this node
-            if isinstance(node, DomainClass):
-                group = "Domain A" if node[0] == 0 else "Domain B"
-            else:
-                group = "Universal"
-
             # Add the node with appropriate styling
             network.add_node(
                 str(node),  # Node ID (needs to be a string for PyVis)
                 label=node_labels[node],  # Human-readable label
                 color=node_colors[i],  # Color based on domain/type
                 title=node_labels[node],  # Tooltip text
-                group=group,  # Group for layout algorithms
+                group=node_groups[i],  # Group for layout algorithms
             )
 
     def __add_edges_to_visualization(self, network: Network, graph: nx.DiGraph) -> None:
