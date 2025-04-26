@@ -16,3 +16,8 @@
 - We used unilateral relationship that targets universal class instead of discarding it (in paper example: palm -> palm but not palm -> {A-tree, V-vegetation})
 - We used probabilities instead of most common foreign prediction (which means we didn't need improved naive concatenation)
 - We used individual models for each domain instead of a shared model with individual heads
+
+## Multi-domain taxonomy
+
+- Rules can be applied exactly the same way as in the original paper
+- We need to look for transitive relationships if A and C are the same domain
