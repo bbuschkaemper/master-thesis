@@ -2,7 +2,6 @@ import pickle
 from typing import List, Tuple, Dict
 import numpy as np
 import numpy.typing as npt
-from scipy.stats import truncnorm
 import networkx as nx
 from pyvis.network import Network
 
@@ -37,19 +36,21 @@ class Relationship(tuple[Class, Class, float]):
     """
 
 
-class DeviationClass(frozenset[np.intp]):
-    pass
-
-
-class Deviation(frozenset[DeviationClass]):
-    pass
-
-
-class SimulatedPredictions(tuple[np.intp, np.intp, np.ndarray[np.float64]]):
-    pass
-
-
 class Taxonomy:
+    """A class representing relationships between classes from different domains.
+
+    The Taxonomy class builds a graph structure that captures relationships between
+    classes from different domains (e.g., different datasets like CIFAR-100 and Caltech-256).
+    It analyzes cross-domain predictions to identify conceptual similarities and builds
+    a universal taxonomy that unifies classes across domains.
+
+    The graph structure consists of:
+    - Nodes: DomainClass and UniversalClass objects
+    - Edges: Directed relationships with confidence weights
+
+    This taxonomy can be visualized, serialized, and manipulated through various methods.
+    """
+
     def __init__(
         self,
         cross_domain_predictions: List[Tuple[int, int, npt.NDArray[np.intp]]],
@@ -99,12 +100,18 @@ class Taxonomy:
 
         # Process each cross-domain prediction
         for model_domain_id, dataset_domain_id, predictions in cross_domain_predictions:
+            # Skip processing if no ground truth targets available for this domain
+            if dataset_domain_id not in self.targets:
+                continue
+
             # Validate that prediction arrays match their respective target arrays
             dataset_targets = self.targets[dataset_domain_id]
-            assert (
-                predictions.shape == dataset_targets.shape
-            ), f"""Predictions of domain {model_domain_id}
-             to domain {dataset_domain_id} must match targets in shape"""
+            if predictions.shape != dataset_targets.shape:
+                raise ValueError(
+                    f"Predictions of domain {model_domain_id} to domain "
+                    f"{dataset_domain_id} must match targets in shape. "
+                    f"Got {predictions.shape} vs {dataset_targets.shape}"
+                )
 
             # Build correlation matrix between these domains
             correlations = self.__form_correlation_matrix(predictions, dataset_targets)
@@ -122,6 +129,10 @@ class Taxonomy:
                 confidence_values=confidence_values,
             )
 
+    # --------------------------------------
+    # Graph construction and relationship handling
+    # --------------------------------------
+
     def __build_initial_relationships(
         self,
         domain_id: int,
@@ -134,9 +145,9 @@ class Taxonomy:
         Parameters
         ----------
         domain_id : int
-            ID of the source domain (0 for A, 1 for B)
+            ID of the source domain (dataset being classified)
         foreign_domain_id : int
-            ID of the target domain (0 for A, 1 for B)
+            ID of the target domain (model making predictions)
         most_common_classes : npt.NDArray[np.intp]
             For each class in the source domain,
             the most commonly predicted class in the target domain
@@ -159,96 +170,13 @@ class Taxonomy:
                 (source_class, target_class, confidence_values[class_idx])
             )
 
-    @staticmethod
-    def __form_correlation_matrix(
-        predictions: npt.NDArray[np.intp],
-        targets: npt.NDArray[np.intp],
-    ) -> npt.NDArray[np.intp]:
-        """Forms a correlation matrix for predictions on a foreign domain.
-
-        Each row of the correlation matrix corresponds to a class in the foreign domain
-        and each column corresponds to a class in the own domain.
-        The value of cell (i, j) is the number of times a class in the foreign domain
-        i was predicted as a class in the own domain j.
-        The correlation matrix is of shape (n_classes_foreign, n_classes_own).
-
-        Parameters
-        ----------
-        predictions : npt.NDArray[np.intp]
-            Model predictions using own domain labels on foreign domain data
-        targets : npt.NDArray[np.intp]
-            True labels of the foreign domain
-
-        Returns
-        -------
-        npt.NDArray[np.intp]
-            The correlation matrix of shape (n_classes_foreign, n_classes_own)
-        """
-        correlations = np.zeros(
-            (np.max(targets) + 1, np.max(predictions) + 1),
-            dtype=np.intp,
-        )
-
-        for i, pred in enumerate(predictions):
-            correlations[targets[i], pred] += 1
-
-        return correlations
-
-    @staticmethod
-    def __foreign_prediction_distributions(
-        correlations: npt.NDArray[np.intp],
-    ) -> tuple[npt.NDArray[np.intp], npt.NDArray[np.float32]]:
-        """Calculates a distribution for the predictions of each own domain class in the foreign
-        domain.
-
-        The result is a 1D array of shape (n_classes_foreign,) where the value at index i
-        is the own domain class that was predicted the most times for the foreign domain class i
-        together with the probability of the prediction.
-        The probability is the number of times the class was predicted divided by the total
-        number of predictions for that class.
-        If there are no predictions for a class, the probability is 0.
-
-        For convenience, the function returns a tuple of two 1D arrays:
-        - The first element is a 1D array of shape (n_classes_foreign,) with the most common
-          foreign class.
-        - The second element is a 1D array of shape (n_classes_foreign,) with the
-          probabilities of the predictions (i.e. the distribution).
-
-        Parameters
-        ----------
-        correlations : npt.NDArray[np.intp]
-            The correlation matrix indicating the predictions.
-
-        Returns
-        -------
-        tuple[npt.NDArray[np.intp], npt.NDArray[np.float32]]
-            The most common foreign predictions and their probabilities.
-            The first element is a 1D array of shape (n_classes_foreign,) with the most common
-            foreign class.
-            The second element is a 1D array of shape (n_classes_foreign,) with the
-            probabilities of the predictions.
-        """
-
-        values = np.zeros(correlations.shape[0], dtype=np.intp)
-        probabilities = np.zeros(correlations.shape[0], dtype=np.float32)
-        for i in range(correlations.shape[0]):
-            values[i] = np.argmax(correlations[i, :])
-            total_predictions = np.sum(correlations[i, :])
-            probabilities[i] = (
-                correlations[i, values[i]] / total_predictions
-                if total_predictions > 0
-                else 0.0
-            )
-
-        return values, probabilities
-
     def _add_relationship(self, relationship: Relationship):
         """Adds a relationship to the graph.
 
         Parameters
         ----------
         relationship : Relationship
-            The relationship to add to the graph.
+            The relationship to add to the graph (source, target, weight)
         """
         source, target, weight = relationship
 
@@ -267,19 +195,37 @@ class Taxonomy:
         Parameters
         ----------
         relationship : Relationship
-            The relationship to remove from the graph.
+            The relationship to remove from the graph (source, target, weight)
         """
         source, target, _ = relationship
         if self.graph.has_edge(source, target):
             self.graph.remove_edge(source, target)
 
+    def __redirect_incoming_relationships(self, old_target: Class, new_target: Class):
+        """Redirect all incoming relationships from old_target to new_target.
+
+        Parameters
+        ----------
+        old_target : Class
+            The original target node
+        new_target : Class
+            The new target node to redirect relationships to
+        """
+        for rel in self.__get_relationships_to(old_target):
+            self.__remove_relationship(rel)
+            self._add_relationship((rel[0], new_target, rel[2]))
+
+    # --------------------------------------
+    # Graph query methods
+    # --------------------------------------
+
     def __get_relationships(self) -> list[Relationship]:
-        """Returns the relationships of the graph.
+        """Returns all relationships in the graph.
 
         Returns
         -------
         list[Relationship]
-            The relationships of the graph.
+            The relationships of the graph
         """
         relationships = []
         for u, v, data in self.graph.edges(data=True):
@@ -287,27 +233,27 @@ class Taxonomy:
         return relationships
 
     def __get_nodes(self) -> set[Class]:
-        """Returns the nodes of the graph.
+        """Returns all nodes in the graph.
 
         Returns
         -------
         set[Class]
-            The nodes of the graph.
+            All nodes in the graph
         """
         return set(self.graph.nodes())
 
     def __get_relationships_from(self, node: Class) -> list[Relationship]:
-        """Returns the relationships from a node.
+        """Returns all outgoing relationships from a node.
 
         Parameters
         ----------
         node : Class
-            The node to get the relationships from.
+            The node to get the relationships from
 
         Returns
         -------
         list[Relationship]
-            The relationships from the node.
+            Outgoing relationships from the node
         """
         relationships = []
         if node not in self.graph:
@@ -319,17 +265,17 @@ class Taxonomy:
         return relationships
 
     def __get_relationships_to(self, node: Class) -> list[Relationship]:
-        """Returns the relationships to a node.
+        """Returns all incoming relationships to a node.
 
         Parameters
         ----------
         node : Class
-            The node to get the relationships to.
+            The node to get the relationships to
 
         Returns
         -------
         list[Relationship]
-            The relationships to the node.
+            Incoming relationships to the node
         """
         relationships = []
         if node not in self.graph:
@@ -343,25 +289,114 @@ class Taxonomy:
     def __get_relationship(
         self, from_node: Class, to_node: Class
     ) -> Relationship | None:
-        """Checks if a relationship exists between two nodes.
-        Returns the relationship if it exists, None otherwise.
+        """Returns the relationship between two nodes if it exists.
 
         Parameters
         ----------
         from_node : Class
-            The starting node of the relationship.
+            The starting node of the relationship
         to_node : Class
-            The ending node of the relationship.
+            The ending node of the relationship
 
         Returns
         -------
         Relationship | None
-            The relationship if it exists, None otherwise.
+            The relationship if it exists, None otherwise
         """
         if self.graph.has_edge(from_node, to_node):
             weight = self.graph.edges[from_node, to_node]["weight"]
             return (from_node, to_node, float(weight))
         return None
+
+    # --------------------------------------
+    # Data analysis and processing
+    # --------------------------------------
+
+    @staticmethod
+    def __form_correlation_matrix(
+        predictions: npt.NDArray[np.intp],
+        targets: npt.NDArray[np.intp],
+    ) -> npt.NDArray[np.intp]:
+        """Forms a correlation matrix for predictions on a foreign domain.
+
+        Each row represents a true class in the foreign domain, and each column
+        represents a predicted class from the model's domain. The value at position
+        (i,j) indicates how many times class i was predicted as class j.
+
+        Parameters
+        ----------
+        predictions : npt.NDArray[np.intp]
+            Model predictions using own domain labels on foreign domain data
+        targets : npt.NDArray[np.intp]
+            True labels of the foreign domain
+
+        Returns
+        -------
+        npt.NDArray[np.intp]
+            The correlation matrix of shape (n_classes_foreign, n_classes_own)
+        """
+        # Find the number of unique classes in both predictions and targets
+        n_target_classes = np.max(targets) + 1
+        n_prediction_classes = np.max(predictions) + 1
+
+        # Initialize correlation matrix with zeros
+        correlations = np.zeros(
+            (n_target_classes, n_prediction_classes),
+            dtype=np.intp,
+        )
+
+        # Count occurrences of each (target, prediction) pair
+        for i, pred in enumerate(predictions):
+            correlations[targets[i], pred] += 1
+
+        return correlations
+
+    @staticmethod
+    def __foreign_prediction_distributions(
+        correlations: npt.NDArray[np.intp],
+    ) -> tuple[npt.NDArray[np.intp], npt.NDArray[np.float32]]:
+        """Calculates the most common prediction for each class and its confidence.
+
+        For each class in the foreign domain, identifies which class from the model's
+        domain is most commonly predicted, and calculates the confidence of that
+        prediction.
+
+        Parameters
+        ----------
+        correlations : npt.NDArray[np.intp]
+            The correlation matrix where each element (i,j) represents how many times
+            foreign class i was predicted as own-domain class j
+
+        Returns
+        -------
+        tuple[npt.NDArray[np.intp], npt.NDArray[np.float32]]
+            A tuple containing:
+            - Array of most commonly predicted classes for each foreign class
+            - Array of confidence values (probabilities) for those predictions
+        """
+        n_foreign_classes = correlations.shape[0]
+        most_common_classes = np.zeros(n_foreign_classes, dtype=np.intp)
+        confidence_values = np.zeros(n_foreign_classes, dtype=np.float32)
+
+        # For each class in the foreign domain
+        for foreign_class_idx in range(n_foreign_classes):
+            # Find the most commonly predicted class
+            prediction_counts = correlations[foreign_class_idx, :]
+            most_common_classes[foreign_class_idx] = np.argmax(prediction_counts)
+
+            # Calculate confidence as the proportion of predictions for this class
+            total_predictions = np.sum(prediction_counts)
+            if total_predictions > 0:
+                max_count = prediction_counts[most_common_classes[foreign_class_idx]]
+                confidence_values[foreign_class_idx] = max_count / total_predictions
+            else:
+                confidence_values[foreign_class_idx] = 0.0
+
+        return most_common_classes, confidence_values
+
+    # --------------------------------------
+    # Universal taxonomy building
+    # --------------------------------------
 
     def __is_finished(self) -> bool:
         """Checks if the universal taxonomy building process is complete.
@@ -403,6 +438,12 @@ class Taxonomy:
         4. Unilateral domain relationships: Transform into proper universal relationships
 
         The process continues until all relationships follow the proper structure.
+
+        Notes
+        -----
+        The universal taxonomy represents a higher-level organization where classes
+        from different domains that represent similar concepts are grouped into
+        universal classes.
         """
         while not self.__is_finished():
             # Flag to track if any modifications were made in this iteration
@@ -439,19 +480,21 @@ class Taxonomy:
     def __handle_isolated_nodes(self) -> bool:
         """Handle isolated domain nodes by creating singleton universal classes.
 
+        This rule processes domain classes that have no relationships, creating
+        a universal class for each isolated node.
+
         Returns
         -------
         bool
             True if any changes were made, False otherwise
         """
         for node in self.__get_nodes():
-            # Check for nodes without incoming or outgoing relationships
+            # Only process domain classes without any connections
             if (
-                not isinstance(node, UniversalClass)
+                isinstance(node, DomainClass)
                 and not self.__get_relationships_to(node)
                 and not self.__get_relationships_from(node)
             ):
-
                 # Create a new universal class containing just this node
                 universal_class = UniversalClass(frozenset({node}))
                 self._add_relationship((node, universal_class, 1.0))
@@ -464,14 +507,18 @@ class Taxonomy:
         If two classes have bidirectional mappings (A→B and B→A), they likely
         represent the same concept and should be merged into a universal class.
 
+        This rule is critical for identifying equivalent concepts across domains.
+
         Returns
         -------
         bool
             True if any changes were made, False otherwise
         """
         for relationship in self.__get_relationships():
+            source_node, target_node, _ = relationship
+
             # Check if there's a reverse relationship
-            reverse_rel = self.__get_relationship(relationship[1], relationship[0])
+            reverse_rel = self.__get_relationship(target_node, source_node)
             if not reverse_rel:
                 continue
 
@@ -480,50 +527,36 @@ class Taxonomy:
             target_classes = set()
 
             # Extract classes from source node (could be domain class or universal class)
-            if isinstance(relationship[0], UniversalClass):
-                source_classes.update(relationship[0])
+            if isinstance(source_node, UniversalClass):
+                source_classes.update(source_node)
             else:
-                source_classes.add(relationship[0])
+                source_classes.add(source_node)
 
             # Extract classes from target node (could be domain class or universal class)
-            if isinstance(relationship[1], UniversalClass):
-                target_classes.update(relationship[1])
+            if isinstance(target_node, UniversalClass):
+                target_classes.update(target_node)
             else:
-                target_classes.add(relationship[1])
+                target_classes.add(target_node)
 
             # Create new universal class with all contained classes
             combined_classes = source_classes.union(target_classes)
             universal_class = UniversalClass(frozenset(combined_classes))
 
             # Add relationships from original nodes to the new universal class
-            self._add_relationship((relationship[0], universal_class, 1.0))
-            self._add_relationship((relationship[1], universal_class, 1.0))
+            self._add_relationship((source_node, universal_class, 1.0))
+            self._add_relationship((target_node, universal_class, 1.0))
 
             # Remove the bidirectional relationships
             self.__remove_relationship(relationship)
             self.__remove_relationship(reverse_rel)
 
             # Redirect incoming relationships to the new universal class
-            self.__redirect_incoming_relationships(relationship[0], universal_class)
-            self.__redirect_incoming_relationships(relationship[1], universal_class)
+            self.__redirect_incoming_relationships(source_node, universal_class)
+            self.__redirect_incoming_relationships(target_node, universal_class)
 
             return True  # Changes were made
 
         return False
-
-    def __redirect_incoming_relationships(self, old_target: Class, new_target: Class):
-        """Redirect all incoming relationships from old_target to new_target.
-
-        Parameters
-        ----------
-        old_target : Class
-            The original target node
-        new_target : Class
-            The new target node to redirect relationships to
-        """
-        for rel in self.__get_relationships_to(old_target):
-            self.__remove_relationship(rel)
-            self._add_relationship((rel[0], new_target, rel[2]))
 
     def __handle_transitive_cycles(self) -> bool:
         """Handle problematic transitive relationships that could create cycles.
@@ -532,18 +565,22 @@ class Taxonomy:
         situation because classes in the same domain must be disjoint.
         We resolve this by removing the weaker relationship.
 
+        This rule ensures consistency within domains.
+
         Returns
         -------
         bool
             True if any changes were made, False otherwise
         """
         for relationship in self.__get_relationships():
+            source_node, target_node, source_weight = relationship
+
             # Skip if source is not a domain class
-            if not isinstance(relationship[0], DomainClass):
+            if not isinstance(source_node, DomainClass):
                 continue
 
             # Get relationships from the target of this relationship
-            next_relationships = self.__get_relationships_from(relationship[1])
+            next_relationships = self.__get_relationships_from(target_node)
 
             # Only consider relationships between domain classes
             next_relationships = [
@@ -553,16 +590,18 @@ class Taxonomy:
             if not next_relationships:
                 continue
 
-            # Check for potential cycles where A→B→C and A and C are in the same domain
-            source_domain_id = relationship[0][0]  # Domain ID of the source node
+            # Extract the domain ID of the source node
+            source_domain_id = source_node[0]
 
+            # Check for potential cycles where A→B→C and A and C are in the same domain
             for next_rel in next_relationships:
-                target_domain_id = next_rel[1][0]  # Domain ID of the final target node
+                next_target, _, next_weight = next_rel
+                target_domain_id = next_target[0]  # Domain ID of the final target node
 
                 # Only break cycles when source and final target are in the same domain
                 if source_domain_id == target_domain_id:
                     # Remove the weaker relationship
-                    if relationship[2] < next_rel[2]:
+                    if source_weight < next_weight:
                         self.__remove_relationship(relationship)
                     else:
                         self.__remove_relationship(next_rel)
@@ -577,41 +616,44 @@ class Taxonomy:
         For relationships like A→B between domain classes, create appropriate universal classes
         to represent the relationship hierarchy.
 
+        This rule transforms the remaining domain-to-domain links into the proper
+        universal taxonomy structure.
+
         Returns
         -------
         bool
             True if any changes were made, False otherwise
         """
         for relationship in self.__get_relationships():
+            source_node, target_node, _ = relationship
+
             # Only process domain-to-domain relationships
-            if not isinstance(relationship[0], DomainClass) or not isinstance(
-                relationship[1], DomainClass
+            if not isinstance(source_node, DomainClass) or not isinstance(
+                target_node, DomainClass
             ):
                 continue
 
             # Create a universal class containing both classes
             shared_universal_class = UniversalClass(
-                frozenset({relationship[0], relationship[1]})
+                frozenset({source_node, target_node})
             )
 
             # Create a universal class containing only the second class
-            target_universal_class = UniversalClass(frozenset({relationship[1]}))
+            target_universal_class = UniversalClass(frozenset({target_node}))
 
             # Add relationships to the new universal classes
-            self._add_relationship((relationship[0], shared_universal_class, 1.0))
-            self._add_relationship((relationship[1], shared_universal_class, 1.0))
-            self._add_relationship((relationship[1], target_universal_class, 1.0))
+            self._add_relationship((source_node, shared_universal_class, 1.0))
+            self._add_relationship((target_node, shared_universal_class, 1.0))
+            self._add_relationship((target_node, target_universal_class, 1.0))
 
             # Remove the original relationship
             self.__remove_relationship(relationship)
 
             # Redirect incoming relationships to the appropriate universal classes
-            self.__redirect_incoming_relationships(
-                relationship[0], shared_universal_class
-            )
+            self.__redirect_incoming_relationships(source_node, shared_universal_class)
 
             # Redirect incoming relationships to the target to both universal classes
-            for rel in self.__get_relationships_to(relationship[1]):
+            for rel in self.__get_relationships_to(target_node):
                 self.__remove_relationship(rel)
                 self._add_relationship((rel[0], shared_universal_class, rel[2]))
                 self._add_relationship((rel[0], target_universal_class, rel[2]))
@@ -620,13 +662,17 @@ class Taxonomy:
 
         return False
 
+    # --------------------------------------
+    # Persistence and I/O
+    # --------------------------------------
+
     def save(self, filepath: str):
         """Save the taxonomy graph to a file.
 
         Parameters
         ----------
         filepath : str
-            Path where to save the graph.
+            Path where to save the graph
         """
         with open(filepath, "wb") as f:
             pickle.dump(self.graph, f)
@@ -638,12 +684,12 @@ class Taxonomy:
         Parameters
         ----------
         filepath : str
-            Path to the saved taxonomy.
+            Path to the saved taxonomy
 
         Returns
         -------
         Taxonomy
-            The loaded taxonomy.
+            The loaded taxonomy
         """
         # Create an empty taxonomy
         taxonomy = cls(
@@ -663,9 +709,13 @@ class Taxonomy:
         Returns
         -------
         nx.DiGraph
-            The NetworkX graph.
+            The NetworkX graph representing the taxonomy
         """
         return self.graph
+
+    # --------------------------------------
+    # Visualization
+    # --------------------------------------
 
     def visualize_graph(
         self,
@@ -805,14 +855,10 @@ class Taxonomy:
             "palegreen",  # Domain 9
         ]
 
-        # Keep track of which domains exist in the graph
-        domains_seen = set()
-
+        # Process each node in the graph
         for node in graph.nodes():
             if isinstance(node, DomainClass):
                 domain_id = node[0]
-                domains_seen.add(domain_id)
-
                 # Get color for this domain (cycling through colors if needed)
                 color = domain_colors[domain_id % len(domain_colors)]
                 node_colors.append(color)
@@ -879,169 +925,3 @@ class Taxonomy:
                 label=weight_label,  # Edge label showing weight
                 value=weight,  # Numeric weight (affects edge thickness)
             )
-
-
-class SyntheticTaxonomy(Taxonomy):
-    def __init__(
-        self,
-        num_classes,
-        num_deviations,
-        num_deviation_classes_mean,
-        num_deviation_classes_variance,
-        cluster_size_mean,
-        cluster_size_variance,
-        seed=42,
-    ):
-        self.num_classes = num_classes
-        self.num_deviations = num_deviations
-        self.num_deviation_classes_mean = num_deviation_classes_mean
-        self.num_deviation_classes_variance = num_deviation_classes_variance
-        self.cluster_size_mean = cluster_size_mean
-        self.cluster_size_variance = cluster_size_variance
-        self.seed = seed
-        self.rng = np.random.default_rng(seed)
-
-        self.deviations = [self.__create_deviation() for _ in range(num_deviations)]
-
-        # Calculate simulated prediction probabilities for each combination of deviation
-        # (exclude self-predictions)
-        self.prediction_probabilities: list[SimulatedPredictions] = []
-        for i, target in enumerate(self.deviations):
-            for j, dataset in enumerate(self.deviations):
-                if i == j:
-                    continue
-                probabilities = self.__simulate_predictions(target, dataset)
-                self.prediction_probabilities.append((i, j, probabilities))
-
-        # Create domain labels for visualization
-        domain_labels = {}
-        for i, deviation in enumerate(self.deviations):
-            labels = []
-            for deviation_class in deviation:
-                labels.append("{" + ", ".join(map(str, deviation_class)) + "}")
-            domain_labels[i] = labels
-
-        # Initialize the synthetic taxonomy with the simulated deviations
-        super().__init__(
-            cross_domain_predictions=[], domain_targets=[], domain_labels=domain_labels
-        )
-        for from_id, to_id, probabilities in self.prediction_probabilities:
-            for from_class_id, probability in enumerate(probabilities):
-                # Get the most common class in the foreign domain
-                to_class_id = np.argmax(probability)
-                p = float(probability[to_class_id])
-
-                from_class = DomainClass((np.intp(from_id), np.intp(from_class_id)))
-                to_class = DomainClass((np.intp(to_id), np.intp(to_class_id)))
-                relationship = Relationship((from_class, to_class, p))
-                self._add_relationship(relationship)
-
-    @staticmethod
-    def __simulate_predictions(target: Deviation, dataset: Deviation):
-        # We simulate that the dataset (representing a model)
-        # tries to predict on the target (representing a dataset with target labels).
-        # The predictions simulate the probabilities of the model
-        # predicting in the domain of the dataset on the foreign domain of the target.
-        #
-        # If a target deviation class has classes A and B and the dataset
-        # deviation class has classes A and C,
-        # the dataset deviation class would be able to predict 50% of {A, B}
-        # since it is trained to recognize A and C (but not B).
-        # The other 50% would go to deviation classes containing B or,
-        # if no such classes exist, will be distributed evenly among all classes.
-        probabilities = []
-        for target_deviation_class in target:
-            # Convert each class in target_deviation_class to a regular set for easier manipulation
-            target_classes = set(target_deviation_class)
-
-            # Initialize probability distribution with zeros
-            probability = [0.0] * len(dataset)
-
-            # Calculate overlap between target class and each dataset class
-            overlaps = []
-            for i, dataset_deviation_class in enumerate(dataset):
-                dataset_classes = set(dataset_deviation_class)
-                overlap = target_classes.intersection(dataset_classes)
-                if overlap:
-                    # Calculate the percentage of overlap compared to the target class
-                    overlaps.append((i, len(overlap) / len(target_classes)))
-
-            # Distribute overlaps to probabilities
-            for idx, overlap_ratio in overlaps:
-                probability[idx] = overlap_ratio
-
-            # Calculate the remaining probability and distribute it evenly
-            # among all classes (even those that have overlaps already)
-            remaining_probability = 1.0 - sum(probability)
-            if remaining_probability > 0:
-                for i, p in enumerate(probability):
-                    probability[i] = p + remaining_probability / len(probability)
-
-            probabilities.append(probability)
-
-        return np.array(probabilities, dtype=np.float64)
-
-    def __create_deviation(self):
-        num_deviation_classes = np.round(
-            self.__rvs(
-                self.num_deviation_classes_mean,
-                self.num_deviation_classes_variance,
-                upper_bound=self.num_classes,
-            )
-        ).astype(np.intp)
-
-        # Create a pool of all possible class indices
-        available_classes = range(self.num_classes)
-
-        # Choose num_deviation_classes unique classes to be part of this deviation
-        selected_classes = set(
-            self.rng.choice(
-                available_classes, size=num_deviation_classes, replace=False
-            )
-        )
-
-        # Create clusters of deviation classes until all selected classes are assigned
-        deviation = set()
-
-        while selected_classes:
-            # Determine cluster size from distribution, but limit to remaining classes
-            if len(selected_classes) == 1:
-                cluster_size = 1
-            else:
-                cluster_size = np.round(
-                    self.__rvs(
-                        self.cluster_size_mean,
-                        self.cluster_size_variance,
-                        lower_bound=1,
-                        upper_bound=len(selected_classes),
-                    )
-                ).astype(np.intp)
-
-            # Randomly select classes for this cluster
-            cluster_classes = frozenset(
-                self.rng.choice(
-                    list(selected_classes),
-                    size=cluster_size,
-                    replace=False,
-                ).astype(np.intp)
-            )
-
-            # Create a deviation class (cluster) and add it to the deviation
-            deviation_class = DeviationClass(cluster_classes)
-            deviation.add(deviation_class)
-
-            # Remove assigned classes from the remaining pool
-            selected_classes -= cluster_classes
-
-        return Deviation(frozenset(deviation))
-
-    def __rvs(self, mean, variance, lower_bound=0, upper_bound=float("inf")):
-        a = (lower_bound - mean) / np.sqrt(variance)
-        b = (upper_bound - mean) / np.sqrt(variance)
-
-        try:
-            return truncnorm.rvs(
-                a=a, b=b, random_state=self.rng, loc=mean, scale=np.sqrt(variance)
-            )
-        except ValueError:
-            return 0
