@@ -41,8 +41,8 @@
   
 - **Prediction Simulation Algorithm**:
   1. For each pair of deviations (excluding self-predictions):
-     - Compare each target deviation class with each dataset deviation class
-     - Calculate overlap between classes in the clusters
-     - Assign prediction probabilities based on overlap ratio
-     - Simulate predictions with weighted distribution (100 samples per target class)
-     - If no overlap exists, distribute probabilities evenly across all dataset classes
+  - The original classes we redesign as concepts that are then shared between the deviations
+  - Compare each target deviation class with each dataset deviation class
+  - Calculate overlap between classes in the clusters
+  - Assign prediction probabilities based on overlap ratio
+  - Distribute remaining percentages after overlap evenly among all foreign classes
