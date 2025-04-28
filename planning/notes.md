@@ -21,3 +21,28 @@
 
 - Rules can be applied exactly the same way as in the original paper
 - We need to look for transitive relationships if A and C are the same domain
+
+## Synthetic taxonomy
+
+- We simulate the models running on the dataset deviations
+- Some edge cases have equal probabilities between merged classes which means that the argmax simply uses the first class (it is not realistic for real-world datasets so we can ignore it)
+- We use truncated normal distribution to determine clusters and deviation dataset sizes
+
+### Synthetic Taxonomy Algorithm Details
+
+- **DeviationClass**: Implemented as a frozenset of class IDs representing classes that are merged/clustered in a deviation
+- **Deviation**: Collection of DeviationClasses that form a complete synthetic dataset/domain
+- **Deviation Generation Algorithm**:
+  1. Use truncated normal distribution to determine number of classes per deviation
+  2. Randomly select classes from original dataset to be part of this deviation
+  3. Form clusters by:
+     - Determining cluster size using truncated normal distribution
+     - Randomly assigning classes to clusters until all classes are assigned
+  
+- **Prediction Simulation Algorithm**:
+  1. For each pair of deviations (excluding self-predictions):
+     - Compare each target deviation class with each dataset deviation class
+     - Calculate overlap between classes in the clusters
+     - Assign prediction probabilities based on overlap ratio
+     - Simulate predictions with weighted distribution (100 samples per target class)
+     - If no overlap exists, distribute probabilities evenly across all dataset classes

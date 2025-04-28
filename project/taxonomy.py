@@ -2,6 +2,7 @@ import pickle
 from typing import List, Tuple, Dict
 import numpy as np
 import numpy.typing as npt
+from scipy.stats import truncnorm
 import networkx as nx
 from pyvis.network import Network
 
@@ -26,7 +27,7 @@ type Class = DomainClass | UniversalClass
 """Type alias representing either a domain-specific class or a universal class."""
 
 
-class Relationship(tuple[Class, Class, np.float32]):
+class Relationship(tuple[Class, Class, float]):
     """A directional relationship between two classes with an associated confidence weight.
 
     Represented as a tuple (source_class, target_class, weight) where:
@@ -36,11 +37,24 @@ class Relationship(tuple[Class, Class, np.float32]):
     """
 
 
+class DeviationClass(frozenset[np.intp]):
+    pass
+
+
+class Deviation(frozenset[DeviationClass]):
+    pass
+
+
+class SimulatedPredictions(tuple[np.intp, np.intp, np.ndarray[np.float64]]):
+    pass
+
+
 class Taxonomy:
     def __init__(
         self,
         cross_domain_predictions: List[Tuple[int, int, npt.NDArray[np.intp]]],
         domain_targets: List[Tuple[int, npt.NDArray[np.intp]]],
+        domain_labels: Dict[int, List[str]] = None,
     ):
         """Creates a taxonomy object with an integrated graph structure.
 
@@ -59,6 +73,9 @@ class Taxonomy:
             List of tuples where each tuple contains:
             - domain_id: The domain ID
             - targets: Array of ground truth class labels for that domain
+        domain_labels : Dict[int, List[str]], optional
+            Dictionary mapping domain IDs to human-readable labels for each class.
+            This is used for visualization purposes. If not provided, class IDs are used.
 
         Notes
         -----
@@ -68,6 +85,10 @@ class Taxonomy:
         3. Extracts the most common cross-domain predictions
         4. Constructs initial relationships in the taxonomy graph
         """
+
+        # Store domain labels for visualization
+        self.domain_labels = domain_labels
+
         # Store domain targets in a dictionary for easier access
         self.targets = {}
         for domain_id, targets in domain_targets:
@@ -134,7 +155,7 @@ class Taxonomy:
                 continue
 
             # Add the relationship to the taxonomy graph
-            self.__add_relationship(
+            self._add_relationship(
                 (source_class, target_class, confidence_values[class_idx])
             )
 
@@ -221,7 +242,7 @@ class Taxonomy:
 
         return values, probabilities
 
-    def __add_relationship(self, relationship: Relationship):
+    def _add_relationship(self, relationship: Relationship):
         """Adds a relationship to the graph.
 
         Parameters
@@ -262,7 +283,7 @@ class Taxonomy:
         """
         relationships = []
         for u, v, data in self.graph.edges(data=True):
-            relationships.append((u, v, np.float32(data["weight"])))
+            relationships.append((u, v, float(data["weight"])))
         return relationships
 
     def __get_nodes(self) -> set[Class]:
@@ -294,7 +315,7 @@ class Taxonomy:
 
         for _, target in self.graph.out_edges(node):
             weight = self.graph.edges[node, target]["weight"]
-            relationships.append((node, target, np.float32(weight)))
+            relationships.append((node, target, float(weight)))
         return relationships
 
     def __get_relationships_to(self, node: Class) -> list[Relationship]:
@@ -316,7 +337,7 @@ class Taxonomy:
 
         for source, _ in self.graph.in_edges(node):
             weight = self.graph.edges[source, node]["weight"]
-            relationships.append((source, node, np.float32(weight)))
+            relationships.append((source, node, float(weight)))
         return relationships
 
     def __get_relationship(
@@ -339,7 +360,7 @@ class Taxonomy:
         """
         if self.graph.has_edge(from_node, to_node):
             weight = self.graph.edges[from_node, to_node]["weight"]
-            return (from_node, to_node, np.float32(weight))
+            return (from_node, to_node, float(weight))
         return None
 
     def __is_finished(self) -> bool:
@@ -433,7 +454,7 @@ class Taxonomy:
 
                 # Create a new universal class containing just this node
                 universal_class = UniversalClass(frozenset({node}))
-                self.__add_relationship((node, universal_class, 1.0))
+                self._add_relationship((node, universal_class, 1.0))
                 return True  # Changes were made
         return False
 
@@ -475,8 +496,8 @@ class Taxonomy:
             universal_class = UniversalClass(frozenset(combined_classes))
 
             # Add relationships from original nodes to the new universal class
-            self.__add_relationship((relationship[0], universal_class, 1.0))
-            self.__add_relationship((relationship[1], universal_class, 1.0))
+            self._add_relationship((relationship[0], universal_class, 1.0))
+            self._add_relationship((relationship[1], universal_class, 1.0))
 
             # Remove the bidirectional relationships
             self.__remove_relationship(relationship)
@@ -502,7 +523,7 @@ class Taxonomy:
         """
         for rel in self.__get_relationships_to(old_target):
             self.__remove_relationship(rel)
-            self.__add_relationship((rel[0], new_target, rel[2]))
+            self._add_relationship((rel[0], new_target, rel[2]))
 
     def __handle_transitive_cycles(self) -> bool:
         """Handle problematic transitive relationships that could create cycles.
@@ -577,9 +598,9 @@ class Taxonomy:
             target_universal_class = UniversalClass(frozenset({relationship[1]}))
 
             # Add relationships to the new universal classes
-            self.__add_relationship((relationship[0], shared_universal_class, 1.0))
-            self.__add_relationship((relationship[1], shared_universal_class, 1.0))
-            self.__add_relationship((relationship[1], target_universal_class, 1.0))
+            self._add_relationship((relationship[0], shared_universal_class, 1.0))
+            self._add_relationship((relationship[1], shared_universal_class, 1.0))
+            self._add_relationship((relationship[1], target_universal_class, 1.0))
 
             # Remove the original relationship
             self.__remove_relationship(relationship)
@@ -592,8 +613,8 @@ class Taxonomy:
             # Redirect incoming relationships to the target to both universal classes
             for rel in self.__get_relationships_to(relationship[1]):
                 self.__remove_relationship(rel)
-                self.__add_relationship((rel[0], shared_universal_class, rel[2]))
-                self.__add_relationship((rel[0], target_universal_class, rel[2]))
+                self._add_relationship((rel[0], shared_universal_class, rel[2]))
+                self._add_relationship((rel[0], target_universal_class, rel[2]))
 
             return True  # Changes were made
 
@@ -648,7 +669,6 @@ class Taxonomy:
 
     def visualize_graph(
         self,
-        domain_labels: Dict[int, List[str]] = None,
         title: str = "Universal Taxonomy Graph",
         height: int = 800,
         width: int = 1200,
@@ -660,9 +680,6 @@ class Taxonomy:
 
         Parameters
         ----------
-        domain_labels : Dict[int, List[str]], optional
-            Dictionary mapping domain IDs to lists of human-readable labels for their classes
-            For example: {0: ["dog", "cat", ...], 1: ["canine", "feline", ...]}
         title : str, optional
             Title to display on the visualization, by default "Universal Taxonomy Graph"
         height : int, optional
@@ -685,7 +702,7 @@ class Taxonomy:
         graph = self.to_networkx()
 
         # Step 1: Create human-readable labels for all nodes
-        node_labels = self.__create_node_labels(graph, domain_labels)
+        node_labels = self.__create_node_labels(graph)
 
         # Step 2: Set node colors and groups based on domain or universal class
         node_colors, node_groups = self.__assign_node_colors_and_groups(graph)
@@ -710,7 +727,6 @@ class Taxonomy:
     def __create_node_labels(
         self,
         graph: nx.DiGraph,
-        domain_labels: Dict[int, List[str]] = None,
     ) -> dict:
         """Create human-readable labels for all nodes in the graph.
 
@@ -718,8 +734,6 @@ class Taxonomy:
         ----------
         graph : nx.DiGraph
             The graph containing nodes to label
-        domain_labels : Dict[int, List[str]], optional
-            Dictionary mapping domain IDs to lists of human-readable labels for their classes
 
         Returns
         -------
@@ -727,7 +741,7 @@ class Taxonomy:
             Dictionary mapping nodes to their display labels
         """
         node_labels = {}
-        domain_labels = domain_labels or {}
+        domain_labels = self.domain_labels or {}
 
         # First pass: Create labels for domain classes
         for node in graph.nodes():
@@ -865,3 +879,169 @@ class Taxonomy:
                 label=weight_label,  # Edge label showing weight
                 value=weight,  # Numeric weight (affects edge thickness)
             )
+
+
+class SyntheticTaxonomy(Taxonomy):
+    def __init__(
+        self,
+        num_classes,
+        num_deviations,
+        num_deviation_classes_mean,
+        num_deviation_classes_variance,
+        cluster_size_mean,
+        cluster_size_variance,
+        seed=42,
+    ):
+        self.num_classes = num_classes
+        self.num_deviations = num_deviations
+        self.num_deviation_classes_mean = num_deviation_classes_mean
+        self.num_deviation_classes_variance = num_deviation_classes_variance
+        self.cluster_size_mean = cluster_size_mean
+        self.cluster_size_variance = cluster_size_variance
+        self.seed = seed
+        self.rng = np.random.default_rng(seed)
+
+        self.deviations = [self.__create_deviation() for _ in range(num_deviations)]
+
+        # Calculate simulated prediction probabilities for each combination of deviation
+        # (exclude self-predictions)
+        self.prediction_probabilities: list[SimulatedPredictions] = []
+        for i, target in enumerate(self.deviations):
+            for j, dataset in enumerate(self.deviations):
+                if i == j:
+                    continue
+                probabilities = self.__simulate_predictions(target, dataset)
+                self.prediction_probabilities.append((i, j, probabilities))
+
+        # Create domain labels for visualization
+        domain_labels = {}
+        for i, deviation in enumerate(self.deviations):
+            labels = []
+            for deviation_class in deviation:
+                labels.append("{" + ", ".join(map(str, deviation_class)) + "}")
+            domain_labels[i] = labels
+
+        # Initialize the synthetic taxonomy with the simulated deviations
+        super().__init__(
+            cross_domain_predictions=[], domain_targets=[], domain_labels=domain_labels
+        )
+        for from_id, to_id, probabilities in self.prediction_probabilities:
+            for from_class_id, probability in enumerate(probabilities):
+                # Get the most common class in the foreign domain
+                to_class_id = np.argmax(probability)
+                p = float(probability[to_class_id])
+
+                from_class = DomainClass((np.intp(from_id), np.intp(from_class_id)))
+                to_class = DomainClass((np.intp(to_id), np.intp(to_class_id)))
+                relationship = Relationship((from_class, to_class, p))
+                self._add_relationship(relationship)
+
+    @staticmethod
+    def __simulate_predictions(target: Deviation, dataset: Deviation):
+        # We simulate that the dataset (representing a model)
+        # tries to predict on the target (representing a dataset with target labels).
+        # The predictions simulate the probabilities of the model
+        # predicting in the domain of the dataset on the foreign domain of the target.
+        #
+        # If a target deviation class has classes A and B and the dataset
+        # deviation class has classes A and C,
+        # the dataset deviation class would be able to predict 50% of {A, B}
+        # since it is trained to recognize A and C (but not B).
+        # The other 50% would go to deviation classes containing B or,
+        # if no such classes exist, will be distributed evenly among all classes.
+        probabilities = []
+        for target_deviation_class in target:
+            # Convert each class in target_deviation_class to a regular set for easier manipulation
+            target_classes = set(target_deviation_class)
+
+            # Initialize probability distribution with zeros
+            probability = [0.0] * len(dataset)
+
+            # Calculate overlap between target class and each dataset class
+            overlaps = []
+            for i, dataset_deviation_class in enumerate(dataset):
+                dataset_classes = set(dataset_deviation_class)
+                overlap = target_classes.intersection(dataset_classes)
+                if overlap:
+                    # Calculate the percentage of overlap compared to the target class
+                    overlaps.append((i, len(overlap) / len(target_classes)))
+
+            # Distribute overlaps to probabilities
+            for idx, overlap_ratio in overlaps:
+                probability[idx] = overlap_ratio
+
+            # Calculate the remaining probability and distribute it evenly
+            # among all classes (even those that have overlaps already)
+            remaining_probability = 1.0 - sum(probability)
+            if remaining_probability > 0:
+                for i, p in enumerate(probability):
+                    probability[i] = p + remaining_probability / len(probability)
+
+            probabilities.append(probability)
+
+        return np.array(probabilities, dtype=np.float64)
+
+    def __create_deviation(self):
+        num_deviation_classes = np.round(
+            self.__rvs(
+                self.num_deviation_classes_mean,
+                self.num_deviation_classes_variance,
+                upper_bound=self.num_classes,
+            )
+        ).astype(np.intp)
+
+        # Create a pool of all possible class indices
+        available_classes = range(self.num_classes)
+
+        # Choose num_deviation_classes unique classes to be part of this deviation
+        selected_classes = set(
+            self.rng.choice(
+                available_classes, size=num_deviation_classes, replace=False
+            )
+        )
+
+        # Create clusters of deviation classes until all selected classes are assigned
+        deviation = set()
+
+        while selected_classes:
+            # Determine cluster size from distribution, but limit to remaining classes
+            if len(selected_classes) == 1:
+                cluster_size = 1
+            else:
+                cluster_size = np.round(
+                    self.__rvs(
+                        self.cluster_size_mean,
+                        self.cluster_size_variance,
+                        lower_bound=1,
+                        upper_bound=len(selected_classes),
+                    )
+                ).astype(np.intp)
+
+            # Randomly select classes for this cluster
+            cluster_classes = frozenset(
+                self.rng.choice(
+                    list(selected_classes),
+                    size=cluster_size,
+                    replace=False,
+                ).astype(np.intp)
+            )
+
+            # Create a deviation class (cluster) and add it to the deviation
+            deviation_class = DeviationClass(cluster_classes)
+            deviation.add(deviation_class)
+
+            # Remove assigned classes from the remaining pool
+            selected_classes -= cluster_classes
+
+        return Deviation(frozenset(deviation))
+
+    def __rvs(self, mean, variance, lower_bound=0, upper_bound=float("inf")):
+        a = (lower_bound - mean) / np.sqrt(variance)
+        b = (upper_bound - mean) / np.sqrt(variance)
+
+        try:
+            return truncnorm.rvs(
+                a=a, b=b, random_state=self.rng, loc=mean, scale=np.sqrt(variance)
+            )
+        except ValueError:
+            return 0
