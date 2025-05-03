@@ -1,0 +1,193 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Methodology}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+    \begin{minipage}{0.5\textwidth}
+        \begin{small}
+            In which the reasons for creating this package are laid bare for the
+            whole world to see and we encounter some usage guidelines.
+        \end{small}
+    \end{minipage}
+    \vspace{0.5cm}
+\end{center}
+
+\section{Synthetic Taxonomy Generation}
+
+To adequately evaluate the performance of our taxonomy generation methods,
+we need a suitable ground truth to compare against.
+While there are many real-world datasets available for image classification,
+there are few that provide clear inter-dataset relationships:
+\begin{itemize}
+    \item \textbf{ImageNet}~\cite{deng_imagenet_2009,russakovsky_imagenet_2015}
+          is a large-scale dataset with a hierarchical structure that categorises
+          images into trees of classes and sub-classes.
+          The dataset is using the WordNet~\cite{fellbaum_wordnet_1998} lexical
+          database of semantic relations to create a taxonomy of classes.
+          However, since this dataset has a perfectly hierarchical structure,
+          it would not suitably represent our use case of connecting
+          multiple datasets with different class structures
+          (where a class might have a perfect match in another dataset,
+          or doesn't match at all with any class).
+    \item \textbf{Open Images}~\cite{kuznetsova_open_2020} is a dataset of
+          ca.~9 million images that are annoted with labels generated using
+          Google's Cloud Vision API\footnote{\url{https://cloud.google.com/vision}}.
+          The labels are again based on the WordNet lexical database,
+          resulting in a similar structure to ImageNet.
+          A single image can have multiple labels,
+          which makes it difficult to determine the exact class of an image
+          (required for our evaluation).
+          Additionally, the labels were automatically generated
+          and only the validation and test sets were manually verified,
+          which makes it unsuitable as a ground truth for us.
+    \item \textbf{iNaturalist}~\cite{horn_inaturalist_2018} is a highly
+          specialised dataset of plant and animal species,
+          with a hierarchical structure of fine-grained classes.
+          While it contains a manually created, complex taxonomy,
+          it is highly specific to the domain of biology
+          which deviates from our goal of creating a general-purpose ground truth.
+\end{itemize}
+
+To overcome the limitations of finding human-annoated datasets
+with verified inter-dataset relationships,
+we instead propose a method for generating synthetic datasets
+with a controlled taxonomy structure:
+We define a set of atomic concepts that can be used to define classes,
+and then generate a set of classes by randomly sampling from the atomic concepts.
+The resulting classes are disjoint (i.e. no class shares any atomic concepts)
+and form a single domain.
+We can repeat this process with the same set of atomic concepts
+to create multiple domains,
+and then calculate the inter-domain relationships based on the known, shared atomic concepts.
+
+To now evaluate the performance of our taxonomy generation methods,
+we can use an existing dataset and use each class as a single atomic concept
+to generate any number of domains with images from the original dataset.
+
+\subsection{Generating Domains}
+
+\subsubsection{Definition}
+
+We define:
+
+\begin{equation}
+    \begin{aligned}
+        \mathcal{U}   & = \{1, 2, \ldots, n\} \quad \text{with } n \in \mathds{N}^*                                                                                           \\
+        \mathcal{C}   & \subseteq \mathcal{U}                                                                                                                                 \\
+        \mathcal{D}_i & = \{\mathcal{C}_1^i, \mathcal{C}_2^i, \ldots, \mathcal{C}_k^i\} \quad \text{with } \forall j \neq k: \mathcal{C}_j^i \cap \mathcal{C}_k^i = \emptyset \\
+        \mathcal{T}   & = \{\mathcal{D}_1, \mathcal{D}_2, \ldots, \mathcal{D}_m\}
+    \end{aligned}
+\end{equation}
+
+We first build a set of atomic concepts $\mathcal{U}$,
+which forms a universe of concepts.
+A domain $\mathcal{D}_i$ now defines a set of disjoint classes $\mathcal{C}_j^i$,
+where each class is a subset of the atomic concepts $\mathcal{U}$.
+A set of domains now forms a synthetic taxonomy $\mathcal{T}$ with $m$ domains,
+where each domain can have a different number of classes,
+with each class containing a different number of atomic concepts.
+
+\subsubsection{Sampling parameters}
+
+We want to generate our synthetic taxonomy $\mathcal{T}$ in a controlled manner,
+where we are able to specify how many domains we want to generate,
+how many classes each domain should have as well as how many atomic concepts
+should be assigned to each class.
+However, to make the synthetic taxonomy more realistic,
+we want to sample the number of classes per domain as well as the number of atomic concepts per class
+from a normal distribution.
+
+Since the normal distribution is unbounded,
+our sampling might result in negative values or values larger than the number of atomic concepts.
+To avoid this we use the truncated normal distribution
+
+\begin{equation*}
+    f(x|\mu, \sigma, a, b) =
+    \begin{cases}
+        \frac{\phi\left(\frac{x-\mu}{\sigma}\right)}{\sigma\left[\Phi\left(\frac{b-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)\right]} & \text{if } a \leq x \leq b \\
+        0                                                                                                                                              & \text{otherwise}
+    \end{cases}
+\end{equation*}
+
+where $\phi$ is the standard normal \acrshort{PDF} and $\Phi$ is the standard normal \acrshort{CDF}.
+This formulation is implemented using the SciPy \texttt{truncnorm} module\footnote{\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.truncnorm.html}},
+with appropriate standardization:
+
+\begin{equation*}
+    X \sim \text{TruncNorm}(\mu, \sigma^2, a, b)
+\end{equation*}
+
+\subsubsection{Domain Generation}
+
+To now generate a domain we follow the following steps:
+
+\begin{enumerate}
+    \item Sample the number of concepts $l$ to use from the universe $\mathcal{U}$ of length $n$:
+          \begin{equation*}
+              l \sim \lfloor\text{TruncNorm}(\mu_{\text{classes}}, \sigma^2_{\text{classes}}, 1, n)\rceil
+          \end{equation*}
+    \item Define a pool of available concepts $P$:
+          \begin{align*}
+              a, b, c, \ldots & \sim \text{Uniform}(\mathcal{U}) \quad \text{without replacement} \\
+              P               & = \{a, b, c, \ldots\}
+          \end{align*}
+    \item Define our domain $\mathcal{D}_i = \{\}$.
+    \item While $|P| \neq 0$:
+          \begin{enumerate}
+              \item Sample a class size $s_i$ from a truncated normal distribution:
+                    \begin{equation*}
+                        s_i \sim \lfloor\text{TruncNorm}(\mu_{\text{class\_size}}, \sigma^2_{\text{class\_size}}, 1, |P|)\rceil
+                    \end{equation*}
+              \item Randomly select $s_i$ concepts from the remaining pool to form class $\mathcal{C}_j^i$:
+                    \begin{align*}
+                        c_1, c_2, \ldots, c_{s_i} & \sim \text{Uniform}(P) \quad \text{without replacement} \\
+                        \mathcal{C}_j^i           & = \{c_1, c_2, \ldots, c_{s_i}\}
+                    \end{align*}
+              \item Remove these concepts from the pool of available concepts:
+                    \begin{equation*}
+                        P = P \setminus \mathcal{C}_j^i
+                    \end{equation*}
+              \item Add the class to the domain:
+                    \begin{equation*}
+                        \mathcal{D}_i = \mathcal{D}_i \cup \{\mathcal{C}_j^i\}
+                    \end{equation*}
+          \end{enumerate}
+\end{enumerate}
+
+\subsection{Cross-Domain Relationship Modeling}
+
+We have now generated our synthetic taxonomy $\mathcal{T}$,
+but we still need to define the relationships between different domains.
+
+Our universal taxonomy generation method is based on the assumption
+that the model classifiers will be able to predict related classes
+from different domains with a certain probability.
+It then uses these probabilities to build a universal taxonomy
+that maps domain classes to universal classes.
+
+To simulate this behavior, we want to generate perfect synthetic probabilities
+that represent the relationships between classes in different domains.
+An example of this would be the following:
+\begin{itemize}
+    \item We have two domains $\mathcal{D}_A = \{\mathcal{C}_1^A, \mathcal{C}_2^A\}$ and $\mathcal{D}_B = \{\mathcal{C}_1^B, \mathcal{C}_2^B\}$.
+    \item The classes are defined as $\mathcal{C}_1^A = \{1, 2\}$, $\mathcal{C}_2^A = \{3, 4\}$ and $\mathcal{C}_1^B = \{1, 2, 4\}$, $\mathcal{C}_2^B = \{5, 6\}$.
+    \item The relationship from $\mathcal{C}_1^A\rightarrow\mathcal{C}_1^B$ would have a probability of $1$,
+          since all atomic concepts in $\mathcal{C}_1^A$ are also present in $\mathcal{C}_1^B$.
+    \item The relationship $\mathcal{C}_2^A\rightarrow\mathcal{C}_1^B$ should have a probability of $0.5$,
+          since only half of the atomic concepts in $\mathcal{C}_2^A$ are also present in $\mathcal{C}_1^B$.
+          However, since the synthetic taxonomy should simulate the behavior of a neural network,
+          the other half of the atomic concepts cannot be assigned to any class in $\mathcal{D}_B$
+          and the neural network would likely randomly choose any class in $\mathcal{D}_B$.
+          Therefore, we evenly distribute the remaining probability mass to all classes in $\mathcal{D}_B$.
+          This means that the relationship $\mathcal{C}_2^A\rightarrow\mathcal{C}_1^B$ would have a probability of $0.5 + \frac{0.5}{2} = 0.75$,
+\end{itemize}
+
+To formalise this, we define the following terms for any two given domains $\mathcal{D}_A$ and $\mathcal{D}_B$ with $\mathcal{D}_A \neq \mathcal{D}_B$:
+
+\begin{equation}
+    \begin{aligned}
+        \text{NaiveProbability}(i, j) & = \frac{|\mathcal{C}_i^A \cap \mathcal{C}_j^B|}{|\mathcal{C}_i^A|} \quad \text{with } i \in \{1, \ldots, |\mathcal{D}_A|\}, j \in \{1, \ldots, |\mathcal{D}_B|\} \\
+        P                             & \in \mathds{R}^{|\mathcal{D}_A| \times |\mathcal{D}_B|} \quad \text{with } P_{i,j} \in [0, 1]                                                                    \\
+        P_{i,j}                       & = \text{NaiveProbability}(i, j) + \frac{1 - \text{NaiveProbability}(i, j)}{|\mathcal{D}_B|}
+    \end{aligned}
+\end{equation}

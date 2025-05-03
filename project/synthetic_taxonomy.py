@@ -50,7 +50,7 @@ class SyntheticTaxonomy(Taxonomy):
 
     def __init__(
         self,
-        num_classes: int,
+        num_atomic_concepts: int,
         num_domains: int,
         domain_class_count_mean: float,
         domain_class_count_variance: float,
@@ -62,7 +62,7 @@ class SyntheticTaxonomy(Taxonomy):
 
         Parameters
         ----------
-        num_classes : int
+        num_atomic_concepts : int
             The total number of atomic concepts available in the universe
         num_domains : int
             The number of domains (deviations) to generate
@@ -85,7 +85,7 @@ class SyntheticTaxonomy(Taxonomy):
         3. Creates a taxonomy graph with relationships between domains
         """
         # Store parameters
-        self.num_atomic_concepts = num_classes
+        self.num_atomic_concepts = num_atomic_concepts
         self.num_domains = num_domains
         self.domain_class_count_mean = domain_class_count_mean
         self.domain_class_count_variance = domain_class_count_variance
@@ -250,6 +250,7 @@ class SyntheticTaxonomy(Taxonomy):
                 mean=self.domain_class_count_mean,
                 variance=self.domain_class_count_variance,
                 upper_bound=self.num_atomic_concepts,
+                lower_bound=1,
             )
         ).astype(np.intp)
 

@@ -7,13 +7,13 @@
 }{typearea}
 
 \LoadClass[a4paper,
-           twoside,
-           11pt,
-           cleardoublepage=empty,
-           numbers=noenddot,
-           titlepage,
-           toc=bibliography,
-           toc=index,]{scrbook}
+  twoside,
+  11pt,
+  cleardoublepage=empty,
+  numbers=noenddot,
+  titlepage,
+  toc=bibliography,
+  toc=index,]{scrbook}
 
 \RequirePackage{iftex}
 \newif\ifxetexorluatex\xetexorluatexfalse
@@ -35,7 +35,7 @@
 % while keeping hyphenation rules correct. Should you add another one
 % in the list, please ensure that `english` is the last one. The last
 % language is used to control standard hyphenation.
-\usepackage[ngerman,french,english]{babel}
+\usepackage[english]{babel}
 
 \RequirePackage[autostyle=true]{csquotes} % Context-sensitive quotation marks
 \RequirePackage{makeidx}  % For creating indices
@@ -60,7 +60,7 @@
 \RequirePackage{graphicx}
 \graphicspath{%
   {Figures/}
-  {./}
+    {./}
 }
 
 % Suppress warnings about page groups in PDFs. This is not justified
@@ -88,7 +88,7 @@
   nopostdot,
   nonumberlist,
   toc,
-  ]{glossaries}
+]{glossaries}
 
 % New style that prevents line-breaks between the full description and
 % the acronym. Furthermore, it ensures that the acronym is always
@@ -135,9 +135,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage[%
-    olditem,  % Do not modify itemize environments by default
-    oldenum   % Do not modify enumerate environments by default
-  ]{paralist}
+  olditem,  % Do not modify itemize environments by default
+  oldenum   % Do not modify enumerate environments by default
+]{paralist}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Spacing

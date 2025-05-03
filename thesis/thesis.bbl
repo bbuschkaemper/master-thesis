@@ -19,96 +19,367 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
-    \entry{Bringhurst12}{book}{}{}
-      \name{author}{1}{}{%
-        {{hash=26e95fb42484f0ba33bccaf28955982e}{%
-           family={Bringhurst},
-           familyi={B\bibinitperiod},
-           given={Robert},
+    \entry{deng_imagenet_2009}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=cbaf4f8829c5ef01cf9659d1d6975526}{%
+           family={Deng},
+           familyi={D\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=955e4fa0c47a616eecedbeeb06aa65fa}{%
+           family={Dong},
+           familyi={D\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod}}}%
+        {{hash=edd3c4a3b6388614c15fdfa581b52069}{%
+           family={Socher},
+           familyi={S\bibinitperiod},
+           given={R.},
            giveni={R\bibinitperiod}}}%
+        {{hash=4db47e780a7092458880617d8c3231f7}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={L.-J.},
+           giveni={L\bibinithyphendelim J\bibinitperiod}}}%
+        {{hash=1a48ecf9984adc4526895c8abf1d2b80}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f536a9246365f63717886015403a0964}{%
+           family={Fei-Fei},
+           familyi={F\bibinithyphendelim F\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
       }
-      \list{location}{1}{%
-        {Vancouver, British Columbia, Canada}%
-      }
-      \list{publisher}{1}{%
-        {Hartley \& Marks Publishers}%
-      }
-      \strng{namehash}{26e95fb42484f0ba33bccaf28955982e}
-      \strng{fullhash}{26e95fb42484f0ba33bccaf28955982e}
-      \strng{fullhashraw}{26e95fb42484f0ba33bccaf28955982e}
-      \strng{bibnamehash}{26e95fb42484f0ba33bccaf28955982e}
-      \strng{authorbibnamehash}{26e95fb42484f0ba33bccaf28955982e}
-      \strng{authornamehash}{26e95fb42484f0ba33bccaf28955982e}
-      \strng{authorfullhash}{26e95fb42484f0ba33bccaf28955982e}
-      \strng{authorfullhashraw}{26e95fb42484f0ba33bccaf28955982e}
-      \field{sortinit}{B}
-      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \strng{namehash}{fec3a590a384f905f4a8183a7c8ec390}
+      \strng{fullhash}{fec3a590a384f905f4a8183a7c8ec390}
+      \strng{fullhashraw}{fec3a590a384f905f4a8183a7c8ec390}
+      \strng{bibnamehash}{fec3a590a384f905f4a8183a7c8ec390}
+      \strng{authorbibnamehash}{fec3a590a384f905f4a8183a7c8ec390}
+      \strng{authornamehash}{fec3a590a384f905f4a8183a7c8ec390}
+      \strng{authorfullhash}{fec3a590a384f905f4a8183a7c8ec390}
+      \strng{authorfullhashraw}{fec3a590a384f905f4a8183a7c8ec390}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{edition}{4}
-      \field{title}{The Elements of Typographic Style}
-      \field{year}{2012}
+      \field{booktitle}{{CVPR}09}
+      \field{title}{{ImageNet}: A Large-Scale Hierarchical Image Database}
+      \field{year}{2009}
+      \field{dateera}{ce}
     \endentry
-    \entry{Tufte90}{book}{}{}
+    \entry{fellbaum_wordnet_1998}{book}{}{}
       \name{author}{1}{}{%
-        {{hash=41187f886abb9d98f33e5b3f52276d12}{%
-           family={Tufte},
-           familyi={T\bibinitperiod},
-           given={Edward\bibnamedelima R.},
-           giveni={E\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Chesh\-ire, CT, USA}%
+        {{hash=34ede4192dcababa339fd9e0e9c1df7d}{%
+           family={Fellbaum},
+           familyi={F\bibinitperiod},
+           given={Christiane},
+           giveni={C\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
-        {Graphics Press}%
+        {The {MIT} Press}%
       }
-      \strng{namehash}{41187f886abb9d98f33e5b3f52276d12}
-      \strng{fullhash}{41187f886abb9d98f33e5b3f52276d12}
-      \strng{fullhashraw}{41187f886abb9d98f33e5b3f52276d12}
-      \strng{bibnamehash}{41187f886abb9d98f33e5b3f52276d12}
-      \strng{authorbibnamehash}{41187f886abb9d98f33e5b3f52276d12}
-      \strng{authornamehash}{41187f886abb9d98f33e5b3f52276d12}
-      \strng{authorfullhash}{41187f886abb9d98f33e5b3f52276d12}
-      \strng{authorfullhashraw}{41187f886abb9d98f33e5b3f52276d12}
-      \field{extraname}{1}
-      \field{sortinit}{T}
-      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \strng{namehash}{34ede4192dcababa339fd9e0e9c1df7d}
+      \strng{fullhash}{34ede4192dcababa339fd9e0e9c1df7d}
+      \strng{fullhashraw}{34ede4192dcababa339fd9e0e9c1df7d}
+      \strng{bibnamehash}{34ede4192dcababa339fd9e0e9c1df7d}
+      \strng{authorbibnamehash}{34ede4192dcababa339fd9e0e9c1df7d}
+      \strng{authornamehash}{34ede4192dcababa339fd9e0e9c1df7d}
+      \strng{authorfullhash}{34ede4192dcababa339fd9e0e9c1df7d}
+      \strng{authorfullhashraw}{34ede4192dcababa339fd9e0e9c1df7d}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Envisioning information}
-      \field{year}{1990}
+      \field{abstract}{{WordNet} is an on-line lexical reference system whose design isinspired by current psycholinguistic theories of human lexical memory;version 1.6 is the most up-to-date version of the system.{WordNet}, an electronic lexical database, is considered to be the most important resource available to researchers in computational linguistics, text analysis, and many related areas. Its design is inspired by current psycholinguistic and computational theories of human lexical memory. English nouns, verbs, adjectives, and adverbs are organized into synonym sets, each representing one underlying lexicalized concept. Different relations link the synonym sets.The purpose of this volume is twofold. First, it discusses the design of {WordNet} and the theoretical motivations behind it. Second, it provides a survey of representative applications, including word sense identification, information retrieval, selectional preferences of verbs, and lexical chains. Contributors Reem Al-Halimi, Robert C. Berwick, J. F. M. Burg, Martin Chodorow, Christiane Fellbaum, Joachim Grabowski, Sanda Harabagiu, Marti A. Hearst, Graeme Hirst, Douglas A. Jones, Rick Kazman, Karen T. Kohl, Shari Landes, Claudia Leacock, George A. Miller, Katherine J. Miller, Dan Moldovan, Naoyuki Nomura, Uta Priss, Philip Resnik, David St-Onge, Randee Tengi, Reind P. van de Riet, Ellen {VoorheesBradford} Books imprint}
+      \field{isbn}{9780262272551}
+      \field{month}{5}
+      \field{title}{{WordNet}: An Electronic Lexical Database}
+      \field{year}{1998}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.7551/mitpress/7287.001.0001
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.7551/mitpress/7287.001.0001
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.7551/mitpress/7287.001.0001
+      \endverb
     \endentry
-    \entry{Tufte01}{book}{}{}
-      \name{author}{1}{}{%
-        {{hash=41187f886abb9d98f33e5b3f52276d12}{%
-           family={Tufte},
-           familyi={T\bibinitperiod},
-           given={Edward\bibnamedelima R.},
-           giveni={E\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Chesh\-ire, CT, USA}%
+    \entry{horn_inaturalist_2018}{misc}{}{}
+      \name{author}{9}{}{%
+        {{hash=2fbd0dba8d6c0e20dfd0e41fe5139b83}{%
+           family={Horn},
+           familyi={H\bibinitperiod},
+           given={Grant\bibnamedelima Van},
+           giveni={G\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=049acd5eec421c88c65716c3d59b9397}{%
+           family={Aodha},
+           familyi={A\bibinitperiod},
+           given={Oisin\bibnamedelima Mac},
+           giveni={O\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=7dacbb5a6e92ab16944d46ba03705563}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={Yang},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=5be07c427051f588ee76d0a1251cfe65}{%
+           family={Cui},
+           familyi={C\bibinitperiod},
+           given={Yin},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=7437556e576c6f4e2ade58a9aa980ec5}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Chen},
+           giveni={C\bibinitperiod}}}%
+        {{hash=7671954af7ff36d5638b81b1ac2a7c14}{%
+           family={Shepard},
+           familyi={S\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c707ec5b5997dc408a14a34a8380166c}{%
+           family={Adam},
+           familyi={A\bibinitperiod},
+           given={Hartwig},
+           giveni={H\bibinitperiod}}}%
+        {{hash=e52876f830a8a20786ff3e4d7dd6f083}{%
+           family={Perona},
+           familyi={P\bibinitperiod},
+           given={Pietro},
+           giveni={P\bibinitperiod}}}%
+        {{hash=044d1db5259b74e4975282f599d8e767}{%
+           family={Belongie},
+           familyi={B\bibinitperiod},
+           given={Serge},
+           giveni={S\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
-        {Graphics Press}%
+        {arXiv}%
       }
-      \strng{namehash}{41187f886abb9d98f33e5b3f52276d12}
-      \strng{fullhash}{41187f886abb9d98f33e5b3f52276d12}
-      \strng{fullhashraw}{41187f886abb9d98f33e5b3f52276d12}
-      \strng{bibnamehash}{41187f886abb9d98f33e5b3f52276d12}
-      \strng{authorbibnamehash}{41187f886abb9d98f33e5b3f52276d12}
-      \strng{authornamehash}{41187f886abb9d98f33e5b3f52276d12}
-      \strng{authorfullhash}{41187f886abb9d98f33e5b3f52276d12}
-      \strng{authorfullhashraw}{41187f886abb9d98f33e5b3f52276d12}
-      \field{extraname}{2}
-      \field{sortinit}{T}
-      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \strng{namehash}{16c2de1be5f707316cff2388bd68f6e9}
+      \strng{fullhash}{16c2de1be5f707316cff2388bd68f6e9}
+      \strng{fullhashraw}{16c2de1be5f707316cff2388bd68f6e9}
+      \strng{bibnamehash}{16c2de1be5f707316cff2388bd68f6e9}
+      \strng{authorbibnamehash}{16c2de1be5f707316cff2388bd68f6e9}
+      \strng{authornamehash}{16c2de1be5f707316cff2388bd68f6e9}
+      \strng{authorfullhash}{16c2de1be5f707316cff2388bd68f6e9}
+      \strng{authorfullhashraw}{16c2de1be5f707316cff2388bd68f6e9}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{edition}{2}
-      \field{title}{The visual display of quantitative information}
-      \field{year}{2001}
+      \field{abstract}{Existing image classification datasets used in computer vision tend to have a uniform distribution of images across object categories. In contrast, the natural world is heavily imbalanced, as some species are more abundant and easier to photograph than others. To encourage further progress in challenging real world conditions we present the {iNaturalist} species classification and detection dataset, consisting of 859,000 images from over 5,000 different species of plants and animals. It features visually similar species, captured in a wide variety of situations, from all over the world. Images were collected with different camera types, have varying image quality, feature a large class imbalance, and have been verified by multiple citizen scientists. We discuss the collection of the dataset and present extensive baseline experiments using state-of-the-art computer vision classification and detection models. Results show that current non-ensemble based methods achieve only 67\% top one classification accuracy, illustrating the difficulty of the dataset. Specifically, we observe poor results for classes with small numbers of training examples suggesting more attention is needed in low-shot learning.}
+      \field{day}{10}
+      \field{eprinttype}{arxiv}
+      \field{month}{4}
+      \field{number}{{arXiv}:1707.06642}
+      \field{title}{The {iNaturalist} Species Classification and Detection Dataset}
+      \field{urlday}{3}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.1707.06642
+      \endverb
+      \verb{eprint}
+      \verb 1707.06642 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1707.06642
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1707.06642
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
+    \entry{kuznetsova_open_2020}{article}{}{}
+      \name{author}{12}{}{%
+        {{hash=1ffbb486153d1382dd6a2b66fb5956a2}{%
+           family={Kuznetsova},
+           familyi={K\bibinitperiod},
+           given={Alina},
+           giveni={A\bibinitperiod}}}%
+        {{hash=94a135aefdfb6db7d7db5dffc18cbb60}{%
+           family={Rom},
+           familyi={R\bibinitperiod},
+           given={Hassan},
+           giveni={H\bibinitperiod}}}%
+        {{hash=8deee8acb03f87d7f5b644b334b22c14}{%
+           family={Alldrin},
+           familyi={A\bibinitperiod},
+           given={Neil},
+           giveni={N\bibinitperiod}}}%
+        {{hash=6f5d1be5ec88ac21f855db10eafb0fa5}{%
+           family={Uijlings},
+           familyi={U\bibinitperiod},
+           given={Jasper},
+           giveni={J\bibinitperiod}}}%
+        {{hash=012b1c599f50d743017cbd6394ed37bb}{%
+           family={Krasin},
+           familyi={K\bibinitperiod},
+           given={Ivan},
+           giveni={I\bibinitperiod}}}%
+        {{hash=d39bb0765383c8ab362898e411e4b81c}{%
+           family={Pont-Tuset},
+           familyi={P\bibinithyphendelim T\bibinitperiod},
+           given={Jordi},
+           giveni={J\bibinitperiod}}}%
+        {{hash=dce389c6b1ebfaa4be7666d4971624c7}{%
+           family={Kamali},
+           familyi={K\bibinitperiod},
+           given={Shahab},
+           giveni={S\bibinitperiod}}}%
+        {{hash=64ae1f378fb10af6b30a04d047b578e1}{%
+           family={Popov},
+           familyi={P\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=2c5c7dc90cd5cb18f98f0b5b53fba280}{%
+           family={Malloci},
+           familyi={M\bibinitperiod},
+           given={Matteo},
+           giveni={M\bibinitperiod}}}%
+        {{hash=6807e3c00242c6bf6a3179905040471b}{%
+           family={Kolesnikov},
+           familyi={K\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=0e697cafc2cdf5d2e373e6034851530f}{%
+           family={Duerig},
+           familyi={D\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+        {{hash=2d9b2bb140830bf8f7f642c17692a8e4}{%
+           family={Ferrari},
+           familyi={F\bibinitperiod},
+           given={Vittorio},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{d361944fa4d5a50b07387c18d040c56d}
+      \strng{fullhash}{d361944fa4d5a50b07387c18d040c56d}
+      \strng{fullhashraw}{d361944fa4d5a50b07387c18d040c56d}
+      \strng{bibnamehash}{d361944fa4d5a50b07387c18d040c56d}
+      \strng{authorbibnamehash}{d361944fa4d5a50b07387c18d040c56d}
+      \strng{authornamehash}{d361944fa4d5a50b07387c18d040c56d}
+      \strng{authorfullhash}{d361944fa4d5a50b07387c18d040c56d}
+      \strng{authorfullhashraw}{d361944fa4d5a50b07387c18d040c56d}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{IJCV}}
+      \field{title}{The Open Images Dataset V4: Unified image classification, object detection, and visual relationship detection at scale}
+      \field{year}{2020}
+      \field{dateera}{ce}
+    \endentry
+    \entry{russakovsky_imagenet_2015}{misc}{}{}
+      \name{author}{12}{}{%
+        {{hash=2a74ec28b731b015747e2af5f0b519e1}{%
+           family={Russakovsky},
+           familyi={R\bibinitperiod},
+           given={Olga},
+           giveni={O\bibinitperiod}}}%
+        {{hash=0ae7fdc13773f928525f673b05f37149}{%
+           family={Deng},
+           familyi={D\bibinitperiod},
+           given={Jia},
+           giveni={J\bibinitperiod}}}%
+        {{hash=18c26ddba8b9dd77f278213fd4e93ce4}{%
+           family={Su},
+           familyi={S\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod}}}%
+        {{hash=bdb3759bbe6ab0618874848557abd459}{%
+           family={Krause},
+           familyi={K\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=434c8ee62c507c93be09958bae942da5}{%
+           family={Satheesh},
+           familyi={S\bibinitperiod},
+           given={Sanjeev},
+           giveni={S\bibinitperiod}}}%
+        {{hash=e3f8564120f7528479a3ea1b507bd705}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Sean},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6e8d947dd72de23b8500095b595e1e99}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Zhiheng},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=e91a4c2044bccdbef249eabc886ff988}{%
+           family={Karpathy},
+           familyi={K\bibinitperiod},
+           given={Andrej},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c8d6add84efe17681e0d4968ebf47fdc}{%
+           family={Khosla},
+           familyi={K\bibinitperiod},
+           given={Aditya},
+           giveni={A\bibinitperiod}}}%
+        {{hash=9c5821708eb9cc9bc6c92c66ada53892}{%
+           family={Bernstein},
+           familyi={B\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=963e9b2526a7150c418b4e9e9d19a82f}{%
+           family={Berg},
+           familyi={B\bibinitperiod},
+           given={Alexander\bibnamedelima C.},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=cd00ce5bc45f687c432e52e0fa1a7aa6}{%
+           family={Fei-Fei},
+           familyi={F\bibinithyphendelim F\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{59755200ef94ffc1362c28c17d315fe0}
+      \strng{fullhash}{59755200ef94ffc1362c28c17d315fe0}
+      \strng{fullhashraw}{59755200ef94ffc1362c28c17d315fe0}
+      \strng{bibnamehash}{59755200ef94ffc1362c28c17d315fe0}
+      \strng{authorbibnamehash}{59755200ef94ffc1362c28c17d315fe0}
+      \strng{authornamehash}{59755200ef94ffc1362c28c17d315fe0}
+      \strng{authorfullhash}{59755200ef94ffc1362c28c17d315fe0}
+      \strng{authorfullhashraw}{59755200ef94ffc1362c28c17d315fe0}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The {ImageNet} Large Scale Visual Recognition Challenge is a benchmark in object category classification and detection on hundreds of object categories and millions of images. The challenge has been run annually from 2010 to present, attracting participation from more than fifty institutions. This paper describes the creation of this benchmark dataset and the advances in object recognition that have been possible as a result. We discuss the challenges of collecting large-scale ground truth annotation, highlight key breakthroughs in categorical object recognition, provide a detailed analysis of the current state of the field of large-scale image classification and object detection, and compare the state-of-the-art computer vision accuracy with human accuracy. We conclude with lessons learned in the five years of the challenge, and propose future directions and improvements.}
+      \field{day}{30}
+      \field{eprinttype}{arxiv}
+      \field{month}{1}
+      \field{number}{{arXiv}:1409.0575}
+      \field{title}{{ImageNet} Large Scale Visual Recognition Challenge}
+      \field{urlday}{19}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{year}{2015}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.1409.0575
+      \endverb
+      \verb{eprint}
+      \verb 1409.0575 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1409.0575
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1409.0575
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition}
     \endentry
   \enddatalist
 \endrefsection

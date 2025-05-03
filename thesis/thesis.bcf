@@ -2372,9 +2372,11 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">thesis.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1" intorder="1">Bringhurst12</bcf:citekey>
-    <bcf:citekey order="2" intorder="1">Tufte90</bcf:citekey>
-    <bcf:citekey order="2" intorder="2">Tufte01</bcf:citekey>
+    <bcf:citekey order="1" intorder="1">deng_imagenet_2009</bcf:citekey>
+    <bcf:citekey order="1" intorder="2">russakovsky_imagenet_2015</bcf:citekey>
+    <bcf:citekey order="2" intorder="1">fellbaum_wordnet_1998</bcf:citekey>
+    <bcf:citekey order="3" intorder="1">kuznetsova_open_2020</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">horn_inaturalist_2018</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

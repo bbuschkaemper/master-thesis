@@ -1,5 +1,7 @@
 # Notes for writing thesis
 
+- Look if any paper in zotero wasn't cited
+
 ## Training fine-tuned models
 
 - Used SGD for smaller caltech dataset and Adam for larger cifar dataset
@@ -46,3 +48,5 @@
   - Calculate overlap between classes in the clusters
   - Assign prediction probabilities based on overlap ratio
   - Distribute remaining percentages after overlap evenly among all foreign classes
+- Discussion point: The synthetic dataset combines real-world classes into new deviation classes, which often results in a single class that has completely different classes in the original dataset. While models can easily learn to predict multiple classes,
+it might still be lessening the relevance of our results. We can discuss this in the thesis.
