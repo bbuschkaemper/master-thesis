@@ -78,12 +78,8 @@
   \usepackage[oldstyle,scale=0.7]{sourcecodepro}
   \singlespacing
 \fi
-
-\input{sources/acronyms.tex}
-\input{sources/glossary.tex}
  
-\makeindex 
-\makenoidxglossaries
+\makeindex
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Ordinals
@@ -129,14 +125,6 @@
 % items in the bookmark structure of your PDF reader.
 \bookmarksetup{startatroot}
 \backmatter
-
-\begingroup
-\let\clearpage\relax
-\glsaddall
-\printnoidxglossary[type=\acronymtype]
-\newpage
-\printnoidxglossary
-\endgroup
 
 \printindex
 \printbibliography

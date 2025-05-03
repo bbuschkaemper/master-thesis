@@ -62,11 +62,11 @@
 % consistent.
 \renewbibmacro*{issue+date}{%
   \setunit{\addcomma\space}
-    \iffieldundef{issue}
-      {\usebibmacro{date}}
-      {\printfield{issue}%
-       \setunit*{\addspace}%
-       \usebibmacro{date}}%
+  \iffieldundef{issue}
+  {\usebibmacro{date}}
+  {\printfield{issue}%
+    \setunit*{\addspace}%
+    \usebibmacro{date}}%
   \newunit}
 
 % Delimit the volume and the number of an article by a colon instead of
@@ -109,10 +109,10 @@
 % Ensure that DOIs are followed by a non-breakable space.
 \DeclareFieldFormat{doi}{%
   \mkbibacro{DOI}\addcolon\addnbspace
-    \ifhyperref
-      {\href{http://dx.doi.org/#1}{\nolinkurl{#1}}}
-      %
-      {\nolinkurl{#1}}
+  \ifhyperref
+  {\href{http://dx.doi.org/#1}{\nolinkurl{#1}}}
+  %
+  {\nolinkurl{#1}}
 }
 
 % Use proper hair spaces between initials as suggested by Bringhurst and
@@ -147,9 +147,9 @@
   \bibhyperref{%
     #1%
     \ifbool{cbx:parens}
-      {\bibcloseparen\global\boolfalse{cbx:parens}}
-      {}%
-    }%
+    {\bibcloseparen\global\boolfalse{cbx:parens}}
+    {}%
+  }%
 }
 
 \savebibmacro{cite}
@@ -164,10 +164,10 @@
 \renewbibmacro*{textcite}{%
   \ifboolexpr{
     ( not test {\iffieldundef{prenote}} and
-      test {\ifnumequal{\value{citecount}}{1}} )
+    test {\ifnumequal{\value{citecount}}{1}} )
     or
     ( not test {\iffieldundef{postnote}} and
-      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
+    test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
   }%
   {\DeclareFieldAlias{textcitehyperref}{noformat}}
   {}%

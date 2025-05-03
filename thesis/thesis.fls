@@ -216,8 +216,6 @@ INPUT /home/sentinel/.texlive/texmf-var/luatex-cache/generic/fonts/otl/sourcecod
 INPUT /home/sentinel/.texlive/texmf-var/luatex-cache/generic/fonts/otl/sourcecodepro-boldit.luc
 INPUT /home/sentinel/.texlive/texmf-var/luatex-cache/generic/fonts/otl/sourcecodepro-bold.luc
 INPUT /home/sentinel/.texlive/texmf-var/luatex-cache/generic/fonts/otl/sourcecodepro-it.luc
-INPUT ./sources/acronyms.tex
-INPUT ./sources/glossary.tex
 OUTPUT thesis.idx
 INPUT ./thesis.aux
 INPUT ./sources/title.aux

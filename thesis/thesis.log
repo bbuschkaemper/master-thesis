@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2025.4.30)  3 MAY 2025 19:46
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2025.4.30)  3 MAY 2025 20:20
  restricted system commands enabled.
  file:line:error style messages enabled.
 **/home/sentinel/Development/master-thesis/thesis/thesis.tex
@@ -1282,7 +1282,6 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
 (Font)                  OT1/cmtt/m/n --> TU/SourceCodePro(1)/m/n on input line 76.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> TU/SourceCodePro(1)/b/n on input line 76.
- (./sources/acronyms.tex) (./sources/glossary.tex)
 \@indexfile=\write4
 
 \openout4 = thesis.idx
@@ -1296,55 +1295,51 @@ Package babel Info: Importing data for ngerman
  (/usr/share/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-de-1996.tex UTF-8 German hyphenation patterns (reformed orthography) (/usr/share/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-de-1996.tex German Hyphenation Patterns (Reformed Orthography, 2006) `dehyphn-x' 2024-02-28 (WL))) (/usr/share/texmf-dist/tex/generic/babel/locale/fr/babel-french.tex)
 Package babel Info: Importing data for french
 (babel)             from babel-fr.ini. Reported on input line 17.
- (/usr/share/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fr.tex UTF-8 French hyphenation patterns (/usr/share/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-fr.tex) (/usr/share/texmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-fr.tex))) (./sources/method.aux
-\g__glossaries_gls_ref_acronym_int=\count499
-)
-\g__glossaries_gls_ref_main_int=\count500
-)
+ (/usr/share/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fr.tex UTF-8 French hyphenation patterns (/usr/share/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-fr.tex) (/usr/share/texmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-fr.tex))) (./sources/method.aux))
 \openout1 = thesis.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-Package scrbase Info: activating english \partname on input line 115.
-Package scrbase Info: activating english \chaptername on input line 115.
-Package scrbase Info: activating english \appendixname on input line 115.
-Package scrbase Info: activating english \figurename on input line 115.
-Package scrbase Info: activating english \tablename on input line 115.
-Package scrbase Info: activating english \contentsname on input line 115.
-Package scrbase Info: activating english \listfigurename on input line 115.
-Package scrbase Info: activating english \listtablename on input line 115.
-Package scrbase Info: activating english \bibname on input line 115.
-Package scrbase Info: activating english \indexname on input line 115.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+Package scrbase Info: activating english \partname on input line 111.
+Package scrbase Info: activating english \chaptername on input line 111.
+Package scrbase Info: activating english \appendixname on input line 111.
+Package scrbase Info: activating english \figurename on input line 111.
+Package scrbase Info: activating english \tablename on input line 111.
+Package scrbase Info: activating english \contentsname on input line 111.
+Package scrbase Info: activating english \listfigurename on input line 111.
+Package scrbase Info: activating english \listtablename on input line 111.
+Package scrbase Info: activating english \bibname on input line 111.
+Package scrbase Info: activating english \indexname on input line 111.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count501
+\scratchcounter=\count499
 \scratchdimen=\dimen260
 \scratchbox=\box74
-\nofMPsegments=\count502
-\nofMParguments=\count503
+\nofMPsegments=\count500
+\nofMParguments=\count501
 \everyMPshowfont=\toks46
-\MPscratchCnt=\count504
+\MPscratchCnt=\count502
 \MPscratchDim=\dimen261
-\MPnumerator=\count505
-\makeMPintoPDFobject=\count506
+\MPnumerator=\count503
+\makeMPintoPDFobject=\count504
 \everyMPtoPDFconversion=\toks47
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1363,8 +1358,8 @@ Package caption Info: End \AtBeginDocument code.
  (/usr/share/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 115.
-Package hyperref Info: Link coloring ON on input line 115.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 111.
+Package hyperref Info: Link coloring ON on input line 111.
 Package biblatex Info: Trying to load language 'english' -> 'english-mimosis'...
 Package biblatex Info: ... file 'english-mimosis.lbx' found.
  (./english-mimosis.lbx
@@ -1407,12 +1402,12 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'thesis.bbl' found.
  (./thesis.bbl)
-Package biblatex Info: Reference section=0 on input line 115.
-Package biblatex Info: Reference segment=0 on input line 115.
+Package biblatex Info: Reference section=0 on input line 111.
+Package biblatex Info: Reference segment=0 on input line 111.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 115.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 111.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 115.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 111.
 
 \openout2 = sources/title.aux
  (./sources/title.tex
@@ -1434,7 +1429,7 @@ LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
  (./sources/abstract.tex)
 
 LaTeX Font Info:    Font shape `TU/EBGaramond(0)/m/sl' in size <10.95> not available
-(Font)              Font shape `TU/EBGaramond(0)/m/it' tried instead on input line 119.
+(Font)              Font shape `TU/EBGaramond(0)/m/it' tried instead on input line 115.
 [3
 
 
@@ -1594,7 +1589,7 @@ Underfull \vbox (badness 3780) has occurred while \output is active []
  (./sources/method.tex
 chapter 2.
 LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
-(Font)              scaled to size 7.49995pt on input line 34.
+(Font)              scaled to size 7.49995pt on input line 28.
 
 
 [5
@@ -1611,40 +1606,26 @@ LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
 
 [8]
 
-Package glossaries Info: Preparing to sort glossary `acronym' (total number of
-(glossaries)             referenced entries: 2)
+[9]
 
-
-
-[9
+[10
 
 
 
 
-]
-
-Package glossaries Info: Preparing to sort glossary `main' (total number of
-(glossaries)             referenced entries: 2)
-
-
-
-[10] (./thesis.ind)
-
-[11]
-
-[12
-
-
-]
+] (./thesis.ind)
 chapter without number
 
-Overfull \hbox (35.32722pt too wide) in paragraph at lines 143--143
+Overfull \hbox (35.32722pt too wide) in paragraph at lines 131--131
 []\TU/EBGaramond(0)/m/n/10.95 C. Fell-baum. \TU/EBGaramond(0)/m/it/10.95 Word-Net: An Elec-tronic Lex-i-cal Database\TU/EBGaramond(0)/m/n/10.95 . The MIT Press, 1998. \TU/EBGaramond(0)/m/sc/10.95 󰅱󰆢󰅑󰆈\TU/EBGaramond(0)/m/n/10.95 : 9780262272551.
  []
 
 
 
-[13] (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux))
+[11
+
+
+] (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux))
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
@@ -1662,19 +1643,19 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 44067 strings out of 475506
+ 43913 strings out of 475506
  100000,2373549 words of node,token memory allocated
- 858 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 4 glue, 4 kern, 1 glyph, 53 attribute, 91 glue_spec, 28 attribute_list, 1 write, 3 pdf_action nodes
-   avail lists: 2:1279,3:340,4:140,5:477,6:102,7:6075,8:79,9:696,10:22,11:408
- 66214 multiletter control sequences out of 65536+600000
+ 846 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 4 glue, 4 kern, 1 glyph, 49 attribute, 91 glue_spec, 26 attribute_list, 1 write, 3 pdf_action nodes
+   avail lists: 1:1,2:1285,3:344,4:156,5:482,6:105,7:6075,8:79,9:744,10:22,11:355
+ 66070 multiletter control sequences out of 65536+600000
  157 fonts using 62642639 bytes
- 194i,21n,294p,10949b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 122i,21n,118p,10949b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/ibm/plex/IBMPlexMono-Regular.otf></usr/share/texmf-dist/fonts/opentype/ibm/plex/IBMPlexSans-Regular.otf></usr/share/texmf-dist/fonts/truetype/impallari/librebaskerville/LibreBaskerville-Regular.ttf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf></usr/share/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/share/texmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb>
-Output written on thesis.pdf (19 pages, 102208 bytes).
+Output written on thesis.pdf (17 pages, 99981 bytes).
 
 PDF statistics: 315 PDF objects out of 1000 (max. 8388607)
- 256 compressed objects within 3 object streams
- 70 named destinations out of 1000 (max. 131072)
- 121 words of extra memory for PDF output out of 10000 (max. 100000000)
+ 258 compressed objects within 3 object streams
+ 72 named destinations out of 1000 (max. 131072)
+ 129 words of extra memory for PDF output out of 10000 (max. 100000000)
 
