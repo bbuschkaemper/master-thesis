@@ -1,5 +1,11 @@
 # Todos
 
+## Thesis writing
+
+- Reference our algorithm for universal taxonomy in the synthetic taxonomy section
+- Rewrite the definitions for synthetic taxonomy in-text instead as equations (we don't need it numbered)
+- Rewrite synthetic taxonomy to use definitions from universal taxonomy instead of caligraphy symbols
+
 ## Synthetic ground truth universal taxonomy
 
 - Pick dataset as starting point

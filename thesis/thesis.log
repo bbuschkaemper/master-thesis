@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2025.4.30)  3 MAY 2025 20:20
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2025.4.30)  4 MAY 2025 19:17
  restricted system commands enabled.
  file:line:error style messages enabled.
 **/home/sentinel/Development/master-thesis/thesis/thesis.tex
@@ -1588,8 +1588,11 @@ Underfull \vbox (badness 3780) has occurred while \output is active []
 \openout2 = sources/method.aux
  (./sources/method.tex
 chapter 2.
-LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
-(Font)              scaled to size 7.49995pt on input line 28.
+
+Overfull \hbox (2.54816pt too wide) in paragraph at lines 17--21
+\TU/EBGaramond(0)/m/n/10.95 Our main goal is to cre-ate a uni-ver-sal tax-on-omy that con-nects mul-ti-ple im-age clas-si-fi-ca-tion datasets.
+ []
+
 
 
 [5
@@ -1601,19 +1604,17 @@ LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
 ]
 
 [6]
+LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
+(Font)              scaled to size 7.49995pt on input line 119.
 
-[7])
+
+[7]
 
 [8]
 
-[9]
+[9])
 
-[10
-
-
-
-
-] (./thesis.ind)
+[10] (./thesis.ind)
 chapter without number
 
 Overfull \hbox (35.32722pt too wide) in paragraph at lines 131--131
@@ -1623,6 +1624,10 @@ Overfull \hbox (35.32722pt too wide) in paragraph at lines 131--131
 
 
 [11
+
+
+
+
 
 
 ] (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux))
@@ -1643,19 +1648,19 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 43913 strings out of 475506
+ 43935 strings out of 475506
  100000,2373549 words of node,token memory allocated
- 846 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 4 glue, 4 kern, 1 glyph, 49 attribute, 91 glue_spec, 26 attribute_list, 1 write, 3 pdf_action nodes
-   avail lists: 1:1,2:1285,3:344,4:156,5:482,6:105,7:6075,8:79,9:744,10:22,11:355
- 66070 multiletter control sequences out of 65536+600000
- 157 fonts using 62642639 bytes
- 122i,21n,118p,10949b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/ibm/plex/IBMPlexMono-Regular.otf></usr/share/texmf-dist/fonts/opentype/ibm/plex/IBMPlexSans-Regular.otf></usr/share/texmf-dist/fonts/truetype/impallari/librebaskerville/LibreBaskerville-Regular.ttf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf></usr/share/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/share/texmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb>
-Output written on thesis.pdf (17 pages, 99981 bytes).
+ 858 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 4 glue, 4 kern, 1 glyph, 53 attribute, 91 glue_spec, 28 attribute_list, 1 write, 3 pdf_action nodes
+   avail lists: 1:1,2:1434,3:352,4:188,5:486,6:117,7:6075,8:79,9:740,10:22,11:401
+ 66080 multiletter control sequences out of 65536+600000
+ 163 fonts using 65734799 bytes
+ 122i,20n,118p,10949b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/ibm/plex/IBMPlexMono-Regular.otf></usr/share/texmf-dist/fonts/opentype/ibm/plex/IBMPlexSans-Regular.otf></usr/share/texmf-dist/fonts/truetype/impallari/librebaskerville/LibreBaskerville-Regular.ttf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf></usr/share/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/share/texmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb>
+Output written on thesis.pdf (17 pages, 112783 bytes).
 
-PDF statistics: 315 PDF objects out of 1000 (max. 8388607)
- 258 compressed objects within 3 object streams
- 72 named destinations out of 1000 (max. 131072)
- 129 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 350 PDF objects out of 1000 (max. 8388607)
+ 290 compressed objects within 3 object streams
+ 84 named destinations out of 1000 (max. 131072)
+ 161 words of extra memory for PDF output out of 10000 (max. 100000000)
 
