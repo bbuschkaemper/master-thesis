@@ -16,16 +16,17 @@
 \contentsline {subsection}{\numberline {2.1.1}Formal Definitions}{5}{subsection.2.1.1}%
 \contentsline {subsection}{\numberline {2.1.2}Graph Construction}{6}{subsection.2.1.2}%
 \contentsline {subsection}{\numberline {2.1.3}Taxonomy Generation}{7}{subsection.2.1.3}%
-\contentsline {section}{\numberline {2.2}Synthetic Taxonomy Generation}{7}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}The Need for a Controlled Ground Truth}{7}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Our Approach: Building Synthetic Datasets}{7}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Formal Definitions}{8}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}Randomized Domain Generation}{8}{subsection.2.2.4}%
-\contentsline {subsubsection}{\nonumberline Parameter Sampling}{8}{subsubsection*.4}%
-\contentsline {subsubsection}{\nonumberline Domain Generation Algorithm}{9}{subsubsection*.6}%
-\contentsline {subsection}{\numberline {2.2.5}Modeling Cross-Domain Relationships}{9}{subsection.2.2.5}%
-\contentsline {subsubsection}{\nonumberline Simulating Neural Network Predictions}{9}{subsubsection*.8}%
-\contentsline {subsubsection}{\nonumberline Relationship Calculation}{10}{subsubsection*.10}%
-\contentsline {subsubsection}{\nonumberline A Concrete Example}{10}{subsubsection*.12}%
-\contentsline {chapter}{\nonumberline Bibliography}{11}{chapter*.13}%
+\contentsline {subsubsection}{\nonumberline Taxonomy Building Rules}{7}{subsubsection*.4}%
+\contentsline {section}{\numberline {2.2}Synthetic Taxonomy Generation}{8}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}The Need for a Controlled Ground Truth}{8}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Our Approach: Building Synthetic Datasets}{8}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Formal Definitions}{9}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Randomized Domain Generation}{9}{subsection.2.2.4}%
+\contentsline {subsubsection}{\nonumberline Parameter Sampling}{9}{subsubsection*.6}%
+\contentsline {subsubsection}{\nonumberline Domain Generation Algorithm}{10}{subsubsection*.8}%
+\contentsline {subsection}{\numberline {2.2.5}Modeling Cross-Domain Relationships}{10}{subsection.2.2.5}%
+\contentsline {subsubsection}{\nonumberline Simulating Neural Network Predictions}{10}{subsubsection*.10}%
+\contentsline {subsubsection}{\nonumberline Relationship Calculation}{11}{subsubsection*.12}%
+\contentsline {subsubsection}{\nonumberline A Concrete Example}{11}{subsubsection*.14}%
+\contentsline {chapter}{\nonumberline Bibliography}{13}{chapter*.15}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

@@ -36,7 +36,6 @@ we first need to define some terms:
           as $D_i = \{(x_1^i, c_1^i), (x_2^i, c_2^i), \ldots, (x_n^i, c_n^i)\}$,
           where $D_i$ is the dataset $D$ with index $i$.
           In the same way, we denote the set of all classes in a dataset as $C_i = \{c_1^i, c_2^i, \ldots, c_k^i\}$.
-          We denote the set of all datasets as $\mathbf{D} = \{D_1, D_2, \ldots, D_m\}$.
     \item \textbf{Model} $m$: A neural network trained on a dataset $D_I$
           which maps an image $x\in X$ to a class $c_i^I\in C_I$, denoted as $m_I: X \mapsto C_I$.
     \item \textbf{Domain}: Since both models and classes are dataset-specific,
@@ -45,6 +44,10 @@ we first need to define some terms:
     \item \textbf{Universal Classes}: Our universal taxonomy will contain a set of classes
           that are not specific to any dataset.
           We denote these classes as $C_U = \{c_1^U, c_2^U, \ldots, c_k^U\}$.
+          A universal class is a concept represented by a set of domain classes
+          that share similar characteristics. We therefore define a function
+          $\text{classes}: C_U \mapsto \mathcal{P}(C)$, where $\mathcal{P}(C)$ is the power set of $C$,
+          to represent the set of domain classes that belong to a universal class.
     \item \textbf{Graph}: We represent our taxonomy as a directed graph $G = (V, E)$,
           where $V$ is a set of vertices and $E$ is a set of edges.
           Each vertex $v_i$ represents a single class or universal class,
@@ -70,7 +73,7 @@ we need to construct our initial graph:
           predicted by model $m_b$ for that image.
     \item \textbf{Prediction probabilities:} We count the number of times each class $c_i^a$ was predicted
           as a foreign-domain class $c_j^b$.
-          We denot this count in a matrix $M_{ab}\in \mathbb{N}_0^{|C_a| \times |C_b|}$,
+          We denote this count in a matrix $M_{ab}\in {\mathbb{N}^+}^{|C_a| \times |C_b|}$,
           where $M_{ab}(i, j)$ is the number of times class $c_i^a$ was predicted
           as class $c_j^b$.
           We then divide each entry in the matrix by its row sum to get the
@@ -101,7 +104,53 @@ we need to construct our initial graph:
 
 \subsection{Taxonomy Generation}
 
-% TODO
+After constructing our initial graph structure, we now need to transform it into a universal taxonomy
+that merges classes from different datasets into universal classes where they share similar concepts.
+
+\subsubsection{Taxonomy Building Rules}
+
+We transform our initial graph of domain-to-domain relationships into a universal taxonomy
+through a loop that applies a set of rules until no more changes can be made.
+The rules are checked from first to last, starting from the first again after a rule is applied.
+The rules are as follows:
+
+\begin{enumerate}
+    \item \textbf{Isolated Node Rule:} For any domain class A that has no relationships
+          (neither incoming nor outgoing edges), create a new universal class B
+          and add the relationship $A \rightarrow B$.
+          We also define the probability of the relationship's edge as 1 and
+          the classes of the universal class as $\{A\}$.
+
+          This ensures that all domain classes without relationships (which can be created by later rules)
+          are still represented in the universal taxonomy.
+
+    \item \textbf{Bidirectional Relationship Rule:} When two classes have bidirectional relationships
+          (A $\rightarrow$ B and B $\rightarrow$ A), they likely represent the same concept.
+          We resolve this by creating a new universal class C and adding relationships
+          $A \rightarrow C$ and $B \rightarrow C$ to the graph.
+          The probability of the new relationships is set to 1 and the classes of the universal class
+          will be the two classes that were merged (or, if the two classes are universal classes themselves,
+          the union of their classes).
+          Additionally, all incoming relationships to the two classes are redirected to the new universal class.
+
+    \item \textbf{Transitive Cycle Rule:} If we have relationships A $\rightarrow$ B $\rightarrow$ C
+          where A and C are in the same domain, we have a problem since classes within a domain
+          are disjoint, which means that one of the relationships must be incorrect.
+          We solve this by removing the relationship with the lower probability,
+          thus breaking the cycle.
+
+    \item \textbf{Unilateral Relationship Rule:} A uniliteral relationship
+          A $\rightarrow$ B indicates that the concepts of class A are a subset of the concepts of class B.
+          We therefore create two new universal classes:
+          \begin{itemize}
+              \item Class C, which contains both classes A and B and has incoming relationships
+                    from both classes. This universal class represents the union of the two classes.
+              \item Class D, which contains only class B and has a relationship from class B.
+                    This universal class represents the concepts of class B that are not in class A.
+          \end{itemize}
+          We also redirect all incoming relationships to class A to class C and
+          all incoming relationships to class B to classes C and D.
+\end{enumerate}
 
 \section{Synthetic Taxonomy Generation}
 

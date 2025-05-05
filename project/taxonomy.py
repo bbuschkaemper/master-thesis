@@ -398,33 +398,6 @@ class Taxonomy:
     # Universal taxonomy building
     # --------------------------------------
 
-    def __is_finished(self) -> bool:
-        """Checks if the universal taxonomy building process is complete.
-
-        A universal taxonomy is considered complete when:
-        1. All relationships are from domain classes to universal classes
-        2. All universal classes have at least one incoming relationship
-
-        Returns
-        -------
-        bool
-            True if the taxonomy building is complete, False otherwise
-        """
-        # Check that all universal classes have at least one incoming relationship
-        for node in self.__get_nodes():
-            if isinstance(node, UniversalClass):
-                if not self.graph.in_edges(node):
-                    return False
-
-        # Check that all relationships are from domain classes to universal classes
-        for source, target in self.graph.edges():
-            if not (
-                isinstance(source, DomainClass) and isinstance(target, UniversalClass)
-            ):
-                return False
-
-        return True
-
     def build_universal_taxonomy(self):
         """Builds a universal taxonomy graph from the initial domain relationships.
 
@@ -437,7 +410,7 @@ class Taxonomy:
         3. Transitive cycles: Break cycles by removing lower-weight relationships
         4. Unilateral domain relationships: Transform into proper universal relationships
 
-        The process continues until all relationships follow the proper structure.
+        The process continues until no more changes can be made to the graph.
 
         Notes
         -----
@@ -445,7 +418,7 @@ class Taxonomy:
         from different domains that represent similar concepts are grouped into
         universal classes.
         """
-        while not self.__is_finished():
+        while True:
             # Flag to track if any modifications were made in this iteration
             changes_made = False
 
@@ -469,12 +442,8 @@ class Taxonomy:
             if changes_made:
                 continue
 
-            # If no changes were made but we're not finished, there might be a structural issue
+            # If no changes were made we are done
             if not changes_made:
-                print(
-                    "Warning: Universal taxonomy building could not complete. "
-                    "Graph structure may be invalid."
-                )
                 break
 
     def __handle_isolated_nodes(self) -> bool:
