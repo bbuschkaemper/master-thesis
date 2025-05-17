@@ -603,9 +603,16 @@ class Taxonomy:
             combined_classes = classes_from_b.union(classes_from_a)
             universal_class = UniversalClass(frozenset(combined_classes))
 
+            # Set weight as the average of the two relationships
+            average_weight = (relationship[2] + reverse_relationship[2]) / 2.0
+
             # Add relationships from original nodes to the new universal class
-            self._add_relationship(Relationship((class_b, universal_class, 1.0)))
-            self._add_relationship(Relationship((class_a, universal_class, 1.0)))
+            self._add_relationship(
+                Relationship((class_b, universal_class, average_weight))
+            )
+            self._add_relationship(
+                Relationship((class_a, universal_class, average_weight))
+            )
 
             # Remove the bidirectional relationships
             self.__remove_relationship(relationship)
@@ -719,10 +726,10 @@ class Taxonomy:
 
             # Add relationships to the new universal classes
             self._add_relationship(
-                Relationship((domain_class_b, shared_universal_class, 1.0))
+                Relationship((domain_class_b, shared_universal_class, relationship[2]))
             )
             self._add_relationship(
-                Relationship((domain_class_a, shared_universal_class, 1.0))
+                Relationship((domain_class_a, shared_universal_class, relationship[2]))
             )
             self._add_relationship(
                 Relationship((domain_class_b, source_universal_class, 1.0))

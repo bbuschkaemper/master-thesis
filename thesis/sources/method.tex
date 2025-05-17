@@ -128,7 +128,7 @@ The rules are as follows:
           (A $\rightarrow$ B and B $\rightarrow$ A), they likely represent the same concept.
           We resolve this by creating a new universal class C and adding relationships
           $A \rightarrow C$ and $B \rightarrow C$ to the graph.
-          The probability of the new relationships is set to 1 and the classes of the universal class
+          The probability of the new relationships is set to the average of the bidirectional relationships and the classes of the universal class
           will be the two classes that were merged (or, if the two classes are universal classes themselves,
           the union of their classes).
           Additionally, all incoming relationships to the two classes are redirected to the new universal class.
@@ -144,8 +144,9 @@ The rules are as follows:
           We therefore create two new universal classes:
           \begin{itemize}
               \item Class C, which contains both classes A and B and has incoming relationships
-                    from both classes. This universal class represents the union of the two classes.
-              \item Class D, which contains only class B and has a relationship from class B.
+                    from both classes with the probability of the uniliteral relationship.
+                    This universal class represents the union of the two classes.
+              \item Class D, which contains only class B and has a relationship from class B with a probability 1.
                     This universal class represents the concepts of class B that are not in class A.
           \end{itemize}
           We also redirect all incoming relationships to class A to class C and
