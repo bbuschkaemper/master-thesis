@@ -9,16 +9,41 @@ from pyvis.network import Network
 class DomainClass(tuple[np.intp, np.intp]):
     """A class from a specific domain represented as a tuple (domain_id, class_id).
 
-    The first element (domain_id) identifies which domain the class belongs to.
-    The second element (class_id) is the identifier of the class within its domain.
+    A DomainClass represents a single class within a particular data domain.
+    For example, in multi-dataset taxonomy building, each dataset would be a different domain.
+
+    Parameters
+    ----------
+    domain_id : np.intp
+        Identifies which domain the class belongs to (e.g., CIFAR-100=0, Caltech-256=1)
+    class_id : np.intp
+        The identifier of the class within its domain (e.g., "dog"=5, "airplane"=0)
+
+    Examples
+    --------
+    >>> # Class 7 from domain 0 (e.g., "horse" class from CIFAR-100)
+    >>> domain_class = DomainClass((0, 7))
     """
 
 
 class UniversalClass(frozenset[DomainClass]):
     """A class in the universal taxonomy represented as a set of domain classes.
 
-    Universal classes are created during the taxonomy building process and represent
-    relationships between classes from different domains that share similar concepts.
+    UniversalClass objects are created during the taxonomy building process to represent
+    conceptual groupings that span across multiple domains. They contain one or more
+    DomainClass objects that have been identified as semantically similar based on
+    cross-domain prediction patterns.
+
+    A UniversalClass is implemented as a frozenset (immutable set) of DomainClass objects,
+    ensuring it can be used as a dictionary key or in other set operations.
+
+    Examples
+    --------
+    >>> # A universal class combining "dog" from CIFAR-100 and "dog" from Caltech-256
+    >>> dog_class = UniversalClass(frozenset({
+    >>>     DomainClass((0, 5)),  # "dog" in CIFAR-100
+    >>>     DomainClass((1, 42))  # "dog" in Caltech-256
+    >>> }))
     """
 
 
@@ -28,12 +53,29 @@ type Class = DomainClass | UniversalClass
 
 class Relationship(tuple[Class, Class, float]):
     """A directional relationship between two classes with an associated confidence weight.
-    In the graph, the edge goes from the target class to the source class.
 
-    Represented as a tuple (source_class, target_class, weight) where:
-    - source_class: The originating class
-    - target_class: The destination class
-    - weight: The confidence/probability of the relationship (between 0 and 1)
+    In the taxonomy graph, relationships are represented as directed edges from the target
+    class to the source class. The confidence weight indicates the strength or certainty
+    of this relationship based on prediction patterns.
+
+    Parameters
+    ----------
+    target_class : Class
+        The originating class (e.g., the class being predicted)
+    source_class : Class
+        The destination class (e.g., the class that is predicted)
+    weight : float
+        The confidence/probability of the relationship (between 0 and 1)
+
+    Notes
+    -----
+    The direction is target → source, which matches how predictions flow:
+    a class from one domain (target) is being predicted as a class from another domain (source).
+
+    Examples
+    --------
+    >>> # DomainClass(0,5) is predicted as DomainClass(1,3) with 0.8 confidence
+    >>> relationship = Relationship((DomainClass((0,5)), DomainClass((1,3)), 0.8))
     """
 
 
@@ -144,35 +186,49 @@ class Taxonomy:
     ):
         """Builds initial relationships in the taxonomy graph from one domain to another.
 
+        This method creates directed relationships between classes from two different domains
+        based on prediction patterns. For each class in the target domain, it creates a
+        relationship to the most commonly predicted class in the source domain.
+
         Parameters
         ----------
         domain_id : int
-            ID of the source domain (model making predictions)
+            ID of the source domain (the domain of the model making predictions)
         foreign_domain_id : int
-            ID of the target domain (dataset being predicted)
+            ID of the target domain (the domain of the dataset being predicted)
         most_common_classes : npt.NDArray[np.intp]
-            For each class in the target domain,
-            the most commonly predicted class in the source domain
+            For each class in the target domain, the index of the most commonly
+            predicted class in the source domain
         confidence_values : npt.NDArray[np.float32]
-            Confidence/probability values for each relationship
+            Confidence values (probabilities between 0 and 1) for each relationship
+
+        Notes
+        -----
+        Relationships with zero confidence are skipped. This can happen when there are
+        no successful predictions for a particular class.
         """
         for target_class_idx, source_class_idx in enumerate(most_common_classes):
-            # Create source and target domain classes
-            source_class = DomainClass((np.intp(domain_id), np.intp(source_class_idx)))
-            target_class = DomainClass(
-                (np.intp(foreign_domain_id), np.intp(target_class_idx))
-            )
-
             # Skip relationships with zero confidence
             if confidence_values[target_class_idx] == 0:
                 continue
 
-            # Add the relationship to the taxonomy graph
-            self._add_relationship(
-                Relationship(
-                    (source_class, target_class, confidence_values[target_class_idx])
-                )
+            # Create source domain class (from the model's domain)
+            source_class = DomainClass((np.intp(domain_id), np.intp(source_class_idx)))
+
+            # Create target domain class (from the dataset being predicted)
+            target_class = DomainClass(
+                (np.intp(foreign_domain_id), np.intp(target_class_idx))
             )
+
+            # Add the relationship to the taxonomy graph with its confidence value
+            relationship_confidence = confidence_values[target_class_idx]
+            self._add_relationship(
+                Relationship((target_class, source_class, relationship_confidence))
+            )
+
+    # --------------------------------------
+    # Graph query methods
+    # --------------------------------------
 
     def _add_relationship(self, relationship: Relationship):
         """Adds a relationship to the graph.
@@ -180,9 +236,9 @@ class Taxonomy:
         Parameters
         ----------
         relationship : Relationship
-            The relationship to add to the graph (source, target, weight)
+            The relationship to add to the graph (target, source, weight)
         """
-        source, target, weight = relationship
+        target, source, weight = relationship
 
         # Add nodes if they don't exist
         if not self.graph.has_node(source):
@@ -199,9 +255,9 @@ class Taxonomy:
         Parameters
         ----------
         relationship : Relationship
-            The relationship to remove from the graph (source, target, weight)
+            The relationship to remove from the graph (target, source, weight)
         """
-        source, target, _ = relationship
+        target, source, _ = relationship
         if self.graph.has_edge(target, source):
             self.graph.remove_edge(target, source)
 
@@ -217,11 +273,7 @@ class Taxonomy:
         """
         for rel in self.__get_relationships_to(old_source):
             self.__remove_relationship(rel)
-            self._add_relationship(Relationship((new_source, rel[1], rel[2])))
-
-    # --------------------------------------
-    # Graph query methods
-    # --------------------------------------
+            self._add_relationship(Relationship((rel[0], new_source, rel[2])))
 
     def __get_relationships(self) -> list[Relationship]:
         """Returns all relationships in the graph.
@@ -233,7 +285,7 @@ class Taxonomy:
         """
         relationships = []
         for u, v, data in self.graph.edges(data=True):
-            relationships.append(Relationship((v, u, float(data["weight"]))))
+            relationships.append(Relationship((u, v, float(data["weight"]))))
         return relationships
 
     def __get_nodes(self) -> set[Class]:
@@ -246,13 +298,13 @@ class Taxonomy:
         """
         return set(self.graph.nodes())
 
-    def __get_relationships_from(self, node: Class) -> list[Relationship]:
+    def __get_relationships_from(self, target: Class) -> list[Relationship]:
         """Returns all outgoing relationships from a node.
 
         Parameters
         ----------
-        node : Class
-            The node to get the relationships from
+        target : Class
+            The node to get the outgoing relationships from
 
         Returns
         -------
@@ -260,21 +312,21 @@ class Taxonomy:
             Outgoing relationships from the node
         """
         relationships = []
-        if node not in self.graph:
+        if target not in self.graph:
             return relationships
 
-        for _, source in self.graph.out_edges(node):
-            weight = self.graph.edges[node, source]["weight"]
-            relationships.append(Relationship((source, node, float(weight))))
+        for _, source in self.graph.out_edges(target):
+            weight = self.graph.edges[target, source]["weight"]
+            relationships.append(Relationship((target, source, float(weight))))
         return relationships
 
-    def __get_relationships_to(self, node: Class) -> list[Relationship]:
+    def __get_relationships_to(self, source: Class) -> list[Relationship]:
         """Returns all incoming relationships to a node.
 
         Parameters
         ----------
-        node : Class
-            The node to get the relationships to
+        source : Class
+            The node to get the incoming relationships to
 
         Returns
         -------
@@ -282,34 +334,32 @@ class Taxonomy:
             Incoming relationships to the node
         """
         relationships = []
-        if node not in self.graph:
+        if source not in self.graph:
             return relationships
 
-        for target, _ in self.graph.in_edges(node):
-            weight = self.graph.edges[target, node]["weight"]
-            relationships.append(Relationship((node, target, float(weight))))
+        for target, _ in self.graph.in_edges(source):
+            weight = self.graph.edges[target, source]["weight"]
+            relationships.append(Relationship((target, source, float(weight))))
         return relationships
 
-    def __get_relationship(
-        self, from_node: Class, to_node: Class
-    ) -> Relationship | None:
+    def __get_relationship(self, target: Class, source: Class) -> Relationship | None:
         """Returns the relationship between two nodes if it exists.
 
         Parameters
         ----------
-        from_node : Class
-            The starting node of the relationship
-        to_node : Class
-            The ending node of the relationship
+        target : Class
+            The source node of the relationship (where the edge starts)
+        source : Class
+            The target node of the relationship (where the edge ends)
 
         Returns
         -------
         Relationship | None
             The relationship if it exists, None otherwise
         """
-        if self.graph.has_edge(from_node, to_node):
-            weight = self.graph.edges[from_node, to_node]["weight"]
-            return Relationship((to_node, from_node, float(weight)))
+        if self.graph.has_edge(target, source):
+            weight = self.graph.edges[target, source]["weight"]
+            return Relationship((target, source, float(weight)))
         return None
 
     # --------------------------------------
@@ -321,37 +371,47 @@ class Taxonomy:
         predictions: npt.NDArray[np.intp],
         targets: npt.NDArray[np.intp],
     ) -> npt.NDArray[np.intp]:
-        """Forms a correlation matrix for predictions on a foreign domain.
+        """Forms a correlation matrix between true target classes and predicted source classes.
 
-        Each row represents a true class in the foreign domain, and each column
-        represents a predicted class from the model's domain. The value at position
-        (i,j) indicates how many times class i was predicted as class j.
+        This method creates a matrix where:
+        - Each row corresponds to a true class in the target domain
+        - Each column corresponds to a predicted class from the source domain
+        - The value at position (i,j) counts how many times target domain class i
+          was predicted as source domain class j
 
         Parameters
         ----------
         predictions : npt.NDArray[np.intp]
-            Model predictions using own domain labels on foreign domain data
+            Array of class predictions made by a source domain model
+            on target domain data
         targets : npt.NDArray[np.intp]
-            True labels of the foreign domain
+            Array of ground truth class labels for the target domain data
 
         Returns
         -------
         npt.NDArray[np.intp]
-            The correlation matrix of shape (n_classes_foreign, n_classes_own)
+            The correlation matrix of shape (n_classes_target, n_classes_source)
+
+        Notes
+        -----
+        This matrix is the foundation for identifying relationships between
+        classes across domains. High counts in a cell indicate a strong relationship
+        between those classes.
         """
         # Find the number of unique classes in both predictions and targets
-        n_target_classes = np.max(targets) + 1
-        n_prediction_classes = np.max(predictions) + 1
+        n_target_domain_classes = np.max(targets) + 1
+        n_source_domain_classes = np.max(predictions) + 1
 
         # Initialize correlation matrix with zeros
         correlations = np.zeros(
-            (n_target_classes, n_prediction_classes),
+            (n_target_domain_classes, n_source_domain_classes),
             dtype=np.intp,
         )
 
         # Count occurrences of each (target, prediction) pair
-        for i, pred in enumerate(predictions):
-            correlations[targets[i], pred] += 1
+        for i, predicted_class in enumerate(predictions):
+            true_class = targets[i]
+            correlations[true_class, predicted_class] += 1
 
         return correlations
 
@@ -361,40 +421,47 @@ class Taxonomy:
     ) -> tuple[npt.NDArray[np.intp], npt.NDArray[np.float32]]:
         """Calculates the most common prediction for each class and its confidence.
 
-        For each class in the foreign domain, identifies which class from the model's
-        domain is most commonly predicted, and calculates the confidence of that
-        prediction.
+        This method analyzes a correlation matrix to determine:
+        1. For each class in the target domain, which class from the source domain
+           is most frequently predicted
+        2. The confidence (probability) of each relationship based on prediction frequencies
 
         Parameters
         ----------
         correlations : npt.NDArray[np.intp]
-            The correlation matrix where each element (i,j) represents how many times
-            foreign class i was predicted as own-domain class j
+            A correlation matrix where each element (i,j) represents how many times
+            target domain class i was predicted as source domain class j
 
         Returns
         -------
         tuple[npt.NDArray[np.intp], npt.NDArray[np.float32]]
             A tuple containing:
-            - Array of most commonly predicted classes for each foreign class
+            - Array of most commonly predicted source classes for each target class
             - Array of confidence values (probabilities) for those predictions
-        """
-        n_foreign_classes = correlations.shape[0]
-        most_common_classes = np.zeros(n_foreign_classes, dtype=np.intp)
-        confidence_values = np.zeros(n_foreign_classes, dtype=np.float32)
 
-        # For each class in the foreign domain
-        for foreign_class_idx in range(n_foreign_classes):
-            # Find the most commonly predicted class
-            prediction_counts = correlations[foreign_class_idx, :]
-            most_common_classes[foreign_class_idx] = np.argmax(prediction_counts)
+        Examples
+        --------
+        If class 5 in the target domain was predicted as class 2 in the source domain
+        60% of the time, the most_common_classes array would have value 2 at index 5,
+        and the confidence_values array would have value 0.6 at index 5.
+        """
+        n_target_domain_classes = correlations.shape[0]
+        most_common_classes = np.zeros(n_target_domain_classes, dtype=np.intp)
+        confidence_values = np.zeros(n_target_domain_classes, dtype=np.float32)
+
+        # For each class in the target domain
+        for target_class_idx in range(n_target_domain_classes):
+            # Find the most commonly predicted class from the source domain
+            prediction_counts = correlations[target_class_idx, :]
+            most_common_classes[target_class_idx] = np.argmax(prediction_counts)
 
             # Calculate confidence as the proportion of predictions for this class
             total_predictions = np.sum(prediction_counts)
             if total_predictions > 0:
-                max_count = prediction_counts[most_common_classes[foreign_class_idx]]
-                confidence_values[foreign_class_idx] = max_count / total_predictions
+                max_count = prediction_counts[most_common_classes[target_class_idx]]
+                confidence_values[target_class_idx] = max_count / total_predictions
             else:
-                confidence_values[foreign_class_idx] = 0.0
+                confidence_values[target_class_idx] = 0.0
 
         return most_common_classes, confidence_values
 
@@ -406,21 +473,29 @@ class Taxonomy:
         """Builds a universal taxonomy graph from the initial domain relationships.
 
         This method transforms the initial graph of domain-to-domain relationships
-        into a graph where all relationships are from domain classes to universal classes.
-        The algorithm iteratively applies a series of rules to resolve relationships:
+        into a graph where domain classes are connected to universal classes that
+        represent shared concepts across domains. The algorithm iteratively applies
+        a series of rules in a specific order until no more changes can be made:
 
-        1. Isolated nodes: Create singleton universal classes
-        2. Bidirectional relationships: Merge classes into a shared universal class
-        3. Transitive cycles: Break cycles by removing lower-weight relationships
-        4. Unilateral domain relationships: Transform into proper universal relationships
+        1. Isolated nodes: Create singleton universal classes for domain classes
+           with no connections
+        2. Bidirectional relationships: Merge domain classes with bidirectional
+           relationships into a shared universal class
+        3. Transitive cycles: Break cycles by removing weaker relationships
+           that would create inconsistencies
+        4. Unilateral domain relationships: Transform remaining domain-to-domain
+           relationships into proper universal class hierarchies
 
-        The process continues until no more changes can be made to the graph.
+        Each rule is applied until it can't make any more changes, then the next rule
+        is tried. This process repeats until a complete iteration where no rule
+        can make further changes.
 
         Notes
         -----
         The universal taxonomy represents a higher-level organization where classes
         from different domains that represent similar concepts are grouped into
-        universal classes.
+        universal classes. This enables knowledge transfer and alignment between
+        different classification systems.
         """
         while True:
             # Flag to track if any modifications were made in this iteration
@@ -446,15 +521,20 @@ class Taxonomy:
             if changes_made:
                 continue
 
-            # If no changes were made we are done
+            # If no changes were made in this iteration, we're done
             if not changes_made:
                 break
 
     def __handle_isolated_nodes(self) -> bool:
         """Handle isolated domain nodes by creating singleton universal classes.
 
-        This rule processes domain classes that have no relationships, creating
-        a universal class for each isolated node.
+        This rule identifies domain classes that have no incoming or outgoing
+        relationships (completely isolated nodes). For each such node, it creates
+        a singleton universal class containing only that domain class.
+
+        Example transformation:
+        Before: DomainClass(A) (isolated)
+        After:  DomainClass(A) → UniversalClass({A})
 
         Returns
         -------
@@ -470,17 +550,25 @@ class Taxonomy:
             ):
                 # Create a new universal class containing just this node
                 universal_class = UniversalClass(frozenset({node}))
-                self._add_relationship(Relationship((universal_class, node, 1.0)))
+                self._add_relationship(Relationship((node, universal_class, 1.0)))
                 return True  # Changes were made
         return False
 
     def __handle_bidirectional_relationships(self) -> bool:
         """Process bidirectional relationships by creating shared universal classes.
 
-        If two classes have bidirectional mappings (A→B and B→A), they likely
-        represent the same concept and should be merged into a universal class.
+        This rule identifies pairs of classes that have bidirectional mappings
+        (A→B and B→A). These pairs likely represent the same concept across different
+        domains and should be merged into a shared universal class.
 
-        This rule is critical for identifying equivalent concepts across domains.
+        Example transformation:
+        Before: DomainClass(A) → DomainClass(B)
+                DomainClass(B) → DomainClass(A)
+        After:  DomainClass(A) → UniversalClass({A,B})
+                DomainClass(B) → UniversalClass({A,B})
+
+        The method also redirects any incoming relationships to either node
+        to point to the newly created universal class.
 
         Returns
         -------
@@ -488,44 +576,44 @@ class Taxonomy:
             True if any changes were made, False otherwise
         """
         for relationship in self.__get_relationships():
-            source_node, target_node, _ = relationship
+            class_a, class_b, _ = relationship
 
             # Check if there's a reverse relationship
-            reverse_rel = self.__get_relationship(source_node, target_node)
-            if not reverse_rel:
+            reverse_relationship = self.__get_relationship(class_b, class_a)
+            if not reverse_relationship:
                 continue
 
             # Create a universal class that combines both classes
-            source_classes = set()
-            target_classes = set()
+            classes_from_b = set()
+            classes_from_a = set()
 
-            # Extract classes from source node (could be domain class or universal class)
-            if isinstance(source_node, UniversalClass):
-                source_classes.update(source_node)
+            # Extract classes from class_B (could be domain class or universal class)
+            if isinstance(class_b, UniversalClass):
+                classes_from_b.update(class_b)
             else:
-                source_classes.add(source_node)
+                classes_from_b.add(class_b)
 
-            # Extract classes from target node (could be domain class or universal class)
-            if isinstance(target_node, UniversalClass):
-                target_classes.update(target_node)
+            # Extract classes from class_A (could be domain class or universal class)
+            if isinstance(class_a, UniversalClass):
+                classes_from_a.update(class_a)
             else:
-                target_classes.add(target_node)
+                classes_from_a.add(class_a)
 
             # Create new universal class with all contained classes
-            combined_classes = source_classes.union(target_classes)
+            combined_classes = classes_from_b.union(classes_from_a)
             universal_class = UniversalClass(frozenset(combined_classes))
 
             # Add relationships from original nodes to the new universal class
-            self._add_relationship(Relationship((universal_class, source_node, 1.0)))
-            self._add_relationship(Relationship((universal_class, target_node, 1.0)))
+            self._add_relationship(Relationship((class_b, universal_class, 1.0)))
+            self._add_relationship(Relationship((class_a, universal_class, 1.0)))
 
             # Remove the bidirectional relationships
             self.__remove_relationship(relationship)
-            self.__remove_relationship(reverse_rel)
+            self.__remove_relationship(reverse_relationship)
 
             # Redirect incoming relationships to the new universal class
-            self.__redirect_incoming_relationships(source_node, universal_class)
-            self.__redirect_incoming_relationships(target_node, universal_class)
+            self.__redirect_incoming_relationships(class_b, universal_class)
+            self.__redirect_incoming_relationships(class_a, universal_class)
 
             return True  # Changes were made
 
@@ -534,11 +622,17 @@ class Taxonomy:
     def __handle_transitive_cycles(self) -> bool:
         """Handle problematic transitive relationships that could create cycles.
 
-        If we have A→B→C where A and C are in the same domain, this creates an invalid
-        situation because classes in the same domain must be disjoint.
-        We resolve this by removing the weaker relationship.
+        This rule identifies and resolves potential inconsistencies in the taxonomy.
+        If we have a chain A→B→C where A and C are in the same domain, this creates
+        a problematic situation because classes in the same domain must be disjoint.
 
-        This rule ensures consistency within domains.
+        The method resolves this by comparing the confidence weights of the relationships
+        and removing the weaker link to break the cycle.
+
+        Example:
+        If DomainClass(D1,1) → DomainClass(D2,5) → DomainClass(D1,7),
+        and the weights are 0.7 and 0.9 respectively, the first relationship
+        is removed since it has the lower confidence.
 
         Returns
         -------
@@ -546,41 +640,40 @@ class Taxonomy:
             True if any changes were made, False otherwise
         """
         for relationship in self.__get_relationships():
-            source_node, target_node, source_weight = relationship
+            class_a, class_b, first_relationship_weight = relationship
 
-            # Skip if target is not a domain class
-            if not isinstance(target_node, DomainClass):
+            # Skip if the first class is not a domain class
+            if not isinstance(class_a, DomainClass):
                 continue
 
-            # Get relationships from source
-            next_relationships = self.__get_relationships_from(source_node)
+            # Get relationships originating from class_B
+            next_relationships = self.__get_relationships_from(class_b)
 
-            # Only consider relationships between domain classes
+            # Only consider relationships where the destination is a domain class
             next_relationships = [
-                rel for rel in next_relationships if isinstance(rel[0], DomainClass)
+                rel for rel in next_relationships if isinstance(rel[1], DomainClass)
             ]
 
             if not next_relationships:
                 continue
 
-            # Extract the domain ID of the target (A)
-            target_domain_id = target_node[0]
+            domain_id_a = class_a[0]  # Domain ID of the first class
 
             # Check for potential cycles where A→B→C and A and C are in the same domain
-            for next_rel in next_relationships:
-                next_target, _, next_weight = next_rel
-                if not isinstance(next_target, DomainClass):
+            for next_relationship in next_relationships:
+                _, class_c, second_relationship_weight = next_relationship
+                if not isinstance(class_c, DomainClass):
                     raise ValueError("Expected DomainClass")
 
-                source_domain_id = next_target[0]  # Domain ID of the final target node
+                domain_id_c = class_c[0]  # Domain ID of the final class
 
                 # Only break cycles when A and C are in the same domain
-                if source_domain_id == target_domain_id:
+                if domain_id_c == domain_id_a:
                     # Remove the weaker relationship
-                    if source_weight < next_weight:
+                    if first_relationship_weight < second_relationship_weight:
                         self.__remove_relationship(relationship)
                     else:
-                        self.__remove_relationship(next_rel)
+                        self.__remove_relationship(next_relationship)
 
                     return True  # Changes were made
 
@@ -589,11 +682,18 @@ class Taxonomy:
     def __handle_unilateral_relationships(self) -> bool:
         """Process unilateral domain-to-domain relationships into universal relationships.
 
-        For relationships like A→B between domain classes, create appropriate universal classes
-        to represent the relationship hierarchy.
+        For unidirectional relationships between domain classes (A→B), this method creates:
+        1. A shared universal class containing both domain classes
+        2. A separate universal class containing only the source domain class
 
-        This rule transforms the remaining domain-to-domain links into the proper
-        universal taxonomy structure.
+        This structure allows domain classes to be connected to the appropriate universal classes
+        while preserving the hierarchical relationship implied by the original link.
+
+        Example transformation:
+        Before: DomainClass(A) → DomainClass(B)
+        After:  DomainClass(A) → UniversalClass({A,B})
+               DomainClass(A) → UniversalClass({A})
+               DomainClass(B) → UniversalClass({A,B})
 
         Returns
         -------
@@ -601,47 +701,49 @@ class Taxonomy:
             True if any changes were made, False otherwise
         """
         for relationship in self.__get_relationships():
-            source_node, target_node, _ = relationship
+            domain_class_a, domain_class_b, _ = relationship
 
             # Only process domain-to-domain relationships
-            if not isinstance(source_node, DomainClass) or not isinstance(
-                target_node, DomainClass
+            if not isinstance(domain_class_b, DomainClass) or not isinstance(
+                domain_class_a, DomainClass
             ):
                 continue
 
-            # Create a universal class containing both classes
+            # Create a universal class containing both domain classes
             shared_universal_class = UniversalClass(
-                frozenset({source_node, target_node})
+                frozenset({domain_class_b, domain_class_a})
             )
 
-            # Create a universal class containing only the second class
-            source_universal_class = UniversalClass(frozenset({source_node}))
+            # Create a universal class containing only the source domain class
+            source_universal_class = UniversalClass(frozenset({domain_class_b}))
 
             # Add relationships to the new universal classes
             self._add_relationship(
-                Relationship((shared_universal_class, source_node, 1.0))
+                Relationship((domain_class_b, shared_universal_class, 1.0))
             )
             self._add_relationship(
-                Relationship((shared_universal_class, target_node, 1.0))
+                Relationship((domain_class_a, shared_universal_class, 1.0))
             )
             self._add_relationship(
-                Relationship((source_universal_class, source_node, 1.0))
+                Relationship((domain_class_b, source_universal_class, 1.0))
             )
 
             # Remove the original relationship
             self.__remove_relationship(relationship)
 
             # Redirect incoming relationships to the target to the appropriate universal class
-            self.__redirect_incoming_relationships(target_node, shared_universal_class)
+            self.__redirect_incoming_relationships(
+                domain_class_a, shared_universal_class
+            )
 
             # Redirect incoming relationships to the source to both universal classes
-            for rel in self.__get_relationships_to(source_node):
+            for rel in self.__get_relationships_to(domain_class_b):
                 self.__remove_relationship(rel)
                 self._add_relationship(
-                    Relationship((shared_universal_class, rel[1], rel[2]))
+                    Relationship((rel[0], shared_universal_class, rel[2]))
                 )
                 self._add_relationship(
-                    Relationship((source_universal_class, rel[1], rel[2]))
+                    Relationship((rel[0], source_universal_class, rel[2]))
                 )
 
             return True  # Changes were made

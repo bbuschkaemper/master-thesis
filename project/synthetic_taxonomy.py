@@ -154,7 +154,7 @@ class SyntheticTaxonomy(Taxonomy):
 
                 # Add the relationship to the taxonomy graph
                 relationship = Relationship(
-                    (source_class, target_class, prediction_confidence)
+                    (target_class, source_class, prediction_confidence)
                 )
                 self._add_relationship(relationship)
 
