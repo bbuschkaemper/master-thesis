@@ -28,6 +28,7 @@ type Class = DomainClass | UniversalClass
 
 class Relationship(tuple[Class, Class, float]):
     """A directional relationship between two classes with an associated confidence weight.
+    In the graph, the edge goes from the target class to the source class.
 
     Represented as a tuple (source_class, target_class, weight) where:
     - source_class: The originating class
@@ -55,7 +56,7 @@ class Taxonomy:
         self,
         cross_domain_predictions: List[Tuple[int, int, npt.NDArray[np.intp]]],
         domain_targets: List[Tuple[int, npt.NDArray[np.intp]]],
-        domain_labels: Dict[int, List[str]] = None,
+        domain_labels: Dict[int, List[str]] | None = None,
     ):
         """Creates a taxonomy object with an integrated graph structure.
 
@@ -100,9 +101,10 @@ class Taxonomy:
 
         # Process each cross-domain prediction
         for model_domain_id, dataset_domain_id, predictions in cross_domain_predictions:
-            # Skip processing if no ground truth targets available for this domain
             if dataset_domain_id not in self.targets:
-                continue
+                raise ValueError(
+                    f"Dataset domain ID {dataset_domain_id} not found in targets."
+                )
 
             # Validate that prediction arrays match their respective target arrays
             dataset_targets = self.targets[dataset_domain_id]
@@ -123,8 +125,8 @@ class Taxonomy:
 
             # Build initial taxonomy relationships between these domains
             self.__build_initial_relationships(
-                domain_id=dataset_domain_id,
-                foreign_domain_id=model_domain_id,
+                domain_id=model_domain_id,
+                foreign_domain_id=dataset_domain_id,
                 most_common_classes=most_common_classes,
                 confidence_values=confidence_values,
             )
@@ -145,29 +147,31 @@ class Taxonomy:
         Parameters
         ----------
         domain_id : int
-            ID of the source domain (dataset being classified)
+            ID of the source domain (model making predictions)
         foreign_domain_id : int
-            ID of the target domain (model making predictions)
+            ID of the target domain (dataset being predicted)
         most_common_classes : npt.NDArray[np.intp]
-            For each class in the source domain,
-            the most commonly predicted class in the target domain
+            For each class in the target domain,
+            the most commonly predicted class in the source domain
         confidence_values : npt.NDArray[np.float32]
             Confidence/probability values for each relationship
         """
-        for class_idx, target_class_idx in enumerate(most_common_classes):
+        for target_class_idx, source_class_idx in enumerate(most_common_classes):
             # Create source and target domain classes
-            source_class = DomainClass((np.intp(domain_id), np.intp(class_idx)))
+            source_class = DomainClass((np.intp(domain_id), np.intp(source_class_idx)))
             target_class = DomainClass(
                 (np.intp(foreign_domain_id), np.intp(target_class_idx))
             )
 
             # Skip relationships with zero confidence
-            if confidence_values[class_idx] == 0:
+            if confidence_values[target_class_idx] == 0:
                 continue
 
             # Add the relationship to the taxonomy graph
             self._add_relationship(
-                (source_class, target_class, confidence_values[class_idx])
+                Relationship(
+                    (source_class, target_class, confidence_values[target_class_idx])
+                )
             )
 
     def _add_relationship(self, relationship: Relationship):
@@ -187,7 +191,7 @@ class Taxonomy:
             self.graph.add_node(target, node_obj=target)
 
         # Add the edge with weight attribute
-        self.graph.add_edge(source, target, weight=float(weight))
+        self.graph.add_edge(target, source, weight=float(weight))
 
     def __remove_relationship(self, relationship: Relationship):
         """Removes a relationship from the graph.
@@ -198,22 +202,22 @@ class Taxonomy:
             The relationship to remove from the graph (source, target, weight)
         """
         source, target, _ = relationship
-        if self.graph.has_edge(source, target):
-            self.graph.remove_edge(source, target)
+        if self.graph.has_edge(target, source):
+            self.graph.remove_edge(target, source)
 
-    def __redirect_incoming_relationships(self, old_target: Class, new_target: Class):
-        """Redirect all incoming relationships from old_target to new_target.
+    def __redirect_incoming_relationships(self, old_source: Class, new_source: Class):
+        """Redirect all incoming relationships from old_source to new_source.
 
         Parameters
         ----------
-        old_target : Class
-            The original target node
-        new_target : Class
-            The new target node to redirect relationships to
+        old_source : Class
+            The original source node
+        new_source : Class
+            The new source node to redirect relationships to
         """
-        for rel in self.__get_relationships_to(old_target):
+        for rel in self.__get_relationships_to(old_source):
             self.__remove_relationship(rel)
-            self._add_relationship((rel[0], new_target, rel[2]))
+            self._add_relationship(Relationship((new_source, rel[1], rel[2])))
 
     # --------------------------------------
     # Graph query methods
@@ -229,7 +233,7 @@ class Taxonomy:
         """
         relationships = []
         for u, v, data in self.graph.edges(data=True):
-            relationships.append((u, v, float(data["weight"])))
+            relationships.append(Relationship((v, u, float(data["weight"]))))
         return relationships
 
     def __get_nodes(self) -> set[Class]:
@@ -259,9 +263,9 @@ class Taxonomy:
         if node not in self.graph:
             return relationships
 
-        for _, target in self.graph.out_edges(node):
-            weight = self.graph.edges[node, target]["weight"]
-            relationships.append((node, target, float(weight)))
+        for _, source in self.graph.out_edges(node):
+            weight = self.graph.edges[node, source]["weight"]
+            relationships.append(Relationship((source, node, float(weight))))
         return relationships
 
     def __get_relationships_to(self, node: Class) -> list[Relationship]:
@@ -281,9 +285,9 @@ class Taxonomy:
         if node not in self.graph:
             return relationships
 
-        for source, _ in self.graph.in_edges(node):
-            weight = self.graph.edges[source, node]["weight"]
-            relationships.append((source, node, float(weight)))
+        for target, _ in self.graph.in_edges(node):
+            weight = self.graph.edges[target, node]["weight"]
+            relationships.append(Relationship((node, target, float(weight))))
         return relationships
 
     def __get_relationship(
@@ -305,7 +309,7 @@ class Taxonomy:
         """
         if self.graph.has_edge(from_node, to_node):
             weight = self.graph.edges[from_node, to_node]["weight"]
-            return (from_node, to_node, float(weight))
+            return Relationship((to_node, from_node, float(weight)))
         return None
 
     # --------------------------------------
@@ -466,7 +470,7 @@ class Taxonomy:
             ):
                 # Create a new universal class containing just this node
                 universal_class = UniversalClass(frozenset({node}))
-                self._add_relationship((node, universal_class, 1.0))
+                self._add_relationship(Relationship((universal_class, node, 1.0)))
                 return True  # Changes were made
         return False
 
@@ -487,7 +491,7 @@ class Taxonomy:
             source_node, target_node, _ = relationship
 
             # Check if there's a reverse relationship
-            reverse_rel = self.__get_relationship(target_node, source_node)
+            reverse_rel = self.__get_relationship(source_node, target_node)
             if not reverse_rel:
                 continue
 
@@ -512,8 +516,8 @@ class Taxonomy:
             universal_class = UniversalClass(frozenset(combined_classes))
 
             # Add relationships from original nodes to the new universal class
-            self._add_relationship((source_node, universal_class, 1.0))
-            self._add_relationship((target_node, universal_class, 1.0))
+            self._add_relationship(Relationship((universal_class, source_node, 1.0)))
+            self._add_relationship(Relationship((universal_class, target_node, 1.0)))
 
             # Remove the bidirectional relationships
             self.__remove_relationship(relationship)
@@ -544,30 +548,33 @@ class Taxonomy:
         for relationship in self.__get_relationships():
             source_node, target_node, source_weight = relationship
 
-            # Skip if source is not a domain class
-            if not isinstance(source_node, DomainClass):
+            # Skip if target is not a domain class
+            if not isinstance(target_node, DomainClass):
                 continue
 
-            # Get relationships from the target of this relationship
-            next_relationships = self.__get_relationships_from(target_node)
+            # Get relationships from source
+            next_relationships = self.__get_relationships_from(source_node)
 
             # Only consider relationships between domain classes
             next_relationships = [
-                rel for rel in next_relationships if isinstance(rel[1], DomainClass)
+                rel for rel in next_relationships if isinstance(rel[0], DomainClass)
             ]
 
             if not next_relationships:
                 continue
 
-            # Extract the domain ID of the source node
-            source_domain_id = source_node[0]
+            # Extract the domain ID of the target (A)
+            target_domain_id = target_node[0]
 
             # Check for potential cycles where A→B→C and A and C are in the same domain
             for next_rel in next_relationships:
                 next_target, _, next_weight = next_rel
-                target_domain_id = next_target[0]  # Domain ID of the final target node
+                if not isinstance(next_target, DomainClass):
+                    raise ValueError("Expected DomainClass")
 
-                # Only break cycles when source and final target are in the same domain
+                source_domain_id = next_target[0]  # Domain ID of the final target node
+
+                # Only break cycles when A and C are in the same domain
                 if source_domain_id == target_domain_id:
                     # Remove the weaker relationship
                     if source_weight < next_weight:
@@ -608,24 +615,34 @@ class Taxonomy:
             )
 
             # Create a universal class containing only the second class
-            target_universal_class = UniversalClass(frozenset({target_node}))
+            source_universal_class = UniversalClass(frozenset({source_node}))
 
             # Add relationships to the new universal classes
-            self._add_relationship((source_node, shared_universal_class, 1.0))
-            self._add_relationship((target_node, shared_universal_class, 1.0))
-            self._add_relationship((target_node, target_universal_class, 1.0))
+            self._add_relationship(
+                Relationship((shared_universal_class, source_node, 1.0))
+            )
+            self._add_relationship(
+                Relationship((shared_universal_class, target_node, 1.0))
+            )
+            self._add_relationship(
+                Relationship((source_universal_class, source_node, 1.0))
+            )
 
             # Remove the original relationship
             self.__remove_relationship(relationship)
 
-            # Redirect incoming relationships to the appropriate universal classes
-            self.__redirect_incoming_relationships(source_node, shared_universal_class)
+            # Redirect incoming relationships to the target to the appropriate universal class
+            self.__redirect_incoming_relationships(target_node, shared_universal_class)
 
-            # Redirect incoming relationships to the target to both universal classes
-            for rel in self.__get_relationships_to(target_node):
+            # Redirect incoming relationships to the source to both universal classes
+            for rel in self.__get_relationships_to(source_node):
                 self.__remove_relationship(rel)
-                self._add_relationship((rel[0], shared_universal_class, rel[2]))
-                self._add_relationship((rel[0], target_universal_class, rel[2]))
+                self._add_relationship(
+                    Relationship((shared_universal_class, rel[1], rel[2]))
+                )
+                self._add_relationship(
+                    Relationship((source_universal_class, rel[1], rel[2]))
+                )
 
             return True  # Changes were made
 
@@ -672,16 +689,6 @@ class Taxonomy:
 
         return taxonomy
 
-    def to_networkx(self) -> nx.DiGraph:
-        """Return the NetworkX graph object.
-
-        Returns
-        -------
-        nx.DiGraph
-            The NetworkX graph representing the taxonomy
-        """
-        return self.graph
-
     # --------------------------------------
     # Visualization
     # --------------------------------------
@@ -717,26 +724,24 @@ class Taxonomy:
         - Universal class nodes are colored salmon
         - Edge weights are displayed as labels on the connections
         """
-        # Get the graph to visualize
-        graph = self.to_networkx()
 
         # Step 1: Create human-readable labels for all nodes
-        node_labels = self.__create_node_labels(graph)
+        node_labels = self.__create_node_labels()
 
         # Step 2: Set node colors and groups based on domain or universal class
-        node_colors, node_groups = self.__assign_node_colors_and_groups(graph)
+        node_colors, node_groups = self.__assign_node_colors_and_groups()
 
         # Step 3: Create and configure the PyVis network
-        network = Network(height=height, width=width, directed=True)
+        network = Network(height=height, width=width, directed=True)  # type: ignore
         network.heading = title
 
         # Step 4: Add nodes with their styling
         self.__add_nodes_to_visualization(
-            network, graph, node_labels, node_colors, node_groups
+            network, node_labels, node_colors, node_groups
         )
 
         # Step 5: Add edges with weight labels
-        self.__add_edges_to_visualization(network, graph)
+        self.__add_edges_to_visualization(network)
 
         # Enable physics for better layout
         network.toggle_physics(True)
@@ -745,14 +750,8 @@ class Taxonomy:
 
     def __create_node_labels(
         self,
-        graph: nx.DiGraph,
     ) -> dict:
         """Create human-readable labels for all nodes in the graph.
-
-        Parameters
-        ----------
-        graph : nx.DiGraph
-            The graph containing nodes to label
 
         Returns
         -------
@@ -763,9 +762,11 @@ class Taxonomy:
         domain_labels = self.domain_labels or {}
 
         # First pass: Create labels for domain classes
-        for node in graph.nodes():
+        for node in self.graph.nodes():
             if isinstance(node, DomainClass):
                 domain_id, class_id = node
+                domain_id = int(domain_id)
+                class_id = int(class_id)
 
                 # Use provided human-readable labels if available
                 if domain_id in domain_labels and class_id < len(
@@ -779,7 +780,7 @@ class Taxonomy:
                 node_labels[node] = f"D{domain_id}:{label}"
 
         # Second pass: Create labels for universal classes using domain class labels
-        for node in graph.nodes():
+        for node in self.graph.nodes():
             if isinstance(node, UniversalClass):
                 # Join the labels of all domain classes in this universal class
                 class_labels = []
@@ -794,13 +795,8 @@ class Taxonomy:
 
         return node_labels
 
-    def __assign_node_colors_and_groups(self, graph: nx.DiGraph) -> tuple[list, list]:
+    def __assign_node_colors_and_groups(self) -> tuple[list, list]:
         """Assign colors and groups to nodes based on their domain or type.
-
-        Parameters
-        ----------
-        graph : nx.DiGraph
-            The graph containing nodes to color and group
 
         Returns
         -------
@@ -825,7 +821,7 @@ class Taxonomy:
         ]
 
         # Process each node in the graph
-        for node in graph.nodes():
+        for node in self.graph.nodes():
             if isinstance(node, DomainClass):
                 domain_id = node[0]
                 # Get color for this domain (cycling through colors if needed)
@@ -841,7 +837,6 @@ class Taxonomy:
     def __add_nodes_to_visualization(
         self,
         network: Network,
-        graph: nx.DiGraph,
         node_labels: dict,
         node_colors: list,
         node_groups: list,
@@ -852,8 +847,6 @@ class Taxonomy:
         ----------
         network : Network
             PyVis network object
-        graph : nx.DiGraph
-            NetworkX graph containing the nodes
         node_labels : dict
             Dictionary of node labels
         node_colors : list
@@ -861,7 +854,7 @@ class Taxonomy:
         node_groups : list
             List of group names for each node
         """
-        for i, node in enumerate(graph.nodes()):
+        for i, node in enumerate(self.graph.nodes()):
             # Add the node with appropriate styling
             network.add_node(
                 str(node),  # Node ID (needs to be a string for PyVis)
@@ -871,25 +864,23 @@ class Taxonomy:
                 group=node_groups[i],  # Group for layout algorithms
             )
 
-    def __add_edges_to_visualization(self, network: Network, graph: nx.DiGraph) -> None:
+    def __add_edges_to_visualization(self, network: Network) -> None:
         """Add edges to the PyVis network with weight labels.
 
         Parameters
         ----------
         network : Network
             PyVis network object
-        graph : nx.DiGraph
-            NetworkX graph containing the edges with weights
         """
-        for source, target, data in graph.edges(data=True):
+        for target, source, data in self.graph.edges(data=True):
             weight = data.get("weight", 1.0)
             # Format weight to 2 decimal places for display
             weight_label = f"{weight:.2f}"
 
             # Add the edge with the weight as both the label and tooltip
             network.add_edge(
-                str(source),  # Source node ID
                 str(target),  # Target node ID
+                str(source),  # Source node ID
                 title=weight_label,  # Tooltip showing weight
                 label=weight_label,  # Edge label showing weight
                 value=weight,  # Numeric weight (affects edge thickness)

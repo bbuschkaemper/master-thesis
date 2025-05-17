@@ -1,5 +1,6 @@
 from scipy.stats import truncnorm
 import numpy as np
+import numpy.typing as npt
 from taxonomy import Taxonomy, DomainClass, Relationship
 
 
@@ -25,7 +26,7 @@ class Deviation(frozenset[DeviationClass]):
     """
 
 
-class SimulatedPredictions(tuple[np.intp, np.intp, np.ndarray[np.float64]]):
+class SimulatedPredictions(tuple[np.intp, np.intp, npt.NDArray[np.float64]]):
     """Container for cross-domain prediction probabilities in synthetic taxonomy experiments.
 
     Represented as a tuple (source_domain_id, target_domain_id, probability_matrix) where:
@@ -105,10 +106,16 @@ class SyntheticTaxonomy(Taxonomy):
                 if source_domain_id == target_domain_id:
                     continue
                 prediction_matrix = self.__simulate_predictions(
-                    target_domain, source_domain
+                    source_domain, target_domain
                 )
                 self.cross_domain_predictions.append(
-                    (source_domain_id, target_domain_id, prediction_matrix)
+                    SimulatedPredictions(
+                        (
+                            np.intp(source_domain_id),
+                            np.intp(target_domain_id),
+                            prediction_matrix,
+                        )
+                    )
                 )
 
         # Create human-readable domain labels for visualization
@@ -132,10 +139,10 @@ class SyntheticTaxonomy(Taxonomy):
             target_domain_id,
             predictions,
         ) in self.cross_domain_predictions:
-            for source_class_id, class_predictions in enumerate(predictions):
+            for target_class_id, class_predictions in enumerate(predictions):
                 # Get the most likely prediction for this class
-                target_class_id = np.argmax(class_predictions)
-                prediction_confidence = float(class_predictions[target_class_id])
+                source_class_id = np.argmax(class_predictions)
+                prediction_confidence = float(class_predictions[source_class_id])
 
                 # Create domain classes for source and target
                 source_class = DomainClass(
@@ -153,8 +160,9 @@ class SyntheticTaxonomy(Taxonomy):
 
     @staticmethod
     def __simulate_predictions(
-        target_domain: Deviation, source_domain: Deviation
-    ) -> np.ndarray:
+        source_domain: Deviation,
+        target_domain: Deviation,
+    ) -> npt.NDArray[np.float64]:
         """Simulate how a model trained on source_domain would classify samples from target_domain.
 
         This method calculates prediction probabilities based on concept overlap between
@@ -163,14 +171,14 @@ class SyntheticTaxonomy(Taxonomy):
 
         Parameters
         ----------
-        target_domain : Deviation
-            The domain containing samples to be classified
         source_domain : Deviation
             The domain the classifier was trained on
+        target_domain : Deviation
+            The domain containing samples to be classified
 
         Returns
         -------
-        np.ndarray
+        npt.NDArray[np.float64]
             2D array of prediction probabilities where:
               - Each row corresponds to a class in the target domain
               - Each column corresponds to a class in the source domain

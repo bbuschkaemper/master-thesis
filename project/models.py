@@ -40,7 +40,7 @@ class ResNetModel(pl.LightningModule):
 
         # Replace last layer to fit the number of classes
         num_features = self.model.fc.in_features
-        self.model.fc = torch.nn.Sequential(
+        self.model.fc = torch.nn.Sequential(  # type: ignore
             torch.nn.Dropout(0.5),
             torch.nn.Linear(num_features, 1024),
             torch.nn.Dropout(0.2),
@@ -71,7 +71,7 @@ class ResNetModel(pl.LightningModule):
 
         return loss
 
-    def configure_optimizers(self):
+    def configure_optimizers(self):  # type: ignore
         if self.optim == "adamw":
             optimizer = AdamW(
                 self.model.parameters(),
@@ -88,12 +88,12 @@ class ResNetModel(pl.LightningModule):
         if self.lr_scheduler == "multistep":
             scheduler = MultiStepLR(
                 optimizer,
-                **self.lr_scheduler_kwargs,
+                **self.lr_scheduler_kwargs,  # type: ignore
             )
         elif self.lr_scheduler == "step":
             scheduler = StepLR(
                 optimizer,
-                **self.lr_scheduler_kwargs,
+                **self.lr_scheduler_kwargs,  # type: ignore
             )
         elif self.lr_scheduler is None:
             scheduler = None

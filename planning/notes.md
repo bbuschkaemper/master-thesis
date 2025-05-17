@@ -1,6 +1,7 @@
 # Notes for writing thesis
 
 - Look if any paper in zotero wasn't cited
+- For how we went from atomic concepts to model usage, describe that we used each concept as a class in a dataset and the merged classes are a superclass
 
 ## Training fine-tuned models
 

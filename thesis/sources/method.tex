@@ -23,7 +23,7 @@ In the end, our taxonomy will allow us to train models that can classify images
 from multiple datasets at once, building a robust and flexible system
 that can quickly adapt to new domains.
 
-\subsection{Formal Definitions}
+\subsection{Formal Definitions} \label{sec:taxonomy_definitions}
 
 To formalise our algorithm for building a universal taxonomy,
 we first need to define some terms:
@@ -189,20 +189,20 @@ This method allows us to precisely control the taxonomy structure while creating
 
 \subsection{Formal Definitions}
 
-We define our synthetic taxonomy framework as follows:
+We define our synthetic taxonomy framework on top of the definitions from \autoref{sec:taxonomy_definitions}.
 
-\begin{equation}
-    \begin{aligned}
-        \mathcal{U}   & = \{1, 2, \ldots, n\} \quad \text{(Universe of atomic concepts)}                                                                                                                                           \\
-        \mathcal{C}   & \subseteq \mathcal{U} \quad \text{(A class is a subset of concepts)}                                                                                                                                       \\
-        \mathcal{D}_i & = \{\mathcal{C}_1^i, \mathcal{C}_2^i, \ldots, \mathcal{C}_k^i\} \quad \text{with } \forall j \neq k: \mathcal{C}_j^i \cap \mathcal{C}_k^i = \emptyset \quad \text{(A domain is a set of disjoint classes)} \\
-        \mathcal{T}   & = \{\mathcal{D}_1, \mathcal{D}_2, \ldots, \mathcal{D}_m\} \quad \text{(A taxonomy is a set of domains)}
-    \end{aligned}
-\end{equation}
+\begin{itemize}
+    \item \textbf{Atomic Concepts} $\mathcal{U}=\{1,2,\ldots,n\}$:
+          A set of atomic concepts will be a universe of concepts that make up the basis for our synthetic class generation.
+    \item \textbf{Synthetic Class}: A class $c^i_j$ will contain a subset of the atomic concepts
+          from our universe: $c^i_j \subseteq \mathcal{U}$.
+          To maintain disjoint class definitions, we ensure that $c^i_j \cap c^i_k = \emptyset$ for all $j \neq k$.
+\end{itemize}
 
 \subsection{Randomized Domain Generation}
 
-To create realistic domains, we use controlled randomness:
+To create realistic domains, we use normal distributions to sample the number of classes and concepts per class.
+This allows us to generate domains with varying sizes and complexities, mimicking different real-world datasets.
 
 \subsubsection{Parameter Sampling}
 
@@ -232,20 +232,20 @@ handling SciPy's standardization of bounds internally:
 
 \subsubsection{Domain Generation Algorithm}
 
-To generate a domain $\mathcal{D}_i$, we follow these steps:
+To generate a domain $C_i$, we follow these steps:
 
 \begin{enumerate}
-    \item \textbf{Sample domain size:} Determine how many concepts $l$ to use:
+    \item \textbf{Sample set size:} Determine how many concepts $l$ to use for the domain:
           \begin{equation*}
               l \sim \lfloor\text{TruncNorm}(\mu_{\text{classes}}, \sigma^2_{\text{classes}}, 1, n)\rceil
           \end{equation*}
 
-    \item \textbf{Create concept pool:} Randomly select $l$ concepts from the universe:
+    \item \textbf{Sample concept pool:} Randomly select $l$ concepts from the universe $\mathcal{U}$:
           \begin{align*}
               P = \{a, b, c, \ldots\} \quad \text{where } a, b, c, \ldots \text{ are sampled without replacement from } \mathcal{U}
           \end{align*}
 
-    \item \textbf{Initialize domain:} $\mathcal{D}_i = \{\}$
+    \item \textbf{Initialise domain:} $C_i = \{\}$
 
     \item \textbf{Generate classes:} While concepts remain in the pool ($P \neq \emptyset$):
           \begin{enumerate}
@@ -254,11 +254,11 @@ To generate a domain $\mathcal{D}_i$, we follow these steps:
                         s_j \sim \lfloor\text{TruncNorm}(\mu_{\text{class\_size}}, \sigma^2_{\text{class\_size}}, 1, |P|)\rceil
                     \end{equation*}
 
-              \item Form class $\mathcal{C}_j^i$ by selecting $s_j$ concepts randomly from $P$
+              \item Form class $c^i_j$ by selecting $s_j$ concepts randomly from $P$
 
-              \item Remove selected concepts from $P$: $P = P \setminus \mathcal{C}_j^i$
+              \item Remove selected concepts: $P = P \setminus c_j^i$
 
-              \item Add class to domain: $\mathcal{D}_i = \mathcal{D}_i \cup \{\mathcal{C}_j^i\}$
+              \item Add class to domain: $C_i = C_i \cup \{c^i_j\}$
           \end{enumerate}
 \end{enumerate}
 
@@ -274,36 +274,36 @@ Our taxonomy generation method assumes that neural network classifiers will pred
 
 \subsubsection{Relationship Calculation}
 
-For any two domains $\mathcal{D}_A$ and $\mathcal{D}_B$, we calculate the probability of classifying an instance of class $\mathcal{C}_i^A$ as class $\mathcal{C}_j^B$ using:
+For any two domains $C_A$ and $C_B$, we calculate the probability of classifying an instance of class $c^A_i$ as class $c^B_j$ using:
 
 \begin{equation}
     \begin{aligned}
-        \text{NaiveProbability}(i, j) & = \frac{|\mathcal{C}_i^A \cap \mathcal{C}_j^B|}{|\mathcal{C}_i^A|}                          \\
-        P_{i,j}                       & = \text{NaiveProbability}(i, j) + \frac{1 - \text{NaiveProbability}(i, j)}{|\mathcal{D}_B|}
+        \text{NaiveProbability}(i, j) & = \frac{|c^A_i \cap c^B_j|}{|c^A_i|}                                              \\
+        P_{i,j}                       & = \text{NaiveProbability}(i, j) + \frac{1 - \text{NaiveProbability}(i, j)}{|C_B|}
     \end{aligned}
 \end{equation}
 
 Where:
 \begin{itemize}
-    \item $\text{NaiveProbability}(i, j)$ is the proportion of concepts in class $\mathcal{C}_i^A$ that also appear in class $\mathcal{C}_j^B$
-    \item The second term distributes remaining probability mass evenly across all classes in domain $\mathcal{D}_B$, simulating the behavior of a neural network when encountering concepts it hasn't seen before
+    \item $\text{NaiveProbability}(i, j)$ is the proportion of concepts in class $c_i^A$ that also appear in class $c_j^B$
+    \item The second term distributes remaining probability mass evenly across all classes in domain $C_B$, simulating the behavior of a neural network when encountering concepts it hasn't seen before
 \end{itemize}
 
 \subsubsection{A Concrete Example}
 
 To illustrate this approach, consider two domains:
 \begin{itemize}
-    \item Domain A: $\mathcal{D}_A = \{\mathcal{C}_1^A=\{1,2\}, \mathcal{C}_2^A=\{3,4\}\}$
-    \item Domain B: $\mathcal{D}_B = \{\mathcal{C}_1^B=\{1,2,4\}, \mathcal{C}_2^B=\{5,6\}\}$
+    \item Domain A: $C_A = \{c^A_1=\{1,2\}, c^A_2=\{3,4\}\}$
+    \item Domain B: $C_B = \{c^B_1=\{1,2,4\}, c^B_2=\{5,6\}\}$
 \end{itemize}
 
-For the relationship $\mathcal{C}_1^A \rightarrow \mathcal{C}_1^B$:
+For the relationship $c^A_1 \rightarrow c^B_1$:
 \begin{itemize}
     \item $\text{NaiveProbability}(1,1) = \frac{|\{1,2\} \cap \{1,2,4\}|}{|\{1,2\}|} = \frac{2}{2} = 1$
     \item $P_{1,1} = 1 + \frac{1-1}{2} = 1$
 \end{itemize}
 
-For the relationship $\mathcal{C}_2^A \rightarrow \mathcal{C}_1^B$:
+For the relationship $c^A_2 \rightarrow c^B_1$:
 \begin{itemize}
     \item $\text{NaiveProbability}(2,1) = \frac{|\{3,4\} \cap \{1,2,4\}|}{|\{3,4\}|} = \frac{1}{2} = 0.5$
     \item $P_{2,1} = 0.5 + \frac{1-0.5}{2} = 0.5 + 0.25 = 0.75$
