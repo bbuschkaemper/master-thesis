@@ -25,6 +25,22 @@ class Deviation(frozenset[DeviationClass]):
     Implemented as an immutable frozenset for hashability and use in graph structures.
     """
 
+    def to_mapping(self) -> dict[int, int]:
+        """Convert the DeviationClass to a mapping of concepts to their deviation class index.
+
+        Returns
+        -------
+        dict[int, int]
+            A dictionary where keys are concept indices
+            and values are their deviation class index.
+        """
+        mapping = {}
+        for class_index, deviation_class in enumerate(self):
+            for concept_index in deviation_class:
+                mapping[int(concept_index)] = class_index
+
+        return mapping
+
 
 class SimulatedPredictions(tuple[np.intp, np.intp, npt.NDArray[np.float64]]):
     """Container for cross-domain prediction probabilities in synthetic taxonomy experiments.
