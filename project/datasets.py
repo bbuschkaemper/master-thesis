@@ -3,7 +3,6 @@ import torchvision
 from torch.utils.data import DataLoader, random_split, Subset
 import lightning as pl
 from torchvision.transforms import v2
-from synthetic_taxonomy import Deviation
 
 
 class Caltech101DataModule(pl.LightningDataModule):
@@ -144,14 +143,14 @@ class Caltech256DataModule(pl.LightningDataModule):
 class Caltech256MappedClassDataModule(pl.LightningDataModule):
     def __init__(
         self,
+        mapping: dict[int, int],
         batch_size=64,
         split=(0.8, 0.1, 0.1),
-        deviation=Deviation(),
     ):
         super().__init__()
         self.batch_size = batch_size
         self.split = split
-        self.deviation = deviation
+        self.mapping = mapping
 
     def prepare_data(self):
         torchvision.datasets.Caltech256(root="datasets/caltech256", download=True)
@@ -175,14 +174,9 @@ class Caltech256MappedClassDataModule(pl.LightningDataModule):
             root="datasets/caltech256", transform=transform
         )
 
-        mappings = {}
-        for idx, deviation_class in enumerate(self.deviation):
-            for class_idx in deviation_class:
-                mappings[class_idx] = idx
-
         target_idxs = []
         for idx, target in enumerate(dataset.y):
-            if target in mappings:
+            if target in self.mapping:
                 target_idxs.append(idx)
 
         dataset = Subset(dataset, target_idxs)

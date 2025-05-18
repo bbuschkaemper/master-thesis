@@ -762,7 +762,7 @@ class Taxonomy:
     # --------------------------------------
 
     def save(self, filepath: str):
-        """Save the taxonomy graph to a file.
+        """Save the taxonomy graph to a file (pickle format).
 
         Parameters
         ----------

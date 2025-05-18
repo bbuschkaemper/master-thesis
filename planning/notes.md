@@ -3,6 +3,11 @@
 - Look if any paper in zotero wasn't cited
 - For how we went from atomic concepts to model usage, describe that we used each concept as a class in a dataset and the merged classes are a superclass
 
+## Code refactoring
+
+- Write save/load for synthetic taxonomy
+- Instead of modifying dataloader, create dataset class that directly has the correct targets
+
 ## Training fine-tuned models
 
 - Used SGD for smaller caltech dataset and Adam for larger cifar dataset
