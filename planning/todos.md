@@ -2,25 +2,24 @@
 
 ## Thesis writing
 
-- Reference our algorithm for universal taxonomy in the synthetic taxonomy section
-- Rewrite the definitions for synthetic taxonomy in-text instead as equations (we don't need it numbered)
-- Rewrite synthetic taxonomy to use definitions from universal taxonomy instead of caligraphy symbols
+Empty
 
-## Synthetic ground truth universal taxonomy
+## Code refactoring
 
-- Pick dataset as starting point
-- Build synthetic datasets with deviations:
-  - Discard some classes from original dataset
-  - Merge multiple classes from original dataset into a single new dataset class
-- This creates a ground truth taxonomy with multiple domains (i.e. deviating datasets)
+- Write save/load for synthetic taxonomy
+- Instead of modifying dataloader, create dataset class that directly has the correct targets
+- Use a single taxonomy class that defines different constructors for each method of taxonomy/synthetic taxonomy
 
-## Multi-domain algorithm
+## Taxonomy model simulation
 
-- Right now algorithm only works for two domains
-- Use iterative approach to build universal taxonomy for n domains:
-  - Use same algorithm rules for editing edges but apply them for n domains
-- Compare against ground truth taxonomy:
-  - Find metric for deviation of universal taxonomy from ground truth taxonomy
+- Can we simulate a model with prediction probability to get a plot (model accuracy vs. taxonomy accuracy) instead of manually training models?
+
+## Conceptual taxonomy
+
+- Instead of mcfp, we use all predictions above a certain threshold (using a single mcfp means we cannot represent multiple concept relationships)
+- Only create universal class on bidirectional edges
+- Unilateral edges do not have a true meaning here (if it were a subset of the other, it would have a bidirectional edge to some degree)
+- Find some method to calculate the threshold (it should depend on how likely it is to get a random class prediction)
 
 ## Thresholding
 

@@ -60,7 +60,7 @@ we first need to define some terms:
           We denote this as a function $\text{probability}: E \mapsto [0, 1]$.
 \end{itemize}
 
-\subsection{Graph Construction}
+\subsection{Graph Construction} \label{sec:graph_construction}
 
 Before building our universal taxonomy,
 we need to construct our initial graph:
@@ -310,4 +310,8 @@ For the relationship $c^A_2 \rightarrow c^B_1$:
     \item $P_{2,1} = 0.5 + \frac{1-0.5}{2} = 0.5 + 0.25 = 0.75$
 \end{itemize}
 
-This example shows how our framework captures partial relationships between classes and simulates how a neural network might handle concepts that don't perfectly match across domains.
+This example shows how our framework captures partial relationships between classes
+and how it simulates a perfect neural network classifier's behavior.
+The resulting probability prediction matrix between two domains can then be used
+to build a graph of relationships between classes,
+which can then be turned into a universal taxonomy using the methods described in \autoref{sec:graph_construction}.
