@@ -1,7 +1,7 @@
 from scipy.stats import truncnorm
 import numpy as np
 import numpy.typing as npt
-from taxonomy import Taxonomy, DomainClass, Relationship
+from library.taxonomy import Taxonomy, DomainClass, Relationship
 
 
 class DeviationClass(frozenset[np.intp]):
