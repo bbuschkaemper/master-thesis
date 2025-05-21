@@ -4,12 +4,6 @@
 
 Empty
 
-## Correcting universal taxonomy method
-
-- Having a universal class doesn't mean that the classes are equal, they only share concepts
-- So we do not redirect incoming relationships to the universal class but keep them on the original class
-- Also update method section to reflect this
-
 ## Synthetic taxonomy creation
 
 - Some datasets have a no-prediction class
@@ -17,9 +11,9 @@ Empty
 
 ## Code refactoring
 
-- Write save/load for synthetic taxonomy
 - Instead of modifying dataloader, create dataset class that directly has the correct targets
 - Use a single taxonomy class that defines different constructors for each method of taxonomy/synthetic taxonomy
+- Single save/load for all taxonomies
 
 ## Graph correctness metrics
 

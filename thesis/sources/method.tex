@@ -131,7 +131,6 @@ The rules are as follows:
           The probability of the new relationships is set to the average of the bidirectional relationships and the classes of the universal class
           will be the two classes that were merged (or, if the two classes are universal classes themselves,
           the union of their classes).
-          Additionally, all incoming relationships to the two classes are redirected to the new universal class.
 
     \item \textbf{Transitive Cycle Rule:} If we have relationships A $\rightarrow$ B $\rightarrow$ C
           where A and C are in the same domain, we have a problem since classes within a domain
@@ -149,8 +148,6 @@ The rules are as follows:
               \item Class D, which contains only class B and has a relationship from class B with a probability 1.
                     This universal class represents the concepts of class B that are not in class A.
           \end{itemize}
-          We also redirect all incoming relationships to class A to class C and
-          all incoming relationships to class B to classes C and D.
 \end{enumerate}
 
 \section{Synthetic Taxonomy Generation}

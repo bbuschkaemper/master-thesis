@@ -261,20 +261,6 @@ class Taxonomy:
         if self.graph.has_edge(target, source):
             self.graph.remove_edge(target, source)
 
-    def __redirect_incoming_relationships(self, old_source: Class, new_source: Class):
-        """Redirect all incoming relationships from old_source to new_source.
-
-        Parameters
-        ----------
-        old_source : Class
-            The original source node
-        new_source : Class
-            The new source node to redirect relationships to
-        """
-        for rel in self.__get_relationships_to(old_source):
-            self.__remove_relationship(rel)
-            self._add_relationship(Relationship((rel[0], new_source, rel[2])))
-
     def __get_relationships(self) -> list[Relationship]:
         """Returns all relationships in the graph.
 
@@ -567,9 +553,6 @@ class Taxonomy:
         After:  DomainClass(A) → UniversalClass({A,B})
                 DomainClass(B) → UniversalClass({A,B})
 
-        The method also redirects any incoming relationships to either node
-        to point to the newly created universal class.
-
         Returns
         -------
         bool
@@ -617,10 +600,6 @@ class Taxonomy:
             # Remove the bidirectional relationships
             self.__remove_relationship(relationship)
             self.__remove_relationship(reverse_relationship)
-
-            # Redirect incoming relationships to the new universal class
-            self.__redirect_incoming_relationships(class_b, universal_class)
-            self.__redirect_incoming_relationships(class_a, universal_class)
 
             return True  # Changes were made
 
@@ -737,21 +716,6 @@ class Taxonomy:
 
             # Remove the original relationship
             self.__remove_relationship(relationship)
-
-            # Redirect incoming relationships to the target to the appropriate universal class
-            self.__redirect_incoming_relationships(
-                domain_class_a, shared_universal_class
-            )
-
-            # Redirect incoming relationships to the source to both universal classes
-            for rel in self.__get_relationships_to(domain_class_b):
-                self.__remove_relationship(rel)
-                self._add_relationship(
-                    Relationship((rel[0], shared_universal_class, rel[2]))
-                )
-                self._add_relationship(
-                    Relationship((rel[0], source_universal_class, rel[2]))
-                )
 
             return True  # Changes were made
 
