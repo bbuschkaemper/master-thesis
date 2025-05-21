@@ -4,15 +4,35 @@
 
 Empty
 
+## Correcting universal taxonomy method
+
+- Having a universal class doesn't mean that the classes are equal, they only share concepts
+- So we do not redirect incoming relationships to the universal class but keep them on the original class
+- Also update method section to reflect this
+
+## Synthetic taxonomy creation
+
+- Some datasets have a no-prediction class
+- So for edge probabilities, we need to have a parameter to not distribute remaining probability mass between all possible classes
+
 ## Code refactoring
 
 - Write save/load for synthetic taxonomy
 - Instead of modifying dataloader, create dataset class that directly has the correct targets
 - Use a single taxonomy class that defines different constructors for each method of taxonomy/synthetic taxonomy
 
-## Taxonomy model simulation
+## Graph correctness metrics
 
-- Can we simulate a model with prediction probability to get a plot (model accuracy vs. taxonomy accuracy) instead of manually training models?
+- We treat each universal taxonomy class as an edge between two classes of different domains that have an incoming edge to the universal class
+- Every combination of two classes from different domains is one edge
+- Average precision:
+  - <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html>
+  - See for reference implementation
+- Graph edit distance:
+  - Create adjacency matrix from the edges
+  - Use XOR to find number of incorrect edges and use that for metric
+- Edges have weights that are not yet respected in the metrics
+- The Missing Link paper for reference implementation that uses edge weights
 
 ## Conceptual taxonomy
 
