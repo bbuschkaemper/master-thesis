@@ -4,16 +4,17 @@
 
 Empty
 
+## Code refactoring
+
+- Use a single taxonomy class that defines different constructors for each method of taxonomy/synthetic taxonomy
+- Single save/load for all taxonomies
+
 ## Synthetic taxonomy creation
 
 - Some datasets have a no-prediction class
 - So for edge probabilities, we need to have a parameter to not distribute remaining probability mass between all possible classes
-
-## Code refactoring
-
-- Instead of modifying dataloader, create dataset class that directly has the correct targets
-- Use a single taxonomy class that defines different constructors for each method of taxonomy/synthetic taxonomy
-- Single save/load for all taxonomies
+- Check if our datasets have such a class
+- Update method to reflect this
 
 ## Graph correctness metrics
 
