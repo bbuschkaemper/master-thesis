@@ -2,6 +2,7 @@ import pickle
 from typing import List, Tuple, Dict
 import numpy as np
 import numpy.typing as npt
+from scipy.stats import truncnorm
 import networkx as nx
 from pyvis.network import Network
 
@@ -71,11 +72,55 @@ class Relationship(tuple[Class, Class, float]):
     -----
     The direction is target → source, which matches how predictions flow:
     a class from one domain (target) is being predicted as a class from another domain (source).
+    """
 
-    Examples
-    --------
-    >>> # DomainClass(0,5) is predicted as DomainClass(1,3) with 0.8 confidence
-    >>> relationship = Relationship((DomainClass((0,5)), DomainClass((1,3)), 0.8))
+
+class DeviationClass(frozenset[np.intp]):
+    """A set of concept indices that form a synthetic class.
+
+    In synthetic taxonomy generation, a DeviationClass represents a group of atomic
+    concepts (identified by integers) that are bundled together to form a class.
+    For instance, a class "dog" might contain concepts like "furry", "four legs", "tail", etc.
+
+    Implemented as an immutable frozenset for hashability and use as dictionary keys.
+    """
+
+
+class Deviation(frozenset[DeviationClass]):
+    """A collection of related synthetic classes forming a domain.
+
+    A Deviation represents a complete taxonomy domain containing multiple DeviationClasses.
+    This structure simulates a real-world dataset domain (like CIFAR-100 or Caltech-101)
+    with its class structure for simulation purposes.
+
+    Implemented as an immutable frozenset for hashability and use in graph structures.
+    """
+
+    def to_mapping(self) -> dict[int, int]:
+        """Convert the DeviationClass to a mapping of concepts to their deviation class index.
+
+        Returns
+        -------
+        dict[int, int]
+            A dictionary where keys are concept indices
+            and values are their deviation class index.
+        """
+        mapping = {}
+        for class_index, deviation_class in enumerate(self):
+            for concept_index in deviation_class:
+                mapping[int(concept_index)] = class_index
+
+        return mapping
+
+
+class SimulatedPredictions(tuple[np.intp, np.intp, npt.NDArray[np.float64]]):
+    """Container for cross-domain prediction probabilities in synthetic taxonomy experiments.
+
+    Represented as a tuple (source_domain_id, target_domain_id, probability_matrix) where:
+    - source_domain_id: The domain ID of the model making predictions
+    - target_domain_id: The domain ID of the dataset being predicted
+    - probability_matrix: 2D array where element [i,j] represents the probability of
+      predicting class j in the source domain for class i in the target domain
     """
 
 
@@ -94,141 +139,19 @@ class Taxonomy:
     This taxonomy can be visualized, serialized, and manipulated through various methods.
     """
 
-    def __init__(
-        self,
-        cross_domain_predictions: List[Tuple[int, int, npt.NDArray[np.intp]]],
-        domain_targets: List[Tuple[int, npt.NDArray[np.intp]]],
-        domain_labels: Dict[int, List[str]] | None = None,
-    ):
-        """Creates a taxonomy object with an integrated graph structure.
-
-        This taxonomy is built from cross-domain predictions between multiple domains.
-        It analyzes how models trained on one domain classify samples from another domain,
-        revealing conceptual relationships between classes across domains.
+    def __init__(self, domain_labels: Dict[int, List[str]] | None = None):
+        """Initializes an empty taxonomy with no relationships or classes.
 
         Parameters
         ----------
-        cross_domain_predictions : List[Tuple[int, int, npt.NDArray[np.intp]]]
-            List of tuples where each tuple contains:
-            - model_domain_id: The domain ID of the model used for predictions
-            - dataset_domain_id: The domain ID of the dataset being predicted
-            - predictions: Array of class predictions made by the model
-        domain_targets : List[Tuple[int, npt.NDArray[np.intp]]]
-            List of tuples where each tuple contains:
-            - domain_id: The domain ID
-            - targets: Array of ground truth class labels for that domain
         domain_labels : Dict[int, List[str]], optional
-            Dictionary mapping domain IDs to human-readable labels for each class.
-            This is used for visualization purposes. If not provided, class IDs are used.
-
-        Notes
-        -----
-        The initialization process:
-        1. Validates input shapes
-        2. Builds correlation matrices between domains
-        3. Extracts the most common cross-domain predictions
-        4. Constructs initial relationships in the taxonomy graph
+            Optional dictionary mapping domain IDs to lists of human-readable class labels.
+            If provided, these labels will be used for domain classes instead of class IDs.
+            If not provided, class IDs will be used as labels.
         """
 
-        # Store domain labels for visualization
-        self.domain_labels = domain_labels
-
-        # Store domain targets in a dictionary for easier access
-        self.targets = {}
-        for domain_id, targets in domain_targets:
-            self.targets[domain_id] = targets
-
-        # Initialize the NetworkX graph for storing taxonomy relationships
+        self.domain_labels = domain_labels or {}
         self.graph = nx.DiGraph()
-
-        # Process each cross-domain prediction
-        for model_domain_id, dataset_domain_id, predictions in cross_domain_predictions:
-            if dataset_domain_id not in self.targets:
-                raise ValueError(
-                    f"Dataset domain ID {dataset_domain_id} not found in targets."
-                )
-
-            # Validate that prediction arrays match their respective target arrays
-            dataset_targets = self.targets[dataset_domain_id]
-            if predictions.shape != dataset_targets.shape:
-                raise ValueError(
-                    f"Predictions of domain {model_domain_id} to domain "
-                    f"{dataset_domain_id} must match targets in shape. "
-                    f"Got {predictions.shape} vs {dataset_targets.shape}"
-                )
-
-            # Build correlation matrix between these domains
-            correlations = self.__form_correlation_matrix(predictions, dataset_targets)
-
-            # Extract most common predictions and their confidence values
-            most_common_classes, confidence_values = (
-                self.__foreign_prediction_distributions(correlations)
-            )
-
-            # Build initial taxonomy relationships between these domains
-            self.__build_initial_relationships(
-                domain_id=model_domain_id,
-                foreign_domain_id=dataset_domain_id,
-                most_common_classes=most_common_classes,
-                confidence_values=confidence_values,
-            )
-
-    # --------------------------------------
-    # Graph construction and relationship handling
-    # --------------------------------------
-
-    def __build_initial_relationships(
-        self,
-        domain_id: int,
-        foreign_domain_id: int,
-        most_common_classes: npt.NDArray[np.intp],
-        confidence_values: npt.NDArray[np.float32],
-    ):
-        """Builds initial relationships in the taxonomy graph from one domain to another.
-
-        This method creates directed relationships between classes from two different domains
-        based on prediction patterns. For each class in the target domain, it creates a
-        relationship to the most commonly predicted class in the source domain.
-
-        Parameters
-        ----------
-        domain_id : int
-            ID of the source domain (the domain of the model making predictions)
-        foreign_domain_id : int
-            ID of the target domain (the domain of the dataset being predicted)
-        most_common_classes : npt.NDArray[np.intp]
-            For each class in the target domain, the index of the most commonly
-            predicted class in the source domain
-        confidence_values : npt.NDArray[np.float32]
-            Confidence values (probabilities between 0 and 1) for each relationship
-
-        Notes
-        -----
-        Relationships with zero confidence are skipped. This can happen when there are
-        no successful predictions for a particular class.
-        """
-        for target_class_idx, source_class_idx in enumerate(most_common_classes):
-            # Skip relationships with zero confidence
-            if confidence_values[target_class_idx] == 0:
-                continue
-
-            # Create source domain class (from the model's domain)
-            source_class = DomainClass((np.intp(domain_id), np.intp(source_class_idx)))
-
-            # Create target domain class (from the dataset being predicted)
-            target_class = DomainClass(
-                (np.intp(foreign_domain_id), np.intp(target_class_idx))
-            )
-
-            # Add the relationship to the taxonomy graph with its confidence value
-            relationship_confidence = confidence_values[target_class_idx]
-            self._add_relationship(
-                Relationship((target_class, source_class, relationship_confidence))
-            )
-
-    # --------------------------------------
-    # Graph query methods
-    # --------------------------------------
 
     def _add_relationship(self, relationship: Relationship):
         """Adds a relationship to the graph.
@@ -348,12 +271,138 @@ class Taxonomy:
             return Relationship((target, source, float(weight)))
         return None
 
-    # --------------------------------------
-    # Data analysis and processing
-    # --------------------------------------
+    @classmethod
+    def from_cross_domain_predictions(
+        cls,
+        cross_domain_predictions: List[Tuple[int, int, npt.NDArray[np.intp]]],
+        domain_targets: List[Tuple[int, npt.NDArray[np.intp]]],
+        domain_labels: Dict[int, List[str]] | None = None,
+    ):
+        """Creates a taxonomy object with an integrated graph structure.
+
+        This taxonomy is built from cross-domain predictions between multiple domains.
+        It analyzes how models trained on one domain classify samples from another domain,
+        revealing conceptual relationships between classes across domains.
+
+        Parameters
+        ----------
+        cross_domain_predictions : List[Tuple[int, int, npt.NDArray[np.intp]]]
+            List of tuples where each tuple contains:
+            - model_domain_id: The domain ID of the model used for predictions
+            - dataset_domain_id: The domain ID of the dataset being predicted
+            - predictions: Array of class predictions made by the model
+        domain_targets : List[Tuple[int, npt.NDArray[np.intp]]]
+            List of tuples where each tuple contains:
+            - domain_id: The domain ID
+            - targets: Array of ground truth class labels for that domain
+        domain_labels : Dict[int, List[str]], optional
+            Optional dictionary mapping domain IDs to lists of human-readable class labels.
+            If provided, these labels will be used for domain classes instead of class IDs.
+            If not provided, class IDs will be used as labels.
+
+        Notes
+        -----
+        The initialization process:
+        1. Validates input shapes
+        2. Builds correlation matrices between domains
+        3. Extracts the most common cross-domain predictions
+        4. Constructs initial relationships in the taxonomy graph
+        """
+
+        obj = cls(domain_labels=domain_labels)
+
+        # Store targets for each domain in a dictionary
+        targets = {}
+        for domain_id, target_array in domain_targets:
+            if domain_id in targets:
+                raise ValueError(f"Duplicate domain ID {domain_id} found in targets.")
+            targets[domain_id] = target_array
+
+        # Process each cross-domain prediction
+        for model_domain_id, dataset_domain_id, predictions in cross_domain_predictions:
+            if dataset_domain_id not in targets:
+                raise ValueError(
+                    f"Dataset domain ID {dataset_domain_id} not found in targets."
+                )
+
+            # Validate that prediction arrays match their respective target arrays
+            dataset_targets = targets[dataset_domain_id]
+            if predictions.shape != dataset_targets.shape:
+                raise ValueError(
+                    f"Predictions of domain {model_domain_id} to domain "
+                    f"{dataset_domain_id} must match targets in shape. "
+                    f"Got {predictions.shape} vs {dataset_targets.shape}"
+                )
+
+            # Build correlation matrix between these domains
+            correlations = obj._form_correlation_matrix(predictions, dataset_targets)
+
+            # Extract most common predictions and their confidence values
+            most_common_classes, confidence_values = (
+                obj._foreign_prediction_distributions(correlations)
+            )
+
+            # Build initial taxonomy relationships between these domains
+            obj._build_initial_relationships(
+                domain_id=model_domain_id,
+                foreign_domain_id=dataset_domain_id,
+                most_common_classes=most_common_classes,
+                confidence_values=confidence_values,
+            )
+
+        return obj
+
+    def _build_initial_relationships(
+        self,
+        domain_id: int,
+        foreign_domain_id: int,
+        most_common_classes: npt.NDArray[np.intp],
+        confidence_values: npt.NDArray[np.float32],
+    ):
+        """Builds initial relationships in the taxonomy graph from one domain to another.
+
+        This method creates directed relationships between classes from two different domains
+        based on prediction patterns. For each class in the target domain, it creates a
+        relationship to the most commonly predicted class in the source domain.
+
+        Parameters
+        ----------
+        domain_id : int
+            ID of the source domain (the domain of the model making predictions)
+        foreign_domain_id : int
+            ID of the target domain (the domain of the dataset being predicted)
+        most_common_classes : npt.NDArray[np.intp]
+            For each class in the target domain, the index of the most commonly
+            predicted class in the source domain
+        confidence_values : npt.NDArray[np.float32]
+            Confidence values (probabilities between 0 and 1) for each relationship
+
+        Notes
+        -----
+        Relationships with zero confidence are skipped. This can happen when there are
+        no successful predictions for a particular class.
+        """
+        for target_class_idx, source_class_idx in enumerate(most_common_classes):
+            # Skip relationships with zero confidence
+            if confidence_values[target_class_idx] == 0:
+                continue
+
+            # Create source domain class (from the model's domain)
+            source_class = DomainClass((np.intp(domain_id), np.intp(source_class_idx)))
+
+            # Create target domain class (from the dataset being predicted)
+            target_class = DomainClass(
+                (np.intp(foreign_domain_id), np.intp(target_class_idx))
+            )
+
+            # Add the relationship to the taxonomy graph with its confidence value
+            relationship_confidence = confidence_values[target_class_idx]
+            self._add_relationship(
+                Relationship((target_class, source_class, relationship_confidence))
+            )
 
     @staticmethod
-    def __form_correlation_matrix(
+    def _form_correlation_matrix(
         predictions: npt.NDArray[np.intp],
         targets: npt.NDArray[np.intp],
     ) -> npt.NDArray[np.intp]:
@@ -402,7 +451,7 @@ class Taxonomy:
         return correlations
 
     @staticmethod
-    def __foreign_prediction_distributions(
+    def _foreign_prediction_distributions(
         correlations: npt.NDArray[np.intp],
     ) -> tuple[npt.NDArray[np.intp], npt.NDArray[np.float32]]:
         """Calculates the most common prediction for each class and its confidence.
@@ -451,9 +500,330 @@ class Taxonomy:
 
         return most_common_classes, confidence_values
 
-    # --------------------------------------
-    # Universal taxonomy building
-    # --------------------------------------
+    @classmethod
+    def create_synthetic_taxonomy(
+        cls,
+        num_atomic_concepts: int,
+        num_domains: int,
+        domain_class_count_mean: float,
+        domain_class_count_variance: float,
+        concept_cluster_size_mean: float,
+        concept_cluster_size_variance: float,
+        has_no_prediction_class: bool = False,
+        random_seed: int = 42,
+    ):
+        """Create a synthetic taxonomy with randomly generated domains and relationships.
+
+        Parameters
+        ----------
+        num_atomic_concepts : int
+            The total number of atomic concepts available in the universe
+        num_domains : int
+            The number of domains (deviations) to generate
+        domain_class_count_mean : float
+            Mean number of classes per domain
+        domain_class_count_variance : float
+            Variance in the number of classes per domain
+        concept_cluster_size_mean : float
+            Mean number of concepts per class
+        concept_cluster_size_variance : float
+            Variance in the number of concepts per class
+        has_no_prediction_class : bool, optional
+            Some datasets have a no-prediction class which means
+            we need to distribute probabilities differently.
+        random_seed : int, optional
+            Seed for random number generation, by default 42
+
+        Notes
+        -----
+        The initialization process:
+        1. Generates synthetic domains with classes made of atomic concepts
+        2. Simulates cross-domain predictions based on conceptual overlap
+        3. Creates a taxonomy graph with relationships between domains
+        """
+
+        rng = np.random.default_rng(random_seed)
+
+        # Generate synthetic domains (previously called deviations)
+        domains = [
+            Taxonomy._create_domain(
+                domain_class_count_mean=domain_class_count_mean,
+                domain_class_count_variance=domain_class_count_variance,
+                num_atomic_concepts=num_atomic_concepts,
+                rng=rng,
+                concept_cluster_size_mean=concept_cluster_size_mean,
+                concept_cluster_size_variance=concept_cluster_size_variance,
+            )
+            for _ in range(num_domains)
+        ]
+
+        # Calculate simulated prediction probabilities between all domain pairs
+        # (excluding self-predictions)
+        cross_domain_predictions: list[SimulatedPredictions] = []
+        for source_domain_id, source_domain in enumerate(domains):
+            for target_domain_id, target_domain in enumerate(domains):
+                if source_domain_id == target_domain_id:
+                    continue
+                prediction_matrix = cls._simulate_predictions(
+                    source_domain, target_domain, has_no_prediction_class
+                )
+                cross_domain_predictions.append(
+                    SimulatedPredictions(
+                        (
+                            np.intp(source_domain_id),
+                            np.intp(target_domain_id),
+                            prediction_matrix,
+                        )
+                    )
+                )
+
+        # Create human-readable domain labels for visualization
+        domain_labels = {}
+        for domain_id, domain in enumerate(domains):
+            class_labels = []
+            for class_concepts in domain:
+                # Format each class as a set of its concept indices
+                class_labels.append("{" + ", ".join(map(str, class_concepts)) + "}")
+            domain_labels[domain_id] = class_labels
+
+        # Initialize the taxonomy with empty predictions and targets
+        # Actual relationships will be built from simulated cross-domain predictions
+        obj = cls(domain_labels=domain_labels)
+
+        # Add relationships to the taxonomy graph based on simulated predictions
+        for (
+            source_domain_id,
+            target_domain_id,
+            predictions,
+        ) in cross_domain_predictions:
+            for target_class_id, class_predictions in enumerate(predictions):
+                # Get the most likely prediction for this class
+                source_class_id = np.argmax(class_predictions)
+                prediction_confidence = float(class_predictions[source_class_id])
+
+                # Create domain classes for source and target
+                source_class = DomainClass(
+                    (np.intp(source_domain_id), np.intp(source_class_id))
+                )
+                target_class = DomainClass(
+                    (np.intp(target_domain_id), np.intp(target_class_id))
+                )
+
+                # Add the relationship to the taxonomy graph
+                relationship = Relationship(
+                    (target_class, source_class, prediction_confidence)
+                )
+                obj._add_relationship(relationship)
+
+        return obj, domains
+
+    @staticmethod
+    def _simulate_predictions(
+        source_domain: Deviation,
+        target_domain: Deviation,
+        has_no_prediction_class: bool = False,
+    ) -> npt.NDArray[np.float64]:
+        """Simulate how a model trained on source_domain would classify samples from target_domain.
+
+        This method calculates prediction probabilities based on concept overlap between
+        classes in different domains. The core idea is that a class can be partially recognized
+        by another domain's model if they share some common concepts.
+
+        Parameters
+        ----------
+        source_domain : Deviation
+            The domain the classifier was trained on
+        target_domain : Deviation
+            The domain containing samples to be classified
+        has_no_prediction_class : bool, optional
+            Whether the target domain has a no-prediction class
+            that receives all probabilities not assigned to other classes.
+
+        Returns
+        -------
+        npt.NDArray[np.float64]
+            2D array of prediction probabilities where:
+              - Each row corresponds to a class in the target domain
+              - Each column corresponds to a class in the source domain
+              - Value [i,j] is the probability of predicting source class j for target class i
+
+        Notes
+        -----
+        The prediction simulation works as follows:
+        1. For each target class, find which source classes share concepts with it
+        2. Assign probabilities based on percentage of shared concepts
+        3. Distribute remaining probability evenly across all classes (if no no-prediction class exists).
+
+        For example, if target class {A, B} is classified by a source domain with
+        classes {A, C} and {B, D}, it would have 50% overlap with each source class.
+        """
+        prediction_probabilities = []
+
+        # For each class in the target domain
+        for target_class in target_domain:
+            # Extract the atomic concepts that make up this class
+            target_concept_set = set(target_class)
+
+            # Create probability distribution for this target class (initially all zeros)
+            class_probabilities = [0.0] * len(source_domain)
+
+            # Find and calculate overlapping concepts with each source class
+            concept_overlaps = []
+            for source_idx, source_class in enumerate(source_domain):
+                source_concept_set = set(source_class)
+                shared_concepts = target_concept_set.intersection(source_concept_set)
+
+                # If there's overlap, calculate the proportion of target concepts covered
+                if shared_concepts:
+                    overlap_ratio = len(shared_concepts) / len(target_concept_set)
+                    concept_overlaps.append((source_idx, overlap_ratio))
+
+            # Assign probabilities based on concept overlap ratios
+            for source_idx, overlap_ratio in concept_overlaps:
+                class_probabilities[source_idx] = overlap_ratio
+
+            # Calculate remaining probability to distribute
+            remaining_probability = 1.0 - sum(class_probabilities)
+
+            # Distribute remaining probability evenly across all classes
+            if (
+                remaining_probability > 0
+                and len(source_domain) > 0
+                and not has_no_prediction_class
+            ):
+                even_distribution = remaining_probability / len(source_domain)
+                class_probabilities = [
+                    p + even_distribution for p in class_probabilities
+                ]
+
+            prediction_probabilities.append(class_probabilities)
+
+        return np.array(prediction_probabilities, dtype=np.float64)
+
+    @staticmethod
+    def _create_domain(
+        domain_class_count_mean: float,
+        domain_class_count_variance: float,
+        num_atomic_concepts: int,
+        rng: np.random.Generator,
+        concept_cluster_size_mean: float,
+        concept_cluster_size_variance: float,
+    ) -> Deviation:
+        """Generate a synthetic domain with classes composed of atomic concepts.
+
+        A domain (previously called deviation) consists of multiple classes, each
+        containing a cluster of related atomic concepts.
+
+        Returns
+        -------
+        Deviation
+            A set of DeviationClasses, where each DeviationClass represents
+            a class in this domain
+
+        Notes
+        -----
+        The domain generation process:
+        1. Determine how many classes to include in this domain
+        2. Select unique atomic concepts to be used in this domain
+        3. Group concepts into clusters (classes) of varying sizes
+        """
+        # Determine number of classes for this domain (bounded by total concept count)
+        class_count = np.round(
+            Taxonomy._sample_truncated_normal(
+                mean=domain_class_count_mean,
+                variance=domain_class_count_variance,
+                upper_bound=num_atomic_concepts,
+                lower_bound=1,
+                rng=rng,
+            )
+        ).astype(np.intp)
+
+        # Select which atomic concepts will be part of this domain
+        available_concepts = range(num_atomic_concepts)
+        selected_concepts = set(
+            rng.choice(available_concepts, size=class_count, replace=False)
+        )
+
+        # Create the domain as a set of classes
+        domain = set()
+
+        # Group concepts into classes until all selected concepts are assigned
+        while selected_concepts:
+            # Handle last concept separately to avoid empty clusters
+            if len(selected_concepts) == 1:
+                cluster_size = 1
+            else:
+                # Determine class size based on specified distribution
+                cluster_size = np.round(
+                    Taxonomy._sample_truncated_normal(
+                        mean=concept_cluster_size_mean,
+                        variance=concept_cluster_size_variance,
+                        lower_bound=1,
+                        upper_bound=len(selected_concepts),
+                        rng=rng,
+                    )
+                ).astype(np.intp)
+
+            # Randomly select concepts for this class
+            class_concepts = frozenset(
+                rng.choice(
+                    list(selected_concepts),
+                    size=cluster_size,
+                    replace=False,
+                ).astype(np.intp)
+            )
+
+            # Create a class from these concepts and add it to the domain
+            domain_class = DeviationClass(class_concepts)
+            domain.add(domain_class)
+
+            # Remove assigned concepts
+            selected_concepts -= class_concepts
+
+        return Deviation(frozenset(domain))
+
+    @staticmethod
+    def _sample_truncated_normal(
+        mean: float,
+        variance: float,
+        rng: np.random.Generator,
+        lower_bound: float = 0,
+        upper_bound: float = float("inf"),
+    ) -> float:
+        """Sample from a truncated normal distribution with specified parameters.
+
+        Parameters
+        ----------
+        mean : float
+            Mean of the normal distribution
+        variance : float
+            Variance of the normal distribution
+        lower_bound : float, optional
+            Minimum value to return, by default 0
+        upper_bound : float, optional
+            Maximum value to return, by default infinity
+
+        Returns
+        -------
+        float
+            A sample from the truncated normal distribution
+
+        Notes
+        -----
+        Returns 0 on error (when parameters lead to invalid distribution)
+        """
+        # Calculate standardized bounds for truncated normal distribution
+        a = (lower_bound - mean) / np.sqrt(variance)
+        b = (upper_bound - mean) / np.sqrt(variance)
+
+        try:
+            # Sample from the truncated normal distribution
+            return truncnorm.rvs(
+                a=a, b=b, loc=mean, scale=np.sqrt(variance), random_state=rng
+            )
+        except ValueError:
+            # Return 0 if parameters lead to invalid distribution
+            return 0
 
     def build_universal_taxonomy(self):
         """Builds a universal taxonomy graph from the initial domain relationships.
@@ -721,10 +1091,6 @@ class Taxonomy:
 
         return False
 
-    # --------------------------------------
-    # Persistence and I/O
-    # --------------------------------------
-
     def save(self, filepath: str):
         """Save the taxonomy graph to a file (pickle format).
 
@@ -734,7 +1100,13 @@ class Taxonomy:
             Path where to save the graph
         """
         with open(filepath, "wb") as f:
-            pickle.dump(self.graph, f)
+            pickle.dump(
+                {
+                    "graph": self.graph,
+                    "domain_labels": self.domain_labels,
+                },
+                f,
+            )
 
     @classmethod
     def load(cls, filepath: str) -> "Taxonomy":
@@ -751,20 +1123,16 @@ class Taxonomy:
             The loaded taxonomy
         """
         # Create an empty taxonomy
-        taxonomy = cls(
-            cross_domain_predictions=[],
-            domain_targets=[],
-        )
+        taxonomy = cls()
 
         # Load the graph directly
         with open(filepath, "rb") as f:
-            taxonomy.graph = pickle.load(f)
+            obj = pickle.load(f)
+
+        taxonomy.graph = obj["graph"]
+        taxonomy.domain_labels = obj["domain_labels"]
 
         return taxonomy
-
-    # --------------------------------------
-    # Visualization
-    # --------------------------------------
 
     def visualize_graph(
         self,

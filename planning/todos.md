@@ -4,18 +4,6 @@
 
 Empty
 
-## Code refactoring
-
-- Use a single taxonomy class that defines different constructors for each method of taxonomy/synthetic taxonomy
-- Single save/load for all taxonomies
-
-## Synthetic taxonomy creation
-
-- Some datasets have a no-prediction class
-- So for edge probabilities, we need to have a parameter to not distribute remaining probability mass between all possible classes
-- Check if our datasets have such a class
-- Update method to reflect this
-
 ## Graph correctness metrics
 
 - We treat each universal taxonomy class as an edge between two classes of different domains that have an incoming edge to the universal class

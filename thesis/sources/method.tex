@@ -312,3 +312,13 @@ and how it simulates a perfect neural network classifier's behavior.
 The resulting probability prediction matrix between two domains can then be used
 to build a graph of relationships between classes,
 which can then be turned into a universal taxonomy using the methods described in \autoref{sec:graph_construction}.
+
+\subsubsection{No-Prediction Classes}
+
+Some datasets have a special class that indicates that the model could not classify the image.
+For these \enquote{no-prediction} classes, we need to adapt the relationship probability calculation:
+Instead of distributing the remaining probability mass evenly across all classes,
+we simply ignore it and therefore only have the probability of the overlapping concepts.
+
+While this doesn't change the relationship that is picked as the most common foreign prediction,
+it does change the probability of the relationship, which is important for thresholding later on.
