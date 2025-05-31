@@ -322,3 +322,38 @@ we simply ignore it and therefore only have the probability of the overlapping c
 
 While this doesn't change the relationship that is picked as the most common foreign prediction,
 it does change the probability of the relationship, which is important for thresholding later on.
+
+\subsection{Taxonomy Difference Metrics}
+
+We created our synthetic datasets to have a known ground truth of relationships between classes.
+Now, we need to find metrics to compare the predicted relationships from our taxonomy generation methods
+with the ground truth calculated from the synthetic datasets.
+
+\subsubsection{Universal Class Graph}
+
+For our metrics, we want the graphs to have the same nodes (while the edges can differ).
+Every universal class in our taxonomy has either one or two incoming edges
+from domain classes, which means that we can represent the universal classes as edges in a new graph
+(with single incoming edges being represented as a self-loop).
+
+We define a concatenation of all domain classes in a taxonomy as $C_X = \bigcup_{i=1}^{n} C_i$.
+We can now build an adjacency matrix $A_X\in [0, 1]^{|C_X|\times|C_X|}$ for the new universal class graph.
+A connection between two classes $c_i^X$ and $c_j^X$ with $i\neq j$ exists if there is a universal class $c_k^U$ that has incoming edges from both classes.
+A self-loop exists if there is a universal class $c_k^U$ that has an incoming edge from class $c_i^X$ without an incoming edge from any other class.
+The value of the connection is the average weight of the two (or one) incoming edges to the universal class $c_k^U$.
+
+\subsubsection{Edge Difference Ratio}
+
+Our first metric is the edge difference ratio (EDR) between two graphs $G_1$ and $G_2$.
+The metric measures the difference in edges between two graphs,
+normalised by the size of the union of the two graphs' edges (i.e. all edges without duplicates).
+
+We define the EDR as follows, using adjacency matrices $A_1$ and $A_2$ for the two universal class graphs:
+
+\begin{equation}
+    \text{EDR}(G_1, G_2) = \frac{\sum_{i,j} |A_1(i,j) - A_2(i,j)|}{\sum_{i,j} \max(A_1(i,j), A_2(i,j))}
+\end{equation}
+
+This definition works for both weighted and unweighted graphs, making it suitable for our use case.
+The values of the EDR range from 0 to 1, where 0 indicates identical graphs and 1 indicates completely different graphs
+(without a single edge in common).

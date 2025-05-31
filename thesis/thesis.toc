@@ -29,5 +29,8 @@
 \contentsline {subsubsection}{\nonumberline Relationship Calculation}{11}{subsubsection*.12}%
 \contentsline {subsubsection}{\nonumberline A Concrete Example}{11}{subsubsection*.14}%
 \contentsline {subsubsection}{\nonumberline No-Prediction Classes}{12}{subsubsection*.16}%
-\contentsline {chapter}{\nonumberline Bibliography}{13}{chapter*.17}%
+\contentsline {subsection}{\numberline {2.2.6}Taxonomy Difference Metrics}{12}{subsection.2.2.6}%
+\contentsline {subsubsection}{\nonumberline Universal Class Graph}{12}{subsubsection*.18}%
+\contentsline {subsubsection}{\nonumberline Edge Difference Ratio}{12}{subsubsection*.20}%
+\contentsline {chapter}{\nonumberline Bibliography}{15}{chapter*.21}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

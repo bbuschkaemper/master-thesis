@@ -2,9 +2,13 @@ import pickle
 from typing import List, Tuple, Dict
 import numpy as np
 import numpy.typing as npt
-from scipy.stats import truncnorm
 import networkx as nx
 from pyvis.network import Network
+from library.utils import (
+    form_correlation_matrix,
+    foreign_prediction_distributions,
+    sample_truncated_normal,
+)
 
 
 class DomainClass(tuple[np.intp, np.intp]):
@@ -67,11 +71,6 @@ class Relationship(tuple[Class, Class, float]):
         The destination class (e.g., the class that is predicted)
     weight : float
         The confidence/probability of the relationship (between 0 and 1)
-
-    Notes
-    -----
-    The direction is target → source, which matches how predictions flow:
-    a class from one domain (target) is being predicted as a class from another domain (source).
     """
 
 
@@ -299,14 +298,6 @@ class Taxonomy:
             Optional dictionary mapping domain IDs to lists of human-readable class labels.
             If provided, these labels will be used for domain classes instead of class IDs.
             If not provided, class IDs will be used as labels.
-
-        Notes
-        -----
-        The initialization process:
-        1. Validates input shapes
-        2. Builds correlation matrices between domains
-        3. Extracts the most common cross-domain predictions
-        4. Constructs initial relationships in the taxonomy graph
         """
 
         obj = cls(domain_labels=domain_labels)
@@ -335,170 +326,36 @@ class Taxonomy:
                 )
 
             # Build correlation matrix between these domains
-            correlations = obj._form_correlation_matrix(predictions, dataset_targets)
+            correlations = form_correlation_matrix(predictions, dataset_targets)
 
             # Extract most common predictions and their confidence values
-            most_common_classes, confidence_values = (
-                obj._foreign_prediction_distributions(correlations)
+            most_common_classes, confidence_values = foreign_prediction_distributions(
+                correlations
             )
 
             # Build initial taxonomy relationships between these domains
-            obj._build_initial_relationships(
-                domain_id=model_domain_id,
-                foreign_domain_id=dataset_domain_id,
-                most_common_classes=most_common_classes,
-                confidence_values=confidence_values,
-            )
+            for target_class_idx, source_class_idx in enumerate(most_common_classes):
+                # Skip relationships with zero confidence
+                if confidence_values[target_class_idx] == 0:
+                    continue
+
+                # Create source domain class (from the model's domain)
+                source_class = DomainClass(
+                    (np.intp(model_domain_id), np.intp(source_class_idx))
+                )
+
+                # Create target domain class (from the dataset being predicted)
+                target_class = DomainClass(
+                    (np.intp(dataset_domain_id), np.intp(target_class_idx))
+                )
+
+                # Add the relationship to the taxonomy graph with its confidence value
+                relationship_confidence = confidence_values[target_class_idx]
+                obj._add_relationship(
+                    Relationship((target_class, source_class, relationship_confidence))
+                )
 
         return obj
-
-    def _build_initial_relationships(
-        self,
-        domain_id: int,
-        foreign_domain_id: int,
-        most_common_classes: npt.NDArray[np.intp],
-        confidence_values: npt.NDArray[np.float32],
-    ):
-        """Builds initial relationships in the taxonomy graph from one domain to another.
-
-        This method creates directed relationships between classes from two different domains
-        based on prediction patterns. For each class in the target domain, it creates a
-        relationship to the most commonly predicted class in the source domain.
-
-        Parameters
-        ----------
-        domain_id : int
-            ID of the source domain (the domain of the model making predictions)
-        foreign_domain_id : int
-            ID of the target domain (the domain of the dataset being predicted)
-        most_common_classes : npt.NDArray[np.intp]
-            For each class in the target domain, the index of the most commonly
-            predicted class in the source domain
-        confidence_values : npt.NDArray[np.float32]
-            Confidence values (probabilities between 0 and 1) for each relationship
-
-        Notes
-        -----
-        Relationships with zero confidence are skipped. This can happen when there are
-        no successful predictions for a particular class.
-        """
-        for target_class_idx, source_class_idx in enumerate(most_common_classes):
-            # Skip relationships with zero confidence
-            if confidence_values[target_class_idx] == 0:
-                continue
-
-            # Create source domain class (from the model's domain)
-            source_class = DomainClass((np.intp(domain_id), np.intp(source_class_idx)))
-
-            # Create target domain class (from the dataset being predicted)
-            target_class = DomainClass(
-                (np.intp(foreign_domain_id), np.intp(target_class_idx))
-            )
-
-            # Add the relationship to the taxonomy graph with its confidence value
-            relationship_confidence = confidence_values[target_class_idx]
-            self._add_relationship(
-                Relationship((target_class, source_class, relationship_confidence))
-            )
-
-    @staticmethod
-    def _form_correlation_matrix(
-        predictions: npt.NDArray[np.intp],
-        targets: npt.NDArray[np.intp],
-    ) -> npt.NDArray[np.intp]:
-        """Forms a correlation matrix between true target classes and predicted source classes.
-
-        This method creates a matrix where:
-        - Each row corresponds to a true class in the target domain
-        - Each column corresponds to a predicted class from the source domain
-        - The value at position (i,j) counts how many times target domain class i
-          was predicted as source domain class j
-
-        Parameters
-        ----------
-        predictions : npt.NDArray[np.intp]
-            Array of class predictions made by a source domain model
-            on target domain data
-        targets : npt.NDArray[np.intp]
-            Array of ground truth class labels for the target domain data
-
-        Returns
-        -------
-        npt.NDArray[np.intp]
-            The correlation matrix of shape (n_classes_target, n_classes_source)
-
-        Notes
-        -----
-        This matrix is the foundation for identifying relationships between
-        classes across domains. High counts in a cell indicate a strong relationship
-        between those classes.
-        """
-        # Find the number of unique classes in both predictions and targets
-        n_target_domain_classes = np.max(targets) + 1
-        n_source_domain_classes = np.max(predictions) + 1
-
-        # Initialize correlation matrix with zeros
-        correlations = np.zeros(
-            (n_target_domain_classes, n_source_domain_classes),
-            dtype=np.intp,
-        )
-
-        # Count occurrences of each (target, prediction) pair
-        for i, predicted_class in enumerate(predictions):
-            true_class = targets[i]
-            correlations[true_class, predicted_class] += 1
-
-        return correlations
-
-    @staticmethod
-    def _foreign_prediction_distributions(
-        correlations: npt.NDArray[np.intp],
-    ) -> tuple[npt.NDArray[np.intp], npt.NDArray[np.float32]]:
-        """Calculates the most common prediction for each class and its confidence.
-
-        This method analyzes a correlation matrix to determine:
-        1. For each class in the target domain, which class from the source domain
-           is most frequently predicted
-        2. The confidence (probability) of each relationship based on prediction frequencies
-
-        Parameters
-        ----------
-        correlations : npt.NDArray[np.intp]
-            A correlation matrix where each element (i,j) represents how many times
-            target domain class i was predicted as source domain class j
-
-        Returns
-        -------
-        tuple[npt.NDArray[np.intp], npt.NDArray[np.float32]]
-            A tuple containing:
-            - Array of most commonly predicted source classes for each target class
-            - Array of confidence values (probabilities) for those predictions
-
-        Examples
-        --------
-        If class 5 in the target domain was predicted as class 2 in the source domain
-        60% of the time, the most_common_classes array would have value 2 at index 5,
-        and the confidence_values array would have value 0.6 at index 5.
-        """
-        n_target_domain_classes = correlations.shape[0]
-        most_common_classes = np.zeros(n_target_domain_classes, dtype=np.intp)
-        confidence_values = np.zeros(n_target_domain_classes, dtype=np.float32)
-
-        # For each class in the target domain
-        for target_class_idx in range(n_target_domain_classes):
-            # Find the most commonly predicted class from the source domain
-            prediction_counts = correlations[target_class_idx, :]
-            most_common_classes[target_class_idx] = np.argmax(prediction_counts)
-
-            # Calculate confidence as the proportion of predictions for this class
-            total_predictions = np.sum(prediction_counts)
-            if total_predictions > 0:
-                max_count = prediction_counts[most_common_classes[target_class_idx]]
-                confidence_values[target_class_idx] = max_count / total_predictions
-            else:
-                confidence_values[target_class_idx] = 0.0
-
-        return most_common_classes, confidence_values
 
     @classmethod
     def create_synthetic_taxonomy(
@@ -533,13 +390,6 @@ class Taxonomy:
             we need to distribute probabilities differently.
         random_seed : int, optional
             Seed for random number generation, by default 42
-
-        Notes
-        -----
-        The initialization process:
-        1. Generates synthetic domains with classes made of atomic concepts
-        2. Simulates cross-domain predictions based on conceptual overlap
-        3. Creates a taxonomy graph with relationships between domains
         """
 
         rng = np.random.default_rng(random_seed)
@@ -646,16 +496,6 @@ class Taxonomy:
               - Each row corresponds to a class in the target domain
               - Each column corresponds to a class in the source domain
               - Value [i,j] is the probability of predicting source class j for target class i
-
-        Notes
-        -----
-        The prediction simulation works as follows:
-        1. For each target class, find which source classes share concepts with it
-        2. Assign probabilities based on percentage of shared concepts
-        3. Distribute remaining probability evenly across all classes (if no no-prediction class exists).
-
-        For example, if target class {A, B} is classified by a source domain with
-        classes {A, C} and {B, D}, it would have 50% overlap with each source class.
         """
         prediction_probabilities = []
 
@@ -719,17 +559,10 @@ class Taxonomy:
         Deviation
             A set of DeviationClasses, where each DeviationClass represents
             a class in this domain
-
-        Notes
-        -----
-        The domain generation process:
-        1. Determine how many classes to include in this domain
-        2. Select unique atomic concepts to be used in this domain
-        3. Group concepts into clusters (classes) of varying sizes
         """
         # Determine number of classes for this domain (bounded by total concept count)
         class_count = np.round(
-            Taxonomy._sample_truncated_normal(
+            sample_truncated_normal(
                 mean=domain_class_count_mean,
                 variance=domain_class_count_variance,
                 upper_bound=num_atomic_concepts,
@@ -755,7 +588,7 @@ class Taxonomy:
             else:
                 # Determine class size based on specified distribution
                 cluster_size = np.round(
-                    Taxonomy._sample_truncated_normal(
+                    sample_truncated_normal(
                         mean=concept_cluster_size_mean,
                         variance=concept_cluster_size_variance,
                         lower_bound=1,
@@ -782,49 +615,6 @@ class Taxonomy:
 
         return Deviation(frozenset(domain))
 
-    @staticmethod
-    def _sample_truncated_normal(
-        mean: float,
-        variance: float,
-        rng: np.random.Generator,
-        lower_bound: float = 0,
-        upper_bound: float = float("inf"),
-    ) -> float:
-        """Sample from a truncated normal distribution with specified parameters.
-
-        Parameters
-        ----------
-        mean : float
-            Mean of the normal distribution
-        variance : float
-            Variance of the normal distribution
-        lower_bound : float, optional
-            Minimum value to return, by default 0
-        upper_bound : float, optional
-            Maximum value to return, by default infinity
-
-        Returns
-        -------
-        float
-            A sample from the truncated normal distribution
-
-        Notes
-        -----
-        Returns 0 on error (when parameters lead to invalid distribution)
-        """
-        # Calculate standardized bounds for truncated normal distribution
-        a = (lower_bound - mean) / np.sqrt(variance)
-        b = (upper_bound - mean) / np.sqrt(variance)
-
-        try:
-            # Sample from the truncated normal distribution
-            return truncnorm.rvs(
-                a=a, b=b, loc=mean, scale=np.sqrt(variance), random_state=rng
-            )
-        except ValueError:
-            # Return 0 if parameters lead to invalid distribution
-            return 0
-
     def build_universal_taxonomy(self):
         """Builds a universal taxonomy graph from the initial domain relationships.
 
@@ -845,13 +635,6 @@ class Taxonomy:
         Each rule is applied until it can't make any more changes, then the next rule
         is tried. This process repeats until a complete iteration where no rule
         can make further changes.
-
-        Notes
-        -----
-        The universal taxonomy represents a higher-level organization where classes
-        from different domains that represent similar concepts are grouped into
-        universal classes. This enables knowledge transfer and alignment between
-        different classification systems.
         """
         while True:
             # Flag to track if any modifications were made in this iteration
@@ -1158,12 +941,6 @@ class Taxonomy:
         -------
         Network
             PyVis Network object that can be displayed or saved to HTML
-
-        Notes
-        -----
-        - Different domain nodes are colored with distinct colors
-        - Universal class nodes are colored salmon
-        - Edge weights are displayed as labels on the connections
         """
 
         # Step 1: Create human-readable labels for all nodes
@@ -1326,3 +1103,114 @@ class Taxonomy:
                 label=weight_label,  # Edge label showing weight
                 value=weight,  # Numeric weight (affects edge thickness)
             )
+
+    def universal_class_adjacency_matrix(
+        self,
+        weighted: bool = True,
+    ) -> npt.NDArray[np.float64]:
+        """Treat every domain class as a node and every universal class as an edge between them.
+        This method creates a matrix with all domain classes as rows and columns,
+        where each cell indicates the strength of the relationship between two domain classes
+        based on their shared universal classes.
+
+        Parameters
+        ----------
+        weighted : bool, optional
+            Whether to consider the weights of relationships in the adjacency matrix,
+            by default True. If False, all relationships are treated equally (weight = 1).
+
+        Returns
+        -------
+        npt.NDArray[np.float64]
+            A square matrix where:
+              - Rows and columns correspond to domain classes
+              - Value at [i,j] indicates the strength of the relationship between domain class i and j
+        """
+
+        # Get all domain classes in the graph
+        domain_classes = [
+            node for node in self.graph.nodes() if isinstance(node, DomainClass)
+        ]
+
+        # Initialize an adjacency matrix with zeros
+        adjacency_matrix = np.zeros(
+            (len(domain_classes), len(domain_classes)), dtype=np.float64
+        )
+
+        # Iterate over all relationships in the graph
+        for target, source, weight in self.__get_relationships():
+            if not isinstance(source, UniversalClass):
+                continue
+
+            if not isinstance(target, DomainClass):
+                raise ValueError(
+                    "Expected target to be a DomainClass, but got: "
+                    f"{type(target).__name__}"
+                )
+
+            # Check if the universal class has other incoming relationships
+            for (
+                possible_match_target,
+                _,
+                possible_match_weight,
+            ) in self.__get_relationships_to(source):
+                if possible_match_target == target:
+                    continue
+
+                if not isinstance(possible_match_target, DomainClass):
+                    continue
+
+                # Get indices of the domain classes in the adjacency matrix
+                idx_1 = domain_classes.index(target)
+                idx_2 = domain_classes.index(possible_match_target)
+
+                if weighted:
+                    avg_weight = (weight + possible_match_weight) / 2.0
+                else:
+                    avg_weight = 1.0
+
+                # Update the adjacency matrix with the average weight
+                adjacency_matrix[idx_1, idx_2] = avg_weight
+
+                break
+            else:
+                # If no other relationships found, treat it as a self-relationship
+                idx = domain_classes.index(target)
+                adjacency_matrix[idx, idx] = 1.0 if not weighted else weight
+
+        return adjacency_matrix
+
+    def edge_difference_ratio(self, other: "Taxonomy", weighted=True) -> np.float64:
+        """Calculate the edge difference ratio between this taxonomy and another
+        by treating every two domain classes with a universal class relationship
+        between them as an edge.
+
+        The edge difference ratio is defined as the sum of absolute differences
+        between the adjacency matrices of the two taxonomies, normalized
+        by the maximum value in each cell of the matrices.
+
+        Parameters
+        ----------
+        other : Taxonomy
+            The other taxonomy to compare against
+        weighted : bool, optional
+            Whether to consider the weights of relationships in the distance calculation,
+            by default True. If False, all relationships are treated equally (weight = 1).
+
+        Returns
+        -------
+        np.float64
+            The edge difference ratio between the two taxonomies
+        """
+
+        adjacency_matrix_self = self.universal_class_adjacency_matrix(weighted)
+        adjacency_matrix_other = other.universal_class_adjacency_matrix(weighted)
+
+        # Calculate element-wise differences between the two matrices
+        difference_matrix = adjacency_matrix_self - adjacency_matrix_other
+
+        # Calculate element-wise maximum for normalization
+        max_value = np.maximum(adjacency_matrix_self, adjacency_matrix_other)
+
+        edge_difference = np.sum(np.abs(difference_matrix)) / np.sum(max_value)
+        return edge_difference
