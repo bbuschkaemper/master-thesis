@@ -2,16 +2,6 @@
 \chapter{Methodology}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{center}
-    \begin{minipage}{0.5\textwidth}
-        \begin{small}
-            In which we describe our approaches to building a universal taxonomy
-            for image classification.
-        \end{small}
-    \end{minipage}
-    \vspace{0.5cm}
-\end{center}
-
 \section{Universal Taxonomy}
 
 Our main goal is to create a universal taxonomy that connects multiple
@@ -323,18 +313,24 @@ we simply ignore it and therefore only have the probability of the overlapping c
 While this doesn't change the relationship that is picked as the most common foreign prediction,
 it does change the probability of the relationship, which is important for thresholding later on.
 
-\subsection{Taxonomy Difference Metrics}
+\section{Universal Taxonomy Difference Metrics}
 
 We created our synthetic datasets to have a known ground truth of relationships between classes.
-Now, we need to find metrics to compare the predicted relationships from our taxonomy generation methods
+Now, we need to find metrics to compare the predicted relationships
+from our taxonomy generation methods
 with the ground truth calculated from the synthetic datasets.
 
-\subsubsection{Universal Class Graph}
+\subsection{Universal Class Graph}
 
-For our metrics, we want the graphs to have the same nodes (while the edges can differ).
-Every universal class in our taxonomy has either one or two incoming edges
-from domain classes, which means that we can represent the universal classes as edges in a new graph
-(with single incoming edges being represented as a self-loop).
+We build our metrics to compare a ground truth synthetic taxonomy with a predicted taxonomy
+that uses the same domain classes (i.e. the same nodes in the graph).
+
+In a universal taxonomy graph, every universal class $c^U$ can be understood as an edge
+between the domain classes that have incoming edges to it.
+Every universal class has either one or two incoming edges, which will always be from different domain classes.
+Therefore, we can represent a universal taxonomy as a new graph,
+where every domain class is a vertex and every universal class is an edge between two vertices
+(or a self-loop if it has only one incoming edge).
 
 We define a concatenation of all domain classes in a taxonomy as $C_X = \bigcup_{i=1}^{n} C_i$.
 We can now build an adjacency matrix $A_X\in [0, 1]^{|C_X|\times|C_X|}$ for the new universal class graph.
@@ -342,18 +338,52 @@ A connection between two classes $c_i^X$ and $c_j^X$ with $i\neq j$ exists if th
 A self-loop exists if there is a universal class $c_k^U$ that has an incoming edge from class $c_i^X$ without an incoming edge from any other class.
 The value of the connection is the average weight of the two (or one) incoming edges to the universal class $c_k^U$.
 
-\subsubsection{Edge Difference Ratio}
+\subsection{Edge Difference Ratio}
 
 Our first metric is the edge difference ratio (EDR) between two graphs $G_1$ and $G_2$.
 The metric measures the difference in edges between two graphs,
-normalised by the size of the union of the two graphs' edges (i.e. all edges without duplicates).
+normalised by the edge weight sum of the union of the two graphs' edges (i.e. the weight of all edges without double counting).
+This normalisation limits the metric to a range of $[0, 1]$,
+where 0 indicates that the two graphs are identical and 1 indicates that they have no edges in common.
 
-We define the EDR as follows, using adjacency matrices $A_1$ and $A_2$ for the two universal class graphs:
+For two adjacency matrices $A_1$ and $A_2$ of graphs $G_1$ and $G_2$,
+we define the edge difference ratio as follows:
 
 \begin{equation}
-    \text{EDR}(G_1, G_2) = \frac{\sum_{i,j} |A_1(i,j) - A_2(i,j)|}{\sum_{i,j} \max(A_1(i,j), A_2(i,j))}
+    \text{EDR}(G_1, G_2) = \frac{\sum_{i \leq j} |A_1(i,j) - A_2(i,j)|}{\sum_{i \leq j} \max(A_1(i,j), A_2(i,j))}
 \end{equation}
 
-This definition works for both weighted and unweighted graphs, making it suitable for our use case.
-The values of the EDR range from 0 to 1, where 0 indicates identical graphs and 1 indicates completely different graphs
-(without a single edge in common).
+This definition only considers the upper triangular portion (including the diagonal)
+of the adjacency matrices to avoid double-counting symmetric edges,
+while still properly accounting for self-loops.
+
+Our EDR metric is similar to the Jaccard index~\cite{jaccard_distribution_1912} as well as the Tanimoto coefficient~\cite{tanimoto_elementary_1958}
+when we consider the adjacency matrices as sets of edges.
+In contrast to these metrics, however, our EDR metric supports weighted edges,
+which allows us to respect the probabilities of relationships between classes.
+
+\subsection{Weighted Precision, Recall, and F1-Score}
+
+While the edge difference ratio provides a comprehensive measure of taxonomy similarity,
+we also implement traditional information retrieval metrics adapted for weighted edge prediction.
+These metrics treat taxonomy comparison as a weighted edge prediction problem,
+where we evaluate how well our predicted taxonomy recovers the ground truth relationships.
+
+For two adjacency matrices $A_{\text{pred}}$ (predicted taxonomy) and $A_{\text{gt}}$ (ground truth taxonomy),
+we calculate weighted precision, recall, and F1-score as follows:
+
+\begin{equation}
+    \begin{aligned}
+        \text{Precision} = \frac{\sum_{i \leq j} \min(A_{\text{pred}}(i,j), A_{\text{gt}}(i,j))}{\sum_{i \leq j} A_{\text{pred}}(i,j)} \\
+        \text{Recall} = \frac{\sum_{i \leq j} \min(A_{\text{pred}}(i,j), A_{\text{gt}}(i,j))}{\sum_{i \leq j} A_{\text{gt}}(i,j)}      \\
+        \text{F1-Score} = \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
+    \end{aligned}
+\end{equation}
+
+Where we again use the upper triangular portion (including diagonal) of the matrices
+to avoid double-counting symmetric relationships while accounting for self-loops.
+
+This approach provides a nuanced evaluation that respects both the existence and strength
+of relationships in the universal taxonomy.
+A similar version was used in a paper by Uijlings et al.~\cite{uijlings_missing_2022}
+to evaluate their label relationship prediction method.

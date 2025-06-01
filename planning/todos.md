@@ -1,22 +1,5 @@
 # Todos
 
-## Thesis writing
-
-Empty
-
-## Graph correctness metrics
-
-- We treat each universal taxonomy class as an edge between two classes of different domains that have an incoming edge to the universal class
-- Every combination of two classes from different domains is one edge
-- Average precision:
-  - <https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html>
-  - See for reference implementation
-- Graph edit distance:
-  - Create adjacency matrix from the edges
-  - Use XOR to find number of incorrect edges and use that for metric
-- Edges have weights that are not yet respected in the metrics
-- The Missing Link paper for reference implementation that uses edge weights
-
 ## Conceptual taxonomy
 
 - Instead of mcfp, we use all predictions above a certain threshold (using a single mcfp means we cannot represent multiple concept relationships)
@@ -31,7 +14,7 @@ Empty
 - Introduce threshold for edge weights:
   - Discard edges with weights below threshold
   - Use domain class as its own universal class
-- Use deviation to ground truth taxonomy as metric to find optimal threshold
+- Plot decision/recall curve for different thresholds (also plot with other metrics to see how they relate)
 - We have no-threshold as baseline for comparison
 
 ## Universal taxonomy model training

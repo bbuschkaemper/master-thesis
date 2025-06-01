@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2025.4.30)  31 MAY 2025 19:10
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2025.4.30)  1 JUN 2025 15:33
  restricted system commands enabled.
  file:line:error style messages enabled.
 **/home/sentinel/Development/master-thesis/thesis/thesis.tex
@@ -1589,7 +1589,7 @@ Underfull \vbox (badness 3780) has occurred while \output is active []
  (./sources/method.tex
 chapter 2.
 
-Overfull \hbox (2.54816pt too wide) in paragraph at lines 17--21
+Overfull \hbox (2.54816pt too wide) in paragraph at lines 7--11
 \TU/EBGaramond(0)/m/n/10.95 Our main goal is to cre-ate a uni-ver-sal tax-on-omy that con-nects mul-ti-ple im-age clas-si-fi-ca-tion datasets.
  []
 
@@ -1607,7 +1607,7 @@ Overfull \hbox (2.54816pt too wide) in paragraph at lines 17--21
 
 [7]
 LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
-(Font)              scaled to size 7.49995pt on input line 166.
+(Font)              scaled to size 7.49995pt on input line 156.
 
 
 [8]
@@ -1616,9 +1616,9 @@ LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
 
 [10]
 
-[11])
+[11]
 
-[12]
+[12])
 
 [13]
 
@@ -1632,6 +1632,16 @@ chapter without number
 
 Overfull \hbox (35.32722pt too wide) in paragraph at lines 131--131
 []\TU/EBGaramond(0)/m/n/10.95 C. Fell-baum. \TU/EBGaramond(0)/m/it/10.95 Word-Net: An Elec-tronic Lex-i-cal Database\TU/EBGaramond(0)/m/n/10.95 . The MIT Press, 1998. \TU/EBGaramond(0)/m/sc/10.95 󰅱󰆢󰅑󰆈\TU/EBGaramond(0)/m/n/10.95 : 9780262272551.
+ []
+
+
+Overfull \hbox (6.75589pt too wide) in paragraph at lines 131--131
+[]\TU/EBGaramond(0)/m/n/10.95 T. T. Tan-i-moto. \TU/EBGaramond(0)/m/it/10.95 An El-e-men-tary Math-e-mat-i-cal The-ory of Clas-si-fi-ca-tion and Pre-dic-tion\TU/EBGaramond(0)/m/n/10.95 . Google-
+ []
+
+
+Overfull \hbox (3.60524pt too wide) in paragraph at lines 131--131
+[]\TU/EBGaramond(0)/m/n/10.95 J. Ui-jlings, T. Mensink, and V. Fer-rari. \TU/EBGaramond(0)/m/it/10.95 The Miss-ing Link: Find-ing la-bel re-la-tions across datasets\TU/EBGaramond(0)/m/n/10.95 .
  []
 
 
@@ -1657,19 +1667,19 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 43949 strings out of 475506
+ 43966 strings out of 475506
  100000,2373549 words of node,token memory allocated
- 870 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 4 glue, 4 kern, 1 glyph, 55 attribute, 91 glue_spec, 29 attribute_list, 1 write, 4 pdf_action nodes
-   avail lists: 1:1,2:1482,3:358,4:196,5:490,6:119,7:6075,8:79,9:769,10:22,11:395
- 66077 multiletter control sequences out of 65536+600000
+ 911 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 4 glue, 4 kern, 1 glyph, 63 attribute, 92 glue_spec, 33 attribute_list, 1 write, 6 pdf_action nodes
+   avail lists: 1:1,2:1629,3:479,4:220,5:488,6:132,7:6079,8:80,9:769,10:22,11:419
+ 66091 multiletter control sequences out of 65536+600000
  157 fonts using 62642863 bytes
  122i,20n,118p,10949b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/ibm/plex/IBMPlexMono-Regular.otf></usr/share/texmf-dist/fonts/opentype/ibm/plex/IBMPlexSans-Regular.otf></usr/share/texmf-dist/fonts/truetype/impallari/librebaskerville/LibreBaskerville-Regular.ttf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf></usr/share/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/share/texmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb>
-Output written on thesis.pdf (21 pages, 122096 bytes).
+Output written on thesis.pdf (21 pages, 127492 bytes).
 
-PDF statistics: 383 PDF objects out of 1000 (max. 8388607)
- 321 compressed objects within 4 object streams
- 101 named destinations out of 1000 (max. 131072)
- 169 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 409 PDF objects out of 1000 (max. 8388607)
+ 347 compressed objects within 4 object streams
+ 104 named destinations out of 1000 (max. 131072)
+ 193 words of extra memory for PDF output out of 10000 (max. 100000000)
 

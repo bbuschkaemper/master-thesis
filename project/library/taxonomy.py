@@ -1187,7 +1187,9 @@ class Taxonomy:
 
         The edge difference ratio is defined as the sum of absolute differences
         between the adjacency matrices of the two taxonomies, normalized
-        by the maximum value in each cell of the matrices.
+        by the maximum value in each cell of the matrices. Only the upper triangular
+        portion (including diagonal) of the matrices is considered to avoid
+        double-counting symmetric edges while properly accounting for self-loops.
 
         Parameters
         ----------
@@ -1206,11 +1208,79 @@ class Taxonomy:
         adjacency_matrix_self = self.universal_class_adjacency_matrix(weighted)
         adjacency_matrix_other = other.universal_class_adjacency_matrix(weighted)
 
+        # Validate that matrices have the same dimensions
+        if adjacency_matrix_self.shape != adjacency_matrix_other.shape:
+            raise ValueError(
+                f"Taxonomies have incompatible domain class counts: "
+                f"{adjacency_matrix_self.shape} vs {adjacency_matrix_other.shape}. "
+                f"Both taxonomies must have the same domain classes for comparison."
+            )
+
         # Calculate element-wise differences between the two matrices
         difference_matrix = adjacency_matrix_self - adjacency_matrix_other
 
         # Calculate element-wise maximum for normalization
         max_value = np.maximum(adjacency_matrix_self, adjacency_matrix_other)
 
-        edge_difference = np.sum(np.abs(difference_matrix)) / np.sum(max_value)
+        # Create upper triangular mask (including diagonal) to avoid double-counting symmetric edges
+        n = adjacency_matrix_self.shape[0]
+        upper_triangular_mask = np.triu(np.ones((n, n), dtype=bool))
+
+        # Combine with non-zero mask
+        mask = (max_value > 0) & upper_triangular_mask
+        if not np.any(mask):
+            # Both matrices are completely zero => perfect match
+            return np.float64(0.0)
+
+        # Only sum over upper triangular non-zero positions to avoid double-counting
+        edge_difference = np.sum(np.abs(difference_matrix)[mask]) / np.sum(
+            max_value[mask]
+        )
         return edge_difference
+
+    def precision_recall_metrics(
+        self, other: "Taxonomy", weighted: bool = True
+    ) -> tuple[float, float, float]:
+        """Calculate weighted precision, recall, and F1-score considering edge weights.
+
+        This version treats the problem as predicting edge weights rather than just edge existence.
+        """
+
+        predicted_matrix = self.universal_class_adjacency_matrix(weighted)
+        ground_truth_matrix = other.universal_class_adjacency_matrix(weighted)
+
+        if predicted_matrix.shape != ground_truth_matrix.shape:
+            raise ValueError("Taxonomies have incompatible domain class counts")
+
+        # Use upper triangular mask
+        n = predicted_matrix.shape[0]
+        upper_triangular_mask = np.triu(np.ones((n, n), dtype=bool))
+
+        if not np.any(upper_triangular_mask):
+            return 1.0, 1.0, 1.0  # Perfect match if no relevant edges
+
+        # Extract relevant values
+        predicted_weights = predicted_matrix[upper_triangular_mask]
+        ground_truth_weights = ground_truth_matrix[upper_triangular_mask]
+
+        precision = (
+            np.sum(np.minimum(predicted_weights, ground_truth_weights))
+            / np.sum(predicted_weights)
+            if np.sum(predicted_weights) > 0
+            else 0.0
+        )
+
+        recall = (
+            np.sum(np.minimum(predicted_weights, ground_truth_weights))
+            / np.sum(ground_truth_weights)
+            if np.sum(ground_truth_weights) > 0
+            else 0.0
+        )
+
+        f1_score = (
+            2 * (precision * recall) / (precision + recall)
+            if (precision + recall) > 0
+            else 0.0
+        )
+
+        return float(precision), float(recall), float(f1_score)
