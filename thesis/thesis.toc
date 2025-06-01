@@ -32,6 +32,5 @@
 \contentsline {section}{\numberline {2.3}Universal Taxonomy Difference Metrics}{12}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Universal Class Graph}{12}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Edge Difference Ratio}{12}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Weighted Precision, Recall, and F1-Score}{13}{subsection.2.3.3}%
 \contentsline {chapter}{\nonumberline Bibliography}{15}{chapter*.17}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

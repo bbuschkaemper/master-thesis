@@ -2379,7 +2379,6 @@
     <bcf:citekey order="4" intorder="1">horn_inaturalist_2018</bcf:citekey>
     <bcf:citekey order="5" intorder="1">jaccard_distribution_1912</bcf:citekey>
     <bcf:citekey order="6" intorder="1">tanimoto_elementary_1958</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">uijlings_missing_2022</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

@@ -361,29 +361,3 @@ Our EDR metric is similar to the Jaccard index~\cite{jaccard_distribution_1912} 
 when we consider the adjacency matrices as sets of edges.
 In contrast to these metrics, however, our EDR metric supports weighted edges,
 which allows us to respect the probabilities of relationships between classes.
-
-\subsection{Weighted Precision, Recall, and F1-Score}
-
-While the edge difference ratio provides a comprehensive measure of taxonomy similarity,
-we also implement traditional information retrieval metrics adapted for weighted edge prediction.
-These metrics treat taxonomy comparison as a weighted edge prediction problem,
-where we evaluate how well our predicted taxonomy recovers the ground truth relationships.
-
-For two adjacency matrices $A_{\text{pred}}$ (predicted taxonomy) and $A_{\text{gt}}$ (ground truth taxonomy),
-we calculate weighted precision, recall, and F1-score as follows:
-
-\begin{equation}
-    \begin{aligned}
-        \text{Precision} = \frac{\sum_{i \leq j} \min(A_{\text{pred}}(i,j), A_{\text{gt}}(i,j))}{\sum_{i \leq j} A_{\text{pred}}(i,j)} \\
-        \text{Recall} = \frac{\sum_{i \leq j} \min(A_{\text{pred}}(i,j), A_{\text{gt}}(i,j))}{\sum_{i \leq j} A_{\text{gt}}(i,j)}      \\
-        \text{F1-Score} = \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
-    \end{aligned}
-\end{equation}
-
-Where we again use the upper triangular portion (including diagonal) of the matrices
-to avoid double-counting symmetric relationships while accounting for self-loops.
-
-This approach provides a nuanced evaluation that respects both the existence and strength
-of relationships in the universal taxonomy.
-A similar version was used in a paper by Uijlings et al.~\cite{uijlings_missing_2022}
-to evaluate their label relationship prediction method.

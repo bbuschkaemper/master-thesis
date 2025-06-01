@@ -455,66 +455,6 @@
       \field{year}{1958}
       \field{dateera}{ce}
     \endentry
-    \entry{uijlings_missing_2022}{misc}{}{}
-      \name{author}{3}{}{%
-        {{hash=6f5d1be5ec88ac21f855db10eafb0fa5}{%
-           family={Uijlings},
-           familyi={U\bibinitperiod},
-           given={Jasper},
-           giveni={J\bibinitperiod}}}%
-        {{hash=ffc3c50f7f2f5814db998defff4b2ccd}{%
-           family={Mensink},
-           familyi={M\bibinitperiod},
-           given={Thomas},
-           giveni={T\bibinitperiod}}}%
-        {{hash=2d9b2bb140830bf8f7f642c17692a8e4}{%
-           family={Ferrari},
-           familyi={F\bibinitperiod},
-           given={Vittorio},
-           giveni={V\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {arXiv}%
-      }
-      \strng{namehash}{f6debcd6ae919461ee6384fa5b6e2b29}
-      \strng{fullhash}{f6debcd6ae919461ee6384fa5b6e2b29}
-      \strng{fullhashraw}{f6debcd6ae919461ee6384fa5b6e2b29}
-      \strng{bibnamehash}{f6debcd6ae919461ee6384fa5b6e2b29}
-      \strng{authorbibnamehash}{f6debcd6ae919461ee6384fa5b6e2b29}
-      \strng{authornamehash}{f6debcd6ae919461ee6384fa5b6e2b29}
-      \strng{authorfullhash}{f6debcd6ae919461ee6384fa5b6e2b29}
-      \strng{authorfullhashraw}{f6debcd6ae919461ee6384fa5b6e2b29}
-      \field{sortinit}{U}
-      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{shorttitle}
-      \field{abstract}{Computer vision is driven by the many datasets available for training or evaluating novel methods. However, each dataset has a different set of class labels, visual definition of classes, images following a specific distribution, annotation protocols, etc. In this paper we explore the automatic discovery of visual-semantic relations between labels across datasets. We aim to understand how instances of a certain class in a dataset relate to the instances of another class in another dataset. Are they in an identity, parent/child, overlap relation? Or is there no link between them at all? To find relations between labels across datasets, we propose methods based on language, on vision, and on their combination. We show that we can effectively discover label relations across datasets, as well as their type. We apply our method to four applications: understand label relations, identify missing aspects, increase label specificity, and predict transfer learning gains. We conclude that label relations cannot be established by looking at the names of classes alone, as they depend strongly on how each of the datasets was constructed.}
-      \field{day}{9}
-      \field{eprinttype}{arxiv}
-      \field{month}{8}
-      \field{number}{{arXiv}:2206.04453}
-      \field{shorttitle}{The Missing Link}
-      \field{title}{The Missing Link: Finding label relations across datasets}
-      \field{urlday}{23}
-      \field{urlmonth}{4}
-      \field{urlyear}{2025}
-      \field{year}{2022}
-      \field{dateera}{ce}
-      \field{urldateera}{ce}
-      \verb{doi}
-      \verb 10.48550/arXiv.2206.04453
-      \endverb
-      \verb{eprint}
-      \verb 2206.04453 [cs]
-      \endverb
-      \verb{urlraw}
-      \verb http://arxiv.org/abs/2206.04453
-      \endverb
-      \verb{url}
-      \verb http://arxiv.org/abs/2206.04453
-      \endverb
-      \keyw{Computer Science - Computer Vision and Pattern Recognition}
-    \endentry
   \enddatalist
 \endrefsection
 \endinput
