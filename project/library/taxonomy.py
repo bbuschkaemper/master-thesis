@@ -1,14 +1,18 @@
 import pickle
-from typing import List, Tuple, Dict
+from typing import List, Tuple, Dict, Literal
 import numpy as np
 import numpy.typing as npt
 import networkx as nx
 from pyvis.network import Network
 from library.utils import (
     form_correlation_matrix,
-    foreign_prediction_distributions,
     sample_truncated_normal,
+    hypothesize_relationships,
 )
+
+
+_RELATIONSHIP_TYPE = Literal["mcfp", "threshold"]
+_SYNTHETIC_RELATIONSHIP_TYPE = Literal["mcfp", "true"]
 
 
 class DomainClass(tuple[np.intp, np.intp]):
@@ -23,11 +27,6 @@ class DomainClass(tuple[np.intp, np.intp]):
         Identifies which domain the class belongs to (e.g., CIFAR-100=0, Caltech-256=1)
     class_id : np.intp
         The identifier of the class within its domain (e.g., "dog"=5, "airplane"=0)
-
-    Examples
-    --------
-    >>> # Class 7 from domain 0 (e.g., "horse" class from CIFAR-100)
-    >>> domain_class = DomainClass((0, 7))
     """
 
 
@@ -41,14 +40,6 @@ class UniversalClass(frozenset[DomainClass]):
 
     A UniversalClass is implemented as a frozenset (immutable set) of DomainClass objects,
     ensuring it can be used as a dictionary key or in other set operations.
-
-    Examples
-    --------
-    >>> # A universal class combining "dog" from CIFAR-100 and "dog" from Caltech-256
-    >>> dog_class = UniversalClass(frozenset({
-    >>>     DomainClass((0, 5)),  # "dog" in CIFAR-100
-    >>>     DomainClass((1, 42))  # "dog" in Caltech-256
-    >>> }))
     """
 
 
@@ -151,6 +142,17 @@ class Taxonomy:
 
         self.domain_labels = domain_labels or {}
         self.graph = nx.DiGraph()
+
+    def _add_node(self, node: Class):
+        """Adds a node to the graph.
+
+        Parameters
+        ----------
+        node : Class
+            The node to add to the graph (DomainClass or UniversalClass)
+        """
+        if not self.graph.has_node(node):
+            self.graph.add_node(node, node_obj=node)
 
     def _add_relationship(self, relationship: Relationship):
         """Adds a relationship to the graph.
@@ -276,6 +278,8 @@ class Taxonomy:
         cross_domain_predictions: List[Tuple[int, int, npt.NDArray[np.intp]]],
         domain_targets: List[Tuple[int, npt.NDArray[np.intp]]],
         domain_labels: Dict[int, List[str]] | None = None,
+        relationship_type: _RELATIONSHIP_TYPE = "mcfp",
+        threshold: float = 0.01,
     ):
         """Creates a taxonomy object with an integrated graph structure.
 
@@ -298,6 +302,17 @@ class Taxonomy:
             Optional dictionary mapping domain IDs to lists of human-readable class labels.
             If provided, these labels will be used for domain classes instead of class IDs.
             If not provided, class IDs will be used as labels.
+        relationship_type : _RELATIONSHIP_TYPE, optional
+            The type of relationship to establish between domains. Defaults to "mcfp".
+            "mcfp" stands for "most common foreign prediction",
+            which means only the most common foreign prediction
+            creates a relationship.
+            "threshold" means that all foreign predictions
+            above a certain probability threshold
+            create a relationship.
+        threshold : float, optional
+            The probability threshold for establishing relationships. Defaults to 0.5.
+            This applies to all relationship types.
         """
 
         obj = cls(domain_labels=domain_labels)
@@ -328,32 +343,60 @@ class Taxonomy:
             # Build correlation matrix between these domains
             correlations = form_correlation_matrix(predictions, dataset_targets)
 
-            # Extract most common predictions and their confidence values
-            most_common_classes, confidence_values = foreign_prediction_distributions(
-                correlations
-            )
+            # Normalize the correlation matrix to ensure it sums to 1 for each target class
+            correlations = correlations.astype(np.float64)
+            row_sums = correlations.sum(axis=1, keepdims=True)
+            row_sums[row_sums == 0] = 1.0  # Avoid division by zero
+            correlations /= row_sums
 
-            # Build initial taxonomy relationships between these domains
-            for target_class_idx, source_class_idx in enumerate(most_common_classes):
-                # Skip relationships with zero confidence
-                if confidence_values[target_class_idx] == 0:
-                    continue
-
-                # Create source domain class (from the model's domain)
-                source_class = DomainClass(
-                    (np.intp(model_domain_id), np.intp(source_class_idx))
-                )
-
-                # Create target domain class (from the dataset being predicted)
+            for target_class_idx in range(correlations.shape[0]):
+                # Create a target domain class for this target class index
                 target_class = DomainClass(
                     (np.intp(dataset_domain_id), np.intp(target_class_idx))
                 )
+                class_probabilities = correlations[target_class_idx]
 
-                # Add the relationship to the taxonomy graph with its confidence value
-                relationship_confidence = confidence_values[target_class_idx]
-                obj._add_relationship(
-                    Relationship((target_class, source_class, relationship_confidence))
-                )
+                # Add the target class node to the taxonomy graph
+                obj._add_node(target_class)
+
+                if relationship_type == "mcfp":
+                    source_class_idx = np.argmax(class_probabilities)
+                    probability = class_probabilities[source_class_idx]
+
+                    # Create source domain class (from the model's domain)
+                    source_class = DomainClass(
+                        (np.intp(model_domain_id), np.intp(source_class_idx))
+                    )
+
+                    # Skip relationships with confidence below the threshold
+                    if probability < threshold:
+                        continue
+
+                    # Add the relationship to the taxonomy graph with its confidence value
+                    obj._add_relationship(
+                        Relationship((target_class, source_class, probability))
+                    )
+                elif relationship_type == "threshold":
+                    relationships = hypothesize_relationships(class_probabilities)
+
+                    # Iterate through all source classes
+                    for source_class_idx in relationships:
+                        # Create a source domain class for this source class index
+                        source_class = DomainClass(
+                            (np.intp(model_domain_id), np.intp(source_class_idx))
+                        )
+
+                        confidence = float(class_probabilities[source_class_idx])
+
+                        # Add the relationship to the taxonomy graph with its confidence value
+                        obj._add_relationship(
+                            Relationship((target_class, source_class, confidence))
+                        )
+                else:
+                    raise ValueError(
+                        f"Unknown relationship type: {relationship_type}. "
+                        "Supported types are 'mcfp' and 'threshold'."
+                    )
 
         return obj
 
@@ -367,6 +410,9 @@ class Taxonomy:
         concept_cluster_size_mean: float,
         concept_cluster_size_variance: float,
         has_no_prediction_class: bool = False,
+        relationship_type: _SYNTHETIC_RELATIONSHIP_TYPE = "mcfp",
+        threshold: float = 0.01,
+        atomic_concept_labels: List[str] | None = None,
         random_seed: int = 42,
     ):
         """Create a synthetic taxonomy with randomly generated domains and relationships.
@@ -388,6 +434,21 @@ class Taxonomy:
         has_no_prediction_class : bool, optional
             Some datasets have a no-prediction class which means
             we need to distribute probabilities differently.
+        relationship_type : _RELATIONSHIP_TYPE, optional
+            The type of relationship to establish between domains. Defaults to "mcfp".
+            "mcfp" stands for "most common foreign prediction",
+            which means only the most common foreign prediction
+            creates a relationship (if above threshold).
+            "true" means that all foreign predictions
+            above zero probability
+            create a relationship.
+        threshold : float, optional
+            The probability threshold for establishing relationships. Defaults to 0.01.
+            This applies only to "mcfp" relationship type.
+        atomic_concept_labels : List[str], optional
+            Optional list of labels for atomic concepts.
+            If provided, these labels will be used for atomic concepts
+            instead of numeric indices.
         random_seed : int, optional
             Seed for random number generation, by default 42
         """
@@ -432,8 +493,14 @@ class Taxonomy:
         for domain_id, domain in enumerate(domains):
             class_labels = []
             for class_concepts in domain:
-                # Format each class as a set of its concept indices
-                class_labels.append("{" + ", ".join(map(str, class_concepts)) + "}")
+                concept_names = (
+                    class_concepts
+                    if atomic_concept_labels is None
+                    else [atomic_concept_labels[i] for i in class_concepts]
+                )
+
+                # Format each class as a set of its concept names
+                class_labels.append("{" + ", ".join(map(str, concept_names)) + "}")
             domain_labels[domain_id] = class_labels
 
         # Initialize the taxonomy with empty predictions and targets
@@ -447,23 +514,54 @@ class Taxonomy:
             predictions,
         ) in cross_domain_predictions:
             for target_class_id, class_predictions in enumerate(predictions):
-                # Get the most likely prediction for this class
-                source_class_id = np.argmax(class_predictions)
-                prediction_confidence = float(class_predictions[source_class_id])
-
-                # Create domain classes for source and target
-                source_class = DomainClass(
-                    (np.intp(source_domain_id), np.intp(source_class_id))
-                )
                 target_class = DomainClass(
                     (np.intp(target_domain_id), np.intp(target_class_id))
                 )
 
-                # Add the relationship to the taxonomy graph
-                relationship = Relationship(
-                    (target_class, source_class, prediction_confidence)
-                )
-                obj._add_relationship(relationship)
+                # Add target node for if no relationships are created
+                obj._add_node(target_class)
+
+                if relationship_type == "mcfp":
+                    # Get the most likely prediction for this class
+                    source_class_id = np.argmax(class_predictions)
+                    prediction_confidence = float(class_predictions[source_class_id])
+
+                    # Create domain classes for source and target
+                    source_class = DomainClass(
+                        (np.intp(source_domain_id), np.intp(source_class_id))
+                    )
+
+                    # Skip if below the threshold
+                    if prediction_confidence < threshold:
+                        continue
+
+                    # Add the relationship to the taxonomy graph
+                    relationship = Relationship(
+                        (target_class, source_class, prediction_confidence)
+                    )
+                    obj._add_relationship(relationship)
+                elif relationship_type == "true":
+                    # Iterate through all source classes and their probabilities
+                    for source_class_id, confidence in enumerate(class_predictions):
+                        # Create domain classes for source and target
+                        source_class = DomainClass(
+                            (np.intp(source_domain_id), np.intp(source_class_id))
+                        )
+
+                        # If zero, skip the relationship
+                        if confidence == 0.0:
+                            continue
+
+                        # Add the relationship to the taxonomy graph
+                        relationship = Relationship(
+                            (target_class, source_class, float(confidence))
+                        )
+                        obj._add_relationship(relationship)
+                else:
+                    raise ValueError(
+                        f"Unknown relationship type: {relationship_type}. "
+                        "Supported types are 'mcfp' and 'threshold'."
+                    )
 
         return obj, domains
 
@@ -1124,7 +1222,8 @@ class Taxonomy:
         npt.NDArray[np.float64]
             A square matrix where:
               - Rows and columns correspond to domain classes
-              - Value at [i,j] indicates the strength of the relationship between domain class i and j
+              - Value at [i,j] indicates the strength of the relationship
+              between domain class i and j
         """
 
         # Get all domain classes in the graph
@@ -1237,3 +1336,60 @@ class Taxonomy:
             max_value[mask]
         )
         return edge_difference
+
+    def rmse(self, other: "Taxonomy", weighted: bool = True) -> np.float64:
+        """Calculate the Root Mean Square Error (RMSE) between this taxonomy and another
+        by treating every two domain classes with a universal class relationship
+        between them as an edge.
+
+        The RMSE is calculated as the square root of the mean squared differences
+        between the adjacency matrices of the two taxonomies. Only the upper triangular
+        portion (including diagonal) of the matrices is considered to avoid
+        double-counting symmetric edges while properly accounting for self-loops.
+
+        Parameters
+        ----------
+        other : Taxonomy
+            The other taxonomy to compare against
+        weighted : bool, optional
+            Whether to consider the weights of relationships in the RMSE calculation,
+            by default True. If False, all relationships are treated equally (weight = 1).
+
+        Returns
+        -------
+        np.float64
+            The RMSE between the two taxonomies
+        """
+
+        adjacency_matrix_self = self.universal_class_adjacency_matrix(weighted)
+        adjacency_matrix_other = other.universal_class_adjacency_matrix(weighted)
+
+        # Validate that matrices have the same dimensions
+        if adjacency_matrix_self.shape != adjacency_matrix_other.shape:
+            raise ValueError(
+                f"Taxonomies have incompatible domain class counts: "
+                f"{adjacency_matrix_self.shape} vs {adjacency_matrix_other.shape}. "
+                f"Both taxonomies must have the same domain classes for comparison."
+            )
+
+        # Calculate element-wise squared differences between the two matrices
+        squared_difference_matrix = (
+            adjacency_matrix_self - adjacency_matrix_other
+        ) ** 2
+
+        # Create upper triangular mask (including diagonal) to avoid double-counting symmetric edges
+        n = adjacency_matrix_self.shape[0]
+        upper_triangular_mask = np.triu(np.ones((n, n), dtype=bool))
+
+        # Extract upper triangular values
+        upper_triangular_values = squared_difference_matrix[upper_triangular_mask]
+
+        # Calculate RMSE
+        if len(upper_triangular_values) == 0:
+            # Empty matrix case
+            return np.float64(0.0)
+
+        mean_squared_error = np.mean(upper_triangular_values)
+        rmse_value = np.sqrt(mean_squared_error)
+
+        return np.float64(rmse_value)

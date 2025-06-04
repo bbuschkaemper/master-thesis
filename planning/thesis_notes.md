@@ -5,3 +5,4 @@
 - Explain the original taxonomy algorithm and our changes + why the changes are better (discuss advantages and disadvantages)
 - The Missing Link paper and Bevandic paper are both references for taxonomy algorithm (cite Missing Link for also using thresholding)
 - Test with different datasets and see if anything changes
+- Create graphics for method and results (visualize the taxonomy, visualize how algorithms are created/working)

@@ -47,50 +47,6 @@ def form_correlation_matrix(
     return correlations
 
 
-def foreign_prediction_distributions(
-    correlations: npt.NDArray[np.intp],
-) -> tuple[npt.NDArray[np.intp], npt.NDArray[np.float32]]:
-    """Calculates the most common prediction for each class and its confidence.
-
-    This method analyzes a correlation matrix to determine:
-    1. For each class in the target domain, which class from the source domain
-       is most frequently predicted
-    2. The confidence (probability) of each relationship based on prediction frequencies
-
-    Parameters
-    ----------
-    correlations : npt.NDArray[np.intp]
-        A correlation matrix where each element (i,j) represents how many times
-        target domain class i was predicted as source domain class j
-
-    Returns
-    -------
-    tuple[npt.NDArray[np.intp], npt.NDArray[np.float32]]
-        A tuple containing:
-        - Array of most commonly predicted source classes for each target class
-        - Array of confidence values (probabilities) for those predictions
-    """
-    n_target_domain_classes = correlations.shape[0]
-    most_common_classes = np.zeros(n_target_domain_classes, dtype=np.intp)
-    confidence_values = np.zeros(n_target_domain_classes, dtype=np.float32)
-
-    # For each class in the target domain
-    for target_class_idx in range(n_target_domain_classes):
-        # Find the most commonly predicted class from the source domain
-        prediction_counts = correlations[target_class_idx, :]
-        most_common_classes[target_class_idx] = np.argmax(prediction_counts)
-
-        # Calculate confidence as the proportion of predictions for this class
-        total_predictions = np.sum(prediction_counts)
-        if total_predictions > 0:
-            max_count = prediction_counts[most_common_classes[target_class_idx]]
-            confidence_values[target_class_idx] = max_count / total_predictions
-        else:
-            confidence_values[target_class_idx] = 0.0
-
-    return most_common_classes, confidence_values
-
-
 def sample_truncated_normal(
     mean: float,
     variance: float,
@@ -132,3 +88,55 @@ def sample_truncated_normal(
     except ValueError:
         # Return 0 if parameters lead to invalid distribution
         return 0
+
+
+def hypothesize_relationships(
+    probabilities: npt.NDArray[np.float64], upper_bound: int = 5
+) -> list[int]:
+    """Hypothesize the number of relationships based on a probability array.
+
+    The function hypothesizes the number of relationships by assuming
+    that every relationship should have an equal share of the total probability.
+    It calculates how much each hypothesis deviates from the given probabilities
+    and returns the most likely hypothesis that minimizes this deviation.
+
+    Parameters
+    ----------
+    probabilities : npt.NDArray[np.float64]
+        An array of probabilities for each relationship.
+    upper_bound : int, optional
+        The maximum number of relationships to consider, by default 5
+
+    Returns
+    -------
+    int
+        The indices of the source classes that form the best relationships.
+    """
+
+    # Sort probabilities in descending order
+    sorted_probabilities = np.sort(probabilities)[::-1]
+
+    best_number_of_relationships = 1
+    best_deviation = float("inf")
+    for hypothesis in range(0, min(upper_bound, len(probabilities) + 1)):
+        # The expected probabilities
+        if hypothesis == 0:
+            expected_probabilities = np.full(len(probabilities), 1 / len(probabilities))
+        else:
+            expected_probabilities = np.full(hypothesis, 1 / hypothesis)
+            expected_probabilities = np.pad(
+                expected_probabilities,
+                (0, len(probabilities) - hypothesis),
+                mode="constant",
+                constant_values=0,
+            )
+
+        # Calculate the deviation from the expected probabilities
+        deviation = np.sum(np.abs(sorted_probabilities - expected_probabilities))
+        if deviation < best_deviation:
+            best_deviation = deviation
+            best_number_of_relationships = hypothesis
+
+    # Get the indices of the best relationships
+    best_relationships = np.argsort(probabilities)[::-1][:best_number_of_relationships]
+    return best_relationships.tolist()
