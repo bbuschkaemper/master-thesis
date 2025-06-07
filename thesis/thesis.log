@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2025.4.30)  1 JUN 2025 16:48
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2025.4.30)  7 JUN 2025 15:03
  restricted system commands enabled.
  file:line:error style messages enabled.
 **/home/sentinel/Development/master-thesis/thesis/thesis.tex
@@ -1289,13 +1289,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 Writing index file thesis.idx
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
-(./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux (/usr/share/texmf-dist/tex/generic/babel/locale/de/babel-ngerman.tex)
-Package babel Info: Importing data for ngerman
-(babel)             from babel-de.ini. Reported on input line 15.
- (/usr/share/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-de-1996.tex UTF-8 German hyphenation patterns (reformed orthography) (/usr/share/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-de-1996.tex German Hyphenation Patterns (Reformed Orthography, 2006) `dehyphn-x' 2024-02-28 (WL))) (/usr/share/texmf-dist/tex/generic/babel/locale/fr/babel-french.tex)
-Package babel Info: Importing data for french
-(babel)             from babel-fr.ini. Reported on input line 17.
- (/usr/share/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fr.tex UTF-8 French hyphenation patterns (/usr/share/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-fr.tex) (/usr/share/texmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-fr.tex))) (./sources/method.aux))
+(./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux))
 \openout1 = thesis.aux
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
@@ -1374,25 +1368,6 @@ Package biblatex Info: ... file 'english.lbx' found.
  (/usr/share/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2024/03/21 v3.20 biblatex localization (PK/MW)
 ))
-Package biblatex Info: Trying to load language 'ngerman'...
-Package biblatex Info: ... file 'ngerman.lbx' found.
- (/usr/share/texmf-dist/tex/latex/biblatex/lbx/ngerman.lbx
-File: ngerman.lbx 2024/03/21 v3.20 biblatex localization (PK/MW)
-Package biblatex Info: Trying to load language 'german'...
-Package biblatex Info: ... file 'german.lbx' found.
- (/usr/share/texmf-dist/tex/latex/biblatex/lbx/german.lbx
-File: german.lbx 2024/03/21 v3.20 biblatex localization (PK/MW)
-)
-Package biblatex Info: Trying to load language 'german'...
-Package biblatex Info: ... file 'german.lbx' found.
- (/usr/share/texmf-dist/tex/latex/biblatex/lbx/german.lbx
-File: german.lbx 2024/03/21 v3.20 biblatex localization (PK/MW)
-))
-Package biblatex Info: Trying to load language 'french'...
-Package biblatex Info: ... file 'french.lbx' found.
- (/usr/share/texmf-dist/tex/latex/biblatex/lbx/french.lbx
-File: french.lbx 2024/03/21 v3.20 biblatex localization (PK/MW)
-)
 Package biblatex Info: LuaTeX detected.
 (biblatex)             Assuming input encoding 'utf8'.
 Package biblatex Info: Automatic encoding selection.
@@ -1456,137 +1431,23 @@ LaTeX Font Info:    Font shape `TU/EBGaramond(0)/m/sl' in size <10.95> not avail
 \openout2 = sources/introduction.aux
  (./sources/introduction.tex
 chapter 1.
-LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
-(Font)              scaled to size 9.12494pt on input line 40.
-
+)
 
 [1
 
 
 
 ]
-
-Package fontspec Info: 
-(fontspec)             Could not resolve font "Libre Baskerville/BI" (it
-(fontspec)             probably doesn't exist).
-
-
-Package fontspec Info: 
-(fontspec)             Font family 'LibreBaskerville(0)' created for font
-(fontspec)             'Libre Baskerville' with options [].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"name:Libre
-(fontspec)             Baskerville:mode=node;script=latn;language=dflt;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"name:Libre
-(fontspec)             Baskerville/B:mode=node;script=latn;language=dflt;"
-(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"name:Libre
-(fontspec)             Baskerville/I:mode=node;script=latn;language=dflt;"
-
-
-Package fontspec Info: 
-(fontspec)             IBM Plex Sans scale = 0.7751936309723137.
-
-
-Package fontspec Info: 
-(fontspec)             IBM Plex Sans scale = 0.7751936309723137.
-
-
-Package fontspec Info: 
-(fontspec)             IBM Plex Sans/B scale = 0.7619037507531499.
-
-
-Package fontspec Info: 
-(fontspec)             IBM Plex Sans/I scale = 0.7751936309723137.
-
-
-Package fontspec Info: 
-(fontspec)             IBM Plex Sans/BI scale = 0.7619037507531499.
-
-
-Package fontspec Info: 
-(fontspec)             Font family 'IBMPlexSans(0)' created for font 'IBM Plex
-(fontspec)             Sans' with options [Scale=MatchLowercase].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->s*[0.7751936309723137]"name:IBM Plex
-(fontspec)             Sans:mode=node;script=latn;language=dflt;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[0.7619037507531499]"name:IBM Plex
-(fontspec)             Sans/B:mode=node;script=latn;language=dflt;"
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->s*[0.7751936309723137]"name:IBM Plex
-(fontspec)             Sans/I:mode=node;script=latn;language=dflt;"
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->s*[0.7619037507531499]"name:IBM Plex
-(fontspec)             Sans/BI:mode=node;script=latn;language=dflt;"
-
-LaTeX Font Info:    Font shape `TU/IBMPlexSans(0)/m/n' will be
-(Font)              scaled to size 8.48834pt on input line 78.
-
-Package fontspec Info: 
-(fontspec)             IBM Plex Mono scale = 0.7751936309723137.
-
-
-Package fontspec Info: 
-(fontspec)             IBM Plex Mono scale = 0.7751936309723137.
-
-
-Package fontspec Info: 
-(fontspec)             IBM Plex Mono/B scale = 0.7751936309723137.
-
-
-Package fontspec Info: 
-(fontspec)             IBM Plex Mono/I scale = 0.7751936309723137.
-
-
-Package fontspec Info: 
-(fontspec)             IBM Plex Mono/BI scale = 0.7751936309723137.
-
-
-Package fontspec Info: 
-(fontspec)             Font family 'IBMPlexMono(0)' created for font 'IBM Plex
-(fontspec)             Mono' with options [Scale=MatchLowercase].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->s*[0.7751936309723137]"name:IBM Plex
-(fontspec)             Mono:mode=node;script=latn;language=dflt;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[0.7751936309723137]"name:IBM Plex
-(fontspec)             Mono/B:mode=node;script=latn;language=dflt;"
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->s*[0.7751936309723137]"name:IBM Plex
-(fontspec)             Mono/I:mode=node;script=latn;language=dflt;"
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->s*[0.7751936309723137]"name:IBM Plex
-(fontspec)             Mono/BI:mode=node;script=latn;language=dflt;"
-
-LaTeX Font Info:    Font shape `TU/IBMPlexMono(0)/m/n' will be
-(Font)              scaled to size 8.48834pt on input line 79.
-
-
-[2]
-LaTeX Font Info:    Trying to load font information for U+dsrom on input line 160.
- (/usr/share/texmf-dist/tex/latex/doublestroke/Udsrom.fd
-File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
-)
-Underfull \vbox (badness 3780) has occurred while \output is active []
-
-
-
-[3])
-
-[4]
 \openout2 = sources/method.aux
  (./sources/method.tex
+
+[2
+
+
+
+
+
+]
 chapter 2.
 
 Overfull \hbox (2.54816pt too wide) in paragraph at lines 7--11
@@ -1595,34 +1456,36 @@ Overfull \hbox (2.54816pt too wide) in paragraph at lines 7--11
 
 
 
-[5
+[3]
 
+[4]
 
-
-
-
-]
-
-[6]
-
-[7]
+[5]
 LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
 (Font)              scaled to size 7.49995pt on input line 156.
 
 
+[6]
+LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
+(Font)              scaled to size 9.12494pt on input line 214.
+
+
+[7]
+
 [8]
 
 [9]
+Overfull \hbox (1.78523pt too wide) in paragraph at lines 322--328
+[]\TU/EBGaramond(0)/b/n/10.95 Uni-ver-sal Tax-on-omy Com-par-i-son: \TU/EBGaramond(0)/m/n/10.95 Com-par-ing the pre-dicted uni-ver-sal tax-on-omy against
+ []
 
-[10]
+
+
+[10])
 
 [11]
 
-[12])
-
-[13]
-
-[14
+[12
 
 
 
@@ -1641,7 +1504,7 @@ Overfull \hbox (6.75589pt too wide) in paragraph at lines 131--131
 
 
 
-[15
+[13
 
 
 ] (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux))
@@ -1649,32 +1512,25 @@ Overfull \hbox (6.75589pt too wide) in paragraph at lines 131--131
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-Package biblatex Warning: Please rerun LaTeX.
-
 Package logreq Info: Writing requests to 'thesis.run.xml'.
 
 \openout1 = thesis.run.xml
 )
 
 Here is how much of LuaTeX's memory you used:
- 43958 strings out of 475506
+ 43432 strings out of 475506
  100000,2373549 words of node,token memory allocated
- 882 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 4 glue, 4 kern, 1 glyph, 57 attribute, 91 glue_spec, 30 attribute_list, 1 write, 5 pdf_action nodes
-   avail lists: 1:1,2:1585,3:431,4:212,5:489,6:128,7:6077,8:80,9:769,10:22,11:402
- 66086 multiletter control sequences out of 65536+600000
- 157 fonts using 62642751 bytes
- 122i,20n,118p,10949b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/ibm/plex/IBMPlexMono-Regular.otf></usr/share/texmf-dist/fonts/opentype/ibm/plex/IBMPlexSans-Regular.otf></usr/share/texmf-dist/fonts/truetype/impallari/librebaskerville/LibreBaskerville-Regular.ttf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf></usr/share/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/share/texmf-dist/fonts/type1/public/doublestroke/dsrom8.pfb>
-Output written on thesis.pdf (21 pages, 124641 bytes).
+ 846 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 4 glue, 4 kern, 1 glyph, 45 attribute, 91 glue_spec, 24 attribute_list, 1 write, 5 pdf_action nodes
+   avail lists: 1:1,2:1327,3:431,4:164,5:471,6:110,7:6146,8:80,9:769,10:10,11:487
+ 65639 multiletter control sequences out of 65536+600000
+ 115 fonts using 55564223 bytes
+ 122i,20n,114p,10949b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf>
+Output written on thesis.pdf (19 pages, 93375 bytes).
 
-PDF statistics: 397 PDF objects out of 1000 (max. 8388607)
- 335 compressed objects within 4 object streams
- 101 named destinations out of 1000 (max. 131072)
- 185 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 317 PDF objects out of 1000 (max. 8388607)
+ 269 compressed objects within 3 object streams
+ 86 named destinations out of 1000 (max. 131072)
+ 137 words of extra memory for PDF output out of 10000 (max. 100000000)
 

@@ -1,117 +1,15 @@
 import pickle
-from typing import List, Tuple, Dict, Literal
+from typing import List, Dict, Tuple
 import numpy as np
 import numpy.typing as npt
 import networkx as nx
 from pyvis.network import Network
-from library.utils import (
-    form_correlation_matrix,
-    sample_truncated_normal,
-    hypothesize_relationships,
+from .types import (
+    DomainClass,
+    UniversalClass,
+    Class,
+    Relationship,
 )
-
-
-_RELATIONSHIP_TYPE = Literal["mcfp", "threshold"]
-_SYNTHETIC_RELATIONSHIP_TYPE = Literal["mcfp", "true"]
-
-
-class DomainClass(tuple[np.intp, np.intp]):
-    """A class from a specific domain represented as a tuple (domain_id, class_id).
-
-    A DomainClass represents a single class within a particular data domain.
-    For example, in multi-dataset taxonomy building, each dataset would be a different domain.
-
-    Parameters
-    ----------
-    domain_id : np.intp
-        Identifies which domain the class belongs to (e.g., CIFAR-100=0, Caltech-256=1)
-    class_id : np.intp
-        The identifier of the class within its domain (e.g., "dog"=5, "airplane"=0)
-    """
-
-
-class UniversalClass(frozenset[DomainClass]):
-    """A class in the universal taxonomy represented as a set of domain classes.
-
-    UniversalClass objects are created during the taxonomy building process to represent
-    conceptual groupings that span across multiple domains. They contain one or more
-    DomainClass objects that have been identified as semantically similar based on
-    cross-domain prediction patterns.
-
-    A UniversalClass is implemented as a frozenset (immutable set) of DomainClass objects,
-    ensuring it can be used as a dictionary key or in other set operations.
-    """
-
-
-type Class = DomainClass | UniversalClass
-"""Type alias representing either a domain-specific class or a universal class."""
-
-
-class Relationship(tuple[Class, Class, float]):
-    """A directional relationship between two classes with an associated confidence weight.
-
-    In the taxonomy graph, relationships are represented as directed edges from the target
-    class to the source class. The confidence weight indicates the strength or certainty
-    of this relationship based on prediction patterns.
-
-    Parameters
-    ----------
-    target_class : Class
-        The originating class (e.g., the class being predicted)
-    source_class : Class
-        The destination class (e.g., the class that is predicted)
-    weight : float
-        The confidence/probability of the relationship (between 0 and 1)
-    """
-
-
-class DeviationClass(frozenset[np.intp]):
-    """A set of concept indices that form a synthetic class.
-
-    In synthetic taxonomy generation, a DeviationClass represents a group of atomic
-    concepts (identified by integers) that are bundled together to form a class.
-    For instance, a class "dog" might contain concepts like "furry", "four legs", "tail", etc.
-
-    Implemented as an immutable frozenset for hashability and use as dictionary keys.
-    """
-
-
-class Deviation(frozenset[DeviationClass]):
-    """A collection of related synthetic classes forming a domain.
-
-    A Deviation represents a complete taxonomy domain containing multiple DeviationClasses.
-    This structure simulates a real-world dataset domain (like CIFAR-100 or Caltech-101)
-    with its class structure for simulation purposes.
-
-    Implemented as an immutable frozenset for hashability and use in graph structures.
-    """
-
-    def to_mapping(self) -> dict[int, int]:
-        """Convert the DeviationClass to a mapping of concepts to their deviation class index.
-
-        Returns
-        -------
-        dict[int, int]
-            A dictionary where keys are concept indices
-            and values are their deviation class index.
-        """
-        mapping = {}
-        for class_index, deviation_class in enumerate(self):
-            for concept_index in deviation_class:
-                mapping[int(concept_index)] = class_index
-
-        return mapping
-
-
-class SimulatedPredictions(tuple[np.intp, np.intp, npt.NDArray[np.float64]]):
-    """Container for cross-domain prediction probabilities in synthetic taxonomy experiments.
-
-    Represented as a tuple (source_domain_id, target_domain_id, probability_matrix) where:
-    - source_domain_id: The domain ID of the model making predictions
-    - target_domain_id: The domain ID of the dataset being predicted
-    - probability_matrix: 2D array where element [i,j] represents the probability of
-      predicting class j in the source domain for class i in the target domain
-    """
 
 
 class Taxonomy:
@@ -173,7 +71,7 @@ class Taxonomy:
         # Add the edge with weight attribute
         self.graph.add_edge(target, source, weight=float(weight))
 
-    def __remove_relationship(self, relationship: Relationship):
+    def _remove_relationship(self, relationship: Relationship):
         """Removes a relationship from the graph.
 
         Parameters
@@ -185,7 +83,7 @@ class Taxonomy:
         if self.graph.has_edge(target, source):
             self.graph.remove_edge(target, source)
 
-    def __get_relationships(self) -> list[Relationship]:
+    def _get_relationships(self) -> list[Relationship]:
         """Returns all relationships in the graph.
 
         Returns
@@ -198,7 +96,7 @@ class Taxonomy:
             relationships.append(Relationship((u, v, float(data["weight"]))))
         return relationships
 
-    def __get_nodes(self) -> set[Class]:
+    def _get_nodes(self) -> set[Class]:
         """Returns all nodes in the graph.
 
         Returns
@@ -208,7 +106,7 @@ class Taxonomy:
         """
         return set(self.graph.nodes())
 
-    def __get_relationships_from(self, target: Class) -> list[Relationship]:
+    def _get_relationships_from(self, target: Class) -> list[Relationship]:
         """Returns all outgoing relationships from a node.
 
         Parameters
@@ -230,7 +128,7 @@ class Taxonomy:
             relationships.append(Relationship((target, source, float(weight))))
         return relationships
 
-    def __get_relationships_to(self, source: Class) -> list[Relationship]:
+    def _get_relationships_to(self, source: Class) -> list[Relationship]:
         """Returns all incoming relationships to a node.
 
         Parameters
@@ -252,7 +150,7 @@ class Taxonomy:
             relationships.append(Relationship((target, source, float(weight))))
         return relationships
 
-    def __get_relationship(self, target: Class, source: Class) -> Relationship | None:
+    def _get_relationship(self, target: Class, source: Class) -> Relationship | None:
         """Returns the relationship between two nodes if it exists.
 
         Parameters
@@ -271,447 +169,6 @@ class Taxonomy:
             weight = self.graph.edges[target, source]["weight"]
             return Relationship((target, source, float(weight)))
         return None
-
-    @classmethod
-    def from_cross_domain_predictions(
-        cls,
-        cross_domain_predictions: List[Tuple[int, int, npt.NDArray[np.intp]]],
-        domain_targets: List[Tuple[int, npt.NDArray[np.intp]]],
-        domain_labels: Dict[int, List[str]] | None = None,
-        relationship_type: _RELATIONSHIP_TYPE = "mcfp",
-        threshold: float = 0.01,
-    ):
-        """Creates a taxonomy object with an integrated graph structure.
-
-        This taxonomy is built from cross-domain predictions between multiple domains.
-        It analyzes how models trained on one domain classify samples from another domain,
-        revealing conceptual relationships between classes across domains.
-
-        Parameters
-        ----------
-        cross_domain_predictions : List[Tuple[int, int, npt.NDArray[np.intp]]]
-            List of tuples where each tuple contains:
-            - model_domain_id: The domain ID of the model used for predictions
-            - dataset_domain_id: The domain ID of the dataset being predicted
-            - predictions: Array of class predictions made by the model
-        domain_targets : List[Tuple[int, npt.NDArray[np.intp]]]
-            List of tuples where each tuple contains:
-            - domain_id: The domain ID
-            - targets: Array of ground truth class labels for that domain
-        domain_labels : Dict[int, List[str]], optional
-            Optional dictionary mapping domain IDs to lists of human-readable class labels.
-            If provided, these labels will be used for domain classes instead of class IDs.
-            If not provided, class IDs will be used as labels.
-        relationship_type : _RELATIONSHIP_TYPE, optional
-            The type of relationship to establish between domains. Defaults to "mcfp".
-            "mcfp" stands for "most common foreign prediction",
-            which means only the most common foreign prediction
-            creates a relationship.
-            "threshold" means that all foreign predictions
-            above a certain probability threshold
-            create a relationship.
-        threshold : float, optional
-            The probability threshold for establishing relationships. Defaults to 0.5.
-            This applies to all relationship types.
-        """
-
-        obj = cls(domain_labels=domain_labels)
-
-        # Store targets for each domain in a dictionary
-        targets = {}
-        for domain_id, target_array in domain_targets:
-            if domain_id in targets:
-                raise ValueError(f"Duplicate domain ID {domain_id} found in targets.")
-            targets[domain_id] = target_array
-
-        # Process each cross-domain prediction
-        for model_domain_id, dataset_domain_id, predictions in cross_domain_predictions:
-            if dataset_domain_id not in targets:
-                raise ValueError(
-                    f"Dataset domain ID {dataset_domain_id} not found in targets."
-                )
-
-            # Validate that prediction arrays match their respective target arrays
-            dataset_targets = targets[dataset_domain_id]
-            if predictions.shape != dataset_targets.shape:
-                raise ValueError(
-                    f"Predictions of domain {model_domain_id} to domain "
-                    f"{dataset_domain_id} must match targets in shape. "
-                    f"Got {predictions.shape} vs {dataset_targets.shape}"
-                )
-
-            # Build correlation matrix between these domains
-            correlations = form_correlation_matrix(predictions, dataset_targets)
-
-            # Normalize the correlation matrix to ensure it sums to 1 for each target class
-            correlations = correlations.astype(np.float64)
-            row_sums = correlations.sum(axis=1, keepdims=True)
-            row_sums[row_sums == 0] = 1.0  # Avoid division by zero
-            correlations /= row_sums
-
-            for target_class_idx in range(correlations.shape[0]):
-                # Create a target domain class for this target class index
-                target_class = DomainClass(
-                    (np.intp(dataset_domain_id), np.intp(target_class_idx))
-                )
-                class_probabilities = correlations[target_class_idx]
-
-                # Add the target class node to the taxonomy graph
-                obj._add_node(target_class)
-
-                if relationship_type == "mcfp":
-                    source_class_idx = np.argmax(class_probabilities)
-                    probability = class_probabilities[source_class_idx]
-
-                    # Create source domain class (from the model's domain)
-                    source_class = DomainClass(
-                        (np.intp(model_domain_id), np.intp(source_class_idx))
-                    )
-
-                    # Skip relationships with confidence below the threshold
-                    if probability < threshold:
-                        continue
-
-                    # Add the relationship to the taxonomy graph with its confidence value
-                    obj._add_relationship(
-                        Relationship((target_class, source_class, probability))
-                    )
-                elif relationship_type == "threshold":
-                    relationships = hypothesize_relationships(class_probabilities)
-
-                    # Iterate through all source classes
-                    for source_class_idx in relationships:
-                        # Create a source domain class for this source class index
-                        source_class = DomainClass(
-                            (np.intp(model_domain_id), np.intp(source_class_idx))
-                        )
-
-                        confidence = float(class_probabilities[source_class_idx])
-
-                        # Add the relationship to the taxonomy graph with its confidence value
-                        obj._add_relationship(
-                            Relationship((target_class, source_class, confidence))
-                        )
-                else:
-                    raise ValueError(
-                        f"Unknown relationship type: {relationship_type}. "
-                        "Supported types are 'mcfp' and 'threshold'."
-                    )
-
-        return obj
-
-    @classmethod
-    def create_synthetic_taxonomy(
-        cls,
-        num_atomic_concepts: int,
-        num_domains: int,
-        domain_class_count_mean: float,
-        domain_class_count_variance: float,
-        concept_cluster_size_mean: float,
-        concept_cluster_size_variance: float,
-        has_no_prediction_class: bool = False,
-        relationship_type: _SYNTHETIC_RELATIONSHIP_TYPE = "mcfp",
-        threshold: float = 0.01,
-        atomic_concept_labels: List[str] | None = None,
-        random_seed: int = 42,
-    ):
-        """Create a synthetic taxonomy with randomly generated domains and relationships.
-
-        Parameters
-        ----------
-        num_atomic_concepts : int
-            The total number of atomic concepts available in the universe
-        num_domains : int
-            The number of domains (deviations) to generate
-        domain_class_count_mean : float
-            Mean number of classes per domain
-        domain_class_count_variance : float
-            Variance in the number of classes per domain
-        concept_cluster_size_mean : float
-            Mean number of concepts per class
-        concept_cluster_size_variance : float
-            Variance in the number of concepts per class
-        has_no_prediction_class : bool, optional
-            Some datasets have a no-prediction class which means
-            we need to distribute probabilities differently.
-        relationship_type : _RELATIONSHIP_TYPE, optional
-            The type of relationship to establish between domains. Defaults to "mcfp".
-            "mcfp" stands for "most common foreign prediction",
-            which means only the most common foreign prediction
-            creates a relationship (if above threshold).
-            "true" means that all foreign predictions
-            above zero probability
-            create a relationship.
-        threshold : float, optional
-            The probability threshold for establishing relationships. Defaults to 0.01.
-            This applies only to "mcfp" relationship type.
-        atomic_concept_labels : List[str], optional
-            Optional list of labels for atomic concepts.
-            If provided, these labels will be used for atomic concepts
-            instead of numeric indices.
-        random_seed : int, optional
-            Seed for random number generation, by default 42
-        """
-
-        rng = np.random.default_rng(random_seed)
-
-        # Generate synthetic domains (previously called deviations)
-        domains = [
-            Taxonomy._create_domain(
-                domain_class_count_mean=domain_class_count_mean,
-                domain_class_count_variance=domain_class_count_variance,
-                num_atomic_concepts=num_atomic_concepts,
-                rng=rng,
-                concept_cluster_size_mean=concept_cluster_size_mean,
-                concept_cluster_size_variance=concept_cluster_size_variance,
-            )
-            for _ in range(num_domains)
-        ]
-
-        # Calculate simulated prediction probabilities between all domain pairs
-        # (excluding self-predictions)
-        cross_domain_predictions: list[SimulatedPredictions] = []
-        for source_domain_id, source_domain in enumerate(domains):
-            for target_domain_id, target_domain in enumerate(domains):
-                if source_domain_id == target_domain_id:
-                    continue
-                prediction_matrix = cls._simulate_predictions(
-                    source_domain, target_domain, has_no_prediction_class
-                )
-                cross_domain_predictions.append(
-                    SimulatedPredictions(
-                        (
-                            np.intp(source_domain_id),
-                            np.intp(target_domain_id),
-                            prediction_matrix,
-                        )
-                    )
-                )
-
-        # Create human-readable domain labels for visualization
-        domain_labels = {}
-        for domain_id, domain in enumerate(domains):
-            class_labels = []
-            for class_concepts in domain:
-                concept_names = (
-                    class_concepts
-                    if atomic_concept_labels is None
-                    else [atomic_concept_labels[i] for i in class_concepts]
-                )
-
-                # Format each class as a set of its concept names
-                class_labels.append("{" + ", ".join(map(str, concept_names)) + "}")
-            domain_labels[domain_id] = class_labels
-
-        # Initialize the taxonomy with empty predictions and targets
-        # Actual relationships will be built from simulated cross-domain predictions
-        obj = cls(domain_labels=domain_labels)
-
-        # Add relationships to the taxonomy graph based on simulated predictions
-        for (
-            source_domain_id,
-            target_domain_id,
-            predictions,
-        ) in cross_domain_predictions:
-            for target_class_id, class_predictions in enumerate(predictions):
-                target_class = DomainClass(
-                    (np.intp(target_domain_id), np.intp(target_class_id))
-                )
-
-                # Add target node for if no relationships are created
-                obj._add_node(target_class)
-
-                if relationship_type == "mcfp":
-                    # Get the most likely prediction for this class
-                    source_class_id = np.argmax(class_predictions)
-                    prediction_confidence = float(class_predictions[source_class_id])
-
-                    # Create domain classes for source and target
-                    source_class = DomainClass(
-                        (np.intp(source_domain_id), np.intp(source_class_id))
-                    )
-
-                    # Skip if below the threshold
-                    if prediction_confidence < threshold:
-                        continue
-
-                    # Add the relationship to the taxonomy graph
-                    relationship = Relationship(
-                        (target_class, source_class, prediction_confidence)
-                    )
-                    obj._add_relationship(relationship)
-                elif relationship_type == "true":
-                    # Iterate through all source classes and their probabilities
-                    for source_class_id, confidence in enumerate(class_predictions):
-                        # Create domain classes for source and target
-                        source_class = DomainClass(
-                            (np.intp(source_domain_id), np.intp(source_class_id))
-                        )
-
-                        # If zero, skip the relationship
-                        if confidence == 0.0:
-                            continue
-
-                        # Add the relationship to the taxonomy graph
-                        relationship = Relationship(
-                            (target_class, source_class, float(confidence))
-                        )
-                        obj._add_relationship(relationship)
-                else:
-                    raise ValueError(
-                        f"Unknown relationship type: {relationship_type}. "
-                        "Supported types are 'mcfp' and 'threshold'."
-                    )
-
-        return obj, domains
-
-    @staticmethod
-    def _simulate_predictions(
-        source_domain: Deviation,
-        target_domain: Deviation,
-        has_no_prediction_class: bool = False,
-    ) -> npt.NDArray[np.float64]:
-        """Simulate how a model trained on source_domain would classify samples from target_domain.
-
-        This method calculates prediction probabilities based on concept overlap between
-        classes in different domains. The core idea is that a class can be partially recognized
-        by another domain's model if they share some common concepts.
-
-        Parameters
-        ----------
-        source_domain : Deviation
-            The domain the classifier was trained on
-        target_domain : Deviation
-            The domain containing samples to be classified
-        has_no_prediction_class : bool, optional
-            Whether the target domain has a no-prediction class
-            that receives all probabilities not assigned to other classes.
-
-        Returns
-        -------
-        npt.NDArray[np.float64]
-            2D array of prediction probabilities where:
-              - Each row corresponds to a class in the target domain
-              - Each column corresponds to a class in the source domain
-              - Value [i,j] is the probability of predicting source class j for target class i
-        """
-        prediction_probabilities = []
-
-        # For each class in the target domain
-        for target_class in target_domain:
-            # Extract the atomic concepts that make up this class
-            target_concept_set = set(target_class)
-
-            # Create probability distribution for this target class (initially all zeros)
-            class_probabilities = [0.0] * len(source_domain)
-
-            # Find and calculate overlapping concepts with each source class
-            concept_overlaps = []
-            for source_idx, source_class in enumerate(source_domain):
-                source_concept_set = set(source_class)
-                shared_concepts = target_concept_set.intersection(source_concept_set)
-
-                # If there's overlap, calculate the proportion of target concepts covered
-                if shared_concepts:
-                    overlap_ratio = len(shared_concepts) / len(target_concept_set)
-                    concept_overlaps.append((source_idx, overlap_ratio))
-
-            # Assign probabilities based on concept overlap ratios
-            for source_idx, overlap_ratio in concept_overlaps:
-                class_probabilities[source_idx] = overlap_ratio
-
-            # Calculate remaining probability to distribute
-            remaining_probability = 1.0 - sum(class_probabilities)
-
-            # Distribute remaining probability evenly across all classes
-            if (
-                remaining_probability > 0
-                and len(source_domain) > 0
-                and not has_no_prediction_class
-            ):
-                even_distribution = remaining_probability / len(source_domain)
-                class_probabilities = [
-                    p + even_distribution for p in class_probabilities
-                ]
-
-            prediction_probabilities.append(class_probabilities)
-
-        return np.array(prediction_probabilities, dtype=np.float64)
-
-    @staticmethod
-    def _create_domain(
-        domain_class_count_mean: float,
-        domain_class_count_variance: float,
-        num_atomic_concepts: int,
-        rng: np.random.Generator,
-        concept_cluster_size_mean: float,
-        concept_cluster_size_variance: float,
-    ) -> Deviation:
-        """Generate a synthetic domain with classes composed of atomic concepts.
-
-        A domain (previously called deviation) consists of multiple classes, each
-        containing a cluster of related atomic concepts.
-
-        Returns
-        -------
-        Deviation
-            A set of DeviationClasses, where each DeviationClass represents
-            a class in this domain
-        """
-        # Determine number of classes for this domain (bounded by total concept count)
-        class_count = np.round(
-            sample_truncated_normal(
-                mean=domain_class_count_mean,
-                variance=domain_class_count_variance,
-                upper_bound=num_atomic_concepts,
-                lower_bound=1,
-                rng=rng,
-            )
-        ).astype(np.intp)
-
-        # Select which atomic concepts will be part of this domain
-        available_concepts = range(num_atomic_concepts)
-        selected_concepts = set(
-            rng.choice(available_concepts, size=class_count, replace=False)
-        )
-
-        # Create the domain as a set of classes
-        domain = set()
-
-        # Group concepts into classes until all selected concepts are assigned
-        while selected_concepts:
-            # Handle last concept separately to avoid empty clusters
-            if len(selected_concepts) == 1:
-                cluster_size = 1
-            else:
-                # Determine class size based on specified distribution
-                cluster_size = np.round(
-                    sample_truncated_normal(
-                        mean=concept_cluster_size_mean,
-                        variance=concept_cluster_size_variance,
-                        lower_bound=1,
-                        upper_bound=len(selected_concepts),
-                        rng=rng,
-                    )
-                ).astype(np.intp)
-
-            # Randomly select concepts for this class
-            class_concepts = frozenset(
-                rng.choice(
-                    list(selected_concepts),
-                    size=cluster_size,
-                    replace=False,
-                ).astype(np.intp)
-            )
-
-            # Create a class from these concepts and add it to the domain
-            domain_class = DeviationClass(class_concepts)
-            domain.add(domain_class)
-
-            # Remove assigned concepts
-            selected_concepts -= class_concepts
-
-        return Deviation(frozenset(domain))
 
     def build_universal_taxonomy(self):
         """Builds a universal taxonomy graph from the initial domain relationships.
@@ -778,12 +235,12 @@ class Taxonomy:
         bool
             True if any changes were made, False otherwise
         """
-        for node in self.__get_nodes():
+        for node in self._get_nodes():
             # Only process domain classes without any connections
             if (
                 isinstance(node, DomainClass)
-                and not self.__get_relationships_to(node)
-                and not self.__get_relationships_from(node)
+                and not self._get_relationships_to(node)
+                and not self._get_relationships_from(node)
             ):
                 # Create a new universal class containing just this node
                 universal_class = UniversalClass(frozenset({node}))
@@ -809,11 +266,11 @@ class Taxonomy:
         bool
             True if any changes were made, False otherwise
         """
-        for relationship in self.__get_relationships():
+        for relationship in self._get_relationships():
             class_a, class_b, _ = relationship
 
             # Check if there's a reverse relationship
-            reverse_relationship = self.__get_relationship(class_b, class_a)
+            reverse_relationship = self._get_relationship(class_b, class_a)
             if not reverse_relationship:
                 continue
 
@@ -849,8 +306,8 @@ class Taxonomy:
             )
 
             # Remove the bidirectional relationships
-            self.__remove_relationship(relationship)
-            self.__remove_relationship(reverse_relationship)
+            self._remove_relationship(relationship)
+            self._remove_relationship(reverse_relationship)
 
             return True  # Changes were made
 
@@ -876,7 +333,7 @@ class Taxonomy:
         bool
             True if any changes were made, False otherwise
         """
-        for relationship in self.__get_relationships():
+        for relationship in self._get_relationships():
             class_a, class_b, first_relationship_weight = relationship
 
             # Skip if the first class is not a domain class
@@ -884,7 +341,7 @@ class Taxonomy:
                 continue
 
             # Get relationships originating from class_B
-            next_relationships = self.__get_relationships_from(class_b)
+            next_relationships = self._get_relationships_from(class_b)
 
             # Only consider relationships where the destination is a domain class
             next_relationships = [
@@ -908,9 +365,9 @@ class Taxonomy:
                 if domain_id_c == domain_id_a:
                     # Remove the weaker relationship
                     if first_relationship_weight < second_relationship_weight:
-                        self.__remove_relationship(relationship)
+                        self._remove_relationship(relationship)
                     else:
-                        self.__remove_relationship(next_relationship)
+                        self._remove_relationship(next_relationship)
 
                     return True  # Changes were made
 
@@ -937,7 +394,7 @@ class Taxonomy:
         bool
             True if any changes were made, False otherwise
         """
-        for relationship in self.__get_relationships():
+        for relationship in self._get_relationships():
             domain_class_a, domain_class_b, _ = relationship
 
             # Only process domain-to-domain relationships
@@ -966,7 +423,7 @@ class Taxonomy:
             )
 
             # Remove the original relationship
-            self.__remove_relationship(relationship)
+            self._remove_relationship(relationship)
 
             return True  # Changes were made
 
@@ -1202,101 +659,57 @@ class Taxonomy:
                 value=weight,  # Numeric weight (affects edge thickness)
             )
 
-    def universal_class_adjacency_matrix(
-        self,
-        weighted: bool = True,
-    ) -> npt.NDArray[np.float64]:
-        """Treat every domain class as a node and every universal class as an edge between them.
-        This method creates a matrix with all domain classes as rows and columns,
-        where each cell indicates the strength of the relationship between two domain classes
-        based on their shared universal classes.
+    def _adjacency_matrix(self) -> npt.NDArray[np.float64]:
+        """Generate the adjacency matrix of the taxonomy graph.
 
-        Parameters
-        ----------
-        weighted : bool, optional
-            Whether to consider the weights of relationships in the adjacency matrix,
-            by default True. If False, all relationships are treated equally (weight = 1).
+        The adjacency matrix is a square matrix where each element (i, j)
+        represents the weight of the relationship between domain class i and
+        domain class j. Assumes that no universal classes are present.
 
         Returns
         -------
         npt.NDArray[np.float64]
-            A square matrix where:
-              - Rows and columns correspond to domain classes
-              - Value at [i,j] indicates the strength of the relationship
-              between domain class i and j
+            The adjacency matrix representing relationships between domain classes
         """
+
+        assert all(
+            not isinstance(node, UniversalClass) for node in self._get_nodes()
+        ), "Adjacency matrix is only defined for taxonomies without universal classes."
 
         # Get all domain classes in the graph
         domain_classes = [
-            node for node in self.graph.nodes() if isinstance(node, DomainClass)
+            node for node in self._get_nodes() if isinstance(node, DomainClass)
         ]
+        domain_classes = sorted(domain_classes, key=lambda x: (x[0], x[1]))
+        num_classes = len(domain_classes)
 
-        # Initialize an adjacency matrix with zeros
-        adjacency_matrix = np.zeros(
-            (len(domain_classes), len(domain_classes)), dtype=np.float64
-        )
+        # Build the adjacency matrix
+        adjacency_matrix = np.zeros((num_classes, num_classes), dtype=np.float64)
+        for relationship in self._get_relationships():
+            target, source, weight = relationship
+            if isinstance(target, DomainClass) and isinstance(source, DomainClass):
+                target_index = domain_classes.index(target)
+                source_index = domain_classes.index(source)
+                adjacency_matrix[target_index, source_index] = weight
 
-        # Iterate over all relationships in the graph
-        for target, source, weight in self.__get_relationships():
-            if not isinstance(source, UniversalClass):
-                continue
-
-            if not isinstance(target, DomainClass):
-                raise ValueError(
-                    "Expected target to be a DomainClass, but got: "
-                    f"{type(target).__name__}"
-                )
-
-            # Check if the universal class has other incoming relationships
-            for (
-                possible_match_target,
-                _,
-                possible_match_weight,
-            ) in self.__get_relationships_to(source):
-                if possible_match_target == target:
-                    continue
-
-                if not isinstance(possible_match_target, DomainClass):
-                    continue
-
-                # Get indices of the domain classes in the adjacency matrix
-                idx_1 = domain_classes.index(target)
-                idx_2 = domain_classes.index(possible_match_target)
-
-                if weighted:
-                    avg_weight = (weight + possible_match_weight) / 2.0
-                else:
-                    avg_weight = 1.0
-
-                # Update the adjacency matrix with the average weight
-                adjacency_matrix[idx_1, idx_2] = avg_weight
-
-                break
-            else:
-                # If no other relationships found, treat it as a self-relationship
-                idx = domain_classes.index(target)
-                adjacency_matrix[idx, idx] = 1.0 if not weighted else weight
+        # If a node has no incoming or outgoing relationships,
+        # add a self-loop with weight 1.0
+        for i, domain_class in enumerate(domain_classes):
+            if not self._get_relationships_to(
+                domain_class
+            ) and not self._get_relationships_from(domain_class):
+                adjacency_matrix[i, i] = 1.0
 
         return adjacency_matrix
 
-    def edge_difference_ratio(self, other: "Taxonomy", weighted=True) -> np.float64:
-        """Calculate the edge difference ratio between this taxonomy and another
-        by treating every two domain classes with a universal class relationship
-        between them as an edge.
-
-        The edge difference ratio is defined as the sum of absolute differences
-        between the adjacency matrices of the two taxonomies, normalized
-        by the maximum value in each cell of the matrices. Only the upper triangular
-        portion (including diagonal) of the matrices is considered to avoid
-        double-counting symmetric edges while properly accounting for self-loops.
+    def edge_difference_ratio(self, other: "Taxonomy") -> np.float64:
+        """Calculate the edge difference ratio between this taxonomy and another.
+        Assumes that both taxonomies have no universal classes.
 
         Parameters
         ----------
         other : Taxonomy
             The other taxonomy to compare against
-        weighted : bool, optional
-            Whether to consider the weights of relationships in the distance calculation,
-            by default True. If False, all relationships are treated equally (weight = 1).
 
         Returns
         -------
@@ -1304,92 +717,81 @@ class Taxonomy:
             The edge difference ratio between the two taxonomies
         """
 
-        adjacency_matrix_self = self.universal_class_adjacency_matrix(weighted)
-        adjacency_matrix_other = other.universal_class_adjacency_matrix(weighted)
+        adj1 = self._adjacency_matrix()
+        adj2 = other._adjacency_matrix()  # pylint: disable=protected-access
 
         # Validate that matrices have the same dimensions
-        if adjacency_matrix_self.shape != adjacency_matrix_other.shape:
+        if adj1.shape != adj2.shape:
             raise ValueError(
                 f"Taxonomies have incompatible domain class counts: "
-                f"{adjacency_matrix_self.shape} vs {adjacency_matrix_other.shape}. "
+                f"{adj1.shape} vs {adj2.shape}. "
                 f"Both taxonomies must have the same domain classes for comparison."
             )
 
         # Calculate element-wise differences between the two matrices
-        difference_matrix = adjacency_matrix_self - adjacency_matrix_other
+        diff = adj1 - adj2
 
         # Calculate element-wise maximum for normalization
-        max_value = np.maximum(adjacency_matrix_self, adjacency_matrix_other)
+        max_val = np.maximum(adj1, adj2)
 
-        # Create upper triangular mask (including diagonal) to avoid double-counting symmetric edges
-        n = adjacency_matrix_self.shape[0]
-        upper_triangular_mask = np.triu(np.ones((n, n), dtype=bool))
-
-        # Combine with non-zero mask
-        mask = (max_value > 0) & upper_triangular_mask
-        if not np.any(mask):
-            # Both matrices are completely zero => perfect match
+        # Both matrices are completely zero => perfect match
+        if not np.any(max_val):
             return np.float64(0.0)
 
-        # Only sum over upper triangular non-zero positions to avoid double-counting
-        edge_difference = np.sum(np.abs(difference_matrix)[mask]) / np.sum(
-            max_value[mask]
-        )
-        return edge_difference
+        return np.sum(np.abs(diff)) / np.sum(max_val)
 
-    def rmse(self, other: "Taxonomy", weighted: bool = True) -> np.float64:
-        """Calculate the Root Mean Square Error (RMSE) between this taxonomy and another
-        by treating every two domain classes with a universal class relationship
-        between them as an edge.
-
-        The RMSE is calculated as the square root of the mean squared differences
-        between the adjacency matrices of the two taxonomies. Only the upper triangular
-        portion (including diagonal) of the matrices is considered to avoid
-        double-counting symmetric edges while properly accounting for self-loops.
+    def precision_recall_f1(
+        self, other: "Taxonomy"
+    ) -> Tuple[np.float64, np.float64, np.float64]:
+        """Calculates the precision, recall, and F1 score between this taxonomy and another.
+        Assumes that both taxonomies have no universal classes.
 
         Parameters
         ----------
         other : Taxonomy
             The other taxonomy to compare against
-        weighted : bool, optional
-            Whether to consider the weights of relationships in the RMSE calculation,
-            by default True. If False, all relationships are treated equally (weight = 1).
 
         Returns
         -------
-        np.float64
-            The RMSE between the two taxonomies
+        Tuple[np.float64, np.float64, np.float64]
+            The precision, recall, and F1 score between the two taxonomies
         """
 
-        adjacency_matrix_self = self.universal_class_adjacency_matrix(weighted)
-        adjacency_matrix_other = other.universal_class_adjacency_matrix(weighted)
+        adj1 = self._adjacency_matrix()
+        adj2 = other._adjacency_matrix()  # pylint: disable=protected-access
 
         # Validate that matrices have the same dimensions
-        if adjacency_matrix_self.shape != adjacency_matrix_other.shape:
+        if adj1.shape != adj2.shape:
             raise ValueError(
                 f"Taxonomies have incompatible domain class counts: "
-                f"{adjacency_matrix_self.shape} vs {adjacency_matrix_other.shape}. "
+                f"{adj1.shape} vs {adj2.shape}. "
                 f"Both taxonomies must have the same domain classes for comparison."
             )
 
-        # Calculate element-wise squared differences between the two matrices
-        squared_difference_matrix = (
-            adjacency_matrix_self - adjacency_matrix_other
-        ) ** 2
+        # Binarize the adjacency matrices
+        adj1 = (adj1 > 0).astype(np.float64)
+        adj2 = (adj2 > 0).astype(np.float64)
 
-        # Create upper triangular mask (including diagonal) to avoid double-counting symmetric edges
-        n = adjacency_matrix_self.shape[0]
-        upper_triangular_mask = np.triu(np.ones((n, n), dtype=bool))
+        # Calculate true positives, false positives, and false negatives
+        true_positives = np.sum(np.logical_and(adj1, adj2))
+        false_positives = np.sum(np.logical_and(adj1, np.logical_not(adj2)))
+        false_negatives = np.sum(np.logical_and(np.logical_not(adj1), adj2))
 
-        # Extract upper triangular values
-        upper_triangular_values = squared_difference_matrix[upper_triangular_mask]
+        # Calculate precision, recall, and F1 score
+        precision = np.float64(
+            true_positives / (true_positives + false_positives)
+            if (true_positives + false_positives) > 0
+            else 0.0
+        )
+        recall = np.float64(
+            true_positives / (true_positives + false_negatives)
+            if (true_positives + false_negatives) > 0
+            else 0.0
+        )
+        f1_score = np.float64(
+            2 * (precision * recall) / (precision + recall)
+            if (precision + recall) > 0
+            else 0.0
+        )
 
-        # Calculate RMSE
-        if len(upper_triangular_values) == 0:
-            # Empty matrix case
-            return np.float64(0.0)
-
-        mean_squared_error = np.mean(upper_triangular_values)
-        rmse_value = np.sqrt(mean_squared_error)
-
-        return np.float64(rmse_value)
+        return precision, recall, f1_score

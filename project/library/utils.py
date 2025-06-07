@@ -1,50 +1,7 @@
+from typing import List
 import numpy as np
 import numpy.typing as npt
 from scipy.stats import truncnorm
-
-
-def form_correlation_matrix(
-    predictions: npt.NDArray[np.intp],
-    targets: npt.NDArray[np.intp],
-) -> npt.NDArray[np.intp]:
-    """Forms a correlation matrix between true target classes and predicted source classes.
-
-    This method creates a matrix where:
-    - Each row corresponds to a true class in the target domain
-    - Each column corresponds to a predicted class from the source domain
-    - The value at position (i,j) counts how many times target domain class i
-      was predicted as source domain class j
-
-    Parameters
-    ----------
-    predictions : npt.NDArray[np.intp]
-        Array of class predictions made by a source domain model
-        on target domain data
-    targets : npt.NDArray[np.intp]
-        Array of ground truth class labels for the target domain data
-
-    Returns
-    -------
-    npt.NDArray[np.intp]
-        The correlation matrix of shape (n_classes_target, n_classes_source)
-    """
-
-    # Find the number of unique classes in both predictions and targets
-    n_target_domain_classes = np.max(targets) + 1
-    n_source_domain_classes = np.max(predictions) + 1
-
-    # Initialize correlation matrix with zeros
-    correlations = np.zeros(
-        (n_target_domain_classes, n_source_domain_classes),
-        dtype=np.intp,
-    )
-
-    # Count occurrences of each (target, prediction) pair
-    for i, predicted_class in enumerate(predictions):
-        true_class = targets[i]
-        correlations[true_class, predicted_class] += 1
-
-    return correlations
 
 
 def sample_truncated_normal(
@@ -90,9 +47,9 @@ def sample_truncated_normal(
         return 0
 
 
-def hypothesize_relationships(
+def hypothesis_relationships(
     probabilities: npt.NDArray[np.float64], upper_bound: int = 5
-) -> list[int]:
+) -> List[int]:
     """Hypothesize the number of relationships based on a probability array.
 
     The function hypothesizes the number of relationships by assuming
@@ -139,4 +96,42 @@ def hypothesize_relationships(
 
     # Get the indices of the best relationships
     best_relationships = np.argsort(probabilities)[::-1][:best_number_of_relationships]
-    return best_relationships.tolist()
+    return best_relationships.tolist()  # type: ignore
+
+
+def density_threshold_relationships(
+    probabilities: npt.NDArray[np.float64],
+    threshold: float = 0.5,
+) -> List[int]:
+    """Filter relationships based on a density threshold.
+
+    Find the least number of relationships whose probabilities
+    sum up to at least the given threshold.
+
+    Parameters
+    ----------
+    probabilities : npt.NDArray[np.float64]
+        An array of probabilities for each relationship.
+    threshold : float, optional
+        The minimum cumulative probability threshold to meet, by default 0.5
+
+    Returns
+    -------
+    List[int]
+        The indices of the source classes that form the best relationships.
+    """
+
+    # Sort probabilities in descending order
+    sorted_probabilities = np.sort(probabilities)[::-1]
+
+    cumulative_sum = 0.0
+    selected_indices = []
+    for index, prob in enumerate(sorted_probabilities):
+        cumulative_sum += prob
+        selected_indices.append(index)
+        if cumulative_sum >= threshold:
+            break
+
+    # Get the original indices of the selected relationships
+    original_indices = np.argsort(probabilities)[::-1][selected_indices]
+    return original_indices.tolist()  # type: ignore

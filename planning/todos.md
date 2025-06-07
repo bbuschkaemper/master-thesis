@@ -1,27 +1,31 @@
 # Todos
 
-## Conceptual taxonomy
+## Thesis rewrite
 
-- Instead of mcfp, we use all predictions above a certain threshold (using a single mcfp means we cannot represent multiple concept relationships)
-- Only create universal class on bidirectional edges
-- Unilateral edges do not have a true meaning here (if it were a subset of the other, it would have a bidirectional edge to some degree)
-- Find some method to calculate the threshold (it should depend on how likely it is to get a random class prediction)
+- Restructure method section (first cross-domain relationship graph, then synthetic taxonomy, then metrics, then universal taxonomy)
+- Filtering methods as a subsection for both cross-domain relationship graph and synthetic taxonomy (rewrite to be modular, i.e. filter as a single function that returns a list of nodes that we create a relationship for and that function is redefined for each method)
 
-## Thresholding
+## Compare filtering methods
 
-- Most common foreign prediction does not care about probability (e.g. mcfp could be 0.51 vs 0.49 or 0.9 vs 0.1 and have same result)
-- We already use normalised probabilities as weights for edges
-- Introduce threshold for edge weights:
-  - Discard edges with weights below threshold
-  - Use domain class as its own universal class
-- Plot decision/recall curve for different thresholds (also plot with other metrics to see how they relate)
-- We have no-threshold as baseline for comparison
+- Use 2 different datasets for metrics (maybe ImageNet as second?)
+- Multiple synthetic dataset deviations with different complexities
+- Find two digit datasets to have a known mapping between them (e.g. one with color and one with black and white)
+- Write about filtering methods in method section and compare them in results section
+- Find optimal parameters for the filtering methods by comparing their metrics on the same datasets (do we need to do this for each dataset or is tuning on one dataset enough?)
+
+## Conceptual universal taxonomy
+
+- Create universal class only on bidirectional edges or for isolated nodes
+- Unilateral edges have no meaning when using thresholding that creates multiple outgoing edges per class (subset hypothesis would not hold)
+- Add to method section as second algorithm
+- Performance can only be compared on final trained model, since taxonomy algorithms are also applied to ground truth (write this in method section!)
 
 ## Universal taxonomy model training
 
-- We train a single new model with universal taxonomy as output (num universal classes equals output layer size)
+- New model with universal classes as output layer
 - We train on domain datasets:
-  - Mapping of training data target class to universal classes with edge weights as target output distribution
-  - Loss function is cross entropy between predicted and target output distribution
-- Compare accuracy of universal taxonomy model on domain datasets with baseline models
+  - Map prediction from universal classes to domain classes by using relationship probabilities
+  - Loss function is cross-entropy between predicted mapping and ground truth domain classes
+- Compare accuracy of universal taxonomy model on domain datasets with baseline models trained only on the domain datasets
 - Question: How are taxonomy correctness and model accuracy on domain datasets related?
+- Question: How does the model accuracy on domain datasets change with different universal taxonomy algorithms?

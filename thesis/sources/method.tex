@@ -313,51 +313,83 @@ we simply ignore it and therefore only have the probability of the overlapping c
 While this doesn't change the relationship that is picked as the most common foreign prediction,
 it does change the probability of the relationship, which is important for thresholding later on.
 
-\section{Universal Taxonomy Difference Metrics}
+\section{Taxonomy Difference Metrics}
 
-We created our synthetic datasets to have a known ground truth of relationships between classes.
-Now, we need to find metrics to compare the predicted relationships
-from our taxonomy generation methods
-with the ground truth calculated from the synthetic datasets.
+Now that we have methods for generating a ground truth synthetic taxonomy,
+we need to define metrics to compare the predicted taxonomy against the ground truth.
+Comparison can happen at two points in our pipeline:
+\begin{itemize}
+    \item \textbf{Universal Taxonomy Comparison:} Comparing the predicted universal taxonomy against the ground truth universal taxonomy.
+          This is done after applying our universal taxonomy generation algorithm
+          and allows us to evaluate the quality of the final taxonomy.
+          However, the algorithm might change the scale of differences between our predicted and ground truth taxonomies
+          (e.g. a unilateral vs. bidirectional relationship would be a small difference before the algorithm,
+          but would result in a subset hypothesis with two universal classes vs. one universal class after the algorithm).
+    \item \textbf{Relationship Graph Comparison:} Comparing the predicted graph of relationships between classes against the ground truth graph.
+          This is done before converting the relationship graph into a universal taxonomy
+          and allows us to evaluate the quality of the relationships between classes.
+\end{itemize}
 
-\subsection{Universal Class Graph}
+\subsection{Constructing Adjacency Matrices}
 
-We build our metrics to compare a ground truth synthetic taxonomy with a predicted taxonomy
-that uses the same domain classes (i.e. the same nodes in the graph).
+For our metrics, we first need to represent our intra-domain relationships as adjacency matrices.
+We concatinate every class from every domain into a single set of classes $C = \bigcup_{i=1}^n C_i$,
+where $n$ is the number of domains.
+We then create an adjacency matrix $A\in [0, 1]^{|C|\times|C|}$,
+where $A(i,j)$ is the relationship probability between classes $c_i$ and $c_j$.
 
-In a universal taxonomy graph, every universal class $c^U$ can be understood as an edge
-between the domain classes that have incoming edges to it.
-Every universal class has either one or two incoming edges, which will always be from different domain classes.
-Therefore, we can represent a universal taxonomy as a new graph,
-where every domain class is a vertex and every universal class is an edge between two vertices
-(or a self-loop if it has only one incoming edge).
-
-We define a concatenation of all domain classes in a taxonomy as $C_X = \bigcup_{i=1}^{n} C_i$.
-We can now build an adjacency matrix $A_X\in [0, 1]^{|C_X|\times|C_X|}$ for the new universal class graph.
-A connection between two classes $c_i^X$ and $c_j^X$ with $i\neq j$ exists if there is a universal class $c_k^U$ that has incoming edges from both classes.
-A self-loop exists if there is a universal class $c_k^U$ that has an incoming edge from class $c_i^X$ without an incoming edge from any other class.
-The value of the connection is the average weight of the two (or one) incoming edges to the universal class $c_k^U$.
+Additionally, we need to handle the case where a class has no relationships at all:
+Since these classes will later become a single universal class,
+we additionally create a self-loop for every class $c_i$ without relationships,
+which is defined as $A(i,i) = 1$.
 
 \subsection{Edge Difference Ratio}
 
-Our first metric is the edge difference ratio (EDR) between two graphs $G_1$ and $G_2$.
-The metric measures the difference in edges between two graphs,
-normalised by the edge weight sum of the union of the two graphs' edges (i.e. the weight of all edges without double counting).
-This normalisation limits the metric to a range of $[0, 1]$,
-where 0 indicates that the two graphs are identical and 1 indicates that they have no edges in common.
+Our first metric is the edge difference ratio (EDR),
+which measures the difference in edge weights between two relationship graphs $G_1$ and $G_2$.
+The metric is bounded between 0 and 1, where 0 indicates that the two graphs are identical
+and 1 indicates that the two graphs have no edges in common.
 
 For two adjacency matrices $A_1$ and $A_2$ of graphs $G_1$ and $G_2$,
 we define the edge difference ratio as follows:
 
 \begin{equation}
-    \text{EDR}(G_1, G_2) = \frac{\sum_{i \leq j} |A_1(i,j) - A_2(i,j)|}{\sum_{i \leq j} \max(A_1(i,j), A_2(i,j))}
+    \text{EDR}(G_1, G_2) = \frac{\sum_{i,j} |A_1(i,j) - A_2(i,j)|}{\sum_{i,j} \max(A_1(i,j), A_2(i,j))}
 \end{equation}
 
-This definition only considers the upper triangular portion (including the diagonal)
-of the adjacency matrices to avoid double-counting symmetric edges,
-while still properly accounting for self-loops.
+This definition captures the difference in edge weights between the two graphs,
+while normalizing it by the total edge weights in both graphs (without double counting edges).
 
 Our EDR metric is similar to the Jaccard index~\cite{jaccard_distribution_1912} as well as the Tanimoto coefficient~\cite{tanimoto_elementary_1958}
 when we consider the adjacency matrices as sets of edges.
 In contrast to these metrics, however, our EDR metric supports weighted edges,
 which allows us to respect the probabilities of relationships between classes.
+
+\subsection{Precision, Recall, and F1 Score}
+
+While the edge weights in our relationship graphs are important,
+every single edge (even with a very low probability) can create a new universal class
+and therefore change the universal taxonomy.
+
+To account for this, we also define precision, recall, and F1 score metrics
+for the relationship graphs.
+
+For two adjacency matrices $A_1$ and $A_2$ of graphs $G_1$ and $G_2$,
+we first create binarised versions of the matrices as $B_1$ and $B_2$,
+where $B_1(i,j) = 1$ if $A_1(i,j) > 0$ and $B_2(i,j) = 1$ if $A_2(i,j) > 0$.
+
+Next, we compute the true positives, false positives, and false negatives as follows:
+
+\begin{itemize}
+    \item \textbf{True Positives (TP):} The number of edges that are present in both $B_1$ and $B_2$.
+    \item \textbf{False Positives (FP):} The number of edges that are present in $B_1$ but not in $B_2$.
+    \item \textbf{False Negatives (FN):} The number of edges that are present in $B_2$ but not in $B_1$.
+\end{itemize}
+
+Using these counts, we can then compute the precision, recall, and F1 score as follows:
+
+\begin{itemize}
+    \item \textbf{Precision:} The ratio of true positives to the sum of true positives and false positives.
+    \item \textbf{Recall:} The ratio of true positives to the sum of true positives and false negatives.
+    \item \textbf{F1 Score:} The harmonic mean of precision and recall.
+\end{itemize}
