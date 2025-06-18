@@ -1,3 +1,4 @@
+from typing import TypeAlias, Literal
 import lightning as pl
 import torch
 from torchvision.models.resnet import (
@@ -10,14 +11,19 @@ from torch.optim import AdamW, SGD
 from torch.optim.lr_scheduler import MultiStepLR, StepLR
 
 
+_Architecture: TypeAlias = Literal["resnet50", "resnet152"]
+_Optimizer: TypeAlias = Literal["adamw", "sgd"]
+_LRScheduler: TypeAlias = Literal["multistep", "step"]
+
+
 class ResNetModel(pl.LightningModule):
     def __init__(
         self,
         num_classes,
-        architecture,
-        optim,
+        architecture: _Architecture,
+        optim: _Optimizer,
         optim_kwargs,
-        lr_scheduler=None,
+        lr_scheduler: _LRScheduler | None = None,
         lr_scheduler_kwargs=None,
     ):
         super().__init__()
@@ -38,7 +44,6 @@ class ResNetModel(pl.LightningModule):
         else:
             raise ValueError(f"Unsupported architecture: {self.architecture}")
 
-        # Replace last layer to fit the number of classes
         num_features = self.model.fc.in_features
         self.model.fc = torch.nn.Sequential(  # type: ignore
             torch.nn.Dropout(0.5),

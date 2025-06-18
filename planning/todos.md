@@ -12,6 +12,7 @@
 - Find two digit datasets to have a known mapping between them (e.g. one with color and one with black and white)
 - Write about filtering methods in method section and compare them in results section
 - Find optimal parameters for the filtering methods by comparing their metrics on the same datasets (do we need to do this for each dataset or is tuning on one dataset enough?)
+- Precision/Recall curves with parameters for filtering methods (run on multiple datasets)
 
 ## Conceptual universal taxonomy
 

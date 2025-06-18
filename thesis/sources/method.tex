@@ -2,8 +2,6 @@
 \chapter{Methodology}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Universal Taxonomy}
-
 Our main goal is to create a universal taxonomy that connects multiple
 image classification datasets.
 This taxonomy maps every dataset class to a universal class,
@@ -13,7 +11,7 @@ In the end, our taxonomy will allow us to train models that can classify images
 from multiple datasets at once, building a robust and flexible system
 that can quickly adapt to new domains.
 
-\subsection{Formal Definitions} \label{sec:taxonomy_definitions}
+\section{Formal Definitions} \label{sec:taxonomy_definitions}
 
 To formalise our algorithm for building a universal taxonomy,
 we first need to define some terms:
@@ -50,10 +48,10 @@ we first need to define some terms:
           We denote this as a function $\text{probability}: E \mapsto [0, 1]$.
 \end{itemize}
 
-\subsection{Graph Construction} \label{sec:graph_construction}
+\section{Cross-Domain Graph Generation} \label{sec:graph_construction}
 
 Before building our universal taxonomy,
-we need to construct our initial graph:
+we need to construct our initial graph that captures the relationships between classes across different domains:
 
 \begin{enumerate}
     \item \textbf{Foreign predictions:} For each dataset with its corresponding model,
@@ -75,70 +73,25 @@ we need to construct our initial graph:
           where $P_{ab}(i, j)$ is the probability of classifying an image from class $c_i^a$
           as class $c_j^b$.
     \item \textbf{Graph construction:} We now create a directed graph that represents the relationships between classes and datasets
-          by iterating over every dataset $D_a$ with every dataset $D_b$ where $a \neq b$:
+          by iterating over every dataset $D_a$ with every dataset $D_b$ where $a \neq b$ for cross-predictions:
           \begin{enumerate}
-              \item We collect the indices of the per-row maximum values in the matrix $P_{ab}$:
-                    \begin{equation*}
-                        I = \left\{\text{argmax}_{j\in\{1,\ldots,|C_b|\}} P_{ab}(i, j) \mid i\in\{1,\ldots,|C_a|\}\right\}
-                    \end{equation*}
-              \item For every $i\in \{1,\ldots,|C_a|\}$ where $P_{ab}(i, I_i) > 0$:
+              \item We want to evaluate different methods for selecting the most relevant relationships,
+                    so we formalise a function $\text{select\_relationships}(P_{ab}): [0, 1]^{|C_a| \times |C_b|} \mapsto \mathcal{P}(\mathbb{N}^2)$
+                    that selects a set of relationships from the probability matrix $P_{ab}$.
+              \item For every $(i, j) \in \text{select\_relationships}(P_{ab})$:
                     \begin{enumerate}
-                        \item We create the vertices $v_k$ and $v_l$ for classes $c_i^a$ and $c_{I_i}^b$ respectively
+                        \item We create the vertices $v_k$ and $v_l$ for classes $c_i^a$ and $c_j^b$ respectively
                               if they do not already exist and add them to the graph
                               (otherwise we find the existing vertices for these classes as $v_k$ and $v_l$).
                         \item We create an edge $e_{kl}$ between the vertices $v_k$ and $v_l$ and add it to the graph.
-                        \item We define $\text{probability}(e_{kl}) = P_{ab}(i, I_i)$.
+                        \item We define $\text{probability}(e_{kl}) = P_{ab}(i, j)$.
                     \end{enumerate}
           \end{enumerate}
 \end{enumerate}
 
-\subsection{Taxonomy Generation}
+\subsection{Selecting Relationships}
 
-After constructing our initial graph structure, we now need to transform it into a universal taxonomy
-that merges classes from different datasets into universal classes where they share similar concepts.
-
-\subsubsection{Taxonomy Building Rules}
-
-We transform our initial graph of domain-to-domain relationships into a universal taxonomy
-through a loop that applies a set of rules until no more changes can be made.
-The rules are checked from first to last, starting from the first again after a rule is applied.
-The rules are as follows:
-
-\begin{enumerate}
-    \item \textbf{Isolated Node Rule:} For any domain class A that has no relationships
-          (neither incoming nor outgoing edges), create a new universal class B
-          and add the relationship $A \rightarrow B$.
-          We also define the probability of the relationship's edge as 1 and
-          the classes of the universal class as $\{A\}$.
-
-          This ensures that all domain classes without relationships (which can be created by later rules)
-          are still represented in the universal taxonomy.
-
-    \item \textbf{Bidirectional Relationship Rule:} When two classes have bidirectional relationships
-          (A $\rightarrow$ B and B $\rightarrow$ A), they likely represent the same concept.
-          We resolve this by creating a new universal class C and adding relationships
-          $A \rightarrow C$ and $B \rightarrow C$ to the graph.
-          The probability of the new relationships is set to the average of the bidirectional relationships and the classes of the universal class
-          will be the two classes that were merged (or, if the two classes are universal classes themselves,
-          the union of their classes).
-
-    \item \textbf{Transitive Cycle Rule:} If we have relationships A $\rightarrow$ B $\rightarrow$ C
-          where A and C are in the same domain, we have a problem since classes within a domain
-          are disjoint, which means that one of the relationships must be incorrect.
-          We solve this by removing the relationship with the lower probability,
-          thus breaking the cycle.
-
-    \item \textbf{Unilateral Relationship Rule:} A uniliteral relationship
-          A $\rightarrow$ B indicates that the concepts of class A are a subset of the concepts of class B.
-          We therefore create two new universal classes:
-          \begin{itemize}
-              \item Class C, which contains both classes A and B and has incoming relationships
-                    from both classes with the probability of the uniliteral relationship.
-                    This universal class represents the union of the two classes.
-              \item Class D, which contains only class B and has a relationship from class B with a probability 1.
-                    This universal class represents the concepts of class B that are not in class A.
-          \end{itemize}
-\end{enumerate}
+% TODO
 
 \section{Synthetic Taxonomy Generation}
 
@@ -177,7 +130,7 @@ This method allows us to precisely control the taxonomy structure while creating
 
 \subsection{Formal Definitions}
 
-We define our synthetic taxonomy framework on top of the definitions from \autoref{sec:taxonomy_definitions}.
+We define our synthetic taxonomy framework on top of the definitions from \autoref{sec:taxonomy_definitions}:
 
 \begin{itemize}
     \item \textbf{Atomic Concepts} $\mathcal{U}=\{1,2,\ldots,n\}$:
@@ -312,6 +265,49 @@ we simply ignore it and therefore only have the probability of the overlapping c
 
 While this doesn't change the relationship that is picked as the most common foreign prediction,
 it does change the probability of the relationship, which is important for thresholding later on.
+
+\section{Universal Taxonomy Algorithm}
+
+After constructing our initial graph structure from cross-domain predictions (as described in \autoref{sec:graph_construction}), we now need to transform it into a universal taxonomy
+that merges classes from different datasets into universal classes where they share similar concepts.
+
+\subsection{Taxonomy Building Rules}
+
+\begin{enumerate}
+    \item \textbf{Isolated Node Rule:} For any domain class A that has no relationships
+          (neither incoming nor outgoing edges), create a new universal class B
+          and add the relationship $A \rightarrow B$.
+          We also define the probability of the relationship's edge as 1 and
+          the classes of the universal class as $\{A\}$.
+
+          This ensures that all domain classes without relationships (which can be created by later rules)
+          are still represented in the universal taxonomy.
+
+    \item \textbf{Bidirectional Relationship Rule:} When two classes have bidirectional relationships
+          (A $\rightarrow$ B and B $\rightarrow$ A), they likely represent the same concept.
+          We resolve this by creating a new universal class C and adding relationships
+          $A \rightarrow C$ and $B \rightarrow C$ to the graph.
+          The probability of the new relationships is set to the average of the bidirectional relationships and the classes of the universal class
+          will be the two classes that were merged (or, if the two classes are universal classes themselves,
+          the union of their classes).
+
+    \item \textbf{Transitive Cycle Rule:} If we have relationships A $\rightarrow$ B $\rightarrow$ C
+          where A and C are in the same domain, we have a problem since classes within a domain
+          are disjoint, which means that one of the relationships must be incorrect.
+          We solve this by removing the relationship with the lower probability,
+          thus breaking the cycle.
+
+    \item \textbf{Unilateral Relationship Rule:} A uniliteral relationship
+          A $\rightarrow$ B indicates that the concepts of class A are a subset of the concepts of class B.
+          We therefore create two new universal classes:
+          \begin{itemize}
+              \item Class C, which contains both classes A and B and has incoming relationships
+                    from both classes with the probability of the uniliteral relationship.
+                    This universal class represents the union of the two classes.
+              \item Class D, which contains only class B and has a relationship from class B with a probability 1.
+                    This universal class represents the concepts of class B that are not in class A.
+          \end{itemize}
+\end{enumerate}
 
 \section{Taxonomy Difference Metrics}
 

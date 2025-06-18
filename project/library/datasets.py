@@ -460,8 +460,12 @@ class CIFAR100MappedDataModule(LightningDataModule):
                 v2.ToImage(),
                 v2.ToDtype(torch.float32, scale=True),
                 v2.Resize(size=(32, 32)),  # CIFAR100 images are 32x32
-                v2.RandomHorizontalFlip(),
+                v2.RandomHorizontalFlip(p=0.5),
                 v2.RandomCrop(32, padding=4),
+                v2.ColorJitter(
+                    brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1
+                ),  # Add color jitter
+                v2.RandomErasing(p=0.1, scale=(0.02, 0.33), ratio=(0.3, 3.3)),
                 v2.Normalize(
                     mean=[0.5071, 0.4867, 0.4408], std=[0.2675, 0.2565, 0.2761]
                 ),
