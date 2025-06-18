@@ -62,8 +62,8 @@ class CrossPredictionsTaxonomy(Taxonomy):
         relationship_type : _RELATIONSHIP_TYPE, optional
             The type of relationship to establish between domains. Defaults to "mcfp".
         threshold : float, optional
-            The fixed threshold for establishing relationships.
-            This applies only to "threshold" relationship type.
+            The threshold for establishing relationships.
+            This applies only to "threshold" and "density_threshold" relationship types.
             Defaults to 0.5.
         """
 
@@ -145,7 +145,9 @@ class CrossPredictionsTaxonomy(Taxonomy):
                             Relationship((target_class, source_class, confidence))
                         )
                 elif relationship_type == "density_threshold":
-                    relationships = density_threshold_relationships(class_probabilities)
+                    relationships = density_threshold_relationships(
+                        class_probabilities, threshold=threshold
+                    )
 
                     # Iterate through all source classes
                     for source_class_idx in relationships:
