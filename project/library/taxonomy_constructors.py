@@ -269,7 +269,7 @@ class SyntheticTaxonomy(Taxonomy):
         concept_cluster_size_mean: float,
         concept_cluster_size_variance: float,
         no_prediction_class: bool = False,
-        relationship_type: _SyntheticRelationshipFilteringMethod = "mcfp",
+        relationship_type: _SyntheticRelationshipFilteringMethod = "true",
         atomic_concept_labels: List[str] | None = None,
         random_seed: int = 42,
     ):

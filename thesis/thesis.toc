@@ -3,23 +3,28 @@
 \contentsline {chapter}{\numberline {2}Methodology}{3}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Formal Definitions}{3}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Cross-Domain Graph Generation}{4}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Synthetic Taxonomy Generation}{5}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}The Need for a Controlled Ground Truth}{5}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Our Approach: Building Synthetic Datasets}{5}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Formal Definitions}{5}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Randomized Domain Generation}{6}{subsection.2.3.4}%
-\contentsline {subsubsection}{\nonumberline Parameter Sampling}{6}{subsubsection*.3}%
-\contentsline {subsubsection}{\nonumberline Domain Generation Algorithm}{6}{subsubsection*.5}%
-\contentsline {subsection}{\numberline {2.3.5}Modeling Cross-Domain Relationships}{7}{subsection.2.3.5}%
-\contentsline {subsubsection}{\nonumberline Simulating Neural Network Predictions}{7}{subsubsection*.7}%
-\contentsline {subsubsection}{\nonumberline Relationship Calculation}{7}{subsubsection*.9}%
-\contentsline {subsubsection}{\nonumberline A Concrete Example}{8}{subsubsection*.11}%
-\contentsline {subsubsection}{\nonumberline No-Prediction Classes}{8}{subsubsection*.13}%
-\contentsline {section}{\numberline {2.4}Universal Taxonomy Algorithm}{9}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Taxonomy Building Rules}{9}{subsection.2.4.1}%
-\contentsline {section}{\numberline {2.5}Taxonomy Difference Metrics}{10}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Constructing Adjacency Matrices}{10}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Edge Difference Ratio}{10}{subsection.2.5.2}%
-\contentsline {subsection}{\numberline {2.5.3}Precision, Recall, and F1 Score}{11}{subsection.2.5.3}%
-\contentsline {chapter}{\nonumberline Bibliography}{13}{chapter*.14}%
+\contentsline {subsection}{\numberline {2.2.1}Selecting Relationships}{5}{subsection.2.2.1}%
+\contentsline {subsubsection}{\nonumberline Naive Thresholding}{5}{subsubsection*.3}%
+\contentsline {subsubsection}{\nonumberline Most Common Foreign Predictions}{5}{subsubsection*.5}%
+\contentsline {subsubsection}{\nonumberline Density Thresholding}{5}{subsubsection*.7}%
+\contentsline {subsubsection}{\nonumberline Relationship Hypothesis}{6}{subsubsection*.9}%
+\contentsline {section}{\numberline {2.3}Synthetic Taxonomy Generation}{6}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}The Need for a Controlled Ground Truth}{6}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Our Approach: Building Synthetic Datasets}{7}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Formal Definitions}{7}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Randomized Domain Generation}{8}{subsection.2.3.4}%
+\contentsline {subsubsection}{\nonumberline Parameter Sampling}{8}{subsubsection*.11}%
+\contentsline {subsubsection}{\nonumberline Domain Generation Algorithm}{8}{subsubsection*.13}%
+\contentsline {subsection}{\numberline {2.3.5}Modeling Cross-Domain Relationships}{9}{subsection.2.3.5}%
+\contentsline {subsubsection}{\nonumberline Simulating Neural Network Predictions}{9}{subsubsection*.15}%
+\contentsline {subsubsection}{\nonumberline Relationship Calculation}{9}{subsubsection*.17}%
+\contentsline {subsubsection}{\nonumberline A Concrete Example}{10}{subsubsection*.19}%
+\contentsline {subsubsection}{\nonumberline No-Prediction Classes}{10}{subsubsection*.21}%
+\contentsline {section}{\numberline {2.4}Universal Taxonomy Algorithm}{10}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Taxonomy Building Rules}{11}{subsection.2.4.1}%
+\contentsline {section}{\numberline {2.5}Taxonomy Difference Metrics}{11}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Constructing Adjacency Matrices}{12}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Edge Difference Ratio}{12}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Precision, Recall, and F1 Score}{13}{subsection.2.5.3}%
+\contentsline {chapter}{\nonumberline Bibliography}{15}{chapter*.22}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

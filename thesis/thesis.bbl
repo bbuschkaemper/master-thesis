@@ -19,6 +19,60 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
+    \entry{bevandic_automatic_2022}{misc}{}{}
+      \name{author}{2}{}{%
+        {{hash=4e1f30a3fd1df5cb15da7e539c0024f0}{%
+           family={Bevandić},
+           familyi={B\bibinitperiod},
+           given={Petra},
+           giveni={P\bibinitperiod}}}%
+        {{hash=76d56baf1c4ef7fe123a26208520fb30}{%
+           family={Šegvić},
+           familyi={Š\bibinitperiod},
+           given={Siniša},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{0403d2c7c0f6e05833f89761938e250e}
+      \strng{fullhash}{0403d2c7c0f6e05833f89761938e250e}
+      \strng{fullhashraw}{0403d2c7c0f6e05833f89761938e250e}
+      \strng{bibnamehash}{0403d2c7c0f6e05833f89761938e250e}
+      \strng{authorbibnamehash}{0403d2c7c0f6e05833f89761938e250e}
+      \strng{authornamehash}{0403d2c7c0f6e05833f89761938e250e}
+      \strng{authorfullhash}{0403d2c7c0f6e05833f89761938e250e}
+      \strng{authorfullhashraw}{0403d2c7c0f6e05833f89761938e250e}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Training semantic segmentation models on multiple datasets has sparked a lot of recent interest in the computer vision community. This interest has been motivated by expensive annotations and a desire to achieve proficiency across multiple visual domains. However, established datasets have mutually incompatible labels which disrupt principled inference in the wild. We address this issue by automatic construction of universal taxonomies through iterative dataset integration. Our method detects subset-superset relationships between dataset-specific labels, and supports learning of sub-class logits by treating super-classes as partial labels. We present experiments on collections of standard datasets and demonstrate competitive generalization performance with respect to previous work.}
+      \field{day}{26}
+      \field{eprinttype}{arxiv}
+      \field{month}{10}
+      \field{number}{{arXiv}:2207.08445}
+      \field{title}{Automatic universal taxonomies for multi-domain semantic segmentation}
+      \field{urlday}{21}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2207.08445
+      \endverb
+      \verb{eprint}
+      \verb 2207.08445 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2207.08445
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2207.08445
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
     \entry{deng_imagenet_2009}{inproceedings}{}{}
       \name{author}{6}{}{%
         {{hash=cbaf4f8829c5ef01cf9659d1d6975526}{%

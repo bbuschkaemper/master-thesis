@@ -1,10 +1,5 @@
 # Todos
 
-## Thesis rewrite
-
-- Restructure method section (first cross-domain relationship graph, then synthetic taxonomy, then metrics, then universal taxonomy)
-- Filtering methods as a subsection for both cross-domain relationship graph and synthetic taxonomy (rewrite to be modular, i.e. filter as a single function that returns a list of nodes that we create a relationship for and that function is redefined for each method)
-
 ## Compare filtering methods
 
 - Use 2 different datasets for metrics (maybe ImageNet as second?)

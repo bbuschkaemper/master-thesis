@@ -91,7 +91,83 @@ we need to construct our initial graph that captures the relationships between c
 
 \subsection{Selecting Relationships}
 
-% TODO
+To now filter relationships from the probability matrix,
+we define a range of different methods and later evaluate their performance.
+
+Our main challenges are:
+
+\begin{itemize}
+    \item \textbf{Unknown number of shared concepts:} We don't know how many concepts two classes from different
+          domains share, so we do not know how high the probability of a relationship should be.
+    \item \textbf{Noisy predictions:} A low model accuracy can severely impact the relationship
+          predictions, since - depending on the number of foreign classes that share concepts with the class -
+          the target probabilities can be very low, making even a small number of wrong predictions
+          a huge obstacle.
+    \item \textbf{Unbalanced datasets:} Some datasets might have more images for a class than others,
+          which can lead to skewed probabilities.
+          This can be mitigated by preprocessing the datasets to balance the number of images per class,
+          but our goal is to create a methodology that can be applied to any dataset without
+          specific requirements on the datasets.
+\end{itemize}
+
+\subsubsection{Naive Thresholding}
+
+The most straightforward method is to apply a fixed threshold to the probabilities:
+\begin{equation*}
+    \text{select\_relationships}(P_{ab}) = \{(i, j) \mid P_{ab}(i, j) \geq t\}
+\end{equation*}
+where $t$ is a threshold value between 0 and 1.
+
+\subsubsection{Most Common Foreign Predictions}
+
+As in the paper that provided the ground work for our methodology~\cite{bevandic_automatic_2022},
+we can also select the single most common foreign prediction for each class:
+\begin{equation*}
+    \text{select\_relationships}(P_{ab}) = \{(i, j) \mid j = \text{argmax}_{j'} P_{ab}(i, j')\}
+\end{equation*}
+
+\subsubsection{Density Thresholding}
+
+Another approach is to use the least amount of relationships
+whose summed probabilities cover a certain percentage of the total probability mass.
+This can be done by sorting the probabilities in descending order and then selecting the smallest set of relationships
+that covers at least $p$ percent of the total probability mass:
+\begin{enumerate}
+    \item We define $R=\emptyset$ as the set of relationships to select.
+    \item For every $i\in \{1, \ldots, |C_a|\}$:
+          \begin{enumerate}
+              \item Let $X_i$ be the list of all probabilities in row $i$ of $P_{ab}$ sorted in descending order.
+              \item We find the smallest $k$ such that $\sum_{j=1}^k X_i(j) \geq p$.
+              \item We add the first $k$ relationships of the sorted list $X_i$ to $R$.
+          \end{enumerate}
+    \item We return $R$ for the function $\text{select\_relationships}(P_{ab})$.
+\end{enumerate}
+
+\subsubsection{Relationship Hypothesis}
+
+Let us naively assume that every relationship between two classes
+is based on a single shared concept.
+In this case, the probability of every outgoing edge from a class $c_i^a$
+should be roughly equal.
+
+We can therefore hypothesise the probability distribution based on the number of relationships
+and compare this hypothesis against the actual probabilities in the matrix $P_{ab}$:
+\begin{enumerate}
+    \item We define $R=\emptyset$ as the set of relationships to select.
+    \item For every $i\in \{1, \ldots, |C_a|\}$:
+          \begin{enumerate}
+              \item Let $X_i$ be the list of all probabilities in row $i$ of $P_{ab}$ sorted in descending order.
+              \item We find the $k\in\{1, \ldots, n\}$ such that we minimise:
+                    \begin{equation*}
+                        \sum_{j=1}^k \left| X_i(j) - \frac{1}{k} \right| + \sum_{j=k+1}^{|C_b|} X_i(j)
+                    \end{equation*}
+              \item We add the first $k$ relationships of the sorted list $X_i$ to $R$.
+          \end{enumerate}
+    \item We return $R$ for the function $\text{select\_relationships}(P_{ab})$.
+\end{enumerate}
+
+In this equation, $n$ is the upper bound of the number of relationships
+for a class $c_i^a$ that we want to test against.
 
 \section{Synthetic Taxonomy Generation}
 
@@ -262,9 +338,6 @@ Some datasets have a special class that indicates that the model could not class
 For these \enquote{no-prediction} classes, we need to adapt the relationship probability calculation:
 Instead of distributing the remaining probability mass evenly across all classes,
 we simply ignore it and therefore only have the probability of the overlapping concepts.
-
-While this doesn't change the relationship that is picked as the most common foreign prediction,
-it does change the probability of the relationship, which is important for thresholding later on.
 
 \section{Universal Taxonomy Algorithm}
 
