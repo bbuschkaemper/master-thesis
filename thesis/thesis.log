@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2025.4.30)  19 JUN 2025 20:16
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2025.4.30)  20 JUN 2025 17:54
  restricted system commands enabled.
  file:line:error style messages enabled.
 **/home/sentinel/Development/master-thesis/thesis/thesis.tex
@@ -1289,7 +1289,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 Writing index file thesis.idx
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
-(./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux))
+(./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux) (./sources/results.aux) (./sources/discussion.aux) (./sources/conclusion.aux))
 \openout1 = thesis.aux
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
@@ -1488,8 +1488,50 @@ Overfull \hbox (1.78523pt too wide) in paragraph at lines 391--397
 [12])
 
 [13]
+\openout2 = sources/results.aux
+ (./sources/results.tex
 
 [14
+
+
+
+
+
+]
+chapter 3.
+
+
+[15])
+
+[16]
+\openout2 = sources/discussion.aux
+ (./sources/discussion.tex
+chapter 4.
+)
+
+[17
+
+
+
+
+
+]
+\openout2 = sources/conclusion.aux
+ (./sources/conclusion.tex
+
+[18
+
+
+
+
+
+]
+chapter 5.
+)
+
+[19]
+
+[20
 
 
 
@@ -1497,21 +1539,28 @@ Overfull \hbox (1.78523pt too wide) in paragraph at lines 391--397
 ] (./thesis.ind)
 chapter without number
 
-Overfull \hbox (35.32722pt too wide) in paragraph at lines 131--131
+Overfull \hbox (40.58322pt too wide) in paragraph at lines 134--134
 []\TU/EBGaramond(0)/m/n/10.95 C. Fell-baum. \TU/EBGaramond(0)/m/it/10.95 Word-Net: An Elec-tronic Lex-i-cal Database\TU/EBGaramond(0)/m/n/10.95 . The MIT Press, 1998. \TU/EBGaramond(0)/m/sc/10.95 󰅱󰆢󰅑󰆈\TU/EBGaramond(0)/m/n/10.95 : 9780262272551.
  []
 
 
-Overfull \hbox (6.75589pt too wide) in paragraph at lines 131--131
-[]\TU/EBGaramond(0)/m/n/10.95 T. T. Tan-i-moto. \TU/EBGaramond(0)/m/it/10.95 An El-e-men-tary Math-e-mat-i-cal The-ory of Clas-si-fi-ca-tion and Pre-dic-tion\TU/EBGaramond(0)/m/n/10.95 . Google-
+
+[21
+
+
+]
+Overfull \hbox (5.90498pt too wide) in paragraph at lines 134--134
+\TU/SourceCodePro(0)/m/n/10.95 D1 . 20086$[][]\TU/EBGaramond(0)/m/n/10.95 . \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 https : / / data . caltech . edu / records / 20086$[][] \TU/EBGaramond(0)/m/n/10.95 (vis-ited on 03/19/2025). 
+ []
+
+
+Overfull \hbox (3.4378pt too wide) in paragraph at lines 134--134
+\TU/EBGaramond(0)/m/n/10.95 Google-Books-ID: yp34HAAA-CAAJ. In-ter-na-tional Busi-ness Ma-chines Cor-po-ra-tion, 1958. 
  []
 
 
 
-[15
-
-
-] (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux))
+[22] (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux) (./sources/results.aux) (./sources/discussion.aux) (./sources/conclusion.aux))
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
@@ -1522,19 +1571,19 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 43458 strings out of 475506
+ 43629 strings out of 475506
  100000,2373549 words of node,token memory allocated
- 858 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 4 glue, 4 kern, 1 glyph, 49 attribute, 91 glue_spec, 26 attribute_list, 1 write, 5 pdf_action nodes
-   avail lists: 1:1,2:1462,3:477,4:172,5:455,6:115,7:6106,8:80,9:641,10:10,11:465
- 65643 multiletter control sequences out of 65536+600000
- 115 fonts using 55563999 bytes
+ 926 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 glyph, 61 attribute, 91 glue_spec, 32 attribute_list, 1 write, 8 pdf_action nodes
+   avail lists: 1:1,2:1718,3:509,4:225,5:458,6:146,7:6112,8:81,9:694,10:10,11:465
+ 65727 multiletter control sequences out of 65536+600000
+ 118 fonts using 57110103 bytes
  122i,20n,114p,10949b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf>
-Output written on thesis.pdf (21 pages, 100253 bytes).
+Output written on thesis.pdf (28 pages, 111051 bytes).
 
-PDF statistics: 358 PDF objects out of 1000 (max. 8388607)
- 307 compressed objects within 4 object streams
- 108 named destinations out of 1000 (max. 131072)
- 145 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 460 PDF objects out of 1000 (max. 8388607)
+ 401 compressed objects within 5 object streams
+ 132 named destinations out of 1000 (max. 131072)
+ 209 words of extra memory for PDF output out of 10000 (max. 100000000)
 

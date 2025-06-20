@@ -1,5 +1,13 @@
 # Todos
 
+## Thesis
+
+- Hypothesis for the thesis: "Can we create a universal model based on universal taxonomy that performs similar to baseline models trained on domain datasets?"
+
+## Taxonomy generation
+
+- Test taxonomy generation on cifar100-caltech101 to see if it works and write a lot about it in the results section (we can have a lot of examples/visualizations here)
+
 ## Compare filtering methods
 
 - Use 2 different datasets for metrics (maybe ImageNet as second?)
