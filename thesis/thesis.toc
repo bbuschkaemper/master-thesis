@@ -31,9 +31,11 @@
 \contentsline {subsection}{\numberline {3.1.1}Datasets}{15}{subsection.3.1.1}%
 \contentsline {subsection}{\numberline {3.1.2}Training Domain Models}{16}{subsection.3.1.2}%
 \contentsline {subsubsection}{\nonumberline Model Architecture}{16}{subsubsection*.23}%
-\contentsline {section}{\numberline {3.2}Taxonomy Generation}{16}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Universal Models}{16}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Discussion}{17}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusion}{19}{chapter.5}%
-\contentsline {chapter}{\nonumberline Bibliography}{21}{chapter*.24}%
+\contentsline {subsubsection}{\nonumberline Training Procedure}{17}{subsubsection*.26}%
+\contentsline {subsubsection}{\nonumberline Results}{18}{subsubsection*.29}%
+\contentsline {section}{\numberline {3.2}Taxonomy Generation}{18}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Universal Models}{18}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Discussion}{19}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusion}{21}{chapter.5}%
+\contentsline {chapter}{\nonumberline Bibliography}{23}{chapter*.30}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

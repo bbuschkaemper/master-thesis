@@ -1,5 +1,5 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2025.4.30)  20 JUN 2025 17:54
- restricted system commands enabled.
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2025.4.30)  21 JUN 2025 16:29
+ system commands enabled.
  file:line:error style messages enabled.
 **/home/sentinel/Development/master-thesis/thesis/thesis.tex
 (/home/sentinel/Development/master-thesis/thesis/thesis.tex
@@ -1287,54 +1287,194 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 \openout4 = thesis.idx
 
 Writing index file thesis.idx
+(/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks46
+\pgfutil@tempdima=\dimen260
+\pgfutil@tempdimb=\dimen261
+) (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box74
+) (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (/usr/share/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+ (/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/usr/share/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
+ (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks47
+\pgfkeys@temptoks=\toks48
+ (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks49
+))
+\pgf@x=\dimen262
+\pgf@y=\dimen263
+\pgf@xa=\dimen264
+\pgf@ya=\dimen265
+\pgf@xb=\dimen266
+\pgf@yb=\dimen267
+\pgf@xc=\dimen268
+\pgf@yc=\dimen269
+\pgf@xd=\dimen270
+\pgf@yd=\dimen271
+\w@pgf@writea=\write5
+\r@pgf@reada=\read4
+\c@pgf@counta=\count499
+\c@pgf@countb=\count500
+\c@pgf@countc=\count501
+\c@pgf@countd=\count502
+\t@pgf@toka=\toks50
+\t@pgf@tokb=\toks51
+\t@pgf@tokc=\toks52
+\pgf@sys@id@count=\count503
+ (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+)
+Driver file for pgf: pgfsys-luatex.def
+ (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.def
+File: pgfsys-luatex.def 2023-01-15 v3.1.10 (3.1.10)
+ (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+))) (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfsyssoftpath@smallbuffer@items=\count504
+\pgfsyssoftpath@bigbuffer@items=\count505
+) (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
+ (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen272
+\pgfmath@count=\count506
+\pgfmath@box=\box75
+\pgfmath@toks=\toks53
+\pgfmath@stack@operand=\toks54
+\pgfmath@stack@operation=\toks55
+) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count507
+)) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@picminx=\dimen273
+\pgf@picmaxx=\dimen274
+\pgf@picminy=\dimen275
+\pgf@picmaxy=\dimen276
+\pgf@pathminx=\dimen277
+\pgf@pathmaxx=\dimen278
+\pgf@pathminy=\dimen279
+\pgf@pathmaxy=\dimen280
+\pgf@xx=\dimen281
+\pgf@xy=\dimen282
+\pgf@yx=\dimen283
+\pgf@yy=\dimen284
+\pgf@zx=\dimen285
+\pgf@zy=\dimen286
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@path@lastx=\dimen287
+\pgf@path@lasty=\dimen288
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@shorten@end@additional=\dimen289
+\pgf@shorten@start@additional=\dimen290
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfpic=\box76
+\pgf@hbox=\box77
+\pgf@layerbox@main=\box78
+\pgf@picture@serial@count=\count508
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgflinewidth=\dimen291
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@pt@x=\dimen292
+\pgf@pt@y=\dimen293
+\pgf@pt@temp=\dimen294
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowsep=\dimen295
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@max=\dimen296
+\pgf@sys@shading@range@num=\count509
+\pgf@shadingcount=\count510
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfexternal@startupbox=\box79
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodeparttextbox=\box80
+) (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
+\pgf@nodesepstart=\dimen297
+\pgf@nodesepend=\dimen298
+) (/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+))
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
-(./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux) (./sources/results.aux) (./sources/discussion.aux) (./sources/conclusion.aux))
+ (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux) (./sources/results.aux) (./sources/discussion.aux) (./sources/conclusion.aux))
 \openout1 = thesis.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-Package scrbase Info: activating english \partname on input line 111.
-Package scrbase Info: activating english \chaptername on input line 111.
-Package scrbase Info: activating english \appendixname on input line 111.
-Package scrbase Info: activating english \figurename on input line 111.
-Package scrbase Info: activating english \tablename on input line 111.
-Package scrbase Info: activating english \contentsname on input line 111.
-Package scrbase Info: activating english \listfigurename on input line 111.
-Package scrbase Info: activating english \listtablename on input line 111.
-Package scrbase Info: activating english \bibname on input line 111.
-Package scrbase Info: activating english \indexname on input line 111.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+Package scrbase Info: activating english \partname on input line 118.
+Package scrbase Info: activating english \chaptername on input line 118.
+Package scrbase Info: activating english \appendixname on input line 118.
+Package scrbase Info: activating english \figurename on input line 118.
+Package scrbase Info: activating english \tablename on input line 118.
+Package scrbase Info: activating english \contentsname on input line 118.
+Package scrbase Info: activating english \listfigurename on input line 118.
+Package scrbase Info: activating english \listtablename on input line 118.
+Package scrbase Info: activating english \bibname on input line 118.
+Package scrbase Info: activating english \indexname on input line 118.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count499
-\scratchdimen=\dimen260
-\scratchbox=\box74
-\nofMPsegments=\count500
-\nofMParguments=\count501
-\everyMPshowfont=\toks46
-\MPscratchCnt=\count502
-\MPscratchDim=\dimen261
-\MPnumerator=\count503
-\makeMPintoPDFobject=\count504
-\everyMPtoPDFconversion=\toks47
+\scratchcounter=\count511
+\scratchdimen=\dimen299
+\scratchbox=\box81
+\nofMPsegments=\count512
+\nofMParguments=\count513
+\everyMPshowfont=\toks56
+\MPscratchCnt=\count514
+\MPscratchDim=\dimen300
+\MPnumerator=\count515
+\makeMPintoPDFobject=\count516
+\everyMPtoPDFconversion=\toks57
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1352,8 +1492,8 @@ Package caption Info: End \AtBeginDocument code.
  (/usr/share/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 111.
-Package hyperref Info: Link coloring ON on input line 111.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 118.
+Package hyperref Info: Link coloring ON on input line 118.
 Package biblatex Info: Trying to load language 'english' -> 'english-mimosis'...
 Package biblatex Info: ... file 'english-mimosis.lbx' found.
  (./english-mimosis.lbx
@@ -1377,12 +1517,12 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'thesis.bbl' found.
  (./thesis.bbl)
-Package biblatex Info: Reference section=0 on input line 111.
-Package biblatex Info: Reference segment=0 on input line 111.
+Package biblatex Info: Reference section=0 on input line 118.
+Package biblatex Info: Reference segment=0 on input line 118.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 111.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 118.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 111.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 118.
 
 \openout2 = sources/title.aux
  (./sources/title.tex
@@ -1404,7 +1544,7 @@ LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
  (./sources/abstract.tex)
 
 LaTeX Font Info:    Font shape `TU/EBGaramond(0)/m/sl' in size <10.95> not available
-(Font)              Font shape `TU/EBGaramond(0)/m/it' tried instead on input line 115.
+(Font)              Font shape `TU/EBGaramond(0)/m/it' tried instead on input line 122.
 [3
 
 
@@ -1417,9 +1557,9 @@ LaTeX Font Info:    Font shape `TU/EBGaramond(0)/m/sl' in size <10.95> not avail
 
 
 ] (./thesis.toc)
-\tf@toc=\write5
+\tf@toc=\write6
 
-\openout5 = thesis.toc
+\openout6 = thesis.toc
 
 
 [5]
@@ -1501,15 +1641,27 @@ Overfull \hbox (1.78523pt too wide) in paragraph at lines 391--397
 chapter 3.
 
 
-[15])
+[15]
+<figures/resnet_funnel.pdf, id=268, 230.7822pt x 398.4486pt>
+File: figures/resnet_funnel.pdf Graphic file (type pdf)
+<use figures/resnet_funnel.pdf>
+Package luatex.def Info: figures/resnet_funnel.pdf  used on input line 54.
+(luatex.def)             Requested size: 199.16931pt x 343.86899pt.
 
-[16]
+
+[16<./figures/resnet_funnel.pdf>] (./figures/cifar100_overfitting.pgf
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 102.
+)
+
+[17])
+
+[18]
 \openout2 = sources/discussion.aux
  (./sources/discussion.tex
 chapter 4.
 )
 
-[17
+[19
 
 
 
@@ -1519,7 +1671,7 @@ chapter 4.
 \openout2 = sources/conclusion.aux
  (./sources/conclusion.tex
 
-[18
+[20
 
 
 
@@ -1529,9 +1681,9 @@ chapter 4.
 chapter 5.
 )
 
-[19]
+[21]
 
-[20
+[22
 
 
 
@@ -1539,28 +1691,43 @@ chapter 5.
 ] (./thesis.ind)
 chapter without number
 
-Overfull \hbox (40.58322pt too wide) in paragraph at lines 134--134
+Overfull \hbox (2.18365pt too wide) in paragraph at lines 141--141
+[]\TU/EBGaramond(0)/m/n/10.95 W. Fal-con and The Py-Torch Light-ning team. \TU/EBGaramond(0)/m/it/10.95 Py-Torch Light-ning\TU/EBGaramond(0)/m/n/10.95 . Ver-sion 1.4. 2019. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 .
+ []
+
+
+Overfull \hbox (40.58322pt too wide) in paragraph at lines 141--141
 []\TU/EBGaramond(0)/m/n/10.95 C. Fell-baum. \TU/EBGaramond(0)/m/it/10.95 Word-Net: An Elec-tronic Lex-i-cal Database\TU/EBGaramond(0)/m/n/10.95 . The MIT Press, 1998. \TU/EBGaramond(0)/m/sc/10.95 󰅱󰆢󰅑󰆈\TU/EBGaramond(0)/m/n/10.95 : 9780262272551.
  []
 
 
+Overfull \hbox (5.90498pt too wide) in paragraph at lines 141--141
+\TU/SourceCodePro(0)/m/n/10.95 ARXIV . 1207 . 0580$[][]\TU/EBGaramond(0)/m/n/10.95 . \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 https : / / arxiv . org / abs / 1207 . 0580$[][] \TU/EBGaramond(0)/m/n/10.95 (vis-ited on 06/21/2025). 
+ []
 
-[21
+
+
+[23
 
 
 ]
-Overfull \hbox (5.90498pt too wide) in paragraph at lines 134--134
-\TU/SourceCodePro(0)/m/n/10.95 D1 . 20086$[][]\TU/EBGaramond(0)/m/n/10.95 . \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 https : / / data . caltech . edu / records / 20086$[][] \TU/EBGaramond(0)/m/n/10.95 (vis-ited on 03/19/2025). 
+Overfull \hbox (2.6348pt too wide) in paragraph at lines 141--141
+[]\TU/EBGaramond(0)/m/n/10.95 F.[]F. Li, M. An-dreeto, M. Ran-zato, and P. Per-ona. \TU/EBGaramond(0)/m/it/10.95 Cal-tech 101\TU/EBGaramond(0)/m/n/10.95 . Ver-sion 1.0. 6, 2022. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 .
  []
 
 
-Overfull \hbox (3.4378pt too wide) in paragraph at lines 134--134
-\TU/EBGaramond(0)/m/n/10.95 Google-Books-ID: yp34HAAA-CAAJ. In-ter-na-tional Busi-ness Ma-chines Cor-po-ra-tion, 1958. 
+Overfull \hbox (4.7355pt too wide) in paragraph at lines 141--141
+[]\TU/EBGaramond(0)/m/n/10.95 I. Loshchilov and F. Hut-ter. \TU/EBGaramond(0)/m/it/10.95 De-cou-pled Weight De-cay Reg-u-lar-iza-tion\TU/EBGaramond(0)/m/n/10.95 . 2017. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 . 48550 /
+ []
+
+
+Overfull \hbox (12.01189pt too wide) in paragraph at lines 141--141
+[]\TU/EBGaramond(0)/m/n/10.95 T. T. Tan-i-moto. \TU/EBGaramond(0)/m/it/10.95 An El-e-men-tary Math-e-mat-i-cal The-ory of Clas-si-fi-ca-tion and Pre-dic-tion\TU/EBGaramond(0)/m/n/10.95 . Google-
  []
 
 
 
-[22] (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux) (./sources/results.aux) (./sources/discussion.aux) (./sources/conclusion.aux))
+[24] (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux) (./sources/results.aux) (./sources/discussion.aux) (./sources/conclusion.aux))
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
@@ -1571,19 +1738,19 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 43629 strings out of 475506
- 100000,2373549 words of node,token memory allocated
- 926 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 glyph, 61 attribute, 91 glue_spec, 32 attribute_list, 1 write, 8 pdf_action nodes
-   avail lists: 1:1,2:1718,3:509,4:225,5:458,6:146,7:6112,8:81,9:694,10:10,11:465
- 65727 multiletter control sequences out of 65536+600000
- 118 fonts using 57110103 bytes
+ 51296 strings out of 475506
+ 100000,2848258 words of node,token memory allocated
+ 971 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 glyph, 69 attribute, 91 glue_spec, 36 attribute_list, 2 write, 11 pdf_action nodes
+   avail lists: 1:1,2:4457,3:2518,4:225,5:461,6:148,7:6115,8:83,9:698,10:10,11:465
+ 73103 multiletter control sequences out of 65536+600000
+ 139 fonts using 71284019 bytes
  122i,20n,114p,10949b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf>
-Output written on thesis.pdf (28 pages, 111051 bytes).
+Output written on thesis.pdf (30 pages, 212783 bytes).
 
-PDF statistics: 460 PDF objects out of 1000 (max. 8388607)
- 401 compressed objects within 5 object streams
- 132 named destinations out of 1000 (max. 131072)
- 209 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 516 PDF objects out of 1000 (max. 8388607)
+ 450 compressed objects within 5 object streams
+ 144 named destinations out of 1000 (max. 131072)
+ 224 words of extra memory for PDF output out of 10000 (max. 100000000)
 

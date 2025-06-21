@@ -2387,6 +2387,10 @@
     <bcf:citekey order="10" intorder="2">he_identity_2016</bcf:citekey>
     <bcf:citekey order="11" intorder="1">deng_imagenet_2009</bcf:citekey>
     <bcf:citekey order="11" intorder="2">russakovsky_imagenet_2015</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">hinton_improving_2012</bcf:citekey>
+    <bcf:citekey order="13" intorder="1">sutskever_importance_2013</bcf:citekey>
+    <bcf:citekey order="14" intorder="1">loshchilov_decoupled_2017</bcf:citekey>
+    <bcf:citekey order="15" intorder="1">falcon_pytorch_2019</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
