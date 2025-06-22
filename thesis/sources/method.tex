@@ -54,12 +54,12 @@ Before building our universal taxonomy,
 we need to construct our initial graph that captures the relationships between classes across different domains:
 
 \begin{enumerate}
-    \item \textbf{Foreign predictions:} For each dataset with its corresponding model,
+    \item \textbf{Foreign predictions}: For each dataset with its corresponding model,
           we run the model on all images from all other datasets.
           This gives us a set of predictions $P_{ab} = \{(x_i^a, c_j^b)\}$,
           where $x_i^a$ is an image from dataset $D_a$ and $c_j^b$ is the class
           predicted by model $m_b$ for that image.
-    \item \textbf{Prediction probabilities:} We count the number of times each class $c_i^a$ was predicted
+    \item \textbf{Prediction probabilities}: We count the number of times each class $c_i^a$ was predicted
           as a foreign-domain class $c_j^b$.
           We denote this count in a matrix $M_{ab}\in {\mathbb{N}^+}^{|C_a| \times |C_b|}$,
           where $M_{ab}(i, j)$ is the number of times class $c_i^a$ was predicted
@@ -72,7 +72,7 @@ we need to construct our initial graph that captures the relationships between c
           This gives us a matrix $P_{ab}\in [0, 1]^{|C_a| \times |C_b|}$,
           where $P_{ab}(i, j)$ is the probability of classifying an image from class $c_i^a$
           as class $c_j^b$.
-    \item \textbf{Graph construction:} We now create a directed graph that represents the relationships between classes and datasets
+    \item \textbf{Graph construction}: We now create a directed graph that represents the relationships between classes and datasets
           by iterating over every dataset $D_a$ with every dataset $D_b$ where $a \neq b$ for cross-predictions:
           \begin{enumerate}
               \item We want to evaluate different methods for selecting the most relevant relationships,
@@ -97,13 +97,13 @@ we define a range of different methods and later evaluate their performance.
 Our main challenges are:
 
 \begin{itemize}
-    \item \textbf{Unknown number of shared concepts:} We don't know how many concepts two classes from different
+    \item \textbf{Unknown number of shared concepts}: We don't know how many concepts two classes from different
           domains share, so we do not know how high the probability of a relationship should be.
-    \item \textbf{Noisy predictions:} A low model accuracy can severely impact the relationship
+    \item \textbf{Noisy predictions}: A low model accuracy can severely impact the relationship
           predictions, since - depending on the number of foreign classes that share concepts with the class -
           the target probabilities can be very low, making even a small number of wrong predictions
           a huge obstacle.
-    \item \textbf{Unbalanced datasets:} Some datasets might have more images for a class than others,
+    \item \textbf{Unbalanced datasets}: Some datasets might have more images for a class than others,
           which can lead to skewed probabilities.
           This can be mitigated by preprocessing the datasets to balance the number of images per class,
           but our goal is to create a methodology that can be applied to any dataset without
@@ -252,23 +252,23 @@ handling SciPy's standardization of bounds internally:
 To generate a domain $C_i$, we follow these steps:
 
 \begin{enumerate}
-    \item \textbf{Sample set size:} Determine how many concepts $l$ to use for the domain:
+    \item \textbf{Sample set size}: Determine how many concepts $l$ to use for the domain:
           \begin{equation*}
-              l \sim \lfloor\text{TruncNorm}(\mu_{\text{classes}}, \sigma^2_{\text{classes}}, 1, n)\rceil
+              l \sim \lfloor\text{TruncNorm}(\mu_{\text{concepts}}, \sigma^2_{\text{concepts}}, 1, n)\rceil
           \end{equation*}
 
-    \item \textbf{Sample concept pool:} Randomly select $l$ concepts from the universe $\mathcal{U}$:
+    \item \textbf{Sample concept pool}: Randomly select $l$ concepts from the universe $\mathcal{U}$:
           \begin{align*}
               P = \{a, b, c, \ldots\} \quad \text{where } a, b, c, \ldots \text{ are sampled without replacement from } \mathcal{U}
           \end{align*}
 
-    \item \textbf{Initialise domain:} $C_i = \{\}$
+    \item \textbf{Initialise domain}: $C_i = \{\}$
 
-    \item \textbf{Generate classes:} While concepts remain in the pool ($P \neq \emptyset$):
+    \item \textbf{Generate classes}: While concepts remain in the pool ($P \neq \emptyset$):
           \begin{enumerate}
               \item Sample class size $s_j$:
                     \begin{equation*}
-                        s_j \sim \lfloor\text{TruncNorm}(\mu_{\text{class\_size}}, \sigma^2_{\text{class\_size}}, 1, |P|)\rceil
+                        s_j \sim \lfloor\text{TruncNorm}(\mu_{\text{classes}}, \sigma^2_{\text{classes}}, 1, |P|)\rceil
                     \end{equation*}
 
               \item Form class $c^i_j$ by selecting $s_j$ concepts randomly from $P$
@@ -347,7 +347,7 @@ that merges classes from different datasets into universal classes where they sh
 \subsection{Taxonomy Building Rules}
 
 \begin{enumerate}
-    \item \textbf{Isolated Node Rule:} For any domain class A that has no relationships
+    \item \textbf{Isolated Node Rule}: For any domain class A that has no relationships
           (neither incoming nor outgoing edges), create a new universal class B
           and add the relationship $A \rightarrow B$.
           We also define the probability of the relationship's edge as 1 and
@@ -356,7 +356,7 @@ that merges classes from different datasets into universal classes where they sh
           This ensures that all domain classes without relationships (which can be created by later rules)
           are still represented in the universal taxonomy.
 
-    \item \textbf{Bidirectional Relationship Rule:} When two classes have bidirectional relationships
+    \item \textbf{Bidirectional Relationship Rule}: When two classes have bidirectional relationships
           (A $\rightarrow$ B and B $\rightarrow$ A), they likely represent the same concept.
           We resolve this by creating a new universal class C and adding relationships
           $A \rightarrow C$ and $B \rightarrow C$ to the graph.
@@ -364,13 +364,13 @@ that merges classes from different datasets into universal classes where they sh
           will be the two classes that were merged (or, if the two classes are universal classes themselves,
           the union of their classes).
 
-    \item \textbf{Transitive Cycle Rule:} If we have relationships A $\rightarrow$ B $\rightarrow$ C
+    \item \textbf{Transitive Cycle Rule}: If we have relationships A $\rightarrow$ B $\rightarrow$ C
           where A and C are in the same domain, we have a problem since classes within a domain
           are disjoint, which means that one of the relationships must be incorrect.
           We solve this by removing the relationship with the lower probability,
           thus breaking the cycle.
 
-    \item \textbf{Unilateral Relationship Rule:} A uniliteral relationship
+    \item \textbf{Unilateral Relationship Rule}: A uniliteral relationship
           A $\rightarrow$ B indicates that the concepts of class A are a subset of the concepts of class B.
           We therefore create two new universal classes:
           \begin{itemize}
@@ -388,13 +388,13 @@ Now that we have methods for generating a ground truth synthetic taxonomy,
 we need to define metrics to compare the predicted taxonomy against the ground truth.
 Comparison can happen at two points in our pipeline:
 \begin{itemize}
-    \item \textbf{Universal Taxonomy Comparison:} Comparing the predicted universal taxonomy against the ground truth universal taxonomy.
+    \item \textbf{Universal Taxonomy Comparison}: Comparing the predicted universal taxonomy against the ground truth universal taxonomy.
           This is done after applying our universal taxonomy generation algorithm
           and allows us to evaluate the quality of the final taxonomy.
           However, the algorithm might change the scale of differences between our predicted and ground truth taxonomies
           (e.g. a unilateral vs. bidirectional relationship would be a small difference before the algorithm,
           but would result in a subset hypothesis with two universal classes vs. one universal class after the algorithm).
-    \item \textbf{Relationship Graph Comparison:} Comparing the predicted graph of relationships between classes against the ground truth graph.
+    \item \textbf{Relationship Graph Comparison}: Comparing the predicted graph of relationships between classes against the ground truth graph.
           This is done before converting the relationship graph into a universal taxonomy
           and allows us to evaluate the quality of the relationships between classes.
 \end{itemize}
@@ -450,15 +450,15 @@ where $B_1(i,j) = 1$ if $A_1(i,j) > 0$ and $B_2(i,j) = 1$ if $A_2(i,j) > 0$.
 Next, we compute the true positives, false positives, and false negatives as follows:
 
 \begin{itemize}
-    \item \textbf{True Positives (TP):} The number of edges that are present in both $B_1$ and $B_2$.
-    \item \textbf{False Positives (FP):} The number of edges that are present in $B_1$ but not in $B_2$.
-    \item \textbf{False Negatives (FN):} The number of edges that are present in $B_2$ but not in $B_1$.
+    \item \textbf{True Positives (TP)}: The number of edges that are present in both $B_1$ and $B_2$.
+    \item \textbf{False Positives (FP)}: The number of edges that are present in $B_1$ but not in $B_2$.
+    \item \textbf{False Negatives (FN)}: The number of edges that are present in $B_2$ but not in $B_1$.
 \end{itemize}
 
 Using these counts, we can then compute the precision, recall, and F1 score as follows:
 
 \begin{itemize}
-    \item \textbf{Precision:} The ratio of true positives to the sum of true positives and false positives.
-    \item \textbf{Recall:} The ratio of true positives to the sum of true positives and false negatives.
-    \item \textbf{F1 Score:} The harmonic mean of precision and recall.
+    \item \textbf{Precision}: The ratio of true positives to the sum of true positives and false positives.
+    \item \textbf{Recall}: The ratio of true positives to the sum of true positives and false negatives.
+    \item \textbf{F1 Score}: The harmonic mean of precision and recall.
 \end{itemize}

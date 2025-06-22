@@ -7,17 +7,35 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Datasets}{15}{subsection.3.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Training Domain Models}{16}{subsection.3.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\nonumberline Model Architecture}{16}{subsubsection*.23}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces ResNet-50 architecture with a funnel layer for classification. Blue blocks represent the input from the ResNet-50 architecture, red blocks represent the final output layer, and green blocks represent our new funnel layers.}}{16}{figure.caption.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Training Procedure}{16}{subsubsection*.26}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Our ResNet-50 architecture with a funnel layer for classification. Blue blocks represent the input from the ResNet-50 architecture, red blocks represent the final output layer, and green blocks represent our new funnel layers.}}{17}{figure.caption.24}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:resnet_funnel}{{3.1}{16}{ResNet-50 architecture with a funnel layer for classification. Blue blocks represent the input from the ResNet-50 architecture, red blocks represent the final output layer, and green blocks represent our new funnel layers}{figure.caption.24}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Training Procedure}{17}{subsubsection*.26}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Overfitting on the CIFAR-100 dataset during training. The blue line represents the training accuracy, while the orange line represents the validation accuracy. The model overfits on the training data, resulting in a significant gap between the training and validation accuracy.}}{17}{figure.caption.27}\protected@file@percent }
-\newlabel{fig:overfitting}{{3.2}{17}{Overfitting on the CIFAR-100 dataset during training. The blue line represents the training accuracy, while the orange line represents the validation accuracy. The model overfits on the training data, resulting in a significant gap between the training and validation accuracy}{figure.caption.27}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Results}{18}{subsubsection*.29}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Taxonomy Generation}{18}{section.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Universal Models}{18}{section.3.3}\protected@file@percent }
+\newlabel{fig:resnet_funnel}{{3.1}{17}{Our ResNet-50 architecture with a funnel layer for classification. Blue blocks represent the input from the ResNet-50 architecture, red blocks represent the final output layer, and green blocks represent our new funnel layers}{figure.caption.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Model Performance}{17}{subsection.3.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Synthetic Variants}{17}{subsubsection*.29}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Overfitting on the CIFAR-100 dataset during training. The blue line represents the training accuracy, while the orange line represents the validation accuracy. The model overfits on the training data, resulting in a significant gap between the training and validation accuracy.}}{18}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:overfitting}{{3.2}{18}{Overfitting on the CIFAR-100 dataset during training. The blue line represents the training accuracy, while the orange line represents the validation accuracy. The model overfits on the training data, resulting in a significant gap between the training and validation accuracy}{figure.caption.27}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Caltech-256 2-domain synthetic dataset variant. The number of concepts is sampled from a truncated normal distribution with a $\mitmu _{\text  {concepts}}=180$ and $\mitsigma ^2_{\text  {concepts}}=10$, while the number of classes per concept is sampled from a truncated normal distribution with a $\mitmu _{\text  {classes}}=3$ and $\mitsigma ^2_{\text  {classes}}=1$.}}{19}{figure.caption.30}\protected@file@percent }
+\newlabel{fig:caltech256_2domain}{{3.3}{19}{Caltech-256 2-domain synthetic dataset variant. The number of concepts is sampled from a truncated normal distribution with a $\mu _{\text {concepts}}=180$ and $\sigma ^2_{\text {concepts}}=10$, while the number of classes per concept is sampled from a truncated normal distribution with a $\mu _{\text {classes}}=3$ and $\sigma ^2_{\text {classes}}=1$}{figure.caption.30}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Model Accuracy}{19}{subsubsection*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Taxonomy Generation}{19}{section.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Relationship Selection Methods}{19}{subsection.3.2.1}\protected@file@percent }
+\newlabel{sec:relationship_selection}{{3.2.1}{19}{Relationship Selection Methods}{subsection.3.2.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Universal Models}{19}{section.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Caltech-256 3-domain synthetic dataset variant rendered in a 3D scatter plot. The number of concepts is sampled from a truncated normal distribution with a $\mitmu _{\text  {concepts}}=180$ and $\mitsigma ^2_{\text  {concepts}}=10$, while the number of classes per concept is sampled from a truncated normal distribution with a $\mitmu _{\text  {classes}}=5$ and $\mitsigma ^2_{\text  {classes}}=1$.}}{20}{figure.caption.31}\protected@file@percent }
+\newlabel{fig:caltech256_3domain}{{3.4}{20}{Caltech-256 3-domain synthetic dataset variant rendered in a 3D scatter plot. The number of concepts is sampled from a truncated normal distribution with a $\mu _{\text {concepts}}=180$ and $\sigma ^2_{\text {concepts}}=10$, while the number of classes per concept is sampled from a truncated normal distribution with a $\mu _{\text {classes}}=5$ and $\sigma ^2_{\text {classes}}=1$}{figure.caption.31}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Evaluation Results on Test Sets}}{20}{table.caption.38}\protected@file@percent }
+\newlabel{tab:evaluation_results}{{3.1}{20}{Evaluation Results on Test Sets}{table.caption.38}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces CIFAR-100 2-domain synthetic dataset variant. The number of concepts is sampled from a truncated normal distribution with a $\mitmu _{\text  {concepts}}=50$ and $\mitsigma ^2_{\text  {concepts}}=5$, while the number of classes per concept is sampled from a truncated normal distribution with a $\mitmu _{\text  {classes}}=3$ and $\mitsigma ^2_{\text  {classes}}=1$.}}{21}{figure.caption.32}\protected@file@percent }
+\newlabel{fig:cifar100_2domain}{{3.5}{21}{CIFAR-100 2-domain synthetic dataset variant. The number of concepts is sampled from a truncated normal distribution with a $\mu _{\text {concepts}}=50$ and $\sigma ^2_{\text {concepts}}=5$, while the number of classes per concept is sampled from a truncated normal distribution with a $\mu _{\text {classes}}=3$ and $\sigma ^2_{\text {classes}}=1$}{figure.caption.32}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Accuracy of the final training runs on the Caltech-256 2-domain synthetic dataset variant. The blue and green lines represents the training accuracies (domains A and B), while the orange and red lines represents the validation accuracies (domains A and B). The models achieve final training accuracies of approximately 0.98 and validation accuracies of approximately 0.83.}}{21}{figure.caption.35}\protected@file@percent }
+\newlabel{fig:caltech256_2domain_accuracy}{{3.6}{21}{Accuracy of the final training runs on the Caltech-256 2-domain synthetic dataset variant. The blue and green lines represents the training accuracies (domains A and B), while the orange and red lines represents the validation accuracies (domains A and B). The models achieve final training accuracies of approximately 0.98 and validation accuracies of approximately 0.83}{figure.caption.35}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Accuracy of the final training runs on the Caltech-256 3-domain synthetic dataset variant. The blue, green, and purple lines represents the training accuracies (domains A, B, and C), while the orange, red, and brown lines represents the validation accuracies (domains A, B, and C). The models achieve final training accuracies of approximately 0.98 and validation accuracies of approximately 0.82.}}{22}{figure.caption.36}\protected@file@percent }
+\newlabel{fig:caltech256_3domain_accuracy}{{3.7}{22}{Accuracy of the final training runs on the Caltech-256 3-domain synthetic dataset variant. The blue, green, and purple lines represents the training accuracies (domains A, B, and C), while the orange, red, and brown lines represents the validation accuracies (domains A, B, and C). The models achieve final training accuracies of approximately 0.98 and validation accuracies of approximately 0.82}{figure.caption.36}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces Accuracy of the final training runs on the CIFAR-100 2-domain synthetic dataset variant. The blue and green lines represents the training accuracies (domains A and B), while the orange and red lines represents the validation accuracies (domains A and B). The models achieve final training accuracies of approximately 0.96 and validation accuracies of approximately 0.73.}}{22}{figure.caption.37}\protected@file@percent }
+\newlabel{fig:cifar100_2domain_accuracy}{{3.8}{22}{Accuracy of the final training runs on the CIFAR-100 2-domain synthetic dataset variant. The blue and green lines represents the training accuracies (domains A and B), while the orange and red lines represents the validation accuracies (domains A and B). The models achieve final training accuracies of approximately 0.96 and validation accuracies of approximately 0.73}{figure.caption.37}{}}
 \@setckpt{sources/results}{
-\setcounter{page}{19}
+\setcounter{page}{23}
 \setcounter{equation}{0}
 \setcounter{enumi}{4}
 \setcounter{enumii}{4}
@@ -32,8 +50,8 @@
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{2}
-\setcounter{table}{0}
+\setcounter{figure}{8}
+\setcounter{table}{1}
 \setcounter{caption@flags}{2}
 \setcounter{continuedfloat}{0}
 \setcounter{subfigure}{0}

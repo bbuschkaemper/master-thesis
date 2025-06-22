@@ -51,8 +51,8 @@ in an output layer matching the number of classes per dataset (see Figure~\ref{f
 
 \begin{figure}[ht]
       \centering
-      \includegraphics[width=0.5\textwidth]{figures/resnet_funnel.pdf}
-      \caption{ResNet-50 architecture with a funnel layer for classification.
+      \includegraphics[width=0.6\textwidth]{figures/resnet_funnel.pdf}
+      \caption{Our ResNet-50 architecture with a funnel layer for classification.
             Blue blocks represent the input from the ResNet-50 architecture,
             red blocks represent the final output layer,
             and green blocks represent our new funnel layers.}
@@ -106,12 +106,126 @@ using the PyTorch Lightning framework~\cite{falcon_pytorch_2019}.
 The training process takes approximately 5 hours for the Caltech-101 and Caltech-256
 synthetic dataset variants and approximately 3 hours for the CIFAR-100 synthetic dataset variants.
 
-\subsubsection{Results}
+\subsection{Model Performance}
 
-% TODO Describe the variants we created and their results.
-% TODO Add plots for the training and validation accuracy and tables with the final accuracy of all variants.
+\subsubsection{Synthetic Variants}
+
+For our evaluation of relationship selection methods (see Section~\ref{sec:relationship_selection}),
+we need synthetic dataset variants to calculate evaluation metrics on.
+
+We select the general-purpose Caltech-256 and CIFAR-100 datasets
+and create synthetic variants of these datasets:
+\begin{itemize}
+      \item \textbf{Caltech-256 2-Domain Variant}:
+            We create a basic 2-domain variant of the Caltech-256 dataset
+            with parameters $\mu_{\text{concepts}}=180$, $\sigma^2_{\text{concepts}}=10$,
+            $\mu_{\text{classes}}=3$, and $\sigma^2_{\text{classes}}=1$.
+            The resulting relationship graph (before applying universal taxonomy algorithms)
+            is shown in Figure~\ref{fig:caltech256_2domain}.
+      \item \textbf{Caltech-256 3-Domain Variant}:
+            We create a more complex 3-domain variant of the Caltech-256 dataset
+            with parameters $\mu_{\text{concepts}}=180$, $\sigma^2_{\text{concepts}}=10$,
+            $\mu_{\text{classes}}=5$, and $\sigma^2_{\text{classes}}=1$.
+            This variant has more concepts per class and therefore more relationships
+            between the classes, which makes it more challenging for our relationship selection methods.
+            These extreme numbers should be seen less as a realistic dataset
+            and more as a stress test for our methods.
+            The resulting relationship graph (before applying universal taxonomy algorithms)
+            is shown in Figure~\ref{fig:caltech256_3domain} (rendered in a 3D view since a 2D view is cluttered with edges).
+      \item \textbf{CIFAR-100 2-Domain Variant}:
+            For the CIFAR-100 dataset,
+            our 2-domain variant has parameters $\mu_{\text{concepts}}=50$, $\sigma^2_{\text{concepts}}=5$,
+            $\mu_{\text{classes}}=3$, and $\sigma^2_{\text{classes}}=1$.
+            In the Caltech-256 dataset variants we have used approximately $70\%$ of the classes as concepts,
+            while in the CIFAR-100 dataset variants we use approximately $50\%$ of the classes as concepts.
+            This results in a smaller, more manageable relationship graph
+            that can be better manually inspected.
+            The resulting relationship graph (before applying universal taxonomy algorithms)
+            is shown in Figure~\ref{fig:cifar100_2domain}.
+\end{itemize}
+
+\begin{figure}[ht]
+      \centering
+      \includegraphics[width=0.6\textwidth]{figures/caltech256_2domain.png}
+      \caption{Caltech-256 2-domain synthetic dataset variant.
+      The number of concepts is sampled from a truncated normal distribution
+      with a $\mu_{\text{concepts}}=180$ and $\sigma^2_{\text{concepts}}=10$,
+      while the number of classes per concept is sampled from a truncated normal distribution
+      with a $\mu_{\text{classes}}=3$ and $\sigma^2_{\text{classes}}=1$.}
+      \label{fig:caltech256_2domain}
+\end{figure}
+
+\begin{figure}[ht]
+      \centering
+      \includegraphics[width=0.6\textwidth]{figures/caltech256_3domain.png}
+      \caption{Caltech-256 3-domain synthetic dataset variant rendered in a 3D scatter plot.
+      The number of concepts is sampled from a truncated normal distribution
+      with a $\mu_{\text{concepts}}=180$ and $\sigma^2_{\text{concepts}}=10$,
+      while the number of classes per concept is sampled from a truncated normal distribution
+      with a $\mu_{\text{classes}}=5$ and $\sigma^2_{\text{classes}}=1$.}
+      \label{fig:caltech256_3domain}
+\end{figure}
+
+\begin{figure}[ht]
+      \centering
+      \includegraphics[width=0.6\textwidth]{figures/cifar100_2domain.png}
+      \caption{CIFAR-100 2-domain synthetic dataset variant.
+      The number of concepts is sampled from a truncated normal distribution
+      with a $\mu_{\text{concepts}}=50$ and $\sigma^2_{\text{concepts}}=5$,
+      while the number of classes per concept is sampled from a truncated normal distribution
+      with a $\mu_{\text{classes}}=3$ and $\sigma^2_{\text{classes}}=1$.}
+      \label{fig:cifar100_2domain}
+\end{figure}
+
+\subsubsection{Model Accuracy}
+
+Let us now take a look at the accuracy of our models trained on the synthetic dataset variants.
+We use checkpoints to save the model after each epoch and pick the model with the lowest validation loss
+for our final evaluation.
+
+% TODO Describe the plots
+
+\begin{figure}[ht]
+      \centering
+      \scalebox{0.6}{\input{figures/caltech256_2domain.pgf}}
+      \caption{Accuracy of the final training runs on the Caltech-256 2-domain synthetic dataset variant.
+            The blue and green lines represents the training accuracies (domains A and B),
+            while the orange and red lines represents the validation accuracies (domains A and B).
+            The models achieve final training accuracies of approximately 0.98 and validation accuracies of approximately 0.83.}
+      \label{fig:caltech256_2domain_accuracy}
+\end{figure}
+
+\begin{figure}[ht]
+      \centering
+      \scalebox{0.6}{\input{figures/caltech256_3domain.pgf}}
+      \caption{Accuracy of the final training runs on the Caltech-256 3-domain synthetic dataset variant.
+            The blue, green, and purple lines represents the training accuracies (domains A, B, and C),
+            while the orange, red, and brown lines represents the validation accuracies (domains A, B, and C).
+            The models achieve final training accuracies of approximately 0.98 and validation accuracies of approximately 0.82.}
+      \label{fig:caltech256_3domain_accuracy}
+\end{figure}
+
+\begin{figure}[ht]
+      \centering
+      \scalebox{0.6}{\input{figures/cifar100_2domain.pgf}}
+      \caption{Accuracy of the final training runs on the CIFAR-100 2-domain synthetic dataset variant.
+            The blue and green lines represents the training accuracies (domains A and B),
+            while the orange and red lines represents the validation accuracies (domains A and B).
+            The models achieve final training accuracies of approximately 0.96 and validation accuracies of approximately 0.73.}
+      \label{fig:cifar100_2domain_accuracy}
+\end{figure}
+
+\input{figures/evaluation_results.tex}
+
+% TODO Describe the table#
+% TODO Center the table
+
+% TODO Take a manual look at the caltech101-caltech256 taxonomy and show examples of how the model performed.
+% TODO Also add them into domain-model training section (how their accuracy is, how they were trained etc.). 
 
 \section{Taxonomy Generation}
+
+\subsection{Relationship Selection Methods} \label{sec:relationship_selection}
 
 % TODO: Display different taxonomies we generated and what is interesting about them.
 % TODO: Describe what datasets we used and why we chose them.

@@ -3,6 +3,7 @@ from typing import List, Dict, Tuple
 import numpy as np
 import numpy.typing as npt
 import networkx as nx
+import plotly.graph_objects as go
 from pyvis.network import Network
 from .types import (
     DomainClass,
@@ -475,8 +476,8 @@ class Taxonomy:
     def visualize_graph(
         self,
         title: str = "Universal Taxonomy Graph",
-        height: int = 800,
-        width: int = 1200,
+        height: int = 900,
+        width: int = 1800,
     ) -> Network:
         """Visualizes the taxonomy graph using PyVis Network.
 
@@ -488,9 +489,9 @@ class Taxonomy:
         title : str, optional
             Title to display on the visualization, by default "Universal Taxonomy Graph"
         height : int, optional
-            Height of the visualization in pixels, by default 800
+            Height of the visualization in pixels, by default 900
         width : int, optional
-            Width of the visualization in pixels, by default 1200
+            Width of the visualization in pixels, by default 1800
 
         Returns
         -------
@@ -498,28 +499,128 @@ class Taxonomy:
             PyVis Network object that can be displayed or saved to HTML
         """
 
-        # Step 1: Create human-readable labels for all nodes
+        # Create human-readable labels for all nodes
         node_labels = self.__create_node_labels()
 
-        # Step 2: Set node colors and groups based on domain or universal class
+        # Set node colors and groups based on domain or universal class
         node_colors, node_groups = self.__assign_node_colors_and_groups()
 
-        # Step 3: Create and configure the PyVis network
+        # Create and configure the PyVis network
         network = Network(height=height, width=width, directed=True)  # type: ignore
         network.heading = title
 
-        # Step 4: Add nodes with their styling
+        # Add nodes with their styling
         self.__add_nodes_to_visualization(
             network, node_labels, node_colors, node_groups
         )
 
-        # Step 5: Add edges with weight labels
+        # Add edges with weight labels
         self.__add_edges_to_visualization(network)
 
         # Enable physics for better layout
         network.toggle_physics(True)
 
         return network
+
+    def visualize_3d_graph(
+        self,
+        show_labels: bool = True,
+    ) -> go.Figure:
+        """Visualizes the taxonomy graph in 3D using Plotly.
+
+        Creates a 3D scatter plot of the taxonomy graph with nodes colored by domain
+        and edges showing relationships.
+
+        Parameters
+        ----------
+        show_labels : bool, optional
+            Whether to show human-readable labels for nodes, by default True
+
+        Returns
+        -------
+        go.Figure
+            Plotly Figure object containing the 3D visualization
+        """
+
+        # Create human-readable labels for all nodes
+        node_labels = self.__create_node_labels()
+
+        # Assign colors and groups to nodes
+        node_colors, _ = self.__assign_node_colors_and_groups()
+
+        # Encode positions of nodes in 3D space
+        pos = nx.spring_layout(self.graph, dim=3, seed=42)
+
+        # Extract node positions
+        x = [pos[node][0] for node in self.graph.nodes()]
+        y = [pos[node][1] for node in self.graph.nodes()]
+        z = [pos[node][2] for node in self.graph.nodes()]
+
+        # Create a scatter plot for nodes
+        if show_labels:
+            node_trace = go.Scatter3d(
+                x=x,
+                y=y,
+                z=z,
+                mode="markers+text",
+                marker=dict(
+                    size=10,
+                    color=node_colors,
+                    line=dict(width=2),
+                ),
+                text=[node_labels[node] for node in self.graph.nodes()],
+                hoverinfo="text",
+            )
+        else:
+            node_trace = go.Scatter3d(
+                x=x,
+                y=y,
+                z=z,
+                mode="markers",
+                marker=dict(
+                    size=10,
+                    color=node_colors,
+                    line=dict(width=2),
+                ),
+                hoverinfo="none",
+            )
+
+        # Create a list of edges for the 3D plot
+        edge_x = []
+        edge_y = []
+        edge_z = []
+        for source, target in self.graph.edges():
+            x0, y0, z0 = pos[source]
+            x1, y1, z1 = pos[target]
+            edge_x += [x0, x1, None]
+            edge_y += [y0, y1, None]
+            edge_z += [z0, z1, None]
+
+        # Create a scatter plot for edges
+        edge_trace = go.Scatter3d(
+            x=edge_x,
+            y=edge_y,
+            z=edge_z,
+            mode="lines",
+            line=dict(width=1, color="black"),
+        )
+
+        # Create the final figure with nodes and edges
+        fig = go.Figure(data=[edge_trace, node_trace])
+        fig.update_layout(
+            showlegend=False,
+            scene=dict(
+                xaxis=dict(showgrid=False, zeroline=False, visible=False),
+                yaxis=dict(showgrid=False, zeroline=False, visible=False),
+                zaxis=dict(showgrid=False, zeroline=False, visible=False),
+            ),
+            margin=dict(l=0, r=0, b=0, t=40),
+            width=1000,
+            height=1000,
+        )
+        fig.update_traces(marker=dict(sizemode="diameter", opacity=0.8))
+
+        return fig
 
     def __create_node_labels(
         self,
