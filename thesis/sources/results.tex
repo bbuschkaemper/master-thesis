@@ -180,10 +180,31 @@ and create synthetic variants of these datasets:
 \subsubsection{Model Accuracy}
 
 Let us now take a look at the accuracy of our models trained on the synthetic dataset variants.
-We use checkpoints to save the model after each epoch and pick the model with the lowest validation loss
+We use checkpoints to save the model after each epoch and pick the model checkpoint with the lowest validation loss
 for our final evaluation.
 
-% TODO Describe the plots
+We can see our final training runs in Figures~\ref{fig:caltech256_2domain_accuracy}, \ref{fig:caltech256_3domain_accuracy}, and \ref{fig:cifar100_2domain_accuracy}.
+It can be observed that our overfitting mitigation techniques have worked sufficiently well,
+as our training and validation accuracy curves do not diverge significantly.
+We present the final model accuracies on the test sets in Table~\ref{tab:evaluation_results}.
+Multiple things can be observed:
+\begin{itemize}
+      \item All the models achieve an accuracy of around 0.8 on the test set,
+            which is an average performance for these datasets.
+            Our focus is not on achieving state-of-the-art performance,
+            but rather on creating models suitable for our cross-domain prediction task.
+            It should be noted that a lower model accuracy will lead to worse performance
+            in our relationship selection methods, but since we will compare the methods against each other
+            using the same models, this should not be a problem.
+      \item The CIFAR-100 variants have a slightly lower accuracy than the Caltech-256 variants,
+            which is expected since the CIFAR-100 dataset has closely related classes
+            categorised into superclasses, which make it harder for a model to distinguish between them.
+      \item The number of concepts (i.e. classes) in the original dataset that get merged
+            into a new class in the synthetic dataset variants does not seem to have a significant impact
+            on the model accuracy: The Caltech-256 2-domain variant has a $\mu_{\text{classes}}=3$,
+            while the Caltech-256 3-domain variant has a $\mu_{\text{classes}}=5$,
+            but the deviation in accuracy is negligible ($\leq 0.01$).
+\end{itemize}
 
 \begin{figure}[ht]
       \centering
@@ -215,11 +236,12 @@ for our final evaluation.
       \label{fig:cifar100_2domain_accuracy}
 \end{figure}
 
-\begin{center}
-      \input{figures/evaluation_results.tex}
-\end{center}
+\input{figures/evaluation_results.tex}
 
-% TODO Describe the table
+Now that we have sufficiently good domain models,
+we can use them to evaluate our relationship selection methods
+and generate taxonomies from the relationship graphs we create.
+
 % TODO Take a manual look at the caltech101-caltech256 taxonomy and show examples of how the model performed.
 % TODO Also add them into domain-model training section (how their accuracy is, how they were trained etc.). 
 
