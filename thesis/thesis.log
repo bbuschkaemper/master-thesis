@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2025.4.30)  25 JUN 2025 13:07
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2025.4.30)  25 JUN 2025 22:33
  system commands enabled.
  file:line:error style messages enabled.
 **/home/sentinel/Development/master-thesis/thesis/thesis.tex
@@ -1432,36 +1432,36 @@ Package csquotes Info: ... found 'babel' package.
  (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux) (./sources/results.aux) (./sources/discussion.aux) (./sources/conclusion.aux))
 \openout1 = thesis.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-Package scrbase Info: activating english \partname on input line 118.
-Package scrbase Info: activating english \chaptername on input line 118.
-Package scrbase Info: activating english \appendixname on input line 118.
-Package scrbase Info: activating english \figurename on input line 118.
-Package scrbase Info: activating english \tablename on input line 118.
-Package scrbase Info: activating english \contentsname on input line 118.
-Package scrbase Info: activating english \listfigurename on input line 118.
-Package scrbase Info: activating english \listtablename on input line 118.
-Package scrbase Info: activating english \bibname on input line 118.
-Package scrbase Info: activating english \indexname on input line 118.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+Package scrbase Info: activating english \partname on input line 119.
+Package scrbase Info: activating english \chaptername on input line 119.
+Package scrbase Info: activating english \appendixname on input line 119.
+Package scrbase Info: activating english \figurename on input line 119.
+Package scrbase Info: activating english \tablename on input line 119.
+Package scrbase Info: activating english \contentsname on input line 119.
+Package scrbase Info: activating english \listfigurename on input line 119.
+Package scrbase Info: activating english \listtablename on input line 119.
+Package scrbase Info: activating english \bibname on input line 119.
+Package scrbase Info: activating english \indexname on input line 119.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count511
@@ -1492,8 +1492,8 @@ Package caption Info: End \AtBeginDocument code.
  (/usr/share/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 118.
-Package hyperref Info: Link coloring ON on input line 118.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 119.
+Package hyperref Info: Link coloring ON on input line 119.
 Package biblatex Info: Trying to load language 'english' -> 'english-mimosis'...
 Package biblatex Info: ... file 'english-mimosis.lbx' found.
  (./english-mimosis.lbx
@@ -1517,12 +1517,12 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'thesis.bbl' found.
  (./thesis.bbl)
-Package biblatex Info: Reference section=0 on input line 118.
-Package biblatex Info: Reference segment=0 on input line 118.
+Package biblatex Info: Reference section=0 on input line 119.
+Package biblatex Info: Reference segment=0 on input line 119.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 118.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 119.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 118.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 119.
 
 \openout2 = sources/title.aux
  (./sources/title.tex
@@ -1544,7 +1544,7 @@ LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
  (./sources/abstract.tex)
 
 LaTeX Font Info:    Font shape `TU/EBGaramond(0)/m/sl' in size <10.95> not available
-(Font)              Font shape `TU/EBGaramond(0)/m/it' tried instead on input line 122.
+(Font)              Font shape `TU/EBGaramond(0)/m/it' tried instead on input line 123.
 [3
 
 
@@ -1735,12 +1735,7 @@ File: figures/hypothesis_method_precision_recall-img2.png Graphic file (type png
 <use figures/hypothesis_method_precision_recall-img2.png>
 Package luatex.def Info: figures/hypothesis_method_precision_recall-img2.png  used on input line 3035.
 (luatex.def)             Requested size: 10.84024pt x 216.81902pt.
-) (./figures/relationship_methods_results.tex
-Overfull \hbox (194.12848pt too wide) in paragraph at lines 4--14
-[][] 
- []
-
-))
+) (./figures/relationship_methods_results.tex))
 
 [21<./figures/cifar100_2domain.png>]
 
@@ -1784,17 +1779,17 @@ chapter 5.
 ] (./thesis.ind)
 chapter without number
 
-Overfull \hbox (2.18365pt too wide) in paragraph at lines 141--141
+Overfull \hbox (2.18365pt too wide) in paragraph at lines 142--142
 []\TU/EBGaramond(0)/m/n/10.95 W. Fal-con and The Py-Torch Light-ning team. \TU/EBGaramond(0)/m/it/10.95 Py-Torch Light-ning\TU/EBGaramond(0)/m/n/10.95 . Ver-sion 1.4. 2019. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 .
  []
 
 
-Overfull \hbox (40.58322pt too wide) in paragraph at lines 141--141
+Overfull \hbox (40.58322pt too wide) in paragraph at lines 142--142
 []\TU/EBGaramond(0)/m/n/10.95 C. Fell-baum. \TU/EBGaramond(0)/m/it/10.95 Word-Net: An Elec-tronic Lex-i-cal Database\TU/EBGaramond(0)/m/n/10.95 . The MIT Press, 1998. \TU/EBGaramond(0)/m/sc/10.95 󰅱󰆢󰅑󰆈\TU/EBGaramond(0)/m/n/10.95 : 9780262272551.
  []
 
 
-Overfull \hbox (5.90498pt too wide) in paragraph at lines 141--141
+Overfull \hbox (5.90498pt too wide) in paragraph at lines 142--142
 \TU/SourceCodePro(0)/m/n/10.95 ARXIV . 1207 . 0580$[][]\TU/EBGaramond(0)/m/n/10.95 . \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 https : / / arxiv . org / abs / 1207 . 0580$[][] \TU/EBGaramond(0)/m/n/10.95 (vis-ited on 06/21/2025). 
  []
 
@@ -1804,17 +1799,17 @@ Overfull \hbox (5.90498pt too wide) in paragraph at lines 141--141
 
 
 ]
-Overfull \hbox (2.6348pt too wide) in paragraph at lines 141--141
+Overfull \hbox (2.6348pt too wide) in paragraph at lines 142--142
 []\TU/EBGaramond(0)/m/n/10.95 F.[]F. Li, M. An-dreeto, M. Ran-zato, and P. Per-ona. \TU/EBGaramond(0)/m/it/10.95 Cal-tech 101\TU/EBGaramond(0)/m/n/10.95 . Ver-sion 1.0. 6, 2022. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 .
  []
 
 
-Overfull \hbox (4.7355pt too wide) in paragraph at lines 141--141
+Overfull \hbox (4.7355pt too wide) in paragraph at lines 142--142
 []\TU/EBGaramond(0)/m/n/10.95 I. Loshchilov and F. Hut-ter. \TU/EBGaramond(0)/m/it/10.95 De-cou-pled Weight De-cay Reg-u-lar-iza-tion\TU/EBGaramond(0)/m/n/10.95 . 2017. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 . 48550 /
  []
 
 
-Overfull \hbox (12.01189pt too wide) in paragraph at lines 141--141
+Overfull \hbox (12.01189pt too wide) in paragraph at lines 142--142
 []\TU/EBGaramond(0)/m/n/10.95 T. T. Tan-i-moto. \TU/EBGaramond(0)/m/it/10.95 An El-e-men-tary Math-e-mat-i-cal The-ory of Clas-si-fi-ca-tion and Pre-dic-tion\TU/EBGaramond(0)/m/n/10.95 . Google-
  []
 
@@ -1835,12 +1830,12 @@ Here is how much of LuaTeX's memory you used:
  244150,2848258 words of node,token memory allocated
  971 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 glyph, 69 attribute, 91 glue_spec, 36 attribute_list, 2 write, 11 pdf_action nodes
-   avail lists: 1:9,2:44069,3:16314,4:792,5:463,6:153,7:8794,8:83,9:2266,10:10,11:512
+   avail lists: 1:9,2:44150,3:16314,4:792,5:463,6:153,7:9135,8:83,9:2276,10:10,11:552
  73273 multiletter control sequences out of 65536+600000
- 154 fonts using 81248739 bytes
+ 154 fonts using 81248931 bytes
  122i,21n,114p,10949b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf>
-Output written on thesis.pdf (36 pages, 1163318 bytes).
+Output written on thesis.pdf (36 pages, 1163888 bytes).
 
 PDF statistics: 600 PDF objects out of 1000 (max. 8388607)
  503 compressed objects within 6 object streams
