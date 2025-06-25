@@ -249,6 +249,34 @@ and generate taxonomies from the relationship graphs we create.
 
 \subsection{Relationship Selection Methods} \label{sec:relationship_selection}
 
+\graphicspath{{figures/}}
+
+\begin{figure}[ht]
+      \centering
+      \scalebox{0.35}{\input{figures/naive_thresholding_precision_recall.pgf}}
+      \caption{Precision and recall plot of the \textbf{naive thresholding method}
+            for different thresholds on the Caltech-256 2-domain, Caltech-256 3-domain, and CIFAR-100 2-domain synthetic dataset variants.}
+      \label{fig:naive_thresholding_precision_recall}
+\end{figure}
+
+\begin{figure}[ht]
+      \centering
+      \scalebox{0.35}{\input{figures/density_thresholding_precision_recall.pgf}}
+      \caption{Precision and recall plot of the \textbf{density thresholding method}
+            for different thresholds on the Caltech-256 2-domain, Caltech-256 3-domain, and CIFAR-100 2-domain synthetic dataset variants.}
+      \label{fig:density_thresholding_precision_recall}
+\end{figure}
+
+\begin{figure}[ht]
+      \centering
+      \scalebox{0.35}{\input{figures/hypothesis_method_precision_recall.pgf}}
+      \caption{Precision and recall plot of the \textbf{hypothesis method}
+            for different upper bounds on the Caltech-256 2-domain, Caltech-256 3-domain, and CIFAR-100 2-domain synthetic dataset variants.}
+      \label{fig:hypothesis_method_precision_recall}
+\end{figure}
+
+\input{figures/relationship_methods_results.tex}
+
 % TODO: Display different taxonomies we generated and what is interesting about them.
 % TODO: Describe what datasets we used and why we chose them.
 % TODO: Compare and reference Bevandic taxonomy generation in contrast to our approach.

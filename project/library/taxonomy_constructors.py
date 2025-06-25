@@ -37,6 +37,7 @@ class CrossPredictionsTaxonomy(Taxonomy):
         domain_labels: Dict[int, List[str]] | None = None,
         relationship_type: _RelationshipFilteringMethod = "mcfp",
         threshold: float = 0.5,
+        upper_bound: int = 5,
     ):
         """Creates a taxonomy object with an integrated graph structure.
 
@@ -65,6 +66,10 @@ class CrossPredictionsTaxonomy(Taxonomy):
             The threshold for establishing relationships.
             This applies only to "threshold" and "density_threshold" relationship types.
             Defaults to 0.5.
+        upper_bound : int, optional
+            The upper bound for the number of relationships to keep.
+            This applies only to "hypothesis" relationship type.
+            Defaults to 5.
         """
 
         obj = cls(domain_labels=domain_labels)
@@ -129,7 +134,9 @@ class CrossPredictionsTaxonomy(Taxonomy):
                         Relationship((target_class, source_class, probability))
                     )
                 elif relationship_type == "hypothesis":
-                    relationships = hypothesis_relationships(class_probabilities)
+                    relationships = hypothesis_relationships(
+                        class_probabilities, upper_bound
+                    )
 
                     # Iterate through all source classes
                     for source_class_idx in relationships:

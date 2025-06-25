@@ -1,0 +1,14 @@
+\begin{table}[ht]
+\caption{Best EDR Results for Relationship Discovery Methods. For each dataset variant and method, the parameter values that yielded the lowest Edge Difference Ratio (EDR) are shown along with the corresponding F1-score.}
+\label{tab:relationship_methods_best_edr}
+\begin{tabular}{lcccccccccccc}
+\toprule
+& \multicolumn{3}{c}{MCFP} & \multicolumn{3}{c}{Naive Thresholding} & \multicolumn{3}{c}{Density Thresholding} & \multicolumn{3}{c}{Relationship Hypothesis} \\
+Dataset Variant & EDR & F1-score & Param & EDR & F1-score & Param & EDR & F1-score & Param & EDR & F1-score & Param \\
+\midrule
+CIFAR-100 2-Domain & 0.634 & 0.636 & N/A & 0.525 & 0.770 & 0.15 & 0.562 & 0.688 & 0.40 & 0.534 & 0.595 & 4 \\
+Caltech-256 2-Domain & 0.670 & 0.526 & N/A & 0.459 & 0.798 & 0.15 & 0.508 & 0.662 & 0.70 & 0.482 & 0.737 & 5 \\
+Caltech-256 3-Domain & 0.707 & 0.443 & N/A & 0.377 & 0.864 & 0.10 & 0.420 & 0.740 & 0.75 & 0.391 & 0.830 & 6 \\
+\bottomrule
+\end{tabular}
+\end{table}
