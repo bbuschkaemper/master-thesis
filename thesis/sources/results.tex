@@ -116,12 +116,20 @@ we need synthetic dataset variants to calculate evaluation metrics on.
 We select the general-purpose Caltech-256 and CIFAR-100 datasets
 and create synthetic variants of these datasets:
 \begin{itemize}
-      \item \textbf{Caltech-256 2-Domain Variant}:
+      \item \textbf{Caltech-256 2-Domain Variant 1}:
             We create a basic 2-domain variant of the Caltech-256 dataset
             with parameters $\mu_{\text{concepts}}=180$, $\sigma^2_{\text{concepts}}=10$,
             $\mu_{\text{classes}}=3$, and $\sigma^2_{\text{classes}}=1$.
             The resulting relationship graph (before applying universal taxonomy algorithms)
             is shown in Figure~\ref{fig:caltech256_2domain}.
+      \item \textbf{Caltech-256 2-Domain Variant 2}:
+            We create a simpler 2-domain variant of the Caltech-256 dataset
+            with parameters $\mu_{\text{concepts}}=200$, $\sigma^2_{\text{concepts}}=10$,
+            $\mu_{\text{classes}}=2$, and $\sigma^2_{\text{classes}}=1$.
+            This variant has fewer concepts per class and therefore fewer relationships
+            between the classes, which might be more similar to simple real-world datasets.
+            The resulting relationship graph (before applying universal taxonomy algorithms)
+            is shown in Figure~\ref{fig:caltech256_2domain_variant}.
       \item \textbf{Caltech-256 3-Domain Variant}:
             We create a more complex 3-domain variant of the Caltech-256 dataset
             with parameters $\mu_{\text{concepts}}=180$, $\sigma^2_{\text{concepts}}=10$,
@@ -131,7 +139,7 @@ and create synthetic variants of these datasets:
             These extreme numbers should be seen less as a realistic dataset
             and more as a stress test for our methods.
             The resulting relationship graph (before applying universal taxonomy algorithms)
-            is shown in Figure~\ref{fig:caltech256_3domain} (rendered in a 3D view since a 2D view is cluttered with edges).
+            is shown in Figure~\ref{fig:caltech256_3domain}.
       \item \textbf{CIFAR-100 2-Domain Variant}:
             For the CIFAR-100 dataset,
             our 2-domain variant has parameters $\mu_{\text{concepts}}=50$, $\sigma^2_{\text{concepts}}=5$,
@@ -146,35 +154,45 @@ and create synthetic variants of these datasets:
 
 \begin{figure}[ht]
       \centering
-      \includegraphics[width=0.6\textwidth]{figures/caltech256_2domain.png}
-      \caption{Caltech-256 2-domain synthetic dataset variant.
-      The number of concepts is sampled from a truncated normal distribution
-      with a $\mu_{\text{concepts}}=180$ and $\sigma^2_{\text{concepts}}=10$,
-      while the number of classes per concept is sampled from a truncated normal distribution
-      with a $\mu_{\text{classes}}=3$ and $\sigma^2_{\text{classes}}=1$.}
-      \label{fig:caltech256_2domain}
-\end{figure}
+      \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/caltech256_2domain.png}
+            \caption{Caltech-256 2-domain variant 1\\
+            ($\mu_{\text{concepts}}=180$, $\sigma^2_{\text{concepts}}=10$,\\
+            $\mu_{\text{classes}}=3$, $\sigma^2_{\text{classes}}=1$)}
+            \label{fig:caltech256_2domain}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/caltech256_2domain_variant.png}
+            \caption{Caltech-256 2-domain variant 2\\
+            ($\mu_{\text{concepts}}=200$, $\sigma^2_{\text{concepts}}=10$,\\
+            $\mu_{\text{classes}}=2$, $\sigma^2_{\text{classes}}=1$)}
+            \label{fig:caltech256_2domain_variant}
+      \end{subfigure}
 
-\begin{figure}[ht]
-      \centering
-      \includegraphics[width=0.6\textwidth]{figures/caltech256_3domain.png}
-      \caption{Caltech-256 3-domain synthetic dataset variant rendered in a 3D scatter plot.
-      The number of concepts is sampled from a truncated normal distribution
-      with a $\mu_{\text{concepts}}=180$ and $\sigma^2_{\text{concepts}}=10$,
-      while the number of classes per concept is sampled from a truncated normal distribution
-      with a $\mu_{\text{classes}}=5$ and $\sigma^2_{\text{classes}}=1$.}
-      \label{fig:caltech256_3domain}
-\end{figure}
+      \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/caltech256_3domain.png}
+            \caption{Caltech-256 3-domain variant\\
+            ($\mu_{\text{concepts}}=180$, $\sigma^2_{\text{concepts}}=10$,\\
+            $\mu_{\text{classes}}=5$, $\sigma^2_{\text{classes}}=1$)}
+            \label{fig:caltech256_3domain}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/cifar100_2domain.png}
+            \caption{CIFAR-100 2-domain variant\\
+            ($\mu_{\text{concepts}}=50$, $\sigma^2_{\text{concepts}}=5$,\\
+            $\mu_{\text{classes}}=3$, $\sigma^2_{\text{classes}}=1$)}
+            \label{fig:cifar100_2domain}
+      \end{subfigure}
 
-\begin{figure}[ht]
-      \centering
-      \includegraphics[width=0.6\textwidth]{figures/cifar100_2domain.png}
-      \caption{CIFAR-100 2-domain synthetic dataset variant.
-      The number of concepts is sampled from a truncated normal distribution
-      with a $\mu_{\text{concepts}}=50$ and $\sigma^2_{\text{concepts}}=5$,
-      while the number of classes per concept is sampled from a truncated normal distribution
-      with a $\mu_{\text{classes}}=3$ and $\sigma^2_{\text{classes}}=1$.}
-      \label{fig:cifar100_2domain}
+      \caption{Synthetic dataset variants showing their relationship graphs before applying universal taxonomy algorithms.
+            The number of concepts and classes per concept are sampled from truncated normal distributions with the parameters shown in each subfigure caption.}
+      \label{fig:synthetic_variants}
 \end{figure}
 
 \subsubsection{Model Accuracy}
@@ -183,7 +201,7 @@ Let us now take a look at the accuracy of our models trained on the synthetic da
 We use checkpoints to save the model after each epoch and pick the model checkpoint with the lowest validation loss
 for our final evaluation.
 
-We can see our final training runs in Figures~\ref{fig:caltech256_2domain_accuracy}, \ref{fig:caltech256_3domain_accuracy}, and \ref{fig:cifar100_2domain_accuracy}.
+We can see our final training runs in Figure~\ref{fig:all_training_runs}.
 It can be observed that our overfitting mitigation techniques have worked sufficiently well,
 as our training and validation accuracy curves do not diverge significantly.
 We present the final model accuracies on the test sets in Table~\ref{tab:evaluation_results}.
@@ -201,39 +219,19 @@ Multiple things can be observed:
             categorised into superclasses, which make it harder for a model to distinguish between them.
       \item The number of concepts (i.e. classes) in the original dataset that get merged
             into a new class in the synthetic dataset variants does not seem to have a significant impact
-            on the model accuracy: The Caltech-256 2-domain variant has a $\mu_{\text{classes}}=3$,
+            on the model accuracy: The Caltech-256 2-domain variant 2 has a $\mu_{\text{classes}}=2$,
             while the Caltech-256 3-domain variant has a $\mu_{\text{classes}}=5$,
-            but the deviation in accuracy is negligible ($\leq 0.01$).
+            but the deviation in accuracy is negligible ($\leq 0.05$).
 \end{itemize}
 
 \begin{figure}[ht]
       \centering
-      \scalebox{0.6}{\input{figures/caltech256_2domain.pgf}}
-      \caption{Accuracy of the final training runs on the Caltech-256 2-domain synthetic dataset variant.
-            The blue and green lines represents the training accuracies (domains A and B),
-            while the orange and red lines represents the validation accuracies (domains A and B).
-            The models achieve final training accuracies of approximately 0.98 and validation accuracies of approximately 0.83.}
-      \label{fig:caltech256_2domain_accuracy}
-\end{figure}
+      \scalebox{0.35}{\input{figures/all_training_runs.pgf}}
 
-\begin{figure}[ht]
-      \centering
-      \scalebox{0.6}{\input{figures/caltech256_3domain.pgf}}
-      \caption{Accuracy of the final training runs on the Caltech-256 3-domain synthetic dataset variant.
-            The blue, green, and purple lines represents the training accuracies (domains A, B, and C),
-            while the orange, red, and brown lines represents the validation accuracies (domains A, B, and C).
-            The models achieve final training accuracies of approximately 0.98 and validation accuracies of approximately 0.82.}
-      \label{fig:caltech256_3domain_accuracy}
-\end{figure}
-
-\begin{figure}[ht]
-      \centering
-      \scalebox{0.6}{\input{figures/cifar100_2domain.pgf}}
-      \caption{Accuracy of the final training runs on the CIFAR-100 2-domain synthetic dataset variant.
-            The blue and green lines represents the training accuracies (domains A and B),
-            while the orange and red lines represents the validation accuracies (domains A and B).
-            The models achieve final training accuracies of approximately 0.96 and validation accuracies of approximately 0.73.}
-      \label{fig:cifar100_2domain_accuracy}
+      \caption{Accuracy curves for all synthetic dataset variants.
+            Each subplot shows training and validation accuracy over training steps for all domains in that variant.
+            The models achieve final training accuracies of approximately 0.96-0.98 and validation accuracies of approximately 0.73-0.83.}
+      \label{fig:all_training_runs}
 \end{figure}
 
 \input{figures/evaluation_results.tex}
@@ -256,7 +254,7 @@ and generate taxonomies from the relationship graphs we create.
 
 \begin{figure}[ht]
       \centering
-      \scalebox{0.35}{\input{figures/naive_thresholding_precision_recall.pgf}}
+      \scalebox{0.35}{\input{figures/naive_threshold_method_precision_recall.pgf}}
       \caption{Precision and recall plot of the \textbf{naive thresholding method}
             for different thresholds on the Caltech-256 2-domain, Caltech-256 3-domain, and CIFAR-100 2-domain synthetic dataset variants.}
       \label{fig:naive_thresholding_precision_recall}
@@ -264,7 +262,7 @@ and generate taxonomies from the relationship graphs we create.
 
 \begin{figure}[ht]
       \centering
-      \scalebox{0.35}{\input{figures/density_thresholding_precision_recall.pgf}}
+      \scalebox{0.35}{\input{figures/density_threshold_method_precision_recall.pgf}}
       \caption{Precision and recall plot of the \textbf{density thresholding method}
             for different thresholds on the Caltech-256 2-domain, Caltech-256 3-domain, and CIFAR-100 2-domain synthetic dataset variants.}
       \label{fig:density_thresholding_precision_recall}
