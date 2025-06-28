@@ -2391,6 +2391,7 @@
     <bcf:citekey order="13" intorder="1">sutskever_importance_2013</bcf:citekey>
     <bcf:citekey order="14" intorder="1">loshchilov_decoupled_2017</bcf:citekey>
     <bcf:citekey order="15" intorder="1">falcon_pytorch_2019</bcf:citekey>
+    <bcf:citekey order="16" intorder="1">bevandic_automatic_2022</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

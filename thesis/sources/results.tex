@@ -278,6 +278,96 @@ and generate taxonomies from the relationship graphs we create.
 
 \input{figures/relationship_methods_results.tex}
 
+Now that we have trained our domain models on the synthetic dataset variants,
+we can use them to evaluate our different relationship selection methods.
+
+A good relationship selection method needs to be versatile enough
+to work on a range of different datasets with different characteristics:
+\begin{itemize}
+      \item The number of relationships between classes can vary significantly,
+            depending on the number of concepts and classes in the dataset.
+            We therefore need a method that adapts to the probability distribution of the relationships
+            instead of picking a fixed number of relationships.
+      \item The number of classes in the dataset can also vary significantly,
+            which means that some datasets might have classes with few, high probability relationships,
+            while others might have classes with many, low probability relationships.
+            Our method needs to be able to handle both cases
+            and not be biased towards either.
+\end{itemize}
+
+Our edge difference ratio metric (see Section~\ref{sec:edr})
+is a good indicator of the overall accuracy of the relationship selection methods
+since it measures not only the number of relationships selected,
+but also the correctness (i.e. the edge weights) of the relationships.
+
+However, since every selected relationship will later result
+in a node in the universal model,
+we need to give special attention to the correctness of the relationships selected.
+Therefore, we will also evaluate the precision and recall of the selected relationships
+for each method on the synthetic dataset variants.
+
+We will evalute every relationship selection method on every dataset variant
+by selecting the method parameters that yield the best edge difference ratio
+on that dataset variant.
+
+When looking at the results in Table~\ref{tab:relationship_methods_best_edr},
+we can observe two things:
+\begin{itemize}
+      \item The naive thresholding method consistently performs best on all dataset variants,
+            closely followed by the relationship hypothesis method.
+            However, the threshold parameter for the naive thresholding method
+            stays relatively consistent across the dataset variants ($0.10 - 0.15$),
+            while the relationship hypothesis method has a much wider range of upper bounds ($4 - 6$).
+      \item The original most common foreign prediction method
+            from the Bevandic et al. paper~\cite{bevandic_automatic_2022} performs significantly
+            worse than the other methods with an edge difference ratio of over $0.5$ on all dataset variants.
+            This was to be expected since our synthetic dataset variants rarely have
+            classes with only a single outgoing relationship.
+\end{itemize}
+
+Let us take a deeper look at each of the methods and their performance
+on the synthetic dataset variants using precision-recall curves for different parameters:
+\begin{itemize}
+      \item The \textbf{naive thresholding method} (see Figure~\ref{fig:naive_thresholding_precision_recall})
+            performs well on all dataset variants, achieving a high precision and recall
+            for thresholds between $0.10$ and $0.15$.
+            The displayed precision-recall curves stay consistent across the dataset variants,
+            which indicates that the method is robust for different dataset characteristics.
+      \item The \textbf{density thresholding method} (see Figure~\ref{fig:density_thresholding_precision_recall})
+            performs worse than the naive thresholding method,
+            but still achieves good performance.
+            Similar to the naive thresholding method, the CIFAR-100 dataset variant
+            has a slightly lower precision and recall than the Caltech-256 dataset variants,
+            which is expected since the CIFAR-100 dataset has more closely related classes
+            that are difficult to distinguish.
+      \item The \textbf{relationship hypothesis method} (see Figure~\ref{fig:hypothesis_method_precision_recall})
+            performs similar to the density thresholding method,
+            but has a conspicuous drop for the CIFAR-100 dataset variant
+            (prominently more so than the other methods).
+            This is likely due to the fact that this method assumes that
+            every true relationship has an equal probability,
+            which is not the case for the CIFAR-100 dataset variant
+            (where some merged classes, due to having similar concepts that are hard to distinguish,
+            have a much higher probability than others).
+\end{itemize}
+
+When using our method on real-world datasets,
+we do not have a ground truth to adjust the parameters to.
+Therefore, we need a single parameter configuration for every method
+that works universally across all datasets.
+
+We create a new evaluation on the dataset variants using the parameters
+that yield the best edge difference ratio averaged across all dataset variants.
+The results are shown in Table~\ref{tab:relationship_methods_global_optimal}.
+
+The best performing naive thresholding method
+achieves an edge difference ratio of $0.463$
+with a noticably higher recall ($0.889$) than precision ($0.675$).
+This means that while we hit almost 90\% of the true relationships,
+we also select a lot of false relationships.
+
+\input{figures/relationship_methods_global_optimal.tex}
+
 \section{Universal Models}
 
 % TODO

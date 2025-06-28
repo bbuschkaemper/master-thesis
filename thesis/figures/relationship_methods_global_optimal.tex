@@ -1,0 +1,15 @@
+\begin{table}[ht]
+\centering
+\caption{Average performance metrics for relationship discovery methods with globally optimal parameters. Each method uses the parameter value that minimizes the average EDR across all dataset variants. Performance metrics are then averaged across all dataset variants using these optimal parameters.}
+\label{tab:relationship_methods_global_optimal}
+\begin{tabular}{lccccc}
+\toprule
+Method & Parameter & EDR & Precision & Recall & F1-score \\
+\midrule
+MCFP & N/A & 0.642 & 0.865 & 0.421 & 0.557 \\
+Naive Thresholding & 0.10 & \textbf{0.463} & 0.675 & 0.889 & 0.760 \\
+Density Thresholding & 0.70 & 0.502 & 0.514 & 0.876 & 0.636 \\
+Relationship Hypothesis & 4 & 0.472 & 0.714 & 0.750 & 0.727 \\
+\bottomrule
+\end{tabular}
+\end{table}
