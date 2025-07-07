@@ -240,15 +240,11 @@ Now that we have sufficiently good domain models,
 we can use them to evaluate our relationship selection methods
 and generate taxonomies from the relationship graphs we create.
 
-% TODO Take a manual look at the caltech101-caltech256 taxonomy and show examples of how the model performed.
-% TODO Also add them into domain-model training section (how their accuracy is, how they were trained etc.). 
-
-% TODO: Display different taxonomies we generated and what is interesting about them.
-% TODO: Compare and reference Bevandic taxonomy generation in contrast to our approach.
-
 \section{Taxonomy Generation}
 
 \subsection{Relationship Selection Methods} \label{sec:relationship_selection}
+
+\subsubsection{Synthetic Dataset Variants}
 
 \graphicspath{{figures/}}
 
@@ -366,7 +362,41 @@ with a noticably higher recall ($0.889$) than precision ($0.675$).
 This means that while we hit almost 90\% of the true relationships,
 we also select a lot of false relationships.
 
+It can be observed that, for precsion, the mcfp method performs best
+with a precision of $0.865$,
+which is expected since it only selects relationships
+that has the highest probability.
+However, this comes at the cost of a very low recall of $0.421$
+which ultimately results in a lower F1 score compared to the naive thresholding method.
+
+We can conclude that, if you want to create singular high-confidence relationships,
+the mcfp method is the best choice (especially for single-hierarchy taxonomies).
+However, if you want to capture as many shared concepts as possible,
+the naive thresholding method is the best choice, closely followed by the relationship hypothesis method
+(maybe as a possible alternative if the naive thresholding method does not yield good results).
+
 \input{figures/relationship_methods_global_optimal.tex}
+
+However, these synthetic dataset variants are not representative of real-world datasets,
+since the underlying images between images are the same (from the same real-world dataset).
+Therefore, we will redo the relationship selection method evaluation on real-world datasets
+to conclude how they perform in different environments and (hopefully) concur on a single parameter configuration
+that works well across all scenarios.
+
+\subsubsection{Real-World Datasets}
+
+% TODO Evaluation SVHN - MNIST
+% TODO Evaluation WorldNet/Word2Vec => CIFAR-100 - Caltech-256
+
+\subsection{Universal Taxonomy Generation}
+
+% TODO Manual look at caltech101-caltech256 taxonomy
+% TODO Also explaind and plot training
+% TODO Explain what differences we make to Bevandic taxonomy generation
+
+% TODO OBSERVED: Low naive threshold doesn't work as well for real-world as for synthetic
+% TODO Probably because synthetic were trained on same dataset and not good enough for comparison
+% TODO Can we find dataset with real-world mapping??? (Maybe based on labels?)
 
 \section{Universal Models}
 
