@@ -2,8 +2,6 @@ name: master-thesis
 channels:
   - conda-forge
   - defaults
-  - https://repo.anaconda.com/pkgs/main
-  - https://repo.anaconda.com/pkgs/r
 dependencies:
   - _libgcc_mutex=0.1=main
   - _openmp_mutex=5.1=1_gnu
@@ -37,6 +35,7 @@ dependencies:
   - libffi=3.4.4=h6a678d5_1
   - libgcc=14.2.0=h767d61c_2
   - libgcc-ng=14.2.0=h69a702a_2
+  - libgfortran=3.0.0=1
   - libgfortran-ng=11.2.0=h00389a5_1
   - libgfortran5=11.2.0=h1234567_1
   - libgomp=14.2.0=h767d61c_2
@@ -58,6 +57,7 @@ dependencies:
   - matplotlib-inline=0.1.7=pyhd8ed1ab_1
   - ncurses=6.5=h2d0b736_3
   - nest-asyncio=1.6.0=pyhd8ed1ab_1
+  - openblas=0.3.4=ha44fe06_0
   - openssl=3.4.1=h7b32b05_0
   - packaging=24.2=pyhd8ed1ab_2
   - parso=0.8.4=pyhd8ed1ab_1
@@ -91,7 +91,6 @@ dependencies:
   - wcwidth=0.2.13=pyhd8ed1ab_1
   - werkzeug=3.1.3=pyhd8ed1ab_1
   - wheel=0.45.1=py313h06a4308_0
-  - xz=5.6.4=h5eee18b_1
   - zeromq=4.3.5=h3b0a872_7
   - zipp=3.21.0=pyhd8ed1ab_1
   - zlib=1.3.1=hb9d3cd8_2
@@ -159,3 +158,4 @@ dependencies:
       - tzdata==2025.1
       - urllib3==2.3.0
       - yarl==1.18.3
+      - --extra-index-url https://download.pytorch.org/whl/cu126
