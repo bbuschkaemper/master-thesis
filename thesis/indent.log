@@ -1,16 +1,16 @@
-INFO:  latexindent version 3.24.4, 2024-07-18, a script to indent .tex files
-       latexindent lives here: /usr/share/texmf-dist/scripts/latexindent/
-       Mon Jul  7 17:17:29 2025
-       Filename: /home/sentinel/Development/master-thesis/thesis/sources/__latexindent_temp_results.tex
+INFO:  latexindent version 3.23.6, 2024-01-17, a script to indent .tex files
+       latexindent lives here: /usr/share/texlive/texmf-dist/scripts/latexindent/
+       Wed Jul 30 22:20:34 2025
+       Filename: /home/bjoern/dev/master-thesis/thesis/sources/__latexindent_temp_results.tex
 INFO:  Processing switches:
        -y|--yaml: YAML settings specified via command line
        -c|--cruft: cruft directory
-INFO:  Directory for backup files and log file /home/sentinel/Development/master-thesis/thesis/indent.log:
-       /home/sentinel/Development/master-thesis/thesis/
+INFO:  Directory for backup files and /home/bjoern/dev/master-thesis/thesis//indent.log:
+       /home/bjoern/dev/master-thesis/thesis/
 INFO:  YAML settings read: defaultSettings.yaml
-       Reading defaultSettings.yaml from /usr/share/texmf-dist/scripts/latexindent/defaultSettings.yaml
+       Reading defaultSettings.yaml from /usr/share/texlive/texmf-dist/scripts/latexindent/defaultSettings.yaml
 INFO:  YAML reading settings
-       Home directory is /home/sentinel
+       Home directory is /home/bjoern
        latexindent.pl didn't find indentconfig.yaml or .indentconfig.yaml
        see all possible locations: https://latexindentpl.readthedocs.io/en/latest/sec-appendices.html#indentconfig-options)
 INFO:  YAML settings read: -y switch

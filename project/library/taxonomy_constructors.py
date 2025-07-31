@@ -566,3 +566,38 @@ class SyntheticTaxonomy(Taxonomy):
             selected_concepts -= class_concepts
 
         return Deviation(frozenset(domain))
+
+
+class ManualTaxonomy(Taxonomy):
+    """Class for building a taxonomy from manually specified relationships.
+    This taxonomy is constructed by explicitly providing the relationships
+    between classes across domains, allowing full control over the graph structure.
+    """
+
+    def __init__(
+        self,
+        num_domains: int,
+        relationships: List[Relationship],
+        domain_labels: Dict[int, List[str]] | None = None,
+    ):
+        """Initialize the ManualTaxonomy with domains and relationships.
+
+        Parameters
+        ----------
+        num_domains : int
+            The number of domains in the taxonomy
+        relationships : List[Relationship]
+            List of Relationship objects to add to the taxonomy.
+            Each Relationship is a tuple of (target_class, source_class, confidence).
+        domain_labels : Dict[int, List[str]], optional
+            Optional dictionary mapping domain IDs to lists of human-readable class labels.
+            If provided, these labels will be used for domain classes instead of class IDs.
+            If not provided, class IDs will be used as labels.
+        """
+        super().__init__(domain_labels=domain_labels)
+        self.num_domains = num_domains
+        self.relationships = relationships
+
+        # Add all relationships to the taxonomy graph
+        for relationship in relationships:
+            self._add_relationship(relationship)
