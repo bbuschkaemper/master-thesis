@@ -386,9 +386,74 @@ with our best candidate relationship selection methods
 
 \subsection{Universal Taxonomy Generation}
 
-% TODO Manual look at caltech101-caltech256 taxonomy with mcfp (easier to look at).
-% TODO Also explain and plot training
-% TODO Explain the original taxonomy algorithm from Bevandic paper and what we changed (classification vs. segmentation, weighted vs. unweighted, multi-domain vs. 2 domains, etc.)
+\begin{figure}[ht]
+      \centering
+      \includegraphics[width=0.35\textwidth]{figures/taxonomy.png}
+
+      \caption{This figure shows the complete Caltech101-Caltech256 universal taxonomy.
+            While most classes build smaller clusters build smaller clusters of 2-3 classes,
+            some large clusters can be observed.}
+      \label{fig:taxonomy}
+\end{figure}
+
+\begin{figure}[ht]
+      \centering
+      \includegraphics[width=0.35\textwidth]{figures/wheel_concept.png}
+
+      \caption{In the Caltech101-Caltech256 universal taxonomy,
+            this cluster only contains vehicles. The universal classes created can be interpreted as
+            sharing a common concept of \enquote{wheel}.}
+      \label{fig:wheel_concept}
+\end{figure}
+
+\begin{figure}[ht]
+      \centering
+      \includegraphics[width=0.35\textwidth]{figures/bad_taxonomy.png}
+
+      \caption{This example in the Caltech101-Caltech256 universal taxonomy shows a wrong relationship
+            cluster towards the Caltech101 class \enquote{binocular}. Many of the Caltech256 classes
+            do not have a suitable representation in the Caltech101 dataset
+            and then connect to the Caltech101 class \enquote{binocular} instead.}
+      \label{fig:bad_taxonomy}
+\end{figure}
+
+We now have our domain models trained and our relationship selection methods evaluated.
+In the next step, we run our universal taxonomy generation algorithm
+(see Section~\ref{sec:universal_taxonomy_algorithm}) on the Caltech-101 and
+Caltech-256 datasets. To make the results more interpretable,
+we will use the most common foreign prediction method to have a sparse relationship graph
+that is easier to look at
+(for our later universal model training, we will of course work with both the naive thresholding method and the most common foreign prediction method).
+
+The overall universal taxonomy generated from the Caltech-101 and Caltech-256 datasets
+is shown in Figure~\ref{fig:taxonomy}.
+We can observe many smaller clusters of 2-3 classes which build from a single domain class in
+the Caltech-101 dataset and multiple domain classes in the Caltech-256 dataset
+(since the Caltech-256 dataset has more granular classes, this is to be expected).
+
+An example of a \enquote{good} cluster is shown in Figure~\ref{fig:wheel_concept}:
+This cluster centers around the Caltech101 class \enquote{wheelchair} and contains
+multiple Caltech256 classes that share the concept of \enquote{wheel} (e.g. \enquote{mountain bike}, \enquote{segway}, \enquote{touring bike}, etc.).
+The universal classes between the Caltech101 and Caltech256 classes
+will provide a useful mapping for our universal model training.
+
+However, we can also observe \enquote{bad} clusters in the universal taxonomy,
+such as the one shown in Figure~\ref{fig:bad_taxonomy}:
+The Caltech101 class \enquote{binocular} is connected to multiple Caltech256 classes
+of a variety of different concepts.
+While many of these classes do share concepts with binoculars (e.g. \enquote{sextant}, \enquote{telescope}, etc.),
+many of the Caltech256 classes in the cluster do not have an obvious connection to binoculars
+(e.g. \enquote{boxing glove}, \enquote{fire extinguisher}, etc.).
+Since it is likely that the Caltech256 dataset contains classes that do not have a suitable representation in the Caltech101 dataset,
+we \enquote{force} a relationship to a Caltech101 class by using the most common foreign prediction method.
+However, the incorrect relationships do have a low relationship weight which makes
+the error less severe for the universal model training.
+
+Addressing these issues is a complex task, since a suitable threshold for the relationship weights
+depends on the individual composition of the datasets.
+
+% TODO Also look at CIFAR100-caltech256 taxonomy with mcfp (more complex, but more interesting).
+
 
 \section{Universal Models}
 

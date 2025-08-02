@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  2 AUG 2025 12:30
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  2 AUG 2025 14:36
  system commands enabled.
  file:line:error style messages enabled.
 **/home/bjoern/dev/master-thesis/thesis/thesis.tex
@@ -1631,7 +1631,7 @@ LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
 LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
 (Font)              scaled to size 9.12494pt on input line 243.
  [8] [9] [10]
-Overfull \hbox (1.41293pt too wide) in paragraph at lines 391--397
+Overfull \hbox (1.41293pt too wide) in paragraph at lines 395--401
 []\TU/EBGaramond(0)/b/n/10.95 Uni-ver-sal Tax-on-omy Com-par-i-son\TU/EBGaramond(0)/m/n/10.95 : Com-par-ing the pre-dicted uni-ver-sal tax-on-omy against
  []
 
@@ -1647,7 +1647,7 @@ Overfull \hbox (1.41293pt too wide) in paragraph at lines 391--397
 chapter 3.
 [15]
 warning  (file figures/resnet_funnel.pdf) (pdf inclusion): PDF inclusion: found PDF version '1.7', but at most version '1.5' allowed
-<figures/resnet_funnel.pdf, id=275, 237.7683pt x 348.34138pt>
+<figures/resnet_funnel.pdf, id=277, 237.7683pt x 348.34138pt>
 File: figures/resnet_funnel.pdf Graphic file (type pdf)
 <use figures/resnet_funnel.pdf>
 Package luatex.def Info: figures/resnet_funnel.pdf  used on input line 54.
@@ -1655,22 +1655,22 @@ Package luatex.def Info: figures/resnet_funnel.pdf  used on input line 54.
 (./figures/cifar100_overfitting.pgf
 LaTeX Font Info:    Calculating math sizes for size <11> on input line 102.
 ) [16] [17<./figures/resnet_funnel.pdf>] [18]
-<figures/caltech256_2domain.png, id=330, 1820.8025pt x 1802.735pt>
+<figures/caltech256_2domain.png, id=332, 1820.8025pt x 1802.735pt>
 File: figures/caltech256_2domain.png Graphic file (type png)
 <use figures/caltech256_2domain.png>
 Package luatex.def Info: figures/caltech256_2domain.png  used on input line 159.
 (luatex.def)             Requested size: 159.33302pt x 157.72792pt.
-<figures/caltech256_2domain_variant.png, id=331, 569.12625pt x 779.91376pt>
+<figures/caltech256_2domain_variant.png, id=333, 569.12625pt x 779.91376pt>
 File: figures/caltech256_2domain_variant.png Graphic file (type png)
 <use figures/caltech256_2domain_variant.png>
 Package luatex.def Info: figures/caltech256_2domain_variant.png  used on input line 168.
 (luatex.def)             Requested size: 159.33302pt x 218.35056pt.
-<figures/caltech256_3domain.png, id=332, 1159.33125pt x 828.09375pt>
+<figures/caltech256_3domain.png, id=334, 1159.33125pt x 828.09375pt>
 File: figures/caltech256_3domain.png Graphic file (type png)
 <use figures/caltech256_3domain.png>
 Package luatex.def Info: figures/caltech256_3domain.png  used on input line 177.
 (luatex.def)             Requested size: 159.33302pt x 113.7969pt.
-<figures/cifar100_2domain.png, id=333, 1617.04124pt x 1627.07875pt>
+<figures/cifar100_2domain.png, id=335, 1617.04124pt x 1627.07875pt>
 File: figures/cifar100_2domain.png Graphic file (type png)
 <use figures/cifar100_2domain.png>
 Package luatex.def Info: figures/cifar100_2domain.png  used on input line 186.
@@ -1681,64 +1681,64 @@ Overfull \hbox (3.53003pt too wide) in paragraph at lines 217--220
  []
 
 (./figures/all_training_runs.pgf) (./figures/evaluation_results.tex) (./figures/naive_threshold_method_precision_recall.pgf
-<figures/naive_threshold_method_precision_recall-img0.png, id=336, interpolate=true, 21.07875pt x 409.53pt>
+<figures/naive_threshold_method_precision_recall-img0.png, id=338, interpolate=true, 21.07875pt x 409.53pt>
 File: figures/naive_threshold_method_precision_recall-img0.png Graphic file (type png)
 <use figures/naive_threshold_method_precision_recall-img0.png>
 Package luatex.def Info: figures/naive_threshold_method_precision_recall-img0.png  used on input line 4289.
 (luatex.def)             Requested size: 15.1773pt x 294.88011pt.
-<figures/naive_threshold_method_precision_recall-img1.png, id=337, interpolate=true, 20.075pt x 409.53pt>
+<figures/naive_threshold_method_precision_recall-img1.png, id=339, interpolate=true, 20.075pt x 409.53pt>
 File: figures/naive_threshold_method_precision_recall-img1.png Graphic file (type png)
 <use figures/naive_threshold_method_precision_recall-img1.png>
 Package luatex.def Info: figures/naive_threshold_method_precision_recall-img1.png  used on input line 4484.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/naive_threshold_method_precision_recall-img2.png, id=338, interpolate=true, 21.07875pt x 409.53pt>
+<figures/naive_threshold_method_precision_recall-img2.png, id=340, interpolate=true, 21.07875pt x 409.53pt>
 File: figures/naive_threshold_method_precision_recall-img2.png Graphic file (type png)
 <use figures/naive_threshold_method_precision_recall-img2.png>
 Package luatex.def Info: figures/naive_threshold_method_precision_recall-img2.png  used on input line 4679.
 (luatex.def)             Requested size: 15.1773pt x 294.88011pt.
-<figures/naive_threshold_method_precision_recall-img3.png, id=339, interpolate=true, 20.075pt x 409.53pt>
+<figures/naive_threshold_method_precision_recall-img3.png, id=341, interpolate=true, 20.075pt x 409.53pt>
 File: figures/naive_threshold_method_precision_recall-img3.png Graphic file (type png)
 <use figures/naive_threshold_method_precision_recall-img3.png>
 Package luatex.def Info: figures/naive_threshold_method_precision_recall-img3.png  used on input line 4874.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
 ) (./figures/density_threshold_method_precision_recall.pgf
-<figures/density_threshold_method_precision_recall-img0.png, id=340, interpolate=true, 21.07875pt x 409.53pt>
+<figures/density_threshold_method_precision_recall-img0.png, id=342, interpolate=true, 21.07875pt x 409.53pt>
 File: figures/density_threshold_method_precision_recall-img0.png Graphic file (type png)
 <use figures/density_threshold_method_precision_recall-img0.png>
 Package luatex.def Info: figures/density_threshold_method_precision_recall-img0.png  used on input line 4289.
 (luatex.def)             Requested size: 15.1773pt x 294.88011pt.
-<figures/density_threshold_method_precision_recall-img1.png, id=341, interpolate=true, 20.075pt x 409.53pt>
+<figures/density_threshold_method_precision_recall-img1.png, id=343, interpolate=true, 20.075pt x 409.53pt>
 File: figures/density_threshold_method_precision_recall-img1.png Graphic file (type png)
 <use figures/density_threshold_method_precision_recall-img1.png>
 Package luatex.def Info: figures/density_threshold_method_precision_recall-img1.png  used on input line 4484.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/density_threshold_method_precision_recall-img2.png, id=342, interpolate=true, 21.07875pt x 409.53pt>
+<figures/density_threshold_method_precision_recall-img2.png, id=344, interpolate=true, 21.07875pt x 409.53pt>
 File: figures/density_threshold_method_precision_recall-img2.png Graphic file (type png)
 <use figures/density_threshold_method_precision_recall-img2.png>
 Package luatex.def Info: figures/density_threshold_method_precision_recall-img2.png  used on input line 4679.
 (luatex.def)             Requested size: 15.1773pt x 294.88011pt.
-<figures/density_threshold_method_precision_recall-img3.png, id=343, interpolate=true, 20.075pt x 409.53pt>
+<figures/density_threshold_method_precision_recall-img3.png, id=345, interpolate=true, 20.075pt x 409.53pt>
 File: figures/density_threshold_method_precision_recall-img3.png Graphic file (type png)
 <use figures/density_threshold_method_precision_recall-img3.png>
 Package luatex.def Info: figures/density_threshold_method_precision_recall-img3.png  used on input line 4874.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
 ) (./figures/hypothesis_method_precision_recall.pgf
-<figures/hypothesis_method_precision_recall-img0.png, id=344, interpolate=true, 20.075pt x 409.53pt>
+<figures/hypothesis_method_precision_recall-img0.png, id=346, interpolate=true, 20.075pt x 409.53pt>
 File: figures/hypothesis_method_precision_recall-img0.png Graphic file (type png)
 <use figures/hypothesis_method_precision_recall-img0.png>
 Package luatex.def Info: figures/hypothesis_method_precision_recall-img0.png  used on input line 3233.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/hypothesis_method_precision_recall-img1.png, id=345, interpolate=true, 20.075pt x 409.53pt>
+<figures/hypothesis_method_precision_recall-img1.png, id=347, interpolate=true, 20.075pt x 409.53pt>
 File: figures/hypothesis_method_precision_recall-img1.png Graphic file (type png)
 <use figures/hypothesis_method_precision_recall-img1.png>
 Package luatex.def Info: figures/hypothesis_method_precision_recall-img1.png  used on input line 3528.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/hypothesis_method_precision_recall-img2.png, id=346, interpolate=true, 20.075pt x 409.53pt>
+<figures/hypothesis_method_precision_recall-img2.png, id=348, interpolate=true, 20.075pt x 409.53pt>
 File: figures/hypothesis_method_precision_recall-img2.png Graphic file (type png)
 <use figures/hypothesis_method_precision_recall-img2.png>
 Package luatex.def Info: figures/hypothesis_method_precision_recall-img2.png  used on input line 3823.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/hypothesis_method_precision_recall-img3.png, id=347, interpolate=true, 20.075pt x 409.53pt>
+<figures/hypothesis_method_precision_recall-img3.png, id=349, interpolate=true, 20.075pt x 409.53pt>
 File: figures/hypothesis_method_precision_recall-img3.png Graphic file (type png)
 <use figures/hypothesis_method_precision_recall-img3.png>
 Package luatex.def Info: figures/hypothesis_method_precision_recall-img3.png  used on input line 4118.
@@ -1753,9 +1753,28 @@ Overfull \hbox (6.61784pt too wide) in paragraph at lines 339--348
 \TU/EBGaramond(0)/m/n/10.95 thresh-old-ing method, but has a con-spic-u-ous drop for the CIFAR-100 dataset vari-ant (promi-
  []
 
-(./figures/relationship_methods_global_optimal.tex)) [22] [23] [24<./figures/caltech256_2domain.png><./figures/caltech256_2domain_variant.png><./figures/caltech256_3domain.png><./figures/cifar100_2domain.png>] [25] [26<./figures/naive_threshold_method_precision_recall-img0.png><./figures/naive_threshold_method_precision_recall-img1.png><./figures/naive_threshold_method_precision_recall-img2.png><./figures/naive_threshold_method_precision_recall-img3.png>] [27<./figures/density_threshold_method_precision_recall-img0.png><./figures/density_threshold_method_precision_recall-img1.png><./figures/density_threshold_method_precision_recall-img2.png><./figures/density_threshold_method_precision_recall-img3.png><./figures/hypothesis_method_precision_recall-img0.png><./figures/hypothesis_method_precision_recall-img1.png><./figures/hypothesis_method_precision_recall-img2.png><./figures/hypothesis_method_precision_recall-img3.png>]
+(./figures/relationship_methods_global_optimal.tex)
+<figures/taxonomy.png, id=381, 641.39626pt x 609.77812pt>
+File: figures/taxonomy.png Graphic file (type png)
+<use figures/taxonomy.png>
+Package luatex.def Info: figures/taxonomy.png  used on input line 391.
+(luatex.def)             Requested size: 139.42094pt x 132.54193pt.
+<figures/wheel_concept.png, id=382, 411.78844pt x 496.85625pt>
+File: figures/wheel_concept.png Graphic file (type png)
+<use figures/wheel_concept.png>
+Package luatex.def Info: figures/wheel_concept.png  used on input line 401.
+(luatex.def)             Requested size: 139.42094pt x 168.22382pt.
+<figures/bad_taxonomy.png, id=383, 494.59781pt x 465.99094pt>
+File: figures/bad_taxonomy.png Graphic file (type png)
+<use figures/bad_taxonomy.png>
+Package luatex.def Info: figures/bad_taxonomy.png  used on input line 411.
+(luatex.def)             Requested size: 139.42094pt x 131.35115pt.
+ [22])
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [23] [24] [25<./figures/caltech256_2domain.png><./figures/caltech256_2domain_variant.png><./figures/caltech256_3domain.png><./figures/cifar100_2domain.png>] [26] [27<./figures/naive_threshold_method_precision_recall-img0.png><./figures/naive_threshold_method_precision_recall-img1.png><./figures/naive_threshold_method_precision_recall-img2.png><./figures/naive_threshold_method_precision_recall-img3.png>] [28<./figures/density_threshold_method_precision_recall-img0.png><./figures/density_threshold_method_precision_recall-img1.png><./figures/density_threshold_method_precision_recall-img2.png><./figures/density_threshold_method_precision_recall-img3.png><./figures/hypothesis_method_precision_recall-img0.png><./figures/hypothesis_method_precision_recall-img1.png><./figures/hypothesis_method_precision_recall-img2.png><./figures/hypothesis_method_precision_recall-img3.png>] [29<./figures/taxonomy.png><./figures/wheel_concept.png><./figures/bad_taxonomy.png>]
 \openout2 = sources/discussion.aux
- (./sources/discussion.tex [28
+ (./sources/discussion.tex [30
 
 
 
@@ -1763,9 +1782,9 @@ Overfull \hbox (6.61784pt too wide) in paragraph at lines 339--348
 
 ]
 chapter 4.
-) [29]
+) [31]
 \openout2 = sources/conclusion.aux
- (./sources/conclusion.tex [30
+ (./sources/conclusion.tex [32
 
 
 
@@ -1773,7 +1792,7 @@ chapter 4.
 
 ]
 chapter 5.
-) [31] [32
+) [33] [34
 
 
 
@@ -1795,7 +1814,7 @@ Overfull \hbox (5.90498pt too wide) in paragraph at lines 142--142
 \TU/SourceCodePro(0)/m/n/10.95 ARXIV . 1207 . 0580$[][]\TU/EBGaramond(0)/m/n/10.95 . \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 https : / / arxiv . org / abs / 1207 . 0580$[][] \TU/EBGaramond(0)/m/n/10.95 (vis-ited on 06/21/2025). 
  []
 
-[33
+[35
 
 
 ]
@@ -1813,7 +1832,7 @@ Overfull \hbox (12.01189pt too wide) in paragraph at lines 142--142
 []\TU/EBGaramond(0)/m/n/10.95 T. T. Tan-i-moto. \TU/EBGaramond(0)/m/it/10.95 An El-e-men-tary Math-e-mat-i-cal The-ory of Clas-si-fi-ca-tion and Pre-dic-tion\TU/EBGaramond(0)/m/n/10.95 . Google-
  []
 
-[34] (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux) (./sources/results.aux) (./sources/discussion.aux) (./sources/conclusion.aux))
+[36] (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux) (./sources/results.aux) (./sources/discussion.aux) (./sources/conclusion.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2020/03/25>
@@ -1824,19 +1843,19 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 51026 strings out of 476553
- 381497,2848258 words of node,token memory allocated
+ 51067 strings out of 476553
+ 381499,2848258 words of node,token memory allocated
  971 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 glyph, 69 attribute, 91 glue_spec, 36 attribute_list, 2 write, 11 pdf_action nodes
-   avail lists: 1:9,2:60162,3:22685,4:979,5:752,6:153,7:14402,8:83,9:2494,10:10,11:882
- 71645 multiletter control sequences out of 65536+600000
- 141 fonts using 72326275 bytes
+   avail lists: 1:14,2:60162,3:22734,4:979,5:834,6:153,7:14524,8:83,9:2494,10:10,11:907
+ 71671 multiletter control sequences out of 65536+600000
+ 141 fonts using 72325635 bytes
  122i,20n,120p,10939b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf>
-Output written on thesis.pdf (40 pages, 2130861 bytes).
+Output written on thesis.pdf (42 pages, 2396978 bytes).
 
-PDF statistics: 637 PDF objects out of 1000 (max. 8388607)
- 528 compressed objects within 6 object streams
- 169 named destinations out of 1000 (max. 131072)
- 248 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 665 PDF objects out of 1000 (max. 8388607)
+ 548 compressed objects within 6 object streams
+ 175 named destinations out of 1000 (max. 131072)
+ 256 words of extra memory for PDF output out of 10000 (max. 100000000)
 

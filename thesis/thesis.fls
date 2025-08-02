@@ -364,6 +364,12 @@ INPUT ./figures/hypothesis_method_precision_recall-img3.png
 INPUT ./figures/hypothesis_method_precision_recall-img3.png
 INPUT ./figures/relationship_methods_results.tex
 INPUT ./figures/relationship_methods_global_optimal.tex
+INPUT ./figures/taxonomy.png
+INPUT ./figures/taxonomy.png
+INPUT ./figures/wheel_concept.png
+INPUT ./figures/wheel_concept.png
+INPUT ./figures/bad_taxonomy.png
+INPUT ./figures/bad_taxonomy.png
 OUTPUT sources/discussion.aux
 INPUT ./sources/discussion.tex
 OUTPUT sources/conclusion.aux

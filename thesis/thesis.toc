@@ -22,6 +22,7 @@
 \contentsline {subsubsection}{\nonumberline No-Prediction Classes}{10}{subsubsection*.21}%
 \contentsline {section}{\numberline {2.4}Universal Taxonomy Algorithm}{10}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Taxonomy Building Rules}{11}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Difference to algorithm of Bevandic et al.}{11}{subsection.2.4.2}%
 \contentsline {section}{\numberline {2.5}Taxonomy Difference Metrics}{11}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}Constructing Adjacency Matrices}{12}{subsection.2.5.1}%
 \contentsline {subsection}{\numberline {2.5.2}Edge Difference Ratio}{12}{subsection.2.5.2}%
@@ -39,8 +40,8 @@
 \contentsline {subsection}{\numberline {3.2.1}Relationship Selection Methods}{19}{subsection.3.2.1}%
 \contentsline {subsubsection}{\nonumberline Synthetic Dataset Variants}{19}{subsubsection*.36}%
 \contentsline {subsection}{\numberline {3.2.2}Universal Taxonomy Generation}{22}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Universal Models}{22}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Discussion}{29}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusion}{31}{chapter.5}%
-\contentsline {chapter}{\nonumberline Bibliography}{33}{chapter*.42}%
+\contentsline {section}{\numberline {3.3}Universal Models}{24}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Discussion}{31}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusion}{33}{chapter.5}%
+\contentsline {chapter}{\nonumberline Bibliography}{35}{chapter*.45}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

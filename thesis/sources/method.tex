@@ -339,7 +339,7 @@ For these \enquote{no-prediction} classes, we need to adapt the relationship pro
 Instead of distributing the remaining probability mass evenly across all classes,
 we simply ignore it and therefore only have the probability of the overlapping concepts.
 
-\section{Universal Taxonomy Algorithm}
+\section{Universal Taxonomy Algorithm} \label{sec:universal_taxonomy_algorithm}
 
 After constructing our initial graph structure from cross-domain predictions (as described in \autoref{sec:graph_construction}), we now need to transform it into a universal taxonomy
 that merges classes from different datasets into universal classes where they share similar concepts.
@@ -381,6 +381,10 @@ that merges classes from different datasets into universal classes where they sh
                     This universal class represents the concepts of class B that are not in class A.
           \end{itemize}
 \end{enumerate}
+
+\subsection{Difference to algorithm of Bevandic et al.}
+
+% TODO Explain the original taxonomy algorithm from Bevandic paper and what we changed (classification vs. segmentation, weighted vs. unweighted, multi-domain vs. 2 domains, etc.)
 
 \section{Taxonomy Difference Metrics}
 
