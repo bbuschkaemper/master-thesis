@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  30 JUL 2025 22:21
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  2 AUG 2025 12:30
  system commands enabled.
  file:line:error style messages enabled.
 **/home/bjoern/dev/master-thesis/thesis/thesis.tex
@@ -1556,9 +1556,8 @@ Package biblatex Info: Automatic encoding selection.
 
 \openout3 = thesis.bcf
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'thesis.bbl' not found.
-
-No file thesis.bbl.
+Package biblatex Info: ... file 'thesis.bbl' found.
+ (./thesis.bbl)
 Package biblatex Info: Reference section=0 on input line 119.
 Package biblatex Info: Reference segment=0 on input line 119.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
@@ -1567,7 +1566,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 119.
 
 \openout2 = sources/title.aux
-(./sources/title.tex
+ (./sources/title.tex
 LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
 (Font)              scaled to size 20.7332pt on input line 6.
  [1
@@ -1591,11 +1590,11 @@ LaTeX Font Info:    Font shape `TU/EBGaramond(0)/m/sl' in size <10.95> not avail
 
 
 
-] (./thesis.toc)
+] (./thesis.toc [5])
 \tf@toc=\write6
 
 \openout6 = thesis.toc
- [5] [6]
+ [6]
 \openout2 = sources/introduction.aux
  (./sources/introduction.tex
 chapter 1.
@@ -1625,44 +1624,10 @@ Overfull \hbox (0.74869pt too wide) in paragraph at lines 106--111
 []\TU/EBGaramond(0)/b/n/10.95 Un-bal-anced datasets\TU/EBGaramond(0)/m/n/10.95 : Some datasets might have more im-ages for a class than oth-ers, which
  []
 
-
-LaTeX Warning: Citation 'bevandic_automatic_2022' on page 5 undefined on input line 123.
-
-[5]
-
-LaTeX Warning: Citation 'deng_imagenet_2009' on page 6 undefined on input line 179.
-
-
-LaTeX Warning: Citation 'russakovsky_imagenet_2015' on page 6 undefined on input line 179.
-
-
-LaTeX Warning: Citation 'fellbaum_wordnet_1998' on page 6 undefined on input line 180.
-
-
-Overfull \hbox (77.09283pt too wide) in paragraph at lines 179--183
-[]\TU/EBGaramond(0)/b/n/10.95 Im-a-geNet \TU/EBGaramond(0)/m/n/9.99594 [[], []] \TU/EBGaramond(0)/m/n/10.95 uses Word-Net’s \TU/EBGaramond(0)/m/n/9.99594 [[]]
- []
-
-[6]
-
-LaTeX Warning: Citation 'kuznetsova_open_2020' on page 7 undefined on input line 184.
-
+[5] [6]
 LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
 (Font)              scaled to size 7.49995pt on input line 185.
-
-Overfull \hbox (3.37553pt too wide) in paragraph at lines 184--189
-[]\TU/EBGaramond(0)/b/n/10.95 Open Im-ages \TU/EBGaramond(0)/m/n/9.99594 [[]] \TU/EBGaramond(0)/m/n/10.95 con-tains ap-prox-i-mately 9 mil-lion im-ages with mul-
- []
-
-
-LaTeX Warning: Citation 'horn_inaturalist_2018' on page 7 undefined on input line 190.
-
-
-Overfull \hbox (5.2662pt too wide) in paragraph at lines 190--193
-[]\TU/EBGaramond(0)/b/n/10.95 iNat-u-ral-ist \TU/EBGaramond(0)/m/n/9.99594 [[]] \TU/EBGaramond(0)/m/n/10.95 of-fers a de-tailed tax-on-omy of plant and an-i-mal species,
- []
-
-[7]
+ [7]
 LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
 (Font)              scaled to size 9.12494pt on input line 243.
  [8] [9] [10]
@@ -1670,14 +1635,7 @@ Overfull \hbox (1.41293pt too wide) in paragraph at lines 391--397
 []\TU/EBGaramond(0)/b/n/10.95 Uni-ver-sal Tax-on-omy Com-par-i-son\TU/EBGaramond(0)/m/n/10.95 : Com-par-ing the pre-dicted uni-ver-sal tax-on-omy against
  []
 
-[11]
-
-LaTeX Warning: Citation 'jaccard_distribution_1912' on page 12 undefined on input line 432.
-
-
-LaTeX Warning: Citation 'tanimoto_elementary_1958' on page 12 undefined on input line 432.
-
-[12]) [13]
+[11] [12]) [13]
 \openout2 = sources/results.aux
  (./sources/results.tex [14
 
@@ -1687,81 +1645,32 @@ LaTeX Warning: Citation 'tanimoto_elementary_1958' on page 12 undefined on input
 
 ]
 chapter 3.
-
-LaTeX Warning: Citation 'li_caltech_2022' on page 15 undefined on input line 11.
-
-
-LaTeX Warning: Citation 'griffin_caltech_2022' on page 15 undefined on input line 11.
-
-
-LaTeX Warning: Citation 'krizhevsky_learning_2009' on page 15 undefined on input line 19.
-
-
-LaTeX Warning: Citation 'he_deep_2015' on page 15 undefined on input line 41.
-
-
-LaTeX Warning: Citation 'he_identity_2016' on page 15 undefined on input line 41.
-
-
-LaTeX Warning: Citation 'deng_imagenet_2009' on page 15 undefined on input line 43.
-
-
-LaTeX Warning: Citation 'russakovsky_imagenet_2015' on page 15 undefined on input line 43.
-
-
-Overfull \hbox (10.54694pt too wide) in paragraph at lines 39--47
-\TU/EBGaramond(0)/m/n/10.95 of be-ing pre-trained on the Im-a-geNet dataset \TU/EBGaramond(0)/m/n/9.99594 [[], []],
- []
-
 [15]
 warning  (file figures/resnet_funnel.pdf) (pdf inclusion): PDF inclusion: found PDF version '1.7', but at most version '1.5' allowed
-<figures/resnet_funnel.pdf, id=244, 237.7683pt x 348.34138pt>
+<figures/resnet_funnel.pdf, id=275, 237.7683pt x 348.34138pt>
 File: figures/resnet_funnel.pdf Graphic file (type pdf)
 <use figures/resnet_funnel.pdf>
 Package luatex.def Info: figures/resnet_funnel.pdf  used on input line 54.
 (luatex.def)             Requested size: 239.0056pt x 350.15303pt.
-
-LaTeX Warning: Citation 'hinton_improving_2012' on page 16 undefined on input line 68.
-
 (./figures/cifar100_overfitting.pgf
 LaTeX Font Info:    Calculating math sizes for size <11> on input line 102.
-)
-
-LaTeX Warning: Citation 'sutskever_importance_2013' on page 16 undefined on input line 95.
-
-
-Overfull \hbox (59.59041pt too wide) in paragraph at lines 94--98
-[]\TU/EBGaramond(0)/m/n/10.95 For the eas-ier Caltech-101 and Caltech-256 datasets, we use the SGD op-ti-miser \TU/EBGaramond(0)/m/n/9.99594 [[]]
- []
-
-
-LaTeX Warning: Citation 'loshchilov_decoupled_2017' on page 16 undefined on input line 100.
-
-
-Overfull \hbox (34.56369pt too wide) in paragraph at lines 99--103
-[]\TU/EBGaramond(0)/m/n/10.95 For our more com-plex CIFAR-100 dataset, we use the AdamW op-ti-miser \TU/EBGaramond(0)/m/n/9.99594 [[]]
- []
-
-
-LaTeX Warning: Citation 'falcon_pytorch_2019' on page 16 undefined on input line 105.
-
-[16] [17<./figures/resnet_funnel.pdf>] [18]
-<figures/caltech256_2domain.png, id=290, 1820.8025pt x 1802.735pt>
+) [16] [17<./figures/resnet_funnel.pdf>] [18]
+<figures/caltech256_2domain.png, id=330, 1820.8025pt x 1802.735pt>
 File: figures/caltech256_2domain.png Graphic file (type png)
 <use figures/caltech256_2domain.png>
 Package luatex.def Info: figures/caltech256_2domain.png  used on input line 159.
 (luatex.def)             Requested size: 159.33302pt x 157.72792pt.
-<figures/caltech256_2domain_variant.png, id=291, 569.12625pt x 779.91376pt>
+<figures/caltech256_2domain_variant.png, id=331, 569.12625pt x 779.91376pt>
 File: figures/caltech256_2domain_variant.png Graphic file (type png)
 <use figures/caltech256_2domain_variant.png>
 Package luatex.def Info: figures/caltech256_2domain_variant.png  used on input line 168.
 (luatex.def)             Requested size: 159.33302pt x 218.35056pt.
-<figures/caltech256_3domain.png, id=292, 1159.33125pt x 828.09375pt>
+<figures/caltech256_3domain.png, id=332, 1159.33125pt x 828.09375pt>
 File: figures/caltech256_3domain.png Graphic file (type png)
 <use figures/caltech256_3domain.png>
 Package luatex.def Info: figures/caltech256_3domain.png  used on input line 177.
 (luatex.def)             Requested size: 159.33302pt x 113.7969pt.
-<figures/cifar100_2domain.png, id=293, 1617.04124pt x 1627.07875pt>
+<figures/cifar100_2domain.png, id=333, 1617.04124pt x 1627.07875pt>
 File: figures/cifar100_2domain.png Graphic file (type png)
 <use figures/cifar100_2domain.png>
 Package luatex.def Info: figures/cifar100_2domain.png  used on input line 186.
@@ -1772,64 +1681,64 @@ Overfull \hbox (3.53003pt too wide) in paragraph at lines 217--220
  []
 
 (./figures/all_training_runs.pgf) (./figures/evaluation_results.tex) (./figures/naive_threshold_method_precision_recall.pgf
-<figures/naive_threshold_method_precision_recall-img0.png, id=296, interpolate=true, 21.07875pt x 409.53pt>
+<figures/naive_threshold_method_precision_recall-img0.png, id=336, interpolate=true, 21.07875pt x 409.53pt>
 File: figures/naive_threshold_method_precision_recall-img0.png Graphic file (type png)
 <use figures/naive_threshold_method_precision_recall-img0.png>
 Package luatex.def Info: figures/naive_threshold_method_precision_recall-img0.png  used on input line 4289.
 (luatex.def)             Requested size: 15.1773pt x 294.88011pt.
-<figures/naive_threshold_method_precision_recall-img1.png, id=297, interpolate=true, 20.075pt x 409.53pt>
+<figures/naive_threshold_method_precision_recall-img1.png, id=337, interpolate=true, 20.075pt x 409.53pt>
 File: figures/naive_threshold_method_precision_recall-img1.png Graphic file (type png)
 <use figures/naive_threshold_method_precision_recall-img1.png>
 Package luatex.def Info: figures/naive_threshold_method_precision_recall-img1.png  used on input line 4484.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/naive_threshold_method_precision_recall-img2.png, id=298, interpolate=true, 21.07875pt x 409.53pt>
+<figures/naive_threshold_method_precision_recall-img2.png, id=338, interpolate=true, 21.07875pt x 409.53pt>
 File: figures/naive_threshold_method_precision_recall-img2.png Graphic file (type png)
 <use figures/naive_threshold_method_precision_recall-img2.png>
 Package luatex.def Info: figures/naive_threshold_method_precision_recall-img2.png  used on input line 4679.
 (luatex.def)             Requested size: 15.1773pt x 294.88011pt.
-<figures/naive_threshold_method_precision_recall-img3.png, id=299, interpolate=true, 20.075pt x 409.53pt>
+<figures/naive_threshold_method_precision_recall-img3.png, id=339, interpolate=true, 20.075pt x 409.53pt>
 File: figures/naive_threshold_method_precision_recall-img3.png Graphic file (type png)
 <use figures/naive_threshold_method_precision_recall-img3.png>
 Package luatex.def Info: figures/naive_threshold_method_precision_recall-img3.png  used on input line 4874.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
 ) (./figures/density_threshold_method_precision_recall.pgf
-<figures/density_threshold_method_precision_recall-img0.png, id=300, interpolate=true, 21.07875pt x 409.53pt>
+<figures/density_threshold_method_precision_recall-img0.png, id=340, interpolate=true, 21.07875pt x 409.53pt>
 File: figures/density_threshold_method_precision_recall-img0.png Graphic file (type png)
 <use figures/density_threshold_method_precision_recall-img0.png>
 Package luatex.def Info: figures/density_threshold_method_precision_recall-img0.png  used on input line 4289.
 (luatex.def)             Requested size: 15.1773pt x 294.88011pt.
-<figures/density_threshold_method_precision_recall-img1.png, id=301, interpolate=true, 20.075pt x 409.53pt>
+<figures/density_threshold_method_precision_recall-img1.png, id=341, interpolate=true, 20.075pt x 409.53pt>
 File: figures/density_threshold_method_precision_recall-img1.png Graphic file (type png)
 <use figures/density_threshold_method_precision_recall-img1.png>
 Package luatex.def Info: figures/density_threshold_method_precision_recall-img1.png  used on input line 4484.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/density_threshold_method_precision_recall-img2.png, id=302, interpolate=true, 21.07875pt x 409.53pt>
+<figures/density_threshold_method_precision_recall-img2.png, id=342, interpolate=true, 21.07875pt x 409.53pt>
 File: figures/density_threshold_method_precision_recall-img2.png Graphic file (type png)
 <use figures/density_threshold_method_precision_recall-img2.png>
 Package luatex.def Info: figures/density_threshold_method_precision_recall-img2.png  used on input line 4679.
 (luatex.def)             Requested size: 15.1773pt x 294.88011pt.
-<figures/density_threshold_method_precision_recall-img3.png, id=303, interpolate=true, 20.075pt x 409.53pt>
+<figures/density_threshold_method_precision_recall-img3.png, id=343, interpolate=true, 20.075pt x 409.53pt>
 File: figures/density_threshold_method_precision_recall-img3.png Graphic file (type png)
 <use figures/density_threshold_method_precision_recall-img3.png>
 Package luatex.def Info: figures/density_threshold_method_precision_recall-img3.png  used on input line 4874.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
 ) (./figures/hypothesis_method_precision_recall.pgf
-<figures/hypothesis_method_precision_recall-img0.png, id=304, interpolate=true, 20.075pt x 409.53pt>
+<figures/hypothesis_method_precision_recall-img0.png, id=344, interpolate=true, 20.075pt x 409.53pt>
 File: figures/hypothesis_method_precision_recall-img0.png Graphic file (type png)
 <use figures/hypothesis_method_precision_recall-img0.png>
 Package luatex.def Info: figures/hypothesis_method_precision_recall-img0.png  used on input line 3233.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/hypothesis_method_precision_recall-img1.png, id=305, interpolate=true, 20.075pt x 409.53pt>
+<figures/hypothesis_method_precision_recall-img1.png, id=345, interpolate=true, 20.075pt x 409.53pt>
 File: figures/hypothesis_method_precision_recall-img1.png Graphic file (type png)
 <use figures/hypothesis_method_precision_recall-img1.png>
 Package luatex.def Info: figures/hypothesis_method_precision_recall-img1.png  used on input line 3528.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/hypothesis_method_precision_recall-img2.png, id=306, interpolate=true, 20.075pt x 409.53pt>
+<figures/hypothesis_method_precision_recall-img2.png, id=346, interpolate=true, 20.075pt x 409.53pt>
 File: figures/hypothesis_method_precision_recall-img2.png Graphic file (type png)
 <use figures/hypothesis_method_precision_recall-img2.png>
 Package luatex.def Info: figures/hypothesis_method_precision_recall-img2.png  used on input line 3823.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/hypothesis_method_precision_recall-img3.png, id=307, interpolate=true, 20.075pt x 409.53pt>
+<figures/hypothesis_method_precision_recall-img3.png, id=347, interpolate=true, 20.075pt x 409.53pt>
 File: figures/hypothesis_method_precision_recall-img3.png Graphic file (type png)
 <use figures/hypothesis_method_precision_recall-img3.png>
 Package luatex.def Info: figures/hypothesis_method_precision_recall-img3.png  used on input line 4118.
@@ -1839,24 +1748,12 @@ Overfull \hbox (5.48038pt too wide) in paragraph at lines 5--30
  [][] 
  []
 
-) [19] [20]
-
-LaTeX Warning: Citation 'bevandic_automatic_2022' on page 21 undefined on input line 318.
-
-
-Overfull \hbox (94.7781pt too wide) in paragraph at lines 317--322
-[]\TU/EBGaramond(0)/m/n/10.95 The orig-i-nal most com-mon for-eign pre-dic-tion method from the Be-vandic et al. pa-per \TU/EBGaramond(0)/m/n/9.99594 [[]]
- []
-
-[21]
+) [19] [20] [21]
 Overfull \hbox (6.61784pt too wide) in paragraph at lines 339--348
 \TU/EBGaramond(0)/m/n/10.95 thresh-old-ing method, but has a con-spic-u-ous drop for the CIFAR-100 dataset vari-ant (promi-
  []
 
-(./figures/relationship_methods_global_optimal.tex))
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [22] [23] [24<./figures/caltech256_2domain.png><./figures/caltech256_2domain_variant.png><./figures/caltech256_3domain.png><./figures/cifar100_2domain.png>] [25] [26<./figures/naive_threshold_method_precision_recall-img0.png><./figures/naive_threshold_method_precision_recall-img1.png><./figures/naive_threshold_method_precision_recall-img2.png><./figures/naive_threshold_method_precision_recall-img3.png>] [27<./figures/density_threshold_method_precision_recall-img0.png><./figures/density_threshold_method_precision_recall-img1.png><./figures/density_threshold_method_precision_recall-img2.png><./figures/density_threshold_method_precision_recall-img3.png><./figures/hypothesis_method_precision_recall-img0.png><./figures/hypothesis_method_precision_recall-img1.png><./figures/hypothesis_method_precision_recall-img2.png><./figures/hypothesis_method_precision_recall-img3.png>]
+(./figures/relationship_methods_global_optimal.tex)) [22] [23] [24<./figures/caltech256_2domain.png><./figures/caltech256_2domain_variant.png><./figures/caltech256_3domain.png><./figures/cifar100_2domain.png>] [25] [26<./figures/naive_threshold_method_precision_recall-img0.png><./figures/naive_threshold_method_precision_recall-img1.png><./figures/naive_threshold_method_precision_recall-img2.png><./figures/naive_threshold_method_precision_recall-img3.png>] [27<./figures/density_threshold_method_precision_recall-img0.png><./figures/density_threshold_method_precision_recall-img1.png><./figures/density_threshold_method_precision_recall-img2.png><./figures/density_threshold_method_precision_recall-img3.png><./figures/hypothesis_method_precision_recall-img0.png><./figures/hypothesis_method_precision_recall-img1.png><./figures/hypothesis_method_precision_recall-img2.png><./figures/hypothesis_method_precision_recall-img3.png>]
 \openout2 = sources/discussion.aux
  (./sources/discussion.tex [28
 
@@ -1882,42 +1779,64 @@ chapter 5.
 
 
 ] (./thesis.ind)
+chapter without number
 
-LaTeX Warning: Empty bibliography on input line 141.
+Overfull \hbox (2.18365pt too wide) in paragraph at lines 142--142
+[]\TU/EBGaramond(0)/m/n/10.95 W. Fal-con and The Py-Torch Light-ning team. \TU/EBGaramond(0)/m/it/10.95 Py-Torch Light-ning\TU/EBGaramond(0)/m/n/10.95 . Ver-sion 1.4. 2019. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 .
+ []
 
-(./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux) (./sources/results.aux) (./sources/discussion.aux) (./sources/conclusion.aux))
+
+Overfull \hbox (40.58322pt too wide) in paragraph at lines 142--142
+[]\TU/EBGaramond(0)/m/n/10.95 C. Fell-baum. \TU/EBGaramond(0)/m/it/10.95 Word-Net: An Elec-tronic Lex-i-cal Database\TU/EBGaramond(0)/m/n/10.95 . The MIT Press, 1998. \TU/EBGaramond(0)/m/sc/10.95 󰅱󰆢󰅑󰆈\TU/EBGaramond(0)/m/n/10.95 : 9780262272551.
+ []
+
+
+Overfull \hbox (5.90498pt too wide) in paragraph at lines 142--142
+\TU/SourceCodePro(0)/m/n/10.95 ARXIV . 1207 . 0580$[][]\TU/EBGaramond(0)/m/n/10.95 . \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 https : / / arxiv . org / abs / 1207 . 0580$[][] \TU/EBGaramond(0)/m/n/10.95 (vis-ited on 06/21/2025). 
+ []
+
+[33
+
+
+]
+Overfull \hbox (2.6348pt too wide) in paragraph at lines 142--142
+[]\TU/EBGaramond(0)/m/n/10.95 F.[]F. Li, M. An-dreeto, M. Ran-zato, and P. Per-ona. \TU/EBGaramond(0)/m/it/10.95 Cal-tech 101\TU/EBGaramond(0)/m/n/10.95 . Ver-sion 1.0. 6, 2022. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 .
+ []
+
+
+Overfull \hbox (4.7355pt too wide) in paragraph at lines 142--142
+[]\TU/EBGaramond(0)/m/n/10.95 I. Loshchilov and F. Hut-ter. \TU/EBGaramond(0)/m/it/10.95 De-cou-pled Weight De-cay Reg-u-lar-iza-tion\TU/EBGaramond(0)/m/n/10.95 . 2017. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 . 48550 /
+ []
+
+
+Overfull \hbox (12.01189pt too wide) in paragraph at lines 142--142
+[]\TU/EBGaramond(0)/m/n/10.95 T. T. Tan-i-moto. \TU/EBGaramond(0)/m/it/10.95 An El-e-men-tary Math-e-mat-i-cal The-ory of Clas-si-fi-ca-tion and Pre-dic-tion\TU/EBGaramond(0)/m/n/10.95 . Google-
+ []
+
+[34] (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/method.aux) (./sources/results.aux) (./sources/discussion.aux) (./sources/conclusion.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                thesis
-(biblatex)                and rerun LaTeX afterwards.
-
 Package logreq Info: Writing requests to 'thesis.run.xml'.
 
 \openout1 = thesis.run.xml
 )
 
 Here is how much of LuaTeX's memory you used:
- 50911 strings out of 476553
- 381513,2848258 words of node,token memory allocated
- 865 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 glyph, 53 attribute, 89 glue_spec, 28 attribute_list, 2 write, 3 pdf_action nodes
-   avail lists: 1:7,2:60158,3:22685,4:979,5:752,6:139,7:14392,8:83,9:2492,10:10,11:882
- 71553 multiletter control sequences out of 65536+600000
- 142 fonts using 72841643 bytes
+ 51026 strings out of 476553
+ 381497,2848258 words of node,token memory allocated
+ 971 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 glyph, 69 attribute, 91 glue_spec, 36 attribute_list, 2 write, 11 pdf_action nodes
+   avail lists: 1:9,2:60162,3:22685,4:979,5:752,6:153,7:14402,8:83,9:2494,10:10,11:882
+ 71645 multiletter control sequences out of 65536+600000
+ 141 fonts using 72326275 bytes
  122i,20n,120p,10939b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf>
-Output written on thesis.pdf (38 pages, 2117427 bytes).
+Output written on thesis.pdf (40 pages, 2130861 bytes).
 
-PDF statistics: 549 PDF objects out of 1000 (max. 8388607)
- 443 compressed objects within 5 object streams
- 151 named destinations out of 1000 (max. 131072)
- 240 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 637 PDF objects out of 1000 (max. 8388607)
+ 528 compressed objects within 6 object streams
+ 169 named destinations out of 1000 (max. 131072)
+ 248 words of extra memory for PDF output out of 10000 (max. 100000000)
 

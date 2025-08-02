@@ -300,6 +300,9 @@ INPUT ./english-mimosis.lbx
 INPUT /usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 INPUT /usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 OUTPUT thesis.bcf
+INPUT ./thesis.bbl
+INPUT ./thesis.bbl
+INPUT ./thesis.bbl
 OUTPUT sources/title.aux
 INPUT ./sources/title.tex
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map

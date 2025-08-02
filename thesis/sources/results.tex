@@ -377,29 +377,25 @@ the naive thresholding method is the best choice, closely followed by the relati
 
 \input{figures/relationship_methods_global_optimal.tex}
 
-However, these synthetic dataset variants are not representative of real-world datasets,
-since the underlying images between images are the same (from the same real-world dataset).
-Therefore, we will redo the relationship selection method evaluation on real-world datasets
-to conclude how they perform in different environments and (hopefully) concur on a single parameter configuration
-that works well across all scenarios.
-
-\subsubsection{Real-World Datasets}
-
-% TODO Evaluation WordNet => Caltech100 - Caltech256
-% TODO WordNet cite other papers for references
-% TODO MNIST - SVHN as verification that it works well (not applyable by itself)
-% TODO Close-up examples
+However, these synthetic dataset variants might not be representative of real-world datasets,
+due to their shared image data as well as their \enquote{clean} relationships.
+But since our final goal is to create a universal model that works on multiple domains
+without separate head models, we can simply compare the universal model performance
+with our best candidate relationship selection methods
+(i.e. naive thresholding vs. most common foreign prediction).
 
 \subsection{Universal Taxonomy Generation}
 
-% TODO Manual look at caltech101-caltech256 taxonomy
-% TODO Also explaind and plot training
-% TODO Explain what differences we make to Bevandic taxonomy generation
-
-% TODO OBSERVED: Low naive threshold doesn't work as well for real-world as for synthetic
-% TODO Probably because synthetic were trained on same dataset and not good enough for comparison
-% TODO Can we find dataset with real-world mapping??? (Maybe based on labels?)
+% TODO Manual look at caltech101-caltech256 taxonomy with mcfp (easier to look at).
+% TODO Also explain and plot training
+% TODO Explain the original taxonomy algorithm from Bevandic paper and what we changed (classification vs. segmentation, weighted vs. unweighted, multi-domain vs. 2 domains, etc.)
 
 \section{Universal Models}
 
-% TODO
+% TODO - New model with universal classes as output layer
+% TODO - We train on domain datasets:
+% TODO  - Map prediction from universal classes to domain classes by using relationship probabilities
+% TODO  - Loss function is cross-entropy between predicted mapping and ground truth domain classes
+% TODO  - Compare accuracy of universal taxonomy model on domain datasets with baseline models trained only on the domain datasets
+% TODO - Question: How are taxonomy correctness and model accuracy on domain datasets related?
+% TODO - Question: How does the model accuracy on domain datasets change with different universal taxonomy algorithms?

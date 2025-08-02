@@ -578,6 +578,7 @@ class ManualTaxonomy(Taxonomy):
         self,
         num_domains: int,
         relationships: List[Relationship],
+        num_nodes: List[int],
         domain_labels: Dict[int, List[str]] | None = None,
     ):
         """Initialize the ManualTaxonomy with domains and relationships.
@@ -589,6 +590,10 @@ class ManualTaxonomy(Taxonomy):
         relationships : List[Relationship]
             List of Relationship objects to add to the taxonomy.
             Each Relationship is a tuple of (target_class, source_class, confidence).
+        num_nodes : List[int]
+            List of the number of nodes (classes) in each domain.
+            This is used to initialize the taxonomy graph structure.
+            The length of this list should match num_domains.
         domain_labels : Dict[int, List[str]], optional
             Optional dictionary mapping domain IDs to lists of human-readable class labels.
             If provided, these labels will be used for domain classes instead of class IDs.
@@ -596,7 +601,14 @@ class ManualTaxonomy(Taxonomy):
         """
         super().__init__(domain_labels=domain_labels)
         self.num_domains = num_domains
+        self.num_nodes = num_nodes
         self.relationships = relationships
+
+        # Initialize the taxonomy graph structure with the specified number of nodes
+        for domain_id in range(num_domains):
+            for class_id in range(num_nodes[domain_id]):
+                domain_class = DomainClass((np.intp(domain_id), np.intp(class_id)))
+                self._add_node(domain_class)
 
         # Add all relationships to the taxonomy graph
         for relationship in relationships:
