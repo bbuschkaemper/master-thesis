@@ -384,7 +384,56 @@ that merges classes from different datasets into universal classes where they sh
 
 \subsection{Difference to algorithm of Bevandic et al.}
 
-% TODO Explain the original taxonomy algorithm from Bevandic paper and what we changed (classification vs. segmentation, weighted vs. unweighted, multi-domain vs. 2 domains, etc.)
+The taxonomy algorithm presented above is based on the work by Bevandic et al.~\cite{bevandic_weakly_2024}, but adapted for image classification instead of semantic segmentation.
+Their original approach was designed to create universal taxonomies for multi-domain semantic segmentation
+by addressing the problem of incompatible labeling policies across datasets.
+
+\subsubsection{Original Algorithm}
+
+Bevandic et al. developed a procedure for constructing universal taxonomies
+that express dataset-specific labels as unions of disjoint universal visual concepts.
+Their algorithm operates on the principle that semantic classes can be viewed as sets of pixels,
+and uses three resolution rules to handle overlaps between classes from different datasets:
+
+\begin{enumerate}
+    \item \textbf{Exact Match Rule}: If two classes match exactly across datasets, they are merged into a single universal class.
+    \item \textbf{Subset/Superset Rule}: If one class is a subset of another, the superset is decomposed into the subset plus a remainder class.
+    \item \textbf{Partial Overlap Rule}: If two classes partially overlap, they are split into three disjoint classes: the intersection, and the two remainders.
+\end{enumerate}
+
+The algorithm iteratively applies these rules until all classes in the multiset are disjoint,
+creating a flat universal taxonomy that encompasses the entire semantic range of the dataset collection.
+
+\subsubsection{Our Modifications}
+
+Our approach adapts their methodology for image classification with several key modifications:
+
+\begin{itemize}
+    \item \textbf{Classification vs. Segmentation}: While Bevandic et al. focused on pixel-level prediction for semantic segmentation,
+          our method addresses image-level classification where each image has a single label from each dataset.
+
+    \item \textbf{Probabilistic Relationships}: Instead of binary relationships between classes,
+          we derive probabilities from the cross-domain predictions of our neural networks.
+          This allows us to not only evaluate the quantity of relationships but also their quality
+          e.g. useability for later classification tasks.
+
+    \item \textbf{Flexible Relationship Selection}: We introduce multiple methods for selecting relevant relationships from probability matrices (naive thresholding, most common predictions, density thresholding, relationship hypothesis)
+          and try to evaluate their performance on a synthetic ground truth.
+
+    \item \textbf{Simplified Taxonomy Rules}: Our taxonomy building rules are adapted for the graph structure and focus on four main cases: isolated nodes, bidirectional relationships, transitive cycles, and unilateral relationships.
+          They are very similar to the original rules, but simplified for our use case.
+          For example, we do not need to handle the case of partial overlaps since we do not have pixel-level predictions.
+
+    \item \textbf{Multi-domain Extension}: While the Bevandic et al. algorithm was designed for two datasets
+          (and later iteratively adding more datasets),
+          we directly support a multi-domain setting by constructing a single graph
+          that captures relationships across all datasets.
+          This allows us to build a universal taxonomy that connects multiple datasets in one go,
+          rather than iteratively merging them.
+\end{itemize}
+
+These modifications allow our algorithm to work effectively in the image classification domain
+while maintaining the approach of the original work for handling incompatible taxonomies across multiple datasets.
 
 \section{Taxonomy Difference Metrics}
 
