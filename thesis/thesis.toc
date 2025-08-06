@@ -41,9 +41,13 @@
 \contentsline {section}{\numberline {3.2}Taxonomy Generation}{19}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Relationship Selection Methods}{19}{subsection.3.2.1}%
 \contentsline {subsubsection}{\nonumberline Synthetic Dataset Variants}{19}{subsubsection*.40}%
-\contentsline {subsection}{\numberline {3.2.2}Universal Taxonomy Generation}{22}{subsection.3.2.2}%
+\contentsline {subsubsection}{\nonumberline Critique on Synthetic Dataset Variants}{22}{subsubsection*.47}%
+\contentsline {paragraph}{\nonumberline WordNet Synsets}{23}{paragraph*.49}%
+\contentsline {paragraph}{\nonumberline SVHN-MNIST}{23}{paragraph*.51}%
+\contentsline {paragraph}{\nonumberline Domain-Shift Synthetic Datasets}{23}{paragraph*.53}%
+\contentsline {subsection}{\numberline {3.2.2}Universal Taxonomy Generation}{24}{subsection.3.2.2}%
 \contentsline {section}{\numberline {3.3}Universal Models}{24}{section.3.3}%
 \contentsline {chapter}{\numberline {4}Discussion}{31}{chapter.4}%
 \contentsline {chapter}{\numberline {5}Conclusion}{33}{chapter.5}%
-\contentsline {chapter}{\nonumberline Bibliography}{35}{chapter*.49}%
+\contentsline {chapter}{\nonumberline Bibliography}{35}{chapter*.57}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

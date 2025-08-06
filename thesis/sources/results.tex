@@ -384,6 +384,47 @@ without separate head models, we can simply compare the universal model performa
 with our best candidate relationship selection methods
 (i.e. naive thresholding vs. most common foreign prediction).
 
+\subsubsection{Critique on Synthetic Dataset Variants}
+
+We can criticise our findings on the synthetic dataset variants
+by stating that the domains of the datasets are too similar
+and therefore do not represent a meaningful evaluation of our methods
+for real-world datasets:
+Since the underlying images are the same, the models have a very high accuracy,
+which makes methods like naive thresholding very effective - even with a low threshold
+(which will not be the case for real-world datasets with different domains).
+
+To verify or disprove our findings, we will try to create new, more realistic ground truth taxonomies:
+\begin{itemize}
+      \item \textbf{WordNet Synsets:} The WordNet synsets~\cite{fellbaum_wordnet_1998,noauthor_wordnet_nodate}
+            represents a lexicon of english words with semantic relationships to each other.
+            This allows us to create a taxonomy using WordNet with weighted relationships by calculating
+            the Wu \& Palmer similarity score (range 0-1) between two labels (i.e. WordNet words).
+            The score measures the semantic similarity (1 means equal, 0 means no semantic relationship).
+      \item \textbf{SVHN-MNIST:} MNIST~\cite{deng_mnist_2012} and SVHN~\cite{netzer_reading_2011} are both labelled datasets
+            for digits. The MNIST dataset contains greyscale images of handwritten digits,
+            while the SVHN dataset contains colour images of house numbers.
+            This allows us to create a ground truth mapping between the two datasets
+            by using the labels of the digits as the classes, while the domain of the images
+            is different.
+      \item \textbf{Domain-Shift Synthetic Datasets:} We can try to improve our synthetic dataset variants
+            by applying different transformations to the images of the variants (e.g. greyscale, rotation, etc.).
+            This will change the domain of the images while keeping the classes and relationships intact
+            and therefore create a more \enquote{difficult} dataset for our methods.
+\end{itemize}
+
+\paragraph{WordNet Synsets}
+
+% TODO
+
+\paragraph{SVHN-MNIST}
+
+% TODO
+
+\paragraph{Domain-Shift Synthetic Datasets}
+
+% TODO
+
 \subsection{Universal Taxonomy Generation}
 
 \begin{figure}[ht]
@@ -451,8 +492,6 @@ the error less severe for the universal model training.
 
 Addressing these issues is a complex task, since a suitable threshold for the relationship weights
 depends on the individual composition of the datasets.
-
-% TODO Also look at CIFAR100-caltech256 taxonomy with mcfp (more complex, but more interesting).
 
 
 \section{Universal Models}

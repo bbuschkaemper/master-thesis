@@ -188,6 +188,33 @@
       \field{year}{2009}
       \field{dateera}{ce}
     \endentry
+    \entry{deng_mnist_2012}{article}{}
+      \name{author}{1}{}{%
+        {{hash=2f5fbdc5c3cf91f62a64663cd72397b3}{%
+           family={Deng},
+           familyi={D\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{2f5fbdc5c3cf91f62a64663cd72397b3}
+      \strng{fullhash}{2f5fbdc5c3cf91f62a64663cd72397b3}
+      \strng{bibnamehash}{2f5fbdc5c3cf91f62a64663cd72397b3}
+      \strng{authorbibnamehash}{2f5fbdc5c3cf91f62a64663cd72397b3}
+      \strng{authornamehash}{2f5fbdc5c3cf91f62a64663cd72397b3}
+      \strng{authorfullhash}{2f5fbdc5c3cf91f62a64663cd72397b3}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{IEEE} Signal Processing Magazine}
+      \field{number}{6}
+      \field{title}{The mnist database of handwritten digit images for machine learning research}
+      \field{volume}{29}
+      \field{year}{2012}
+      \field{dateera}{ce}
+      \field{pages}{141\bibrangedash 142}
+      \range{pages}{2}
+    \endentry
     \entry{falcon_pytorch_2019}{software}{}
       \name{author}{2}{}{%
         {{hash=c79553dc17ef05e7d1ef9e6149db42c5}{%
@@ -817,6 +844,60 @@
       \endverb
       \keyw{{FOS}: Computer and information sciences,{FOS}: Mathematics,Machine Learning (cs.{LG}),Neural and Evolutionary Computing (cs.{NE}),Optimization and Control (math.{OC})}
     \endentry
+    \entry{netzer_reading_2011}{inproceedings}{}
+      \name{author}{6}{}{%
+        {{hash=0f7e4a0d497b3c8d2f7ee118c56a3648}{%
+           family={Netzer},
+           familyi={N\bibinitperiod},
+           given={Yuval},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=ad1506e9f10da2cad4389eac16751647}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Tao},
+           giveni={T\bibinitperiod}}}%
+        {{hash=2a6ca55dc46029c413e9054d19502b28}{%
+           family={Coates},
+           familyi={C\bibinitperiod},
+           given={Adam},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ca74d879be333e3c866921ac0675fcc4}{%
+           family={Bissacco},
+           familyi={B\bibinitperiod},
+           given={Alessandro},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a3467545efc97f24be8a5d66e4c70ab4}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Bo},
+           giveni={B\bibinitperiod}}}%
+        {{hash=49e889356ff39df159461bc2895c7e16}{%
+           family={Ng},
+           familyi={N\bibinitperiod},
+           given={Andrew\bibnamedelima Y.},
+           giveni={A\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{01a282440004292c6234911e54c036f7}
+      \strng{fullhash}{01a282440004292c6234911e54c036f7}
+      \strng{bibnamehash}{01a282440004292c6234911e54c036f7}
+      \strng{authorbibnamehash}{01a282440004292c6234911e54c036f7}
+      \strng{authornamehash}{01a282440004292c6234911e54c036f7}
+      \strng{authorfullhash}{01a282440004292c6234911e54c036f7}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{NIPS} Workshop on Deep Learning and Unsupervised Feature Learning 2011}
+      \field{title}{Reading Digits in Natural Images with Unsupervised Feature Learning}
+      \field{year}{2011}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb http://ufldl.stanford.edu/housenumbers/nips2011_housenumbers.pdf
+      \endverb
+      \verb{url}
+      \verb http://ufldl.stanford.edu/housenumbers/nips2011_housenumbers.pdf
+      \endverb
+    \endentry
     \entry{russakovsky_imagenet_2015}{misc}{}
       \name{author}{12}{}{%
         {{hash=2a74ec28b731b015747e2af5f0b519e1}{%
@@ -992,6 +1073,24 @@
       \field{title}{An Elementary Mathematical Theory of Classification and Prediction}
       \field{year}{1958}
       \field{dateera}{ce}
+    \endentry
+    \entry{noauthor_wordnet_nodate}{online}{}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Any opinions, findings, and conclusions or recommendations expressed in this material are those of the creators of {WordNet} and do not necessarily reflect the views of any funding agency or Princeton University.What is {WordNet}?Current Status of the {WordNet} {ProjectPrinceton} {WordNet} is no longer developed, though the database and all tools are freely}
+      \field{langid}{english}
+      \field{title}{{WordNet}}
+      \field{urlday}{6}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://wordnet.princeton.edu/homepage
+      \endverb
+      \verb{url}
+      \verb https://wordnet.princeton.edu/homepage
+      \endverb
     \endentry
   \enddatalist
 \endrefsection

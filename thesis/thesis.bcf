@@ -2382,6 +2382,10 @@
     <bcf:citekey order="15" intorder="1">loshchilov_decoupled_2017</bcf:citekey>
     <bcf:citekey order="16" intorder="1">falcon_pytorch_2019</bcf:citekey>
     <bcf:citekey order="17" intorder="1">bevandic_automatic_2022</bcf:citekey>
+    <bcf:citekey order="18" intorder="1">fellbaum_wordnet_1998</bcf:citekey>
+    <bcf:citekey order="18" intorder="2">noauthor_wordnet_nodate</bcf:citekey>
+    <bcf:citekey order="19" intorder="1">deng_mnist_2012</bcf:citekey>
+    <bcf:citekey order="20" intorder="1">netzer_reading_2011</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
