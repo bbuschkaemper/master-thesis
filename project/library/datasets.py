@@ -292,6 +292,69 @@ class Caltech256MappedDataModule(LightningDataModule):
         return DataLoader(self.test, batch_size=self.batch_size)
 
 
+class Caltech256DomainShiftedDataModule(LightningDataModule):
+    def __init__(
+        self,
+        mapping: dict[int, int],
+        domain_shift_transform=None,
+        batch_size=64,
+        split=(0.8, 0.1, 0.1),
+    ):
+        super().__init__()
+        self.batch_size = batch_size
+        self.split = split
+        self.mapping = mapping
+        self.domain_shift_transform = domain_shift_transform
+
+    def prepare_data(self):
+        torchvision.datasets.Caltech256(root="datasets/caltech256", download=True)
+
+    def setup(self, stage):
+        # Base transforms that are always applied
+        base_transforms = [
+            v2.ToImage(),
+            v2.ToDtype(torch.float32, scale=True),
+            v2.RGB(),
+            v2.Resize(size=(224, 224)),
+        ]
+
+        # Add domain shift transform if provided
+        if self.domain_shift_transform is not None:
+            base_transforms.append(self.domain_shift_transform)
+
+        # Add remaining transforms
+        base_transforms.extend(
+            [
+                v2.RandomResizedCrop(size=(224, 224), scale=(0.8, 1.0)),
+                v2.RandomHorizontalFlip(),
+                v2.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+            ]
+        )
+
+        transform = v2.Compose(base_transforms)
+
+        # Use our custom Caltech256 implementation with target mapping
+        dataset = Caltech256Mapped(
+            root="datasets/caltech256", transform=transform, target_mapping=self.mapping
+        )
+
+        self.train, self.val, self.test = random_split(
+            dataset, self.split, generator=torch.Generator().manual_seed(42)
+        )
+
+    def train_dataloader(self):
+        return DataLoader(self.train, batch_size=self.batch_size)
+
+    def val_dataloader(self):
+        return DataLoader(self.val, batch_size=self.batch_size)
+
+    def test_dataloader(self):
+        return DataLoader(self.test, batch_size=self.batch_size)
+
+    def predict_dataloader(self):
+        return DataLoader(self.test, batch_size=self.batch_size)
+
+
 class Country211MappedDataModule(LightningDataModule):
     def __init__(
         self,
