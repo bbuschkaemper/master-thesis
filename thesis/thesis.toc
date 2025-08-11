@@ -43,11 +43,11 @@
 \contentsline {subsubsection}{\nonumberline Synthetic Dataset Variants}{19}{subsubsection*.40}%
 \contentsline {subsubsection}{\nonumberline Critique on Synthetic Dataset Variants}{22}{subsubsection*.47}%
 \contentsline {paragraph}{\nonumberline WordNet Synsets}{23}{paragraph*.49}%
-\contentsline {paragraph}{\nonumberline SVHN-MNIST}{23}{paragraph*.51}%
-\contentsline {paragraph}{\nonumberline Domain-Shift Synthetic Datasets}{23}{paragraph*.53}%
-\contentsline {subsection}{\numberline {3.2.2}Universal Taxonomy Generation}{24}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Universal Models}{24}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Discussion}{31}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusion}{33}{chapter.5}%
-\contentsline {chapter}{\nonumberline Bibliography}{35}{chapter*.57}%
+\contentsline {paragraph}{\nonumberline SVHN-MNIST}{24}{paragraph*.52}%
+\contentsline {paragraph}{\nonumberline Domain-Shift Synthetic Datasets}{24}{paragraph*.55}%
+\contentsline {subsection}{\numberline {3.2.2}Universal Taxonomy Generation}{25}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Universal Models}{26}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Discussion}{35}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusion}{37}{chapter.5}%
+\contentsline {chapter}{\nonumberline Bibliography}{39}{chapter*.60}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
