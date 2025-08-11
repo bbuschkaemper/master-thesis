@@ -413,7 +413,7 @@ To verify or disprove our findings, we will try to create new, more realistic gr
             and therefore create a more \enquote{difficult} dataset for our methods.
 \end{itemize}
 
-\paragraph{WordNet Synsets}
+\subsubsection{Alternate Evaluation Methods - WordNet Synsets}
 
 We test the usage of WordNet Synsets on the Caltech-101 and Caltech-256 datasets to build a relationship graph.
 It can be observed that the relationship weights (Wu \& Palmer similarity scores) are very high (ranging between 0.8 and 1.0),
@@ -440,7 +440,7 @@ Unfortunately upon manual inspection, these false positives occur frequently.
 Since we try to build a ground truth taxonomy to evaluate relationship selection methods,
 these false positives can significantly skew the results and make WordNet unsuitable for our purposes.
 
-\paragraph{SVHN-MNIST}
+\subsubsection{Alternate Evaluation Methods - SVHN-MNIST}
 
 Next, we try to use the SVHN and MNIST datasets to create a relationship graph.
 These datasets provide a special usability for our purposes,
@@ -472,7 +472,7 @@ we decide against this method upon further reflection:
             This taxonomy will be limited to numbers.
 \end{itemize}
 
-\paragraph{Domain-Shift Synthetic Datasets}
+\subsubsection{Alternate Evaluation Methods - Domain-Shift Synthetic Datasets}
 
 The main advantage of our synthetic dataset variants is their ability to create a proven correct ground truth taxonomy.
 Instead of trying to derive a ground truth using new, suboptimal methods,
@@ -524,6 +524,43 @@ This simulates a noisy, monochrome imaging scenario that might occur in low-ligh
 For Domain B, we apply a combination of random rotation (between $-30°$ and $30°$), random photometric distortion (affecting brightness, contrast, saturation, and hue),
 and Gaussian blur with a kernel size of $3$ and $\sigma$ values ranging from $0.1$ to $2.0$.
 This combination simulates challenging real-world conditions such as camera shake, varying lighting conditions, and motion blur.
+
+\begin{figure}[ht]
+      \centering
+      \scalebox{0.35}{\input{figures/caltech256_2domain_variant_domain_shifted.pgf}}
+
+      \caption{Accuracy curves for domain A and B of the domain-shifted synthetic dataset variants
+            on the Caltech256 dataset.}
+      \label{fig:training_domain_shifted_variants}
+\end{figure}
+
+\begin{figure}[ht]
+      \centering
+      \scalebox{0.35}{\input{figures/naive_threshold_method_precision_recall_domain_shifted.pgf}}
+      \caption{Precision-recall curves for the naive threshold method on the domain-shifted synthetic dataset variants.}
+      \label{fig:naive_threshold_method_precision_recall_domain_shifted}
+\end{figure}
+
+\begin{figure}[ht]
+      \centering
+      \scalebox{0.35}{\input{figures/density_threshold_method_precision_recall_domain_shifted.pgf}}
+
+      \caption{Precision-recall curves for the density threshold method on the domain-shifted synthetic dataset variants.}
+      \label{fig:density_threshold_method_precision_recall_domain_shifted}
+\end{figure}
+
+\begin{figure}[ht]
+      \centering
+      \scalebox{0.35}{\input{figures/hypothesis_method_precision_recall_domain_shifted.pgf}}
+
+      \caption{Precision-recall curves for the relationship hypothesis method on the domain-shifted synthetic dataset variants.}
+      \label{fig:hypothesis_method_precision_recall_domain_shifted}
+\end{figure}
+
+\input{figures/relationship_methods_domain_shifted_results.tex}
+\input{figures/evaluation_results_domain_shifted.tex}
+
+% TODO Discuss plots
 
 % TODO Observation: We can observe large cluster buildings like with the real taxonomies (did this also happen in the normal synthetic variants?)
 

@@ -27,10 +27,14 @@
 \@writefile{toc}{\contentsline {subsubsection}{\nonumberline Critique on Synthetic Dataset Variants}{22}{subsubsection*.47}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Average performance metrics for relationship discovery methods with globally optimal parameters. Each method uses the parameter value that minimizes the average EDR across all dataset variants. Performance metrics are then averaged across all dataset variants using these optimal parameters.}}{23}{table.caption.45}\protected@file@percent }
 \newlabel{tab:relationship_methods_global_optimal}{{3.3}{23}{Average performance metrics for relationship discovery methods with globally optimal parameters. Each method uses the parameter value that minimizes the average EDR across all dataset variants. Performance metrics are then averaged across all dataset variants using these optimal parameters}{table.caption.45}{}}
-\@writefile{toc}{\contentsline {paragraph}{\nonumberline WordNet Synsets}{23}{paragraph*.49}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\nonumberline SVHN-MNIST}{24}{paragraph*.52}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\nonumberline Domain-Shift Synthetic Datasets}{24}{paragraph*.55}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Alternate Evaluation Methods - WordNet Synsets}{23}{subsubsection*.49}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Alternate Evaluation Methods - SVHN-MNIST}{24}{subsubsection*.52}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\nonumberline Alternate Evaluation Methods - Domain-Shift Synthetic Datasets}{25}{subsubsection*.55}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Best EDR results for relationship discovery methods on Caltech-256 2-Domain Variant Domain Shifted dataset. For each method, the parameter values that yielded the lowest Edge Difference Ratio (EDR) are shown along with the corresponding performance metrics.}}{25}{table.caption.61}\protected@file@percent }
+\newlabel{tab:relationship_methods_domain_shifted_results}{{3.4}{25}{Best EDR results for relationship discovery methods on Caltech-256 2-Domain Variant Domain Shifted dataset. For each method, the parameter values that yielded the lowest Edge Difference Ratio (EDR) are shown along with the corresponding performance metrics}{table.caption.61}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Universal Taxonomy Generation}{25}{subsection.3.2.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces Evaluation results on test sets for domain-shifted variant. Models were checkpointed after every epoch and evaluated on the validation loss. The model with the lowest validation loss was selected for evaluation on the test set.}}{26}{table.caption.62}\protected@file@percent }
+\newlabel{tab:evaluation_results_domain_shifted}{{3.5}{26}{Evaluation results on test sets for domain-shifted variant. Models were checkpointed after every epoch and evaluated on the validation loss. The model with the lowest validation loss was selected for evaluation on the test set}{table.caption.62}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Universal Models}{26}{section.3.3}\protected@file@percent }
 \newlabel{fig:caltech256_2domain}{{3.3a}{27}{Caltech-256 2-domain variant 1\\ ($\mu _{\text {concepts}}=180$, $\sigma ^2_{\text {concepts}}=10$,\\ $\mu _{\text {classes}}=3$, $\sigma ^2_{\text {classes}}=1$)}{figure.caption.34}{}}
 \newlabel{sub@fig:caltech256_2domain}{{a}{27}{Caltech-256 2-domain variant 1\\ ($\mu _{\text {concepts}}=180$, $\sigma ^2_{\text {concepts}}=10$,\\ $\mu _{\text {classes}}=3$, $\sigma ^2_{\text {classes}}=1$)}{figure.caption.34}{}}
@@ -56,14 +60,22 @@
 \newlabel{fig:svhn_mnist}{{3.9}{31}{This figure shows the complete relationship graph between the SVHN and MNIST datasets. The relationships are unequivocal and straightforward, as the classes are identical across both datasets; however, they lack complexity}{figure.caption.53}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.10}{\ignorespaces Example images from the domain-shifted synthetic variants. We apply different transformations to the images of the original synthetic dataset to create two new domains. The first domain (Domain A) is a noisy greyscale variant, while the second domain (Domain B) is a rotated, blurry version of the original images.}}{32}{figure.caption.56}\protected@file@percent }
 \newlabel{fig:domain_shift}{{3.10}{32}{Example images from the domain-shifted synthetic variants. We apply different transformations to the images of the original synthetic dataset to create two new domains. The first domain (Domain A) is a noisy greyscale variant, while the second domain (Domain B) is a rotated, blurry version of the original images}{figure.caption.56}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.11}{\ignorespaces This figure shows the complete Caltech101-Caltech256 universal taxonomy. While most classes build smaller clusters build smaller clusters of 2-3 classes, some large clusters can be observed.}}{33}{figure.caption.57}\protected@file@percent }
-\newlabel{fig:taxonomy}{{3.11}{33}{This figure shows the complete Caltech101-Caltech256 universal taxonomy. While most classes build smaller clusters build smaller clusters of 2-3 classes, some large clusters can be observed}{figure.caption.57}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.12}{\ignorespaces In the Caltech101-Caltech256 universal taxonomy, this cluster only contains vehicles. The universal classes created can be interpreted as sharing a common concept of \enquote {wheel}.}}{33}{figure.caption.58}\protected@file@percent }
-\newlabel{fig:wheel_concept}{{3.12}{33}{In the Caltech101-Caltech256 universal taxonomy, this cluster only contains vehicles. The universal classes created can be interpreted as sharing a common concept of \enquote {wheel}}{figure.caption.58}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.13}{\ignorespaces This example in the Caltech101-Caltech256 universal taxonomy shows a wrong relationship cluster towards the Caltech101 class \enquote {binocular}. Many of the Caltech256 classes do not have a suitable representation in the Caltech101 dataset and then connect to the Caltech101 class \enquote {binocular} instead.}}{33}{figure.caption.59}\protected@file@percent }
-\newlabel{fig:bad_taxonomy}{{3.13}{33}{This example in the Caltech101-Caltech256 universal taxonomy shows a wrong relationship cluster towards the Caltech101 class \enquote {binocular}. Many of the Caltech256 classes do not have a suitable representation in the Caltech101 dataset and then connect to the Caltech101 class \enquote {binocular} instead}{figure.caption.59}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.11}{\ignorespaces Accuracy curves for domain A and B of the domain-shifted synthetic dataset variants on the Caltech256 dataset.}}{33}{figure.caption.57}\protected@file@percent }
+\newlabel{fig:training_domain_shifted_variants}{{3.11}{33}{Accuracy curves for domain A and B of the domain-shifted synthetic dataset variants on the Caltech256 dataset}{figure.caption.57}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.12}{\ignorespaces Precision-recall curves for the naive threshold method on the domain-shifted synthetic dataset variants.}}{33}{figure.caption.58}\protected@file@percent }
+\newlabel{fig:naive_threshold_method_precision_recall_domain_shifted}{{3.12}{33}{Precision-recall curves for the naive threshold method on the domain-shifted synthetic dataset variants}{figure.caption.58}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.13}{\ignorespaces Precision-recall curves for the density threshold method on the domain-shifted synthetic dataset variants.}}{33}{figure.caption.59}\protected@file@percent }
+\newlabel{fig:density_threshold_method_precision_recall_domain_shifted}{{3.13}{33}{Precision-recall curves for the density threshold method on the domain-shifted synthetic dataset variants}{figure.caption.59}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.14}{\ignorespaces Precision-recall curves for the relationship hypothesis method on the domain-shifted synthetic dataset variants.}}{34}{figure.caption.60}\protected@file@percent }
+\newlabel{fig:hypothesis_method_precision_recall_domain_shifted}{{3.14}{34}{Precision-recall curves for the relationship hypothesis method on the domain-shifted synthetic dataset variants}{figure.caption.60}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.15}{\ignorespaces This figure shows the complete Caltech101-Caltech256 universal taxonomy. While most classes build smaller clusters build smaller clusters of 2-3 classes, some large clusters can be observed.}}{34}{figure.caption.63}\protected@file@percent }
+\newlabel{fig:taxonomy}{{3.15}{34}{This figure shows the complete Caltech101-Caltech256 universal taxonomy. While most classes build smaller clusters build smaller clusters of 2-3 classes, some large clusters can be observed}{figure.caption.63}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.16}{\ignorespaces In the Caltech101-Caltech256 universal taxonomy, this cluster only contains vehicles. The universal classes created can be interpreted as sharing a common concept of \enquote {wheel}.}}{34}{figure.caption.64}\protected@file@percent }
+\newlabel{fig:wheel_concept}{{3.16}{34}{In the Caltech101-Caltech256 universal taxonomy, this cluster only contains vehicles. The universal classes created can be interpreted as sharing a common concept of \enquote {wheel}}{figure.caption.64}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.17}{\ignorespaces This example in the Caltech101-Caltech256 universal taxonomy shows a wrong relationship cluster towards the Caltech101 class \enquote {binocular}. Many of the Caltech256 classes do not have a suitable representation in the Caltech101 dataset and then connect to the Caltech101 class \enquote {binocular} instead.}}{35}{figure.caption.65}\protected@file@percent }
+\newlabel{fig:bad_taxonomy}{{3.17}{35}{This example in the Caltech101-Caltech256 universal taxonomy shows a wrong relationship cluster towards the Caltech101 class \enquote {binocular}. Many of the Caltech256 classes do not have a suitable representation in the Caltech101 dataset and then connect to the Caltech101 class \enquote {binocular} instead}{figure.caption.65}{}}
 \@setckpt{sources/results}{
-\setcounter{page}{34}
+\setcounter{page}{36}
 \setcounter{equation}{0}
 \setcounter{enumi}{3}
 \setcounter{enumii}{4}
@@ -78,8 +90,8 @@
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{13}
-\setcounter{table}{3}
+\setcounter{figure}{17}
+\setcounter{table}{5}
 \setcounter{caption@flags}{2}
 \setcounter{continuedfloat}{0}
 \setcounter{subfigure}{0}
