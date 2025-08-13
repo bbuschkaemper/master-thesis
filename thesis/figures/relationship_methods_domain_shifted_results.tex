@@ -1,15 +1,15 @@
 \begin{table}[ht]
 \centering
-\caption{Best EDR results for relationship discovery methods on Caltech-256 2-Domain Variant Domain Shifted dataset. For each method, the parameter values that yielded the lowest Edge Difference Ratio (EDR) are shown along with the corresponding performance metrics.}
+\caption{Best EDR results for relationship discovery methods on Caltech-256 2-Domain Domain Shifted Synthetic Taxonomy. For each method, the parameter values that yielded the lowest Edge Difference Ratio (EDR) are shown along with the corresponding performance metrics.}
 \label{tab:relationship_methods_domain_shifted_results}
 \begin{tabular}{lccccc}
 \toprule
-Method & EDR & F1-score & Precision & Recall & Parameter \\
+Method & Parameter & EDR & Precision & Recall & F1-score \\
 \midrule
-MCFP & 0.744 & 0.482 & \textbf{0.663} & 0.379 & N/A \\
-Naive Thresholding & 0.700 & \textbf{0.570} & 0.615 & 0.531 & 0.15 \\
-Density Thresholding & 0.703 & 0.499 & 0.395 & \textbf{0.677} & 0.50 \\
-Relationship Hypothesis & \textbf{0.696} & 0.530 & 0.440 & 0.665 & 4 \\
+MCFP & N/A & 0.744 & \textbf{0.663} & 0.379 & 0.482 \\
+Naive Thresholding & 0.15 & 0.700 & 0.615 & 0.531 & \textbf{0.570} \\
+Density Thresholding & 0.50 & 0.703 & 0.395 & \textbf{0.677} & 0.499 \\
+Relationship Hypothesis & 4 & \textbf{0.696} & 0.440 & 0.665 & 0.530 \\
 \bottomrule
 \end{tabular}
 \end{table}

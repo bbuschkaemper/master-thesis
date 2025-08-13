@@ -97,7 +97,7 @@ class Taxonomy:
             relationships.append(Relationship((u, v, float(data["weight"]))))
         return relationships
 
-    def _get_nodes(self) -> set[Class]:
+    def get_nodes(self) -> set[Class]:
         """Returns all nodes in the graph.
 
         Returns
@@ -107,7 +107,7 @@ class Taxonomy:
         """
         return set(self.graph.nodes())
 
-    def _get_relationships_from(self, target: Class) -> list[Relationship]:
+    def get_relationships_from(self, target: Class) -> list[Relationship]:
         """Returns all outgoing relationships from a node.
 
         Parameters
@@ -236,12 +236,12 @@ class Taxonomy:
         bool
             True if any changes were made, False otherwise
         """
-        for node in self._get_nodes():
+        for node in self.get_nodes():
             # Only process domain classes without any connections
             if (
                 isinstance(node, DomainClass)
                 and not self._get_relationships_to(node)
-                and not self._get_relationships_from(node)
+                and not self.get_relationships_from(node)
             ):
                 # Create a new universal class containing just this node
                 universal_class = UniversalClass(frozenset({node}))
@@ -342,7 +342,7 @@ class Taxonomy:
                 continue
 
             # Get relationships originating from class_B
-            next_relationships = self._get_relationships_from(class_b)
+            next_relationships = self.get_relationships_from(class_b)
 
             # Only consider relationships where the destination is a domain class
             next_relationships = [
@@ -774,12 +774,12 @@ class Taxonomy:
         """
 
         assert all(
-            not isinstance(node, UniversalClass) for node in self._get_nodes()
+            not isinstance(node, UniversalClass) for node in self.get_nodes()
         ), "Adjacency matrix is only defined for taxonomies without universal classes."
 
         # Get all domain classes in the graph
         domain_classes = [
-            node for node in self._get_nodes() if isinstance(node, DomainClass)
+            node for node in self.get_nodes() if isinstance(node, DomainClass)
         ]
         domain_classes = sorted(domain_classes, key=lambda x: (x[0], x[1]))
         num_classes = len(domain_classes)
@@ -798,7 +798,7 @@ class Taxonomy:
         for i, domain_class in enumerate(domain_classes):
             if not self._get_relationships_to(
                 domain_class
-            ) and not self._get_relationships_from(domain_class):
+            ) and not self.get_relationships_from(domain_class):
                 adjacency_matrix[i, i] = 1.0
 
         return adjacency_matrix

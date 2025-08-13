@@ -557,11 +557,16 @@ This combination simulates challenging real-world conditions such as camera shak
       \label{fig:hypothesis_method_precision_recall_domain_shifted}
 \end{figure}
 
-\input{figures/relationship_methods_domain_shifted_results.tex}
 \input{figures/evaluation_results_domain_shifted.tex}
+\input{figures/relationship_methods_domain_shifted_results.tex}
 
-% TODO Discuss plots
+We train the domain-shifted models with the same architecture and training configuration
+as the original models. The evaluation results can be seen in Table~\ref{tab:evaluation_results_domain_shifted}.
+We observe an average accuracy of approx. $0.72$, around $8\%$ lower than the original models.
 
+The final method selection evaluation results are shown in Table~\ref{tab:relationship_methods_domain_shifted_results}.
+
+% TODO Train all 4 variants and compare the final results
 % TODO Observation: We can observe large cluster buildings like with the real taxonomies (did this also happen in the normal synthetic variants?)
 
 \subsection{Universal Taxonomy Generation}
@@ -634,6 +639,9 @@ depends on the individual composition of the datasets.
 
 
 \section{Universal Models}
+
+% TODO Make algorithm more efficient: Calculate mapping matrices at the beginning and use these
+% TODO Include domainid in batch so we can alternate between domains during training
 
 % TODO - New model with universal classes as output layer
 % TODO - We train on domain datasets:
