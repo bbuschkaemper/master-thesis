@@ -208,8 +208,8 @@ class UniversalResNetModel(pl.LightningModule):
             torch.nn.Linear(128, self.num_universal_classes),
         )
 
-        # Use MSE loss for universal class activations
-        self.criterion = torch.nn.MSELoss()
+        # Use KL Divergence loss for universal class activations
+        self.criterion = torch.nn.KLDivLoss(reduction="batchmean")
 
     def set_domain(self, domain_id: int):
         """Set the domain for inference predictions.
@@ -333,7 +333,10 @@ class UniversalResNetModel(pl.LightningModule):
 
         # Convert domain class targets to universal class targets
         universal_targets = self._domain_class_to_universal_targets(target)
-        loss = self.criterion(output, universal_targets)
+
+        # For KL divergence, we need log probabilities of predictions
+        output_log_probs = torch.log_softmax(output, dim=1)
+        loss = self.criterion(output_log_probs, universal_targets)
 
         # For logging, compute accuracy based on domain class predictions
         domain_predictions = self._universal_to_domain_predictions(output)
@@ -394,9 +397,10 @@ class UniversalResNetModel(pl.LightningModule):
         correct = pred.eq(target.view_as(pred)).sum().item()
         accuracy = correct / len(target)
 
-        # For loss, still use universal targets
+        # For loss, still use universal targets with KL divergence
         universal_targets = self._domain_class_to_universal_targets(target)
-        loss = self.criterion(output, universal_targets)
+        output_log_probs = torch.log_softmax(output, dim=1)
+        loss = self.criterion(output_log_probs, universal_targets)
 
         self.log_dict({"eval_loss": loss, "eval_accuracy": accuracy})
         self.log("hp_metric", accuracy)
@@ -413,9 +417,10 @@ class UniversalResNetModel(pl.LightningModule):
         correct = pred.eq(target.view_as(pred)).sum().item()
         accuracy = correct / len(target)
 
-        # For loss, still use universal targets
+        # For loss, still use universal targets with KL divergence
         universal_targets = self._domain_class_to_universal_targets(target)
-        loss = self.criterion(output, universal_targets)
+        output_log_probs = torch.log_softmax(output, dim=1)
+        loss = self.criterion(output_log_probs, universal_targets)
 
         self.log_dict({"val_loss": loss, "val_accuracy": accuracy})
         self.log("hp_metric", accuracy)
