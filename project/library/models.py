@@ -188,9 +188,6 @@ class UniversalResNetModel(pl.LightningModule):
         )  # domain_id -> (num_classes, num_universal) raw weights
         self._precompute_conversion_matrices()
 
-        # Domain for inference
-        self.domain_id = None
-
         # Build ResNet model
         if self.architecture == "resnet50":
             self.model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V2)
@@ -258,19 +255,8 @@ class UniversalResNetModel(pl.LightningModule):
                 domain_to_universal_raw
             )
 
-    def set_domain(self, domain_id: int):
-        """Set the domain for inference predictions.
-
-        Parameters
-        ----------
-        domain_id : int
-            The domain ID to use for mapping universal class predictions
-            back to domain class predictions during inference.
-        """
-        self.domain_id = domain_id
-
     def _domain_class_to_universal_targets(
-        self, domain_class_labels: torch.Tensor
+        self, domain_class_labels: torch.Tensor, domain_ids: torch.Tensor
     ) -> torch.Tensor:
         """Convert domain class labels to universal class activation targets using raw weights with runtime normalization.
 
@@ -278,38 +264,56 @@ class UniversalResNetModel(pl.LightningModule):
         ----------
         domain_class_labels : torch.Tensor
             Tensor of domain class labels with shape (batch_size,)
+        domain_ids : torch.Tensor
+            Tensor of domain IDs with shape (batch_size,)
 
         Returns
         -------
         torch.Tensor
             Tensor of universal class targets with shape (batch_size, num_universal_classes)
         """
-        assert (
-            self.domain_id is not None
-        ), "Domain ID must be set using set_domain() before training"
+        batch_size = domain_class_labels.shape[0]
+        device = domain_class_labels.device
 
-        # Get the raw weight matrix for this domain
-        if self.domain_id not in self.domain_to_universal_raw:
-            raise ValueError(f"No conversion matrix found for domain {self.domain_id}")
+        # Initialize output tensor
+        universal_targets = torch.zeros(
+            batch_size, self.num_universal_classes, device=device
+        )
 
-        raw_matrix = self.domain_to_universal_raw[self.domain_id]
+        # Process each unique domain for efficiency
+        unique_domains = torch.unique(domain_ids)
 
-        # Move matrix to same device as labels
-        raw_matrix = raw_matrix.to(domain_class_labels.device)
+        for domain_id in unique_domains:
+            domain_id_int = domain_id.item()
 
-        # Use matrix indexing to get raw targets
-        raw_targets = raw_matrix[domain_class_labels.long()]
+            # Get the raw weight matrix for this domain
+            if domain_id_int not in self.domain_to_universal_raw:
+                raise ValueError(
+                    f"No conversion matrix found for domain {domain_id_int}"
+                )
 
-        # Normalize each row to sum to 1 (runtime normalization)
-        row_sums = raw_targets.sum(dim=1, keepdim=True)
-        # Avoid division by zero
-        row_sums = torch.where(row_sums > 0, row_sums, torch.ones_like(row_sums))
-        normalized_targets = raw_targets / row_sums
+            raw_matrix = self.domain_to_universal_raw[domain_id_int].to(device)
 
-        return normalized_targets
+            # Get mask for samples belonging to this domain
+            domain_mask = domain_ids == domain_id
+            domain_labels = domain_class_labels[domain_mask]
+
+            # Use matrix indexing to get raw targets for this domain
+            raw_targets = raw_matrix[domain_labels.long()]
+
+            # Normalize each row to sum to 1 (runtime normalization)
+            row_sums = raw_targets.sum(dim=1, keepdim=True)
+            # Avoid division by zero
+            row_sums = torch.where(row_sums > 0, row_sums, torch.ones_like(row_sums))
+            normalized_targets = raw_targets / row_sums
+
+            # Place normalized targets back in the correct positions
+            universal_targets[domain_mask] = normalized_targets
+
+        return universal_targets
 
     def _universal_to_domain_predictions(
-        self, universal_predictions: torch.Tensor
+        self, universal_predictions: torch.Tensor, domain_ids: torch.Tensor
     ) -> torch.Tensor:
         """Convert universal class predictions to domain class predictions using transposed raw weights.
 
@@ -317,33 +321,65 @@ class UniversalResNetModel(pl.LightningModule):
         ----------
         universal_predictions : torch.Tensor
             Universal class predictions with shape (batch_size, num_universal_classes)
+        domain_ids : torch.Tensor
+            Tensor of domain IDs with shape (batch_size,)
 
         Returns
         -------
         torch.Tensor
-            Domain class predictions with shape (batch_size, num_domain_classes)
+            Domain class predictions with shape (batch_size, max_domain_classes)
+            Note: Output is padded to max_domain_classes across all domains in the batch
         """
-        assert self.domain_id is not None, "Domain ID must be set for prediction"
+        batch_size = universal_predictions.shape[0]
+        device = universal_predictions.device
 
-        # Get the raw weight matrix for this domain
-        if self.domain_id not in self.domain_to_universal_raw:
-            raise ValueError(f"No conversion matrix found for domain {self.domain_id}")
-
-        raw_matrix = self.domain_to_universal_raw[self.domain_id]
-
-        # Move matrix to same device as predictions
-        raw_matrix = raw_matrix.to(universal_predictions.device)
-
-        # Transpose to get universal_to_domain shape: (num_universal, num_domain)
-        raw_universal_to_domain = raw_matrix.T
-
-        # Use matrix multiplication for efficient conversion (no normalization needed for argmax)
-        # universal_predictions: (batch_size, num_universal)
-        # raw_universal_to_domain: (num_universal, num_domain)
-        # result: (batch_size, num_domain)
-        domain_predictions = torch.matmul(
-            universal_predictions, raw_universal_to_domain
+        # Find the maximum number of domain classes across all domains in this batch
+        unique_domains = torch.unique(domain_ids)
+        max_domain_classes = max(
+            self.domain_to_universal_raw[domain_id.item()].shape[0]
+            for domain_id in unique_domains
         )
+
+        # Initialize output tensor
+        domain_predictions = torch.zeros(batch_size, max_domain_classes, device=device)
+
+        # Process each unique domain for efficiency
+        for domain_id in unique_domains:
+            domain_id_int = domain_id.item()
+
+            # Get the raw weight matrix for this domain
+            if domain_id_int not in self.domain_to_universal_raw:
+                raise ValueError(
+                    f"No conversion matrix found for domain {domain_id_int}"
+                )
+
+            raw_matrix = self.domain_to_universal_raw[domain_id_int].to(device)
+
+            # Get mask for samples belonging to this domain
+            domain_mask = domain_ids == domain_id
+            domain_universal_preds = universal_predictions[domain_mask]
+
+            # Transpose to get universal_to_domain shape: (num_universal, num_domain)
+            raw_universal_to_domain = raw_matrix.T
+
+            # Use matrix multiplication for efficient conversion
+            # domain_universal_preds: (domain_batch_size, num_universal)
+            # raw_universal_to_domain: (num_universal, num_domain)
+            # result: (domain_batch_size, num_domain)
+            domain_preds = torch.matmul(domain_universal_preds, raw_universal_to_domain)
+
+            # Pad if necessary to match max_domain_classes
+            num_domain_classes = domain_preds.shape[1]
+            if num_domain_classes < max_domain_classes:
+                padding = torch.zeros(
+                    domain_preds.shape[0],
+                    max_domain_classes - num_domain_classes,
+                    device=device,
+                )
+                domain_preds = torch.cat([domain_preds, padding], dim=1)
+
+            # Place domain predictions back in the correct positions
+            domain_predictions[domain_mask] = domain_preds
 
         return domain_predictions
 
@@ -351,24 +387,50 @@ class UniversalResNetModel(pl.LightningModule):
         return self.model(inputs)
 
     def training_step(self, batch):
-        assert self.domain_id is not None, "Domain ID must be set for training"
-
-        inputs, target = batch
+        inputs, targets = batch
         output = self(inputs)
 
-        # Convert domain class targets to universal class targets
-        universal_targets = self._domain_class_to_universal_targets(target)
+        # Targets must be tuples of (domain_id, domain_class_id)
+        if not isinstance(targets[0], tuple):
+            raise ValueError(
+                "Targets must be tuples of (domain_id, domain_class_id). Use CombinedDataModule for multi-domain training."
+            )
+
+        domain_ids, domain_class_ids = zip(*targets)
+        domain_ids = torch.tensor(domain_ids, device=output.device)
+        domain_class_ids = torch.tensor(domain_class_ids, device=output.device)
+
+        # Convert domain class targets to universal class targets (vectorized)
+        universal_targets = self._domain_class_to_universal_targets(
+            domain_class_ids, domain_ids
+        )
 
         # For KL divergence, we need log probabilities of predictions
         output_log_probs = torch.log_softmax(output, dim=1)
         loss = self.criterion(output_log_probs, universal_targets)
 
-        # For logging, compute accuracy based on domain class predictions
-        domain_predictions = self._universal_to_domain_predictions(output)
-        pred = domain_predictions.argmax(dim=1, keepdim=True)
-        correct = pred.eq(target.view_as(pred)).sum().item()
-        accuracy = correct / len(target)
+        # For logging, compute accuracy based on domain class predictions (vectorized)
+        domain_predictions = self._universal_to_domain_predictions(output, domain_ids)
 
+        # Calculate accuracy per sample
+        correct = 0
+        total = len(domain_class_ids)
+
+        # Process each unique domain for accuracy calculation (still need this for trimming)
+        unique_domains = torch.unique(domain_ids)
+        for domain_id in unique_domains:
+            domain_mask = domain_ids == domain_id
+            domain_preds = domain_predictions[domain_mask]
+            domain_targets = domain_class_ids[domain_mask]
+
+            # Get the actual number of classes for this domain
+            num_classes = self.domain_to_universal_raw[domain_id.item()].shape[0]
+            domain_preds_trimmed = domain_preds[:, :num_classes]
+
+            pred = domain_preds_trimmed.argmax(dim=1, keepdim=True)
+            correct += pred.eq(domain_targets.view_as(pred)).sum().item()
+
+        accuracy = correct / total
         self.log_dict({"train_loss": loss, "train_accuracy": accuracy})
 
         return loss
@@ -411,51 +473,112 @@ class UniversalResNetModel(pl.LightningModule):
         return optimizer
 
     def test_step(self, batch):
-        assert self.domain_id is not None, "Domain ID must be set for testing"
-
-        inputs, target = batch
+        inputs, targets = batch
         output = self(inputs)
 
-        # Convert to domain predictions for evaluation
-        domain_predictions = self._universal_to_domain_predictions(output)
-        pred = domain_predictions.argmax(dim=1, keepdim=True)
-        correct = pred.eq(target.view_as(pred)).sum().item()
-        accuracy = correct / len(target)
+        # Targets must be tuples of (domain_id, domain_class_id)
+        if not isinstance(targets[0], tuple):
+            raise ValueError(
+                "Targets must be tuples of (domain_id, domain_class_id). Use CombinedDataModule for multi-domain training."
+            )
 
-        # For loss, still use universal targets with KL divergence
-        universal_targets = self._domain_class_to_universal_targets(target)
+        domain_ids, domain_class_ids = zip(*targets)
+        domain_ids = torch.tensor(domain_ids, device=output.device)
+        domain_class_ids = torch.tensor(domain_class_ids, device=output.device)
+
+        # Convert to universal targets and compute loss (vectorized)
+        universal_targets = self._domain_class_to_universal_targets(
+            domain_class_ids, domain_ids
+        )
         output_log_probs = torch.log_softmax(output, dim=1)
         loss = self.criterion(output_log_probs, universal_targets)
 
+        # Convert to domain predictions for evaluation (vectorized)
+        domain_predictions = self._universal_to_domain_predictions(output, domain_ids)
+
+        # Calculate accuracy per sample
+        correct = 0
+        total = len(domain_class_ids)
+
+        # Process each unique domain for accuracy calculation (still need this for trimming)
+        unique_domains = torch.unique(domain_ids)
+        for domain_id in unique_domains:
+            domain_mask = domain_ids == domain_id
+            domain_preds = domain_predictions[domain_mask]
+            domain_targets = domain_class_ids[domain_mask]
+
+            # Get the actual number of classes for this domain
+            num_classes = self.domain_to_universal_raw[domain_id.item()].shape[0]
+            domain_preds_trimmed = domain_preds[:, :num_classes]
+
+            pred = domain_preds_trimmed.argmax(dim=1, keepdim=True)
+            correct += pred.eq(domain_targets.view_as(pred)).sum().item()
+
+        accuracy = correct / total
         self.log_dict({"eval_loss": loss, "eval_accuracy": accuracy})
         self.log("hp_metric", accuracy)
 
     def validation_step(self, batch):
-        assert self.domain_id is not None, "Domain ID must be set for validation"
-
-        inputs, target = batch
+        inputs, targets = batch
         output = self(inputs)
 
-        # Convert to domain predictions for evaluation
-        domain_predictions = self._universal_to_domain_predictions(output)
-        pred = domain_predictions.argmax(dim=1, keepdim=True)
-        correct = pred.eq(target.view_as(pred)).sum().item()
-        accuracy = correct / len(target)
+        # Targets must be tuples of (domain_id, domain_class_id)
+        if not isinstance(targets[0], tuple):
+            raise ValueError(
+                "Targets must be tuples of (domain_id, domain_class_id). Use CombinedDataModule for multi-domain training."
+            )
 
-        # For loss, still use universal targets with KL divergence
-        universal_targets = self._domain_class_to_universal_targets(target)
+        domain_ids, domain_class_ids = zip(*targets)
+        domain_ids = torch.tensor(domain_ids, device=output.device)
+        domain_class_ids = torch.tensor(domain_class_ids, device=output.device)
+
+        # Convert to universal targets and compute loss (vectorized)
+        universal_targets = self._domain_class_to_universal_targets(
+            domain_class_ids, domain_ids
+        )
         output_log_probs = torch.log_softmax(output, dim=1)
         loss = self.criterion(output_log_probs, universal_targets)
 
+        # Convert to domain predictions for evaluation (vectorized)
+        domain_predictions = self._universal_to_domain_predictions(output, domain_ids)
+
+        # Calculate accuracy per sample
+        correct = 0
+        total = len(domain_class_ids)
+
+        # Process each unique domain for accuracy calculation (still need this for trimming)
+        unique_domains = torch.unique(domain_ids)
+        for domain_id in unique_domains:
+            domain_mask = domain_ids == domain_id
+            domain_preds = domain_predictions[domain_mask]
+            domain_targets = domain_class_ids[domain_mask]
+
+            # Get the actual number of classes for this domain
+            num_classes = self.domain_to_universal_raw[domain_id.item()].shape[0]
+            domain_preds_trimmed = domain_preds[:, :num_classes]
+
+            pred = domain_preds_trimmed.argmax(dim=1, keepdim=True)
+            correct += pred.eq(domain_targets.view_as(pred)).sum().item()
+
+        accuracy = correct / total
         self.log_dict({"val_loss": loss, "val_accuracy": accuracy})
         self.log("hp_metric", accuracy)
 
     def predict_step(self, batch):
-        assert self.domain_id is not None, "Domain ID must be set for prediction"
-
-        (inputs, _) = batch
+        inputs, targets = batch
         output = self(inputs)
 
-        # Return normalized domain predictions as probabilities
-        domain_predictions = self._universal_to_domain_predictions(output)
+        # Targets must be tuples of (domain_id, domain_class_id)
+        if not isinstance(targets[0], tuple):
+            raise ValueError(
+                "Targets must be tuples of (domain_id, domain_class_id). Use CombinedDataModule for multi-domain training."
+            )
+
+        domain_ids, _ = zip(*targets)
+        domain_ids = torch.tensor(domain_ids, device=output.device)
+
+        # Convert to domain predictions (vectorized)
+        domain_predictions = self._universal_to_domain_predictions(output, domain_ids)
+
+        # Apply softmax normalization for probabilities
         return torch.softmax(domain_predictions, dim=1)
