@@ -182,6 +182,12 @@ class UniversalResNetModel(pl.LightningModule):
             uc: idx for idx, uc in enumerate(self.universal_classes)
         }
 
+        # Pre-calculate conversion matrices for all domains
+        self.domain_to_universal_raw = (
+            {}
+        )  # domain_id -> (num_classes, num_universal) raw weights
+        self._precompute_conversion_matrices()
+
         # Domain for inference
         self.domain_id = None
 
@@ -211,6 +217,47 @@ class UniversalResNetModel(pl.LightningModule):
         # Use KL Divergence loss for universal class activations
         self.criterion = torch.nn.KLDivLoss(reduction="batchmean")
 
+    def _precompute_conversion_matrices(self):
+        """Pre-compute raw weight matrices for all domains for efficient batch processing."""
+        # Get all domain classes grouped by domain
+        all_domain_classes = [
+            node for node in self.taxonomy.get_nodes() if isinstance(node, DomainClass)
+        ]
+
+        # Group by domain
+        domains = {}
+        for domain_class in all_domain_classes:
+            domain_id = int(domain_class[0])
+            if domain_id not in domains:
+                domains[domain_id] = []
+            domains[domain_id].append(domain_class)
+
+        # Build raw weight matrices for each domain
+        for domain_id, domain_classes_list in domains.items():
+            # Sort by class_id to ensure consistent ordering
+            domain_classes_list.sort(key=lambda x: int(x[1]))
+            num_domain_classes = len(domain_classes_list)
+
+            # Initialize matrix with raw weights
+            domain_to_universal_raw = np.zeros(
+                (num_domain_classes, self.num_universal_classes), dtype=np.float32
+            )
+
+            # Fill matrix with raw relationship weights
+            for class_idx, domain_class in enumerate(domain_classes_list):
+                relationships = self.taxonomy.get_relationships_from(domain_class)
+
+                for relationship in relationships:
+                    _, source_class, weight = relationship
+                    if isinstance(source_class, UniversalClass):
+                        universal_idx = self.universal_class_to_idx[source_class]
+                        domain_to_universal_raw[class_idx, universal_idx] += weight
+
+            # Convert to torch tensor and store
+            self.domain_to_universal_raw[domain_id] = torch.from_numpy(
+                domain_to_universal_raw
+            )
+
     def set_domain(self, domain_id: int):
         """Set the domain for inference predictions.
 
@@ -225,7 +272,7 @@ class UniversalResNetModel(pl.LightningModule):
     def _domain_class_to_universal_targets(
         self, domain_class_labels: torch.Tensor
     ) -> torch.Tensor:
-        """Convert domain class labels to universal class activation targets.
+        """Convert domain class labels to universal class activation targets using raw weights with runtime normalization.
 
         Parameters
         ----------
@@ -241,39 +288,30 @@ class UniversalResNetModel(pl.LightningModule):
             self.domain_id is not None
         ), "Domain ID must be set using set_domain() before training"
 
-        batch_size = domain_class_labels.size(0)
-        targets = torch.zeros(
-            batch_size, self.num_universal_classes, device=domain_class_labels.device
-        )
+        # Get the raw weight matrix for this domain
+        if self.domain_id not in self.domain_to_universal_raw:
+            raise ValueError(f"No conversion matrix found for domain {self.domain_id}")
 
-        for i, domain_class_label in enumerate(domain_class_labels):
-            # Find the domain class from the label (class id)
-            domain_class = DomainClass(
-                (np.intp(self.domain_id), np.intp(int(domain_class_label.item())))
-            )
+        raw_matrix = self.domain_to_universal_raw[self.domain_id]
 
-            # Get relationships from this domain class to universal classes
-            relationships = self.taxonomy.get_relationships_from(domain_class)
+        # Move matrix to same device as labels
+        raw_matrix = raw_matrix.to(domain_class_labels.device)
 
-            # Sum weights for each universal class (raw relationship weights)
-            for relationship in relationships:
-                _, source_class, weight = relationship
-                if isinstance(source_class, UniversalClass):
-                    universal_idx = self.universal_class_to_idx[source_class]
-                    targets[i, universal_idx] += weight
+        # Use matrix indexing to get raw targets
+        raw_targets = raw_matrix[domain_class_labels.long()]
 
-        # Normalize each target vector to sum to 1 (across universal classes)
-        for i in range(batch_size):
-            target_sum = targets[i].sum()
-            if target_sum > 0:
-                targets[i] = targets[i] / target_sum
+        # Normalize each row to sum to 1 (runtime normalization)
+        row_sums = raw_targets.sum(dim=1, keepdim=True)
+        # Avoid division by zero
+        row_sums = torch.where(row_sums > 0, row_sums, torch.ones_like(row_sums))
+        normalized_targets = raw_targets / row_sums
 
-        return targets
+        return normalized_targets
 
     def _universal_to_domain_predictions(
         self, universal_predictions: torch.Tensor
     ) -> torch.Tensor:
-        """Convert universal class predictions to domain class predictions.
+        """Convert universal class predictions to domain class predictions using transposed raw weights.
 
         Parameters
         ----------
@@ -287,38 +325,25 @@ class UniversalResNetModel(pl.LightningModule):
         """
         assert self.domain_id is not None, "Domain ID must be set for prediction"
 
-        # Get all domain classes for the current domain
-        all_domain_classes = [
-            node
-            for node in self.taxonomy.get_nodes()
-            if isinstance(node, DomainClass) and node[0] == self.domain_id
-        ]
+        # Get the raw weight matrix for this domain
+        if self.domain_id not in self.domain_to_universal_raw:
+            raise ValueError(f"No conversion matrix found for domain {self.domain_id}")
 
-        if not all_domain_classes:
-            raise ValueError(f"No domain classes found for domain {self.domain_id}")
+        raw_matrix = self.domain_to_universal_raw[self.domain_id]
 
-        # Sort by class_id to ensure consistent ordering
-        all_domain_classes.sort(key=lambda x: int(x[1]))
-        num_domain_classes = len(all_domain_classes)
+        # Move matrix to same device as predictions
+        raw_matrix = raw_matrix.to(universal_predictions.device)
 
-        batch_size = universal_predictions.size(0)
-        domain_predictions = torch.zeros(
-            batch_size, num_domain_classes, device=universal_predictions.device
+        # Transpose to get universal_to_domain shape: (num_universal, num_domain)
+        raw_universal_to_domain = raw_matrix.T
+
+        # Use matrix multiplication for efficient conversion (no normalization needed for argmax)
+        # universal_predictions: (batch_size, num_universal)
+        # raw_universal_to_domain: (num_universal, num_domain)
+        # result: (batch_size, num_domain)
+        domain_predictions = torch.matmul(
+            universal_predictions, raw_universal_to_domain
         )
-
-        # For each domain class, sum the weighted universal class predictions
-        for domain_idx, domain_class in enumerate(all_domain_classes):
-            # Get relationships from this domain class to universal classes
-            relationships = self.taxonomy.get_relationships_from(domain_class)
-
-            for relationship in relationships:
-                _, source_class, weight = relationship  # target_class not needed here
-                if isinstance(source_class, UniversalClass):
-                    universal_idx = self.universal_class_to_idx[source_class]
-                    # Add weighted universal prediction to domain prediction
-                    domain_predictions[:, domain_idx] += (
-                        weight * universal_predictions[:, universal_idx]
-                    )
 
         return domain_predictions
 
@@ -431,5 +456,6 @@ class UniversalResNetModel(pl.LightningModule):
         (inputs, _) = batch
         output = self(inputs)
 
-        # Return domain predictions
-        return self._universal_to_domain_predictions(output)
+        # Return normalized domain predictions as probabilities
+        domain_predictions = self._universal_to_domain_predictions(output)
+        return torch.softmax(domain_predictions, dim=1)
