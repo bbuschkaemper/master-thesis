@@ -495,6 +495,109 @@ class Caltech256DomainShiftedDataModule(LightningDataModule):
         return DataLoader(self.test, batch_size=self.batch_size)
 
 
+class CIFAR100DomainShiftedDataModule(LightningDataModule):
+    def __init__(
+        self,
+        mapping: dict[int, int],
+        domain_shift_transform=None,
+        batch_size=64,
+        split=(0.8, 0.1, 0.1),
+    ):
+        super().__init__()
+        self.batch_size = batch_size
+        self.split = split
+        self.mapping = mapping
+        self.domain_shift_transform = domain_shift_transform
+
+    def prepare_data(self):
+        torchvision.datasets.CIFAR100(
+            root="datasets/cifar100", download=True, train=True
+        )
+        torchvision.datasets.CIFAR100(
+            root="datasets/cifar100", download=True, train=False
+        )
+
+    def setup(self, stage):
+        # Base training transforms
+        base_train_transforms = [
+            v2.ToImage(),
+            v2.ToDtype(torch.float32, scale=True),
+            v2.Resize(size=(32, 32)),  # CIFAR100 images are 32x32
+        ]
+
+        # Add domain shift transform if provided (before data augmentation)
+        if self.domain_shift_transform is not None:
+            base_train_transforms.append(self.domain_shift_transform)
+
+        # Add remaining training transforms
+        base_train_transforms.extend(
+            [
+                v2.RandomHorizontalFlip(p=0.5),
+                v2.RandomCrop(32, padding=4),
+                v2.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
+                v2.RandomErasing(p=0.1, scale=(0.02, 0.33), ratio=(0.3, 3.3)),
+                v2.Normalize(
+                    mean=[0.5071, 0.4867, 0.4408], std=[0.2675, 0.2565, 0.2761]
+                ),
+            ]
+        )
+
+        # Base test transforms
+        base_test_transforms = [
+            v2.ToImage(),
+            v2.ToDtype(torch.float32, scale=True),
+            v2.Resize(size=(32, 32)),
+        ]
+
+        # Add domain shift transform if provided (for test data too)
+        if self.domain_shift_transform is not None:
+            base_test_transforms.append(self.domain_shift_transform)
+
+        # Add normalization for test
+        base_test_transforms.append(
+            v2.Normalize(mean=[0.5071, 0.4867, 0.4408], std=[0.2675, 0.2565, 0.2761])
+        )
+
+        transform_train = v2.Compose(base_train_transforms)
+        transform_test = v2.Compose(base_test_transforms)
+
+        # Use our custom CIFAR100 implementation with target mapping
+        train_dataset = CIFAR100Mapped(
+            root="datasets/cifar100",
+            train=True,
+            transform=transform_train,
+            target_mapping=self.mapping,
+        )
+        test_dataset = CIFAR100Mapped(
+            root="datasets/cifar100",
+            train=False,
+            transform=transform_test,
+            target_mapping=self.mapping,
+        )
+
+        # Split train dataset into train/val
+        train_size = int(self.split[0] * len(train_dataset))
+        val_size = len(train_dataset) - train_size
+        self.train, self.val = random_split(
+            train_dataset,
+            [train_size, val_size],
+            generator=torch.Generator().manual_seed(42),
+        )
+        self.test = test_dataset
+
+    def train_dataloader(self):
+        return DataLoader(self.train, batch_size=self.batch_size, shuffle=True)
+
+    def val_dataloader(self):
+        return DataLoader(self.val, batch_size=self.batch_size)
+
+    def test_dataloader(self):
+        return DataLoader(self.test, batch_size=self.batch_size)
+
+    def predict_dataloader(self):
+        return DataLoader(self.test, batch_size=self.batch_size)
+
+
 class Country211MappedDataModule(LightningDataModule):
     def __init__(
         self,

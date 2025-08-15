@@ -486,87 +486,27 @@ and therefore perform poorly in real-world scenarios where models will not be ab
 
 \begin{figure}[ht]
       \centering
-      \begin{subfigure}[b]{0.4\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{figures/domain_shift_1.png}
-            \caption{Original}
-      \end{subfigure}
-      \hfill
-      \begin{subfigure}[b]{0.4\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{figures/domain_shift_2.png}
-            \caption{Domain A}
-      \end{subfigure}
-      \hfill
-      \begin{subfigure}[b]{0.4\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{figures/domain_shift_3.png}
-            \caption{Domain B}
-      \end{subfigure}
+      \includegraphics[width=\textwidth]{figures/domain_shift_visualization.png}
 
       \caption{Example images from the domain-shifted synthetic variants.
             We apply different transformations to the images of the original synthetic dataset
             to create two new domains. The first domain (Domain A) is a noisy greyscale variant,
-            while the second domain (Domain B) is a rotated, blurry version of the original images.}
+            while the second domain (Domain B) is a rotated, blurry version of the original images,
+            and the third domain (Domain C) has random erasings, shifted perspectives, and color jitter.}
       \label{fig:domain_shift}
 \end{figure}
 
 To mitigate this issue, we try to synthetically create a different domain for each variant by applying transforms to the
 underlying dataset images.
-An example subset of the domain-shifted synthetic dataset variants is shown in Figure~\ref{fig:domain_shift}:
+An example subset of the domain-shifted images is shown in Figure~\ref{fig:domain_shift}:
 Using different transforms, the images appear in different styles and with different kinds of distortions,
 synthetically worsening the model prediction accuracy and simulating different domains
 while retaining the same classes and relationships.
 
-To create these domain-shifted variants, we apply two distinct sets of transformations to the original Caltech-256 images.
-For Domain A, we convert images to grayscale (while preserving three channels) and add Gaussian noise with $\mu=0.0$ and $\sigma=0.1$.
-This simulates a noisy, monochrome imaging scenario that might occur in low-light conditions or with older camera equipment.
-For Domain B, we apply a combination of random rotation (between $-30°$ and $30°$), random photometric distortion (affecting brightness, contrast, saturation, and hue),
-and Gaussian blur with a kernel size of $3$ and $\sigma$ values ranging from $0.1$ to $2.0$.
-This combination simulates challenging real-world conditions such as camera shake, varying lighting conditions, and motion blur.
-
-\begin{figure}[ht]
-      \centering
-      \scalebox{0.35}{\input{figures/caltech256_2domain_variant_domain_shifted.pgf}}
-
-      \caption{Accuracy curves for domain A and B of the domain-shifted synthetic dataset variants
-            on the Caltech256 dataset.}
-      \label{fig:training_domain_shifted_variants}
-\end{figure}
-
-\begin{figure}[ht]
-      \centering
-      \scalebox{0.35}{\input{figures/naive_threshold_method_precision_recall_domain_shifted.pgf}}
-      \caption{Precision-recall curves for the naive threshold method on the domain-shifted synthetic dataset variants.}
-      \label{fig:naive_threshold_method_precision_recall_domain_shifted}
-\end{figure}
-
-\begin{figure}[ht]
-      \centering
-      \scalebox{0.35}{\input{figures/density_threshold_method_precision_recall_domain_shifted.pgf}}
-
-      \caption{Precision-recall curves for the density threshold method on the domain-shifted synthetic dataset variants.}
-      \label{fig:density_threshold_method_precision_recall_domain_shifted}
-\end{figure}
-
-\begin{figure}[ht]
-      \centering
-      \scalebox{0.35}{\input{figures/hypothesis_method_precision_recall_domain_shifted.pgf}}
-
-      \caption{Precision-recall curves for the relationship hypothesis method on the domain-shifted synthetic dataset variants.}
-      \label{fig:hypothesis_method_precision_recall_domain_shifted}
-\end{figure}
-
 \input{figures/evaluation_results_domain_shifted.tex}
 \input{figures/relationship_methods_domain_shifted_results.tex}
 
-We train the domain-shifted models with the same architecture and training configuration
-as the original models. The evaluation results can be seen in Table~\ref{tab:evaluation_results_domain_shifted}.
-We observe an average accuracy of approx. $0.72$, around $8\%$ lower than the original models.
-
-The final method selection evaluation results are shown in Table~\ref{tab:relationship_methods_domain_shifted_results}.
-
-% TODO Train all 4 variants and compare the final results
+% TODO Use the new table with results averaged and training for all taxonomies
 % TODO Observation: We can observe large cluster buildings like with the real taxonomies (did this also happen in the normal synthetic variants?)
 
 \subsection{Universal Taxonomy Generation}

@@ -45,9 +45,9 @@
 \contentsline {subsubsection}{\nonumberline Alternate Evaluation Methods - WordNet Synsets}{23}{subsubsection*.49}%
 \contentsline {subsubsection}{\nonumberline Alternate Evaluation Methods - SVHN-MNIST}{24}{subsubsection*.52}%
 \contentsline {subsubsection}{\nonumberline Alternate Evaluation Methods - Domain-Shift Synthetic Datasets}{25}{subsubsection*.55}%
-\contentsline {subsection}{\numberline {3.2.2}Universal Taxonomy Generation}{26}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Universal Models}{27}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Discussion}{37}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusion}{39}{chapter.5}%
-\contentsline {chapter}{\nonumberline Bibliography}{41}{chapter*.66}%
+\contentsline {subsection}{\numberline {3.2.2}Universal Taxonomy Generation}{25}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Universal Models}{26}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Discussion}{33}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusion}{35}{chapter.5}%
+\contentsline {chapter}{\nonumberline Bibliography}{37}{chapter*.62}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

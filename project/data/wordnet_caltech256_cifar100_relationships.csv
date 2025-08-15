@@ -1,0 +1,754 @@
+caltech_class,cifar_class,relationship,similarity,caltech_synset,cifar_synset,common_hypernyms
+american flag,beaver,caltech_is_hypernym,0.8,american.n.01,oregonian.n.01,
+american flag,beaver,common_hypernym,0.5,american.n.01,oregonian.n.01,"['person.n.01', 'inhabitant.n.01']"
+american flag,beaver,similar,0.5,american.n.01,oregonian.n.01,
+american flag,rocket,common_hypernym,0.3333333333333333,flag.n.04,rocket.n.04,"['communication.n.02', 'signal.n.01', 'visual_signal.n.01']"
+baseball bat,bowl,common_hypernym,0.3333333333333333,baseball.n.02,bowl.n.07,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+baseball bat,bowl,common_hypernym,0.3333333333333333,baseball.n.02,bowling_ball.n.01,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+baseball glove,bowl,common_hypernym,0.3333333333333333,baseball.n.02,bowl.n.07,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+baseball glove,bowl,common_hypernym,0.3333333333333333,baseball.n.02,bowling_ball.n.01,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+basketball hoop,bowl,common_hypernym,0.3333333333333333,basketball.n.02,bowl.n.07,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+basketball hoop,bowl,common_hypernym,0.3333333333333333,basketball.n.02,bowling_ball.n.01,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+bathtub,bottle,common_hypernym,0.3333333333333333,bathtub.n.01,bottle.n.01,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+bathtub,bottle,common_hypernym,0.3333333333333333,bathtub.n.01,bottle.n.03,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+bathtub,bowl,common_hypernym,0.3333333333333333,bathtub.n.01,bowl.n.01,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+bathtub,tank,common_hypernym,0.3333333333333333,bathtub.n.01,tank.n.02,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+bear,bear,identical,1.0,bear.n.01,bear.n.01,
+bear,bear,identical,1.0,bear.n.02,bear.n.02,
+beer mug,bottle,common_hypernym,0.3333333333333333,mug.n.01,bottle.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+beer mug,bowl,common_hypernym,0.3333333333333333,mug.n.01,bowl.n.04,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+beer mug,can,common_hypernym,0.3333333333333333,mug.n.01,can.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+beer mug,cup,common_hypernym,0.3333333333333333,mug.n.01,cup.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+beer mug,plate,common_hypernym,0.3333333333333333,mug.n.01,plate.n.05,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+beer mug,tank,common_hypernym,0.3333333333333333,mug.n.01,tank.n.03,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+bonsai 101,oak_tree,common_hypernym,0.3333333333333333,bonsai.n.01,oak.n.02,"['woody_plant.n.01', 'vascular_plant.n.01', 'tree.n.01']"
+bonsai 101,palm_tree,common_hypernym,0.3333333333333333,bonsai.n.01,palm.n.03,"['woody_plant.n.01', 'vascular_plant.n.01', 'tree.n.01']"
+bonsai 101,willow_tree,common_hypernym,0.3333333333333333,bonsai.n.01,willow.n.01,"['woody_plant.n.01', 'vascular_plant.n.01', 'tree.n.01']"
+boom box,bottle,common_hypernym,0.3333333333333333,box.n.03,bottle.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+boom box,bowl,common_hypernym,0.3333333333333333,box.n.01,bowl.n.08,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+boom box,bowl,common_hypernym,0.3333333333333333,box.n.03,bowl.n.04,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+boom box,can,common_hypernym,0.3333333333333333,box.n.01,can.n.01,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+boom box,can,common_hypernym,0.3333333333333333,box.n.03,can.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+boom box,chair,common_hypernym,0.3333333333333333,box.n.08,chair.n.01,"['furniture.n.01', 'seat.n.03', 'furnishing.n.02']"
+boom box,couch,common_hypernym,0.3333333333333333,box.n.08,sofa.n.01,"['furniture.n.01', 'seat.n.03', 'furnishing.n.02']"
+boom box,cup,common_hypernym,0.3333333333333333,box.n.01,cup.n.01,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+boom box,cup,common_hypernym,0.3333333333333333,box.n.03,cup.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+boom box,plate,common_hypernym,0.3333333333333333,box.n.03,plate.n.05,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+boom box,rose,common_hypernym,0.3333333333333333,box.n.06,rose.n.01,"['woody_plant.n.01', 'vascular_plant.n.01', 'shrub.n.01']"
+boom box,tank,common_hypernym,0.3333333333333333,box.n.03,tank.n.03,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+bowling ball,bowl,common_hypernym,0.3333333333333333,bowling_ball.n.01,bowl.n.07,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+bowling ball,bowl,identical,1.0,bowling_ball.n.01,bowling_ball.n.01,
+bowling ball,bowl,caltech_is_hypernym,0.8,ball.n.01,bowl.n.07,
+bowling ball,bowl,common_hypernym,0.5,ball.n.01,bowl.n.07,"['equipment.n.01', 'game_equipment.n.01']"
+bowling ball,bowl,caltech_is_hypernym,0.8,ball.n.01,bowling_ball.n.01,
+bowling ball,bowl,common_hypernym,0.5,ball.n.01,bowling_ball.n.01,"['equipment.n.01', 'game_equipment.n.01']"
+bowling ball,bowl,similar,0.5,ball.n.01,bowl.n.07,
+bowling ball,bridge,common_hypernym,0.3333333333333333,ball.n.10,bridge.n.04,"['part.n.03', 'body_part.n.01', 'structure.n.04']"
+bowling ball,man,common_hypernym,0.3333333333333333,ball.n.01,man.n.10,"['equipment.n.01', 'instrumentality.n.03', 'game_equipment.n.01']"
+bowling ball,plate,common_hypernym,0.3333333333333333,ball.n.10,plate.n.09,"['part.n.03', 'body_part.n.01', 'structure.n.04']"
+bowling pin,keyboard,common_hypernym,0.3333333333333333,peg.n.06,keyboard.n.02,"['holding_device.n.01', 'holder.n.01', 'device.n.01']"
+bowling pin,seal,common_hypernym,0.3333333333333333,pin.n.09,seal.n.08,"['device.n.01', 'restraint.n.06', 'fastener.n.02']"
+bowling pin,seal,common_hypernym,0.3333333333333333,pin.n.09,sealing_wax.n.01,"['device.n.01', 'restraint.n.06', 'fastener.n.02']"
+bulldozer,tractor,cifar_is_hypernym,0.8,bulldozer.n.01,tractor.n.01,
+bulldozer,tractor,common_hypernym,0.5,bulldozer.n.01,tractor.n.01,"['self-propelled_vehicle.n.01', 'wheeled_vehicle.n.01']"
+bulldozer,tractor,similar,0.5,bulldozer.n.01,tractor.n.01,
+butterfly,butterfly,identical,1.0,butterfly.n.01,butterfly.n.01,
+butterfly,butterfly,identical,1.0,butterfly.n.02,butterfly.n.02,
+calculator,shark,common_hypernym,0.3333333333333333,calculator.n.01,shark.n.03,"['person.n.01', 'expert.n.01', 'organism.n.01']"
+camel,camel,identical,1.0,camel.n.01,camel.n.01,
+cannon,beaver,common_hypernym,0.3333333333333333,cannon.n.03,beaver.n.05,"['plate.n.14', 'armor_plate.n.01', 'shield.n.01']"
+cannon,can,common_hypernym,0.3333333333333333,cannon.n.05,buttocks.n.01,"['part.n.03', 'body_part.n.01', 'thing.n.12']"
+cannon,plate,cifar_is_hypernym,0.8,cannon.n.03,plate.n.14,
+cannon,plate,common_hypernym,0.3333333333333333,cannon.n.03,plate.n.14,['shield.n.01']
+car tire,bicycle,common_hypernym,0.3333333333333333,car.n.02,bicycle.n.01,"['vehicle.n.01', 'wheeled_vehicle.n.01', 'instrumentality.n.03']"
+car tire,bus,caltech_is_hypernym,0.8,car.n.01,bus.n.04,
+car tire,bus,common_hypernym,0.5,car.n.01,bus.n.04,"['motor_vehicle.n.01', 'self-propelled_vehicle.n.01']"
+car tire,bus,similar,0.5,car.n.01,bus.n.04,
+car tire,motorcycle,common_hypernym,0.3333333333333333,car.n.01,motorcycle.n.01,"['motor_vehicle.n.01', 'self-propelled_vehicle.n.01', 'wheeled_vehicle.n.01']"
+car tire,tank,caltech_is_hypernym,0.8,car.n.02,tank_car.n.01,
+car tire,tank,common_hypernym,0.3333333333333333,car.n.02,tank_car.n.01,['wheeled_vehicle.n.01']
+cereal box,bottle,common_hypernym,0.3333333333333333,box.n.03,bottle.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+cereal box,bowl,common_hypernym,0.3333333333333333,box.n.01,bowl.n.08,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+cereal box,bowl,common_hypernym,0.3333333333333333,box.n.03,bowl.n.04,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+cereal box,can,common_hypernym,0.3333333333333333,box.n.01,can.n.01,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+cereal box,can,common_hypernym,0.3333333333333333,box.n.03,can.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+cereal box,chair,common_hypernym,0.3333333333333333,box.n.08,chair.n.01,"['furniture.n.01', 'seat.n.03', 'furnishing.n.02']"
+cereal box,couch,common_hypernym,0.3333333333333333,box.n.08,sofa.n.01,"['furniture.n.01', 'seat.n.03', 'furnishing.n.02']"
+cereal box,cup,common_hypernym,0.3333333333333333,box.n.01,cup.n.01,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+cereal box,cup,common_hypernym,0.3333333333333333,box.n.03,cup.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+cereal box,plate,common_hypernym,0.3333333333333333,box.n.03,plate.n.05,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+cereal box,rose,common_hypernym,0.3333333333333333,box.n.06,rose.n.01,"['woody_plant.n.01', 'vascular_plant.n.01', 'shrub.n.01']"
+cereal box,tank,common_hypernym,0.3333333333333333,box.n.03,tank.n.03,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+chess board,bed,common_hypernym,0.3333333333333333,board.n.09,bed.n.07,"['surface.n.01', 'whole.n.02', 'artifact.n.01']"
+chess board,plate,common_hypernym,0.3333333333333333,board.n.03,plate.n.02,"['sheet.n.06', 'artifact.n.01', 'whole.n.02']"
+chess board,plate,common_hypernym,0.3333333333333333,board.n.03,plate.n.11,"['sheet.n.06', 'artifact.n.01', 'whole.n.02']"
+chess board,table,cifar_is_hypernym,0.8,dining_table.n.01,table.n.03,
+chess board,table,common_hypernym,0.5,dining_table.n.01,table.n.03,"['furniture.n.01', 'furnishing.n.02']"
+chess board,table,identical,1.0,board.n.04,board.n.04,
+chess board,table,similar,0.5,dining_table.n.01,table.n.03,
+chimp,chimpanzee,identical,1.0,chimpanzee.n.01,chimpanzee.n.01,
+cockroach,cockroach,identical,1.0,cockroach.n.01,cockroach.n.01,
+coffee mug,bottle,common_hypernym,0.3333333333333333,mug.n.01,bottle.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+coffee mug,bowl,common_hypernym,0.3333333333333333,mug.n.01,bowl.n.04,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+coffee mug,can,common_hypernym,0.3333333333333333,mug.n.01,can.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+coffee mug,cup,common_hypernym,0.3333333333333333,mug.n.01,cup.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+coffee mug,oak_tree,common_hypernym,0.3333333333333333,coffee.n.02,oak.n.02,"['woody_plant.n.01', 'vascular_plant.n.01', 'tree.n.01']"
+coffee mug,palm_tree,common_hypernym,0.3333333333333333,coffee.n.02,palm.n.03,"['woody_plant.n.01', 'vascular_plant.n.01', 'tree.n.01']"
+coffee mug,plate,common_hypernym,0.3333333333333333,mug.n.01,plate.n.05,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+coffee mug,tank,common_hypernym,0.3333333333333333,mug.n.01,tank.n.03,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+coffee mug,willow_tree,common_hypernym,0.3333333333333333,coffee.n.02,willow.n.01,"['woody_plant.n.01', 'vascular_plant.n.01', 'tree.n.01']"
+computer keyboard,keyboard,cifar_is_hypernym,0.8,computer_keyboard.n.01,keyboard.n.01,
+computer keyboard,keyboard,common_hypernym,0.5,computer_keyboard.n.01,keyboard.n.01,"['device.n.01', 'instrumentality.n.03']"
+computer keyboard,keyboard,identical,1.0,keyboard.n.02,keyboard.n.02,
+computer keyboard,keyboard,identical,1.0,keyboard.n.01,keyboard.n.01,
+computer keyboard,keyboard,similar,0.5,computer_keyboard.n.01,keyboard.n.01,
+computer keyboard,shark,common_hypernym,0.3333333333333333,calculator.n.01,shark.n.03,"['person.n.01', 'expert.n.01', 'organism.n.01']"
+computer monitor,lizard,cifar_is_hypernym,0.8,monitor.n.07,lizard.n.01,
+computer monitor,lizard,common_hypernym,0.5,monitor.n.07,lizard.n.01,"['saurian.n.01', 'diapsid.n.01']"
+computer monitor,lizard,similar,0.5,monitor.n.07,lizard.n.01,
+computer monitor,shark,common_hypernym,0.3333333333333333,calculator.n.01,shark.n.03,"['person.n.01', 'expert.n.01', 'organism.n.01']"
+computer monitor,telephone,common_hypernym,0.3333333333333333,monitor.n.06,telephone.n.01,"['electronic_equipment.n.01', 'instrumentality.n.03', 'equipment.n.01']"
+computer monitor,telephone,common_hypernym,0.3333333333333333,monitor.n.05,telephone.n.01,"['electronic_equipment.n.01', 'instrumentality.n.03', 'equipment.n.01']"
+computer mouse,baby,common_hypernym,0.3333333333333333,mouse.n.03,child.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+computer mouse,beaver,common_hypernym,0.3333333333333333,mouse.n.01,beaver.n.07,"['placental.n.01', 'mammal.n.01', 'rodent.n.01']"
+computer mouse,crab,common_hypernym,0.3333333333333333,mouse.n.03,cancer.n.02,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+computer mouse,hamster,common_hypernym,0.3333333333333333,mouse.n.01,hamster.n.01,"['placental.n.01', 'mammal.n.01', 'rodent.n.01']"
+computer mouse,lion,common_hypernym,0.3333333333333333,mouse.n.03,leo.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+computer mouse,man,common_hypernym,0.3333333333333333,mouse.n.03,man.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+computer mouse,mouse,identical,1.0,shiner.n.01,shiner.n.01,
+computer mouse,mouse,identical,1.0,mouse.n.03,mouse.n.03,
+computer mouse,mouse,identical,1.0,mouse.n.04,mouse.n.04,
+computer mouse,mouse,identical,1.0,mouse.n.01,mouse.n.01,
+computer mouse,porcupine,common_hypernym,0.3333333333333333,mouse.n.01,porcupine.n.01,"['placental.n.01', 'mammal.n.01', 'rodent.n.01']"
+computer mouse,shark,common_hypernym,0.3333333333333333,calculator.n.01,shark.n.03,"['person.n.01', 'expert.n.01', 'organism.n.01']"
+computer mouse,squirrel,common_hypernym,0.3333333333333333,mouse.n.01,squirrel.n.01,"['placental.n.01', 'mammal.n.01', 'rodent.n.01']"
+computer mouse,tiger,common_hypernym,0.3333333333333333,mouse.n.03,tiger.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+conch,snail,common_hypernym,0.3333333333333333,conch.n.01,snail.n.01,"['mollusk.n.01', 'invertebrate.n.01', 'gastropod.n.01']"
+covered wagon,bicycle,common_hypernym,0.3333333333333333,wagon.n.04,bicycle.n.01,"['vehicle.n.01', 'wheeled_vehicle.n.01', 'instrumentality.n.03']"
+covered wagon,bicycle,common_hypernym,0.3333333333333333,wagon.n.01,bicycle.n.01,"['vehicle.n.01', 'wheeled_vehicle.n.01', 'instrumentality.n.03']"
+covered wagon,bus,common_hypernym,0.3333333333333333,beach_wagon.n.01,bus.n.04,"['motor_vehicle.n.01', 'self-propelled_vehicle.n.01', 'car.n.01']"
+cowboy hat,beaver,common_hypernym,0.3333333333333333,cowboy_hat.n.01,dress_hat.n.01,"['headdress.n.01', 'clothing.n.01', 'hat.n.01']"
+cowboy hat,beaver,caltech_is_hypernym,0.8,hat.n.01,beaver.n.06,
+cowboy hat,beaver,common_hypernym,0.3333333333333333,hat.n.01,beaver.n.06,['headdress.n.01']
+cowboy hat,beaver,caltech_is_hypernym,0.8,hat.n.01,dress_hat.n.01,
+cowboy hat,beaver,common_hypernym,0.5,hat.n.01,dress_hat.n.01,"['headdress.n.01', 'clothing.n.01', 'consumer_goods.n.01']"
+cowboy hat,beaver,similar,0.5,hat.n.01,dress_hat.n.01,
+crab 101,baby,common_hypernym,0.3333333333333333,cancer.n.02,child.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+crab 101,crab,identical,1.0,cancer.n.04,cancer.n.04,
+crab 101,crab,identical,1.0,crab.n.01,crab.n.01,
+crab 101,crab,identical,1.0,crab.n.07,crab.n.07,
+crab 101,crab,identical,1.0,cancer.n.02,cancer.n.02,
+crab 101,crab,identical,1.0,crab.n.02,crab.n.02,
+crab 101,crab,identical,1.0,crab.n.05,crab.n.05,
+crab 101,crab,identical,1.0,crab_louse.n.01,crab_louse.n.01,
+crab 101,house,similar,0.5,cancer.n.04,sign_of_the_zodiac.n.01,
+crab 101,lion,common_hypernym,0.3333333333333333,cancer.n.02,leo.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+crab 101,lobster,common_hypernym,0.3333333333333333,crab.n.01,lobster.n.02,"['crustacean.n.01', 'decapod_crustacean.n.01', 'arthropod.n.01']"
+crab 101,lobster,common_hypernym,0.3333333333333333,crab.n.05,lobster.n.01,"['shellfish.n.01', 'food.n.02', 'seafood.n.01']"
+crab 101,man,common_hypernym,0.3333333333333333,cancer.n.02,man.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+crab 101,mouse,common_hypernym,0.3333333333333333,cancer.n.02,mouse.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+crab 101,tiger,common_hypernym,0.3333333333333333,cancer.n.02,tiger.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+desk globe,table,cifar_is_hypernym,0.8,desk.n.01,table.n.02,
+desk globe,table,common_hypernym,0.5,desk.n.01,table.n.02,"['furniture.n.01', 'furnishing.n.02']"
+desk globe,table,similar,0.5,desk.n.01,table.n.02,
+dog,bridge,common_hypernym,0.3333333333333333,andiron.n.01,bridge.n.06,"['device.n.01', 'instrumentality.n.03', 'support.n.10']"
+dog,fox,common_hypernym,0.3333333333333333,dog.n.01,fox.n.01,"['carnivore.n.01', 'placental.n.01', 'canine.n.02']"
+dog,shrew,common_hypernym,0.3333333333333333,frump.n.01,shrew.n.01,"['unwelcome_person.n.01', 'unpleasant_woman.n.01', 'unpleasant_person.n.01']"
+dog,wolf,common_hypernym,0.3333333333333333,dog.n.01,wolf.n.01,"['carnivore.n.01', 'placental.n.01', 'canine.n.02']"
+dolphin 101,dolphin,identical,1.0,dolphin.n.02,dolphin.n.02,
+dolphin 101,dolphin,identical,1.0,dolphinfish.n.02,dolphinfish.n.02,
+dolphin 101,whale,cifar_is_hypernym,0.8,dolphin.n.02,whale.n.02,
+dolphin 101,whale,common_hypernym,0.3333333333333333,dolphin.n.02,whale.n.02,['cetacean.n.01']
+eiffel tower,bowl,common_hypernym,0.3333333333333333,tower.n.01,stadium.n.01,"['artifact.n.01', 'whole.n.02', 'structure.n.01']"
+eiffel tower,bridge,common_hypernym,0.3333333333333333,tower.n.01,bridge.n.01,"['artifact.n.01', 'whole.n.02', 'structure.n.01']"
+electric guitar 101,bus,common_hypernym,0.3333333333333333,electric.n.01,bus.n.04,"['motor_vehicle.n.01', 'self-propelled_vehicle.n.01', 'car.n.01']"
+elephant 101,elephant,identical,1.0,elephant.n.02,elephant.n.02,
+elephant 101,elephant,identical,1.0,elephant.n.01,elephant.n.01,
+ewer 101,bottle,common_hypernym,0.3333333333333333,pitcher.n.02,bottle.n.01,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+ewer 101,bottle,common_hypernym,0.3333333333333333,pitcher.n.02,bottle.n.03,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+ewer 101,bowl,common_hypernym,0.3333333333333333,pitcher.n.02,bowl.n.01,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+ewer 101,tank,common_hypernym,0.3333333333333333,pitcher.n.02,tank.n.02,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+fighter jet,baby,common_hypernym,0.3333333333333333,combatant.n.01,child.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+fighter jet,crab,common_hypernym,0.3333333333333333,combatant.n.01,cancer.n.02,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+fighter jet,lion,common_hypernym,0.3333333333333333,combatant.n.01,leo.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+fighter jet,man,common_hypernym,0.3333333333333333,combatant.n.01,man.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+fighter jet,mouse,common_hypernym,0.3333333333333333,combatant.n.01,mouse.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+fighter jet,tiger,common_hypernym,0.3333333333333333,combatant.n.01,tiger.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+fire extinguisher,keyboard,common_hypernym,0.3333333333333333,fire_extinguisher.n.01,keyboard.n.01,"['device.n.01', 'artifact.n.01', 'instrumentality.n.03']"
+fire hydrant,can,common_hypernym,0.3333333333333333,water_faucet.n.01,toilet.n.02,"['artifact.n.01', 'plumbing_fixture.n.01', 'fixture.n.01']"
+fire truck,motorcycle,common_hypernym,0.3333333333333333,truck.n.01,motorcycle.n.01,"['motor_vehicle.n.01', 'self-propelled_vehicle.n.01', 'wheeled_vehicle.n.01']"
+fire truck,pickup_truck,caltech_is_hypernym,0.8,truck.n.01,pickup.n.01,
+fire truck,pickup_truck,common_hypernym,0.5,truck.n.01,pickup.n.01,"['motor_vehicle.n.01', 'self-propelled_vehicle.n.01']"
+fire truck,pickup_truck,common_hypernym,0.3333333333333333,fire_engine.n.01,pickup.n.01,"['truck.n.01', 'self-propelled_vehicle.n.01', 'motor_vehicle.n.01']"
+fire truck,pickup_truck,similar,0.5,truck.n.01,pickup.n.01,
+fire truck,tractor,caltech_is_hypernym,0.8,truck.n.01,tractor.n.02,
+fire truck,tractor,common_hypernym,0.5,truck.n.01,tractor.n.02,"['motor_vehicle.n.01', 'self-propelled_vehicle.n.01']"
+fire truck,tractor,common_hypernym,0.3333333333333333,fire_engine.n.01,tractor.n.02,"['truck.n.01', 'self-propelled_vehicle.n.01', 'motor_vehicle.n.01']"
+fire truck,tractor,similar,0.5,truck.n.01,tractor.n.02,
+fireworks,rocket,caltech_is_hypernym,0.8,firework.n.01,skyrocket.n.02,
+fireworks,rocket,common_hypernym,0.5,firework.n.01,skyrocket.n.02,"['explosive.n.01', 'low_explosive.n.01']"
+fireworks,rocket,similar,0.5,firework.n.01,skyrocket.n.02,
+flashlight,lamp,cifar_is_hypernym,0.8,flashlight.n.01,lamp.n.01,
+flashlight,lamp,common_hypernym,0.3333333333333333,flashlight.n.01,lamp.n.01,['source_of_illumination.n.01']
+floppy disk,plate,cifar_is_hypernym,0.8,disk.n.02,plate.n.02,
+floppy disk,plate,common_hypernym,0.5,disk.n.02,plate.n.02,"['sheet.n.06', 'artifact.n.01']"
+floppy disk,plate,similar,0.5,disk.n.02,plate.n.02,
+football helmet,beaver,common_hypernym,0.3333333333333333,helmet.n.01,beaver.n.05,"['plate.n.14', 'armor_plate.n.01', 'shield.n.01']"
+football helmet,bowl,common_hypernym,0.3333333333333333,football.n.02,bowl.n.07,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+football helmet,bowl,common_hypernym,0.3333333333333333,football.n.02,bowling_ball.n.01,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+football helmet,plate,cifar_is_hypernym,0.8,helmet.n.01,plate.n.14,
+football helmet,plate,common_hypernym,0.3333333333333333,helmet.n.01,plate.n.14,['shield.n.01']
+french horn,keyboard,common_hypernym,0.3333333333333333,horn.n.08,keyboard.n.01,"['device.n.01', 'artifact.n.01', 'instrumentality.n.03']"
+frisbee,plate,cifar_is_hypernym,0.8,frisbee.n.01,plate.n.02,
+frisbee,plate,common_hypernym,0.3333333333333333,frisbee.n.01,plate.n.02,"['sheet.n.06', 'artifact.n.01', 'whole.n.02']"
+frying pan,bowl,common_hypernym,0.3333333333333333,pan.n.03,bowl.n.08,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+frying pan,can,common_hypernym,0.3333333333333333,pan.n.03,can.n.01,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+frying pan,cup,common_hypernym,0.3333333333333333,pan.n.03,cup.n.01,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+frying pan,spider,caltech_is_hypernym,0.8,frying_pan.n.01,spider.n.03,
+frying pan,spider,common_hypernym,0.5,frying_pan.n.01,spider.n.03,"['pan.n.01', 'cooking_utensil.n.01']"
+frying pan,spider,caltech_is_hypernym,0.8,pan.n.01,spider.n.03,
+frying pan,spider,common_hypernym,0.3333333333333333,pan.n.01,spider.n.03,['cooking_utensil.n.01']
+frying pan,spider,similar,0.5,frying_pan.n.01,spider.n.03,
+galaxy,rocket,common_hypernym,0.3333333333333333,galax.n.01,rocket.n.03,"['plant.n.02', 'vascular_plant.n.01', 'herb.n.01']"
+galaxy,wardrobe,common_hypernym,0.3333333333333333,galaxy.n.03,wardrobe.n.02,"['group.n.01', 'abstraction.n.06', 'collection.n.01']"
+galaxy,wardrobe,common_hypernym,0.3333333333333333,galaxy.n.03,wardrobe.n.03,"['group.n.01', 'abstraction.n.06', 'collection.n.01']"
+galaxy,wardrobe,common_hypernym,0.3333333333333333,galaxy.n.01,wardrobe.n.02,"['group.n.01', 'abstraction.n.06', 'collection.n.01']"
+galaxy,wardrobe,common_hypernym,0.3333333333333333,galaxy.n.01,wardrobe.n.03,"['group.n.01', 'abstraction.n.06', 'collection.n.01']"
+goat,baby,common_hypernym,0.3333333333333333,capricorn.n.01,child.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+goat,crab,common_hypernym,0.3333333333333333,capricorn.n.01,cancer.n.02,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+goat,house,similar,0.5,capricorn.n.03,sign_of_the_zodiac.n.01,
+goat,lion,common_hypernym,0.3333333333333333,capricorn.n.01,leo.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+goat,man,common_hypernym,0.3333333333333333,capricorn.n.01,man.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+goat,mouse,common_hypernym,0.3333333333333333,capricorn.n.01,mouse.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+goat,tiger,common_hypernym,0.3333333333333333,capricorn.n.01,tiger.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+golden gate bridge,bowl,common_hypernym,0.3333333333333333,bridge.n.01,stadium.n.01,"['artifact.n.01', 'whole.n.02', 'structure.n.01']"
+golden gate bridge,bridge,identical,1.0,bridge.n.07,bridge.n.07,
+golden gate bridge,bridge,identical,1.0,bridge.n.02,bridge.n.02,
+golden gate bridge,bridge,identical,1.0,bridge.n.03,bridge.n.03,
+golden gate bridge,bridge,identical,1.0,bridge.n.08,bridge.n.08,
+golden gate bridge,bridge,identical,1.0,bridge.n.05,bridge.n.05,
+golden gate bridge,bridge,identical,1.0,bridge.n.09,bridge.n.09,
+golden gate bridge,bridge,identical,1.0,bridge.n.06,bridge.n.06,
+golden gate bridge,bridge,identical,1.0,bridge.n.04,bridge.n.04,
+golden gate bridge,bridge,identical,1.0,bridge.n.01,bridge.n.01,
+golden gate bridge,plate,cifar_is_hypernym,0.8,bridge.n.07,denture.n.01,
+golden gate bridge,plate,common_hypernym,0.5,bridge.n.07,denture.n.01,"['device.n.01', 'dental_appliance.n.01']"
+golden gate bridge,plate,common_hypernym,0.3333333333333333,bridge.n.04,plate.n.09,"['part.n.03', 'body_part.n.01', 'structure.n.04']"
+golden gate bridge,plate,similar,0.5,bridge.n.07,denture.n.01,
+golf ball,bowl,common_hypernym,0.3333333333333333,golf_ball.n.01,bowl.n.07,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+golf ball,bowl,common_hypernym,0.3333333333333333,golf_ball.n.01,bowling_ball.n.01,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+golf ball,bowl,caltech_is_hypernym,0.8,ball.n.01,bowl.n.07,
+golf ball,bowl,common_hypernym,0.5,ball.n.01,bowl.n.07,"['equipment.n.01', 'game_equipment.n.01']"
+golf ball,bowl,caltech_is_hypernym,0.8,ball.n.01,bowling_ball.n.01,
+golf ball,bowl,common_hypernym,0.5,ball.n.01,bowling_ball.n.01,"['equipment.n.01', 'game_equipment.n.01']"
+golf ball,bowl,similar,0.5,ball.n.01,bowl.n.07,
+golf ball,bridge,common_hypernym,0.3333333333333333,ball.n.10,bridge.n.04,"['part.n.03', 'body_part.n.01', 'structure.n.04']"
+golf ball,man,common_hypernym,0.3333333333333333,ball.n.01,man.n.10,"['equipment.n.01', 'instrumentality.n.03', 'game_equipment.n.01']"
+golf ball,plate,common_hypernym,0.3333333333333333,ball.n.10,plate.n.09,"['part.n.03', 'body_part.n.01', 'structure.n.04']"
+gorilla,chimpanzee,common_hypernym,0.3333333333333333,gorilla.n.01,chimpanzee.n.01,"['great_ape.n.01', 'ape.n.01', 'anthropoid_ape.n.01']"
+grapes,apple,common_hypernym,0.3333333333333333,grape.n.01,apple.n.01,"['food.n.02', 'produce.n.01', 'reproductive_structure.n.01']"
+grapes,pear,common_hypernym,0.3333333333333333,grape.n.01,pear.n.01,"['food.n.02', 'produce.n.01', 'reproductive_structure.n.01']"
+guitar pick,keyboard,common_hypernym,0.3333333333333333,pick.n.05,keyboard.n.01,"['device.n.01', 'artifact.n.01', 'instrumentality.n.03']"
+hammock,bed,cifar_is_hypernym,0.8,hammock.n.02,bed.n.01,
+hammock,bed,common_hypernym,0.5,hammock.n.02,bed.n.01,"['furniture.n.01', 'bedroom_furniture.n.01']"
+hammock,bed,similar,0.5,hammock.n.02,bed.n.01,
+hammock,couch,common_hypernym,0.3333333333333333,hammock.n.02,couch.n.03,"['furniture.n.01', 'bedroom_furniture.n.01', 'bed.n.01']"
+harp,bridge,common_hypernym,0.3333333333333333,harp.n.02,bridge.n.06,"['device.n.01', 'instrumentality.n.03', 'support.n.10']"
+hawksbill 101,turtle,cifar_is_hypernym,0.8,hawksbill_turtle.n.01,turtle.n.02,
+hawksbill 101,turtle,common_hypernym,0.3333333333333333,hawksbill_turtle.n.01,turtle.n.02,['chelonian.n.01']
+head phones,bridge,common_hypernym,0.3333333333333333,head.n.25,bridge.n.04,"['part.n.03', 'body_part.n.01', 'structure.n.04']"
+head phones,bridge,common_hypernym,0.3333333333333333,head.n.26,bridge.n.04,"['part.n.03', 'body_part.n.01', 'structure.n.04']"
+head phones,can,cifar_is_hypernym,0.8,head.n.30,toilet.n.01,
+head phones,can,common_hypernym,0.5,head.n.30,toilet.n.01,"['room.n.01', 'area.n.05']"
+head phones,can,similar,0.5,head.n.30,toilet.n.01,
+head phones,cup,common_hypernym,0.3333333333333333,capitulum.n.01,cup.n.05,"['plant_part.n.01', 'natural_object.n.01', 'plant_organ.n.01']"
+head phones,mountain,common_hypernym,0.3333333333333333,promontory.n.01,mountain.n.01,"['geological_formation.n.01', 'object.n.01', 'natural_elevation.n.01']"
+head phones,plate,common_hypernym,0.3333333333333333,head.n.25,plate.n.09,"['part.n.03', 'body_part.n.01', 'structure.n.04']"
+head phones,plate,common_hypernym,0.3333333333333333,head.n.26,plate.n.09,"['part.n.03', 'body_part.n.01', 'structure.n.04']"
+head phones,snake,common_hypernym,0.3333333333333333,head.n.17,snake.n.05,"['object.n.01', 'physical_entity.n.01', 'entity.n.01']"
+head phones,telephone,identical,1.0,telephone.n.01,telephone.n.01,
+horse,castle,common_hypernym,0.3333333333333333,knight.n.02,castle.n.03,"['man.n.10', 'game_equipment.n.01', 'chessman.n.01']"
+horse,man,cifar_is_hypernym,0.8,knight.n.02,man.n.10,
+horse,man,common_hypernym,0.3333333333333333,knight.n.02,man.n.10,['game_equipment.n.01']
+horseshoe crab,baby,common_hypernym,0.3333333333333333,cancer.n.02,child.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+horseshoe crab,crab,identical,1.0,cancer.n.04,cancer.n.04,
+horseshoe crab,crab,identical,1.0,crab.n.01,crab.n.01,
+horseshoe crab,crab,identical,1.0,crab.n.07,crab.n.07,
+horseshoe crab,crab,identical,1.0,cancer.n.02,cancer.n.02,
+horseshoe crab,crab,identical,1.0,crab.n.02,crab.n.02,
+horseshoe crab,crab,identical,1.0,crab.n.05,crab.n.05,
+horseshoe crab,crab,identical,1.0,crab_louse.n.01,crab_louse.n.01,
+horseshoe crab,house,similar,0.5,cancer.n.04,sign_of_the_zodiac.n.01,
+horseshoe crab,lion,common_hypernym,0.3333333333333333,cancer.n.02,leo.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+horseshoe crab,lobster,common_hypernym,0.3333333333333333,crab.n.01,lobster.n.02,"['crustacean.n.01', 'decapod_crustacean.n.01', 'arthropod.n.01']"
+horseshoe crab,lobster,common_hypernym,0.3333333333333333,crab.n.05,lobster.n.01,"['shellfish.n.01', 'food.n.02', 'seafood.n.01']"
+horseshoe crab,man,common_hypernym,0.3333333333333333,cancer.n.02,man.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+horseshoe crab,man,common_hypernym,0.3333333333333333,horseshoe.n.01,man.n.10,"['equipment.n.01', 'instrumentality.n.03', 'game_equipment.n.01']"
+horseshoe crab,mouse,common_hypernym,0.3333333333333333,cancer.n.02,mouse.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+horseshoe crab,plate,cifar_is_hypernym,0.8,horseshoe.n.02,plate.n.14,
+horseshoe crab,plate,common_hypernym,0.5,horseshoe.n.02,plate.n.14,"['protective_covering.n.01', 'shield.n.01']"
+horseshoe crab,plate,similar,0.5,horseshoe.n.02,plate.n.14,
+horseshoe crab,tiger,common_hypernym,0.3333333333333333,cancer.n.02,tiger.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+hot air balloon,house,common_hypernym,0.3333333333333333,air.n.02,sign_of_the_zodiac.n.01,"['region.n.01', 'object.n.01', 'location.n.01']"
+hot air balloon,house,common_hypernym,0.3333333333333333,atmosphere.n.03,sign_of_the_zodiac.n.01,"['region.n.01', 'object.n.01', 'location.n.01']"
+hot dog,bridge,common_hypernym,0.3333333333333333,andiron.n.01,bridge.n.06,"['device.n.01', 'instrumentality.n.03', 'support.n.10']"
+hot dog,fox,common_hypernym,0.3333333333333333,dog.n.01,fox.n.01,"['carnivore.n.01', 'placental.n.01', 'canine.n.02']"
+hot dog,shrew,common_hypernym,0.3333333333333333,frump.n.01,shrew.n.01,"['unwelcome_person.n.01', 'unpleasant_woman.n.01', 'unpleasant_person.n.01']"
+hot dog,wolf,common_hypernym,0.3333333333333333,dog.n.01,wolf.n.01,"['carnivore.n.01', 'placental.n.01', 'canine.n.02']"
+hot tub,bottle,common_hypernym,0.3333333333333333,tub.n.02,bottle.n.01,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+hot tub,bottle,common_hypernym,0.3333333333333333,tub.n.02,bottle.n.03,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+hot tub,bottle,common_hypernym,0.3333333333333333,bathtub.n.01,bottle.n.01,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+hot tub,bottle,common_hypernym,0.3333333333333333,bathtub.n.01,bottle.n.03,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+hot tub,bottle,common_hypernym,0.3333333333333333,tub.n.03,bottle.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+hot tub,bowl,common_hypernym,0.3333333333333333,tub.n.02,bowl.n.01,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+hot tub,bowl,common_hypernym,0.3333333333333333,bathtub.n.01,bowl.n.01,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+hot tub,bowl,common_hypernym,0.3333333333333333,tub.n.03,bowl.n.04,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+hot tub,can,common_hypernym,0.3333333333333333,tub.n.03,can.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+hot tub,cup,common_hypernym,0.3333333333333333,tub.n.03,cup.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+hot tub,plate,common_hypernym,0.3333333333333333,tub.n.03,plate.n.05,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+hot tub,tank,common_hypernym,0.3333333333333333,tub.n.02,tank.n.02,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+hot tub,tank,common_hypernym,0.3333333333333333,bathtub.n.01,tank.n.02,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+hot tub,tank,common_hypernym,0.3333333333333333,tub.n.03,tank.n.03,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+house fly,castle,caltech_is_hypernym,0.8,house.n.01,palace.n.01,
+house fly,castle,common_hypernym,0.3333333333333333,house.n.01,palace.n.01,"['building.n.01', 'dwelling.n.01']"
+house fly,crab,similar,0.5,sign_of_the_zodiac.n.01,cancer.n.04,
+house fly,house,identical,1.0,house.n.01,house.n.01,
+house fly,house,common_hypernym,0.3333333333333333,house.n.01,theater.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+house fly,house,common_hypernym,0.3333333333333333,house.n.01,house.n.12,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+house fly,house,identical,1.0,house.n.09,house.n.09,
+house fly,house,identical,1.0,firm.n.01,firm.n.01,
+house fly,house,identical,1.0,house.n.05,house.n.05,
+house fly,house,identical,1.0,family.n.01,family.n.01,
+house fly,house,common_hypernym,0.3333333333333333,theater.n.01,house.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+house fly,house,identical,1.0,theater.n.01,theater.n.01,
+house fly,house,common_hypernym,0.3333333333333333,theater.n.01,house.n.12,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+house fly,house,common_hypernym,0.3333333333333333,house.n.12,house.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+house fly,house,common_hypernym,0.3333333333333333,house.n.12,theater.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+house fly,house,identical,1.0,house.n.12,house.n.12,
+house fly,house,identical,1.0,house.n.03,house.n.03,
+house fly,house,identical,1.0,sign_of_the_zodiac.n.01,sign_of_the_zodiac.n.01,
+house fly,house,identical,1.0,house.n.04,house.n.04,
+house fly,house,identical,1.0,house.n.07,house.n.07,
+house fly,house,identical,1.0,house.n.06,house.n.06,
+house fly,lion,similar,0.5,sign_of_the_zodiac.n.01,leo.n.03,
+house fly,skyscraper,common_hypernym,0.3333333333333333,house.n.01,skyscraper.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+house fly,skyscraper,common_hypernym,0.3333333333333333,theater.n.01,skyscraper.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+house fly,skyscraper,common_hypernym,0.3333333333333333,house.n.12,skyscraper.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+human skeleton,man,caltech_is_hypernym,0.8,homo.n.02,world.n.08,
+human skeleton,man,common_hypernym,0.5,homo.n.02,world.n.08,"['primate.n.02', 'hominid.n.01']"
+human skeleton,man,identical,1.0,homo.n.02,homo.n.02,
+human skeleton,man,similar,0.5,homo.n.02,world.n.08,
+ice cream cone,bed,common_hypernym,0.3333333333333333,cone.n.01,layer.n.01,"['artifact.n.01', 'object.n.01', 'whole.n.02']"
+ice cream cone,snake,common_hypernym,0.3333333333333333,ice.n.02,snake.n.05,"['object.n.01', 'physical_entity.n.01', 'entity.n.01']"
+iguana,lizard,cifar_is_hypernym,0.8,common_iguana.n.01,lizard.n.01,
+iguana,lizard,common_hypernym,0.3333333333333333,common_iguana.n.01,lizard.n.01,['saurian.n.01']
+kangaroo 101,kangaroo,identical,1.0,kangaroo.n.01,kangaroo.n.01,
+kangaroo 101,possum,common_hypernym,0.3333333333333333,kangaroo.n.01,phalanger.n.01,"['marsupial.n.01', 'mammal.n.01', 'metatherian.n.01']"
+kangaroo 101,possum,common_hypernym,0.3333333333333333,kangaroo.n.01,opossum.n.02,"['marsupial.n.01', 'mammal.n.01', 'metatherian.n.01']"
+killer whale,baby,common_hypernym,0.3333333333333333,killer.n.01,child.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+killer whale,crab,common_hypernym,0.3333333333333333,killer.n.01,cancer.n.02,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+killer whale,dolphin,cifar_is_hypernym,0.8,killer_whale.n.01,dolphin.n.02,
+killer whale,dolphin,common_hypernym,0.5,killer_whale.n.01,dolphin.n.02,"['toothed_whale.n.01', 'whale.n.02']"
+killer whale,dolphin,caltech_is_hypernym,0.8,whale.n.02,dolphin.n.02,
+killer whale,dolphin,common_hypernym,0.3333333333333333,whale.n.02,dolphin.n.02,['cetacean.n.01']
+killer whale,dolphin,similar,0.5,killer_whale.n.01,dolphin.n.02,
+killer whale,lion,common_hypernym,0.3333333333333333,killer.n.01,leo.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+killer whale,man,common_hypernym,0.3333333333333333,killer.n.01,man.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+killer whale,mouse,common_hypernym,0.3333333333333333,killer.n.01,mouse.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+killer whale,tiger,common_hypernym,0.3333333333333333,killer.n.01,tiger.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+killer whale,whale,identical,1.0,giant.n.04,giant.n.04,
+killer whale,whale,cifar_is_hypernym,0.8,killer_whale.n.01,whale.n.02,
+killer whale,whale,identical,1.0,whale.n.02,whale.n.02,
+leopards 101,beaver,common_hypernym,0.3333333333333333,leopard.n.01,beaver.n.01,"['fur.n.01', 'animal_product.n.01', 'animal_skin.n.01']"
+leopards 101,fox,common_hypernym,0.3333333333333333,leopard.n.01,fox.n.03,"['fur.n.01', 'animal_product.n.01', 'animal_skin.n.01']"
+leopards 101,leopard,identical,1.0,leopard.n.02,leopard.n.02,
+leopards 101,leopard,identical,1.0,leopard.n.01,leopard.n.01,
+leopards 101,lion,common_hypernym,0.3333333333333333,leopard.n.02,lion.n.01,"['carnivore.n.01', 'big_cat.n.01', 'feline.n.01']"
+leopards 101,otter,common_hypernym,0.3333333333333333,leopard.n.01,otter.n.01,"['fur.n.01', 'animal_product.n.01', 'animal_skin.n.01']"
+leopards 101,rabbit,common_hypernym,0.3333333333333333,leopard.n.01,lapin.n.01,"['fur.n.01', 'animal_product.n.01', 'animal_skin.n.01']"
+leopards 101,raccoon,common_hypernym,0.3333333333333333,leopard.n.01,raccoon.n.01,"['fur.n.01', 'animal_product.n.01', 'animal_skin.n.01']"
+leopards 101,seal,common_hypernym,0.3333333333333333,leopard.n.01,seal.n.03,"['fur.n.01', 'animal_product.n.01', 'animal_skin.n.01']"
+leopards 101,squirrel,common_hypernym,0.3333333333333333,leopard.n.01,squirrel.n.02,"['fur.n.01', 'animal_product.n.01', 'animal_skin.n.01']"
+leopards 101,tiger,common_hypernym,0.3333333333333333,leopard.n.02,tiger.n.02,"['carnivore.n.01', 'big_cat.n.01', 'feline.n.01']"
+license plate,beaver,caltech_is_hypernym,0.8,plate.n.14,beaver.n.05,
+license plate,beaver,common_hypernym,0.3333333333333333,plate.n.14,beaver.n.05,['shield.n.01']
+license plate,bottle,common_hypernym,0.3333333333333333,plate.n.05,bottle.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+license plate,bowl,common_hypernym,0.3333333333333333,plate.n.05,bowl.n.04,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+license plate,bridge,common_hypernym,0.3333333333333333,plate.n.09,bridge.n.04,"['part.n.03', 'body_part.n.01', 'structure.n.04']"
+license plate,bridge,caltech_is_hypernym,0.8,denture.n.01,bridge.n.07,
+license plate,bridge,common_hypernym,0.5,denture.n.01,bridge.n.07,"['device.n.01', 'dental_appliance.n.01']"
+license plate,bridge,similar,0.5,denture.n.01,bridge.n.07,
+license plate,can,common_hypernym,0.3333333333333333,plate.n.05,can.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+license plate,cup,common_hypernym,0.3333333333333333,plate.n.05,cup.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+license plate,plate,identical,1.0,plate.n.04,plate.n.04,
+license plate,plate,identical,1.0,plate.n.10,plate.n.10,
+license plate,plate,identical,1.0,plate.n.09,plate.n.09,
+license plate,plate,identical,1.0,plate.n.07,plate.n.07,
+license plate,plate,identical,1.0,home_plate.n.01,home_plate.n.01,
+license plate,plate,identical,1.0,plate.n.06,plate.n.06,
+license plate,plate,common_hypernym,0.3333333333333333,plate.n.11,plate.n.02,"['sheet.n.06', 'artifact.n.01', 'whole.n.02']"
+license plate,plate,identical,1.0,plate.n.11,plate.n.11,
+license plate,plate,identical,1.0,plate.n.13,plate.n.13,
+license plate,plate,identical,1.0,plate.n.05,plate.n.05,
+license plate,plate,identical,1.0,plate.n.08,plate.n.08,
+license plate,plate,identical,1.0,plate.n.03,plate.n.03,
+license plate,plate,identical,1.0,plate.n.02,plate.n.02,
+license plate,plate,common_hypernym,0.3333333333333333,plate.n.02,plate.n.11,"['sheet.n.06', 'artifact.n.01', 'whole.n.02']"
+license plate,plate,cifar_is_hypernym,0.8,license_plate.n.01,plate.n.02,
+license plate,plate,common_hypernym,0.5,license_plate.n.01,plate.n.02,"['sheet.n.06', 'artifact.n.01']"
+license plate,plate,identical,1.0,denture.n.01,denture.n.01,
+license plate,plate,identical,1.0,plate.n.14,plate.n.14,
+license plate,plate,identical,1.0,plate.n.12,plate.n.12,
+license plate,plate,similar,0.5,license_plate.n.01,plate.n.02,
+license plate,tank,common_hypernym,0.3333333333333333,plate.n.05,tank.n.03,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+lightbulb,lamp,cifar_is_hypernym,0.8,light_bulb.n.01,lamp.n.01,
+lightbulb,lamp,common_hypernym,0.3333333333333333,light_bulb.n.01,lamp.n.01,['source_of_illumination.n.01']
+light house,castle,caltech_is_hypernym,0.8,house.n.01,palace.n.01,
+light house,castle,common_hypernym,0.3333333333333333,house.n.01,palace.n.01,"['building.n.01', 'dwelling.n.01']"
+light house,crab,similar,0.5,sign_of_the_zodiac.n.01,cancer.n.04,
+light house,house,identical,1.0,house.n.07,house.n.07,
+light house,house,identical,1.0,house.n.06,house.n.06,
+light house,house,identical,1.0,house.n.01,house.n.01,
+light house,house,common_hypernym,0.3333333333333333,house.n.01,theater.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+light house,house,common_hypernym,0.3333333333333333,house.n.01,house.n.12,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+light house,house,identical,1.0,firm.n.01,firm.n.01,
+light house,house,identical,1.0,family.n.01,family.n.01,
+light house,house,common_hypernym,0.3333333333333333,house.n.12,house.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+light house,house,common_hypernym,0.3333333333333333,house.n.12,theater.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+light house,house,identical,1.0,house.n.12,house.n.12,
+light house,house,identical,1.0,sign_of_the_zodiac.n.01,sign_of_the_zodiac.n.01,
+light house,house,common_hypernym,0.3333333333333333,theater.n.01,house.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+light house,house,identical,1.0,theater.n.01,theater.n.01,
+light house,house,common_hypernym,0.3333333333333333,theater.n.01,house.n.12,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+light house,house,identical,1.0,house.n.03,house.n.03,
+light house,house,identical,1.0,house.n.05,house.n.05,
+light house,house,identical,1.0,house.n.09,house.n.09,
+light house,house,identical,1.0,house.n.04,house.n.04,
+light house,keyboard,common_hypernym,0.3333333333333333,lighter.n.02,keyboard.n.01,"['device.n.01', 'artifact.n.01', 'instrumentality.n.03']"
+light house,lamp,common_hypernym,0.3333333333333333,light.n.02,lamp.n.01,"['device.n.01', 'instrumentality.n.03', 'source_of_illumination.n.01']"
+light house,lion,similar,0.5,sign_of_the_zodiac.n.01,leo.n.03,
+light house,ray,caltech_is_hypernym,0.8,light.n.01,beam.n.04,
+light house,ray,common_hypernym,0.5,light.n.01,beam.n.04,"['actinic_radiation.n.01', 'electromagnetic_radiation.n.01']"
+light house,ray,similar,0.5,light.n.01,beam.n.04,
+light house,rocket,common_hypernym,0.3333333333333333,light.n.14,rocket.n.04,"['communication.n.02', 'signal.n.01', 'visual_signal.n.01']"
+light house,skyscraper,common_hypernym,0.3333333333333333,house.n.01,skyscraper.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+light house,skyscraper,common_hypernym,0.3333333333333333,house.n.12,skyscraper.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+light house,skyscraper,common_hypernym,0.3333333333333333,theater.n.01,skyscraper.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+llama 101,camel,common_hypernym,0.3333333333333333,llama.n.01,camel.n.01,"['placental.n.01', 'ungulate.n.01', 'even-toed_ungulate.n.01']"
+microwave,ray,common_hypernym,0.3333333333333333,microwave.n.01,beam.n.03,"['radiation.n.01', 'electromagnetic_radiation.n.01', 'energy.n.01']"
+motorbikes 101,motorcycle,cifar_is_hypernym,0.8,minibike.n.01,motorcycle.n.01,
+motorbikes 101,motorcycle,common_hypernym,0.5,minibike.n.01,motorcycle.n.01,"['motor_vehicle.n.01', 'self-propelled_vehicle.n.01']"
+motorbikes 101,motorcycle,similar,0.5,minibike.n.01,motorcycle.n.01,
+mountain bike,bicycle,cifar_is_hypernym,0.8,mountain_bike.n.01,bicycle.n.01,
+mountain bike,bicycle,common_hypernym,0.5,mountain_bike.n.01,bicycle.n.01,"['vehicle.n.01', 'container.n.01', 'wheeled_vehicle.n.01']"
+mountain bike,bicycle,identical,1.0,bicycle.n.01,bicycle.n.01,
+mountain bike,bicycle,similar,0.5,mountain_bike.n.01,bicycle.n.01,
+mountain bike,motorcycle,identical,1.0,motorcycle.n.01,motorcycle.n.01,
+mountain bike,mountain,identical,1.0,mountain.n.01,mountain.n.01,
+mountain bike,mountain,identical,1.0,batch.n.02,batch.n.02,
+mountain bike,sea,common_hypernym,0.3333333333333333,batch.n.02,ocean.n.02,"['measure.n.02', 'large_indefinite_quantity.n.01', 'indefinite_quantity.n.01']"
+mushroom,cloud,cifar_is_hypernym,0.8,mushroom.n.04,cloud.n.01,
+mushroom,cloud,common_hypernym,0.5,mushroom.n.04,cloud.n.01,"['physical_phenomenon.n.01', 'natural_phenomenon.n.01']"
+mushroom,cloud,similar,0.5,mushroom.n.04,cloud.n.01,
+mushroom,mushroom,identical,1.0,mushroom.n.01,mushroom.n.01,
+mushroom,mushroom,common_hypernym,0.3333333333333333,mushroom.n.01,mushroom.n.02,"['basidiomycete.n.01', 'agaric.n.02', 'fungus.n.01']"
+mushroom,mushroom,identical,1.0,mushroom.n.05,mushroom.n.05,
+mushroom,mushroom,identical,1.0,mushroom.n.04,mushroom.n.04,
+mushroom,mushroom,common_hypernym,0.3333333333333333,mushroom.n.02,mushroom.n.01,"['basidiomycete.n.01', 'agaric.n.02', 'fungus.n.01']"
+mushroom,mushroom,identical,1.0,mushroom.n.02,mushroom.n.02,
+mushroom,mushroom,identical,1.0,mushroom.n.03,mushroom.n.03,
+mussels,crab,common_hypernym,0.3333333333333333,mussel.n.01,crab.n.05,"['shellfish.n.01', 'food.n.02', 'seafood.n.01']"
+mussels,lobster,common_hypernym,0.3333333333333333,mussel.n.01,lobster.n.01,"['shellfish.n.01', 'food.n.02', 'seafood.n.01']"
+ostrich,baby,common_hypernym,0.3333333333333333,ostrich.n.01,child.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+ostrich,crab,common_hypernym,0.3333333333333333,ostrich.n.01,cancer.n.02,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+ostrich,lion,common_hypernym,0.3333333333333333,ostrich.n.01,leo.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+ostrich,man,common_hypernym,0.3333333333333333,ostrich.n.01,man.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+ostrich,mouse,common_hypernym,0.3333333333333333,ostrich.n.01,mouse.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+ostrich,tiger,common_hypernym,0.3333333333333333,ostrich.n.01,tiger.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+palm pilot,oak_tree,common_hypernym,0.3333333333333333,palm.n.03,oak.n.02,"['woody_plant.n.01', 'vascular_plant.n.01', 'tree.n.01']"
+palm pilot,palm_tree,identical,1.0,palm.n.03,palm.n.03,
+palm pilot,seal,common_hypernym,0.3333333333333333,decoration.n.02,cachet.n.01,"['symbol.n.01', 'signal.n.01', 'award.n.02']"
+palm pilot,willow_tree,common_hypernym,0.3333333333333333,palm.n.03,willow.n.01,"['woody_plant.n.01', 'vascular_plant.n.01', 'tree.n.01']"
+palm tree,oak_tree,common_hypernym,0.3333333333333333,palm.n.03,oak.n.02,"['woody_plant.n.01', 'vascular_plant.n.01', 'tree.n.01']"
+palm tree,oak_tree,caltech_is_hypernym,0.8,tree.n.01,oak.n.02,
+palm tree,oak_tree,common_hypernym,0.5,tree.n.01,oak.n.02,"['woody_plant.n.01', 'vascular_plant.n.01']"
+palm tree,oak_tree,similar,0.5,tree.n.01,oak.n.02,
+palm tree,palm_tree,identical,1.0,palm.n.03,palm.n.03,
+palm tree,palm_tree,caltech_is_hypernym,0.8,tree.n.01,palm.n.03,
+palm tree,palm_tree,common_hypernym,0.5,tree.n.01,palm.n.03,"['woody_plant.n.01', 'vascular_plant.n.01']"
+palm tree,palm_tree,similar,0.5,tree.n.01,palm.n.03,
+palm tree,pear,caltech_is_hypernym,0.8,tree.n.01,pear.n.02,
+palm tree,pine_tree,caltech_is_hypernym,0.8,tree.n.01,pine.n.01,
+palm tree,seal,common_hypernym,0.3333333333333333,decoration.n.02,cachet.n.01,"['symbol.n.01', 'signal.n.01', 'award.n.02']"
+palm tree,willow_tree,common_hypernym,0.3333333333333333,palm.n.03,willow.n.01,"['woody_plant.n.01', 'vascular_plant.n.01', 'tree.n.01']"
+palm tree,willow_tree,caltech_is_hypernym,0.8,tree.n.01,willow.n.01,
+palm tree,willow_tree,common_hypernym,0.5,tree.n.01,willow.n.01,"['woody_plant.n.01', 'vascular_plant.n.01']"
+palm tree,willow_tree,similar,0.5,tree.n.01,willow.n.01,
+paper shredder,house,cifar_is_hypernym,0.8,newspaper.n.02,firm.n.01,
+paper shredder,house,common_hypernym,0.3333333333333333,newspaper.n.02,firm.n.01,['business.n.01']
+paper shredder,keyboard,common_hypernym,0.3333333333333333,shredder.n.01,keyboard.n.01,"['device.n.01', 'artifact.n.01', 'instrumentality.n.03']"
+people,cloud,common_hypernym,0.3333333333333333,citizenry.n.01,swarm.n.02,"['group.n.01', 'entity.n.01', 'abstraction.n.06']"
+people,cloud,common_hypernym,0.3333333333333333,people.n.01,swarm.n.02,"['group.n.01', 'entity.n.01', 'abstraction.n.06']"
+people,cloud,common_hypernym,0.3333333333333333,multitude.n.03,swarm.n.02,"['group.n.01', 'entity.n.01', 'abstraction.n.06']"
+people,house,common_hypernym,0.3333333333333333,people.n.03,house.n.06,"['lineage.n.01', 'genealogy.n.01', 'family.n.04']"
+people,man,common_hypernym,0.3333333333333333,citizenry.n.01,world.n.08,"['group.n.01', 'entity.n.01', 'abstraction.n.06']"
+people,man,common_hypernym,0.3333333333333333,people.n.01,world.n.08,"['group.n.01', 'entity.n.01', 'abstraction.n.06']"
+people,man,common_hypernym,0.3333333333333333,multitude.n.03,world.n.08,"['group.n.01', 'entity.n.01', 'abstraction.n.06']"
+people,woman,caltech_is_hypernym,0.8,people.n.01,womanhood.n.02,
+people,woman,common_hypernym,0.3333333333333333,people.n.01,womanhood.n.02,['group.n.01']
+pez dispenser,bowl,common_hypernym,0.3333333333333333,dispenser.n.01,bowl.n.08,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+pez dispenser,can,common_hypernym,0.3333333333333333,dispenser.n.01,can.n.01,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+pez dispenser,cup,common_hypernym,0.3333333333333333,dispenser.n.01,cup.n.01,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+picnic table,baby,common_hypernym,0.3333333333333333,cinch.n.01,baby.n.07,"['activity.n.01', 'work.n.01', 'undertaking.n.01']"
+picnic table,lamp,common_hypernym,0.3333333333333333,table.n.03,lamp.n.02,"['instrumentality.n.03', 'furniture.n.01', 'furnishing.n.02']"
+picnic table,lamp,common_hypernym,0.3333333333333333,table.n.02,lamp.n.02,"['instrumentality.n.03', 'furniture.n.01', 'furnishing.n.02']"
+picnic table,table,identical,1.0,table.n.03,table.n.03,
+picnic table,table,common_hypernym,0.3333333333333333,table.n.03,table.n.02,"['instrumentality.n.03', 'furniture.n.01', 'furnishing.n.02']"
+picnic table,table,identical,1.0,table.n.05,table.n.05,
+picnic table,table,identical,1.0,table.n.01,table.n.01,
+picnic table,table,identical,1.0,mesa.n.01,mesa.n.01,
+picnic table,table,common_hypernym,0.3333333333333333,table.n.02,table.n.03,"['instrumentality.n.03', 'furniture.n.01', 'furnishing.n.02']"
+picnic table,table,identical,1.0,table.n.02,table.n.02,
+picnic table,table,identical,1.0,board.n.04,board.n.04,
+picnic table,wardrobe,common_hypernym,0.3333333333333333,table.n.03,wardrobe.n.01,"['instrumentality.n.03', 'furniture.n.01', 'furnishing.n.02']"
+picnic table,wardrobe,common_hypernym,0.3333333333333333,table.n.02,wardrobe.n.01,"['instrumentality.n.03', 'furniture.n.01', 'furnishing.n.02']"
+porcupine,beaver,common_hypernym,0.3333333333333333,porcupine.n.01,beaver.n.07,"['placental.n.01', 'mammal.n.01', 'rodent.n.01']"
+porcupine,hamster,common_hypernym,0.3333333333333333,porcupine.n.01,hamster.n.01,"['placental.n.01', 'mammal.n.01', 'rodent.n.01']"
+porcupine,mouse,common_hypernym,0.3333333333333333,porcupine.n.01,mouse.n.01,"['placental.n.01', 'mammal.n.01', 'rodent.n.01']"
+porcupine,porcupine,identical,1.0,porcupine.n.01,porcupine.n.01,
+porcupine,squirrel,common_hypernym,0.3333333333333333,porcupine.n.01,squirrel.n.01,"['placental.n.01', 'mammal.n.01', 'rodent.n.01']"
+pram,bicycle,common_hypernym,0.3333333333333333,baby_buggy.n.01,bicycle.n.01,"['vehicle.n.01', 'wheeled_vehicle.n.01', 'instrumentality.n.03']"
+praying mantis,cockroach,common_hypernym,0.3333333333333333,mantis.n.01,cockroach.n.01,"['insect.n.01', 'arthropod.n.01', 'dictyopterous_insect.n.01']"
+raccoon,beaver,common_hypernym,0.3333333333333333,raccoon.n.01,beaver.n.01,"['fur.n.01', 'animal_product.n.01', 'animal_skin.n.01']"
+raccoon,fox,common_hypernym,0.3333333333333333,raccoon.n.01,fox.n.03,"['fur.n.01', 'animal_product.n.01', 'animal_skin.n.01']"
+raccoon,leopard,common_hypernym,0.3333333333333333,raccoon.n.01,leopard.n.01,"['fur.n.01', 'animal_product.n.01', 'animal_skin.n.01']"
+raccoon,otter,common_hypernym,0.3333333333333333,raccoon.n.01,otter.n.01,"['fur.n.01', 'animal_product.n.01', 'animal_skin.n.01']"
+raccoon,rabbit,common_hypernym,0.3333333333333333,raccoon.n.01,lapin.n.01,"['fur.n.01', 'animal_product.n.01', 'animal_skin.n.01']"
+raccoon,raccoon,identical,1.0,raccoon.n.02,raccoon.n.02,
+raccoon,raccoon,identical,1.0,raccoon.n.01,raccoon.n.01,
+raccoon,seal,common_hypernym,0.3333333333333333,raccoon.n.01,seal.n.03,"['fur.n.01', 'animal_product.n.01', 'animal_skin.n.01']"
+raccoon,squirrel,common_hypernym,0.3333333333333333,raccoon.n.01,squirrel.n.02,"['fur.n.01', 'animal_product.n.01', 'animal_skin.n.01']"
+radio telescope,television,common_hypernym,0.3333333333333333,radio_receiver.n.01,television_receiver.n.01,"['electronic_equipment.n.01', 'receiver.n.01', 'set.n.13']"
+radio telescope,television,common_hypernym,0.3333333333333333,radio.n.01,television.n.01,"['medium.n.01', 'telecommunication.n.01', 'broadcasting.n.02']"
+rotary phone,telephone,identical,1.0,telephone.n.01,telephone.n.01,
+roulette wheel,bicycle,identical,1.0,bicycle.n.01,bicycle.n.01,
+roulette wheel,man,common_hypernym,0.3333333333333333,roulette_wheel.n.01,man.n.10,"['equipment.n.01', 'instrumentality.n.03', 'game_equipment.n.01']"
+saddle,can,common_hypernym,0.3333333333333333,saddle.n.06,buttocks.n.01,"['part.n.03', 'body_part.n.01', 'thing.n.12']"
+saddle,chair,common_hypernym,0.3333333333333333,saddle.n.01,chair.n.05,"['device.n.01', 'seat.n.04', 'support.n.10']"
+saddle,chair,common_hypernym,0.3333333333333333,bicycle_seat.n.01,chair.n.05,"['device.n.01', 'seat.n.04', 'support.n.10']"
+school bus,bus,identical,1.0,busbar.n.01,busbar.n.01,
+school bus,bus,identical,1.0,bus_topology.n.01,bus_topology.n.01,
+school bus,bus,identical,1.0,bus.n.04,bus.n.04,
+school bus,bus,identical,1.0,bus.n.01,bus.n.01,
+school bus,bus,cifar_is_hypernym,0.8,school_bus.n.01,bus.n.01,
+school bus,bus,common_hypernym,0.5,school_bus.n.01,bus.n.01,"['conveyance.n.03', 'public_transport.n.01']"
+school bus,bus,similar,0.5,school_bus.n.01,bus.n.01,
+school bus,house,common_hypernym,0.3333333333333333,school.n.02,house.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+school bus,house,common_hypernym,0.3333333333333333,school.n.02,theater.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+school bus,house,common_hypernym,0.3333333333333333,school.n.02,house.n.12,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+school bus,skyscraper,common_hypernym,0.3333333333333333,school.n.02,skyscraper.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+school bus,train,common_hypernym,0.3333333333333333,bus.n.01,train.n.01,"['instrumentality.n.03', 'conveyance.n.03', 'public_transport.n.01']"
+scorpion 101,baby,common_hypernym,0.3333333333333333,scorpio.n.01,child.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+scorpion 101,crab,common_hypernym,0.3333333333333333,scorpio.n.01,cancer.n.02,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+scorpion 101,house,similar,0.5,scorpio.n.03,sign_of_the_zodiac.n.01,
+scorpion 101,lion,common_hypernym,0.3333333333333333,scorpio.n.01,leo.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+scorpion 101,man,common_hypernym,0.3333333333333333,scorpio.n.01,man.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+scorpion 101,mouse,common_hypernym,0.3333333333333333,scorpio.n.01,mouse.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+scorpion 101,spider,common_hypernym,0.3333333333333333,scorpion.n.03,spider.n.01,"['arachnid.n.01', 'invertebrate.n.01', 'arthropod.n.01']"
+scorpion 101,tiger,common_hypernym,0.3333333333333333,scorpio.n.01,tiger.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+self propelled lawn mower,baby,common_hypernym,0.3333333333333333,self.n.02,child.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+self propelled lawn mower,crab,common_hypernym,0.3333333333333333,self.n.02,cancer.n.02,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+self propelled lawn mower,lawn_mower,identical,1.0,lawn_mower.n.01,lawn_mower.n.01,
+self propelled lawn mower,lion,common_hypernym,0.3333333333333333,self.n.02,leo.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+self propelled lawn mower,man,common_hypernym,0.3333333333333333,self.n.02,man.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+self propelled lawn mower,mouse,common_hypernym,0.3333333333333333,self.n.02,mouse.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+self propelled lawn mower,tiger,common_hypernym,0.3333333333333333,self.n.02,tiger.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+sheet music,bed,common_hypernym,0.3333333333333333,sheet.n.06,layer.n.01,"['artifact.n.01', 'object.n.01', 'whole.n.02']"
+sheet music,plate,caltech_is_hypernym,0.8,sheet.n.06,plate.n.02,
+sheet music,plate,common_hypernym,0.5,sheet.n.06,plate.n.02,"['artifact.n.01', 'whole.n.02']"
+sheet music,plate,caltech_is_hypernym,0.8,sheet.n.06,plate.n.11,
+sheet music,plate,common_hypernym,0.5,sheet.n.06,plate.n.11,"['artifact.n.01', 'whole.n.02']"
+sheet music,plate,similar,0.5,sheet.n.06,plate.n.02,
+sheet music,train,common_hypernym,0.3333333333333333,sail.n.01,train.n.05,"['piece.n.01', 'fabric.n.01', 'part.n.02']"
+skateboard,bicycle,common_hypernym,0.3333333333333333,skateboard.n.01,bicycle.n.01,"['vehicle.n.01', 'wheeled_vehicle.n.01', 'instrumentality.n.03']"
+skunk,otter,common_hypernym,0.3333333333333333,skunk.n.04,otter.n.02,"['carnivore.n.01', 'musteline_mammal.n.01', 'placental.n.01']"
+skunk,skunk,identical,1.0,skunk.n.04,skunk.n.04,
+skunk,skunk,identical,1.0,rotter.n.01,rotter.n.01,
+skunk,skunk,identical,1.0,shutout.n.01,shutout.n.01,
+skunk,skunk,identical,1.0,pot.n.09,pot.n.09,
+skunk,worm,common_hypernym,0.3333333333333333,rotter.n.01,worm.n.02,"['unwelcome_person.n.01', 'person.n.01', 'unpleasant_person.n.01']"
+skyscraper,house,common_hypernym,0.3333333333333333,skyscraper.n.01,house.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+skyscraper,house,common_hypernym,0.3333333333333333,skyscraper.n.01,theater.n.01,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+skyscraper,house,common_hypernym,0.3333333333333333,skyscraper.n.01,house.n.12,"['artifact.n.01', 'building.n.01', 'structure.n.01']"
+skyscraper,skyscraper,identical,1.0,skyscraper.n.01,skyscraper.n.01,
+snail,snail,identical,1.0,snail.n.01,snail.n.01,
+snail,snail,identical,1.0,escargot.n.01,escargot.n.01,
+snake,snake,identical,1.0,hydra.n.02,hydra.n.02,
+snake,snake,identical,1.0,snake.n.01,snake.n.01,
+snake,snake,identical,1.0,snake.n.05,snake.n.05,
+snake,snake,identical,1.0,snake.n.03,snake.n.03,
+snake,snake,identical,1.0,snake.n.02,snake.n.02,
+snowmobile,caterpillar,common_hypernym,0.3333333333333333,snowmobile.n.01,caterpillar.n.02,"['self-propelled_vehicle.n.01', 'tracked_vehicle.n.01', 'wheeled_vehicle.n.01']"
+snowmobile,tank,common_hypernym,0.3333333333333333,snowmobile.n.01,tank.n.01,"['self-propelled_vehicle.n.01', 'tracked_vehicle.n.01', 'wheeled_vehicle.n.01']"
+soccer ball,bowl,caltech_is_hypernym,0.8,ball.n.01,bowl.n.07,
+soccer ball,bowl,common_hypernym,0.5,ball.n.01,bowl.n.07,"['equipment.n.01', 'game_equipment.n.01']"
+soccer ball,bowl,caltech_is_hypernym,0.8,ball.n.01,bowling_ball.n.01,
+soccer ball,bowl,common_hypernym,0.5,ball.n.01,bowling_ball.n.01,"['equipment.n.01', 'game_equipment.n.01']"
+soccer ball,bowl,common_hypernym,0.3333333333333333,soccer_ball.n.01,bowl.n.07,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+soccer ball,bowl,common_hypernym,0.3333333333333333,soccer_ball.n.01,bowling_ball.n.01,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+soccer ball,bowl,similar,0.5,ball.n.01,bowl.n.07,
+soccer ball,bridge,common_hypernym,0.3333333333333333,ball.n.10,bridge.n.04,"['part.n.03', 'body_part.n.01', 'structure.n.04']"
+soccer ball,man,common_hypernym,0.3333333333333333,ball.n.01,man.n.10,"['equipment.n.01', 'instrumentality.n.03', 'game_equipment.n.01']"
+soccer ball,plate,common_hypernym,0.3333333333333333,ball.n.10,plate.n.09,"['part.n.03', 'body_part.n.01', 'structure.n.04']"
+socks,rocket,common_hypernym,0.3333333333333333,windsock.n.01,rocket.n.04,"['communication.n.02', 'signal.n.01', 'visual_signal.n.01']"
+soda can,bottle,common_hypernym,0.3333333333333333,can.n.02,bottle.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+soda can,bowl,common_hypernym,0.3333333333333333,can.n.02,bowl.n.04,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+soda can,bowl,common_hypernym,0.3333333333333333,can.n.01,bowl.n.08,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+soda can,can,identical,1.0,can.n.02,can.n.02,
+soda can,can,identical,1.0,can.n.03,can.n.03,
+soda can,can,identical,1.0,toilet.n.02,toilet.n.02,
+soda can,can,identical,1.0,can.n.01,can.n.01,
+soda can,can,cifar_is_hypernym,0.8,soda_can.n.01,can.n.01,
+soda can,can,common_hypernym,0.5,soda_can.n.01,can.n.01,"['container.n.01', 'instrumentality.n.03']"
+soda can,can,identical,1.0,toilet.n.01,toilet.n.01,
+soda can,can,identical,1.0,buttocks.n.01,buttocks.n.01,
+soda can,can,similar,0.5,soda_can.n.01,can.n.01,
+soda can,cup,common_hypernym,0.3333333333333333,can.n.02,cup.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+soda can,cup,common_hypernym,0.3333333333333333,can.n.01,cup.n.01,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+soda can,plate,common_hypernym,0.3333333333333333,can.n.02,plate.n.05,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+soda can,tank,common_hypernym,0.3333333333333333,can.n.02,tank.n.03,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+speed boat,bowl,common_hypernym,0.3333333333333333,gravy_boat.n.01,bowl.n.03,"['tableware.n.01', 'crockery.n.01', 'instrumentality.n.03']"
+spider,spider,identical,1.0,spider.n.01,spider.n.01,
+spider,spider,identical,1.0,spider.n.03,spider.n.03,
+spider,spider,identical,1.0,spider.n.02,spider.n.02,
+spoon,bottle,common_hypernym,0.3333333333333333,spoon.n.02,bottle.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+spoon,bowl,common_hypernym,0.3333333333333333,spoon.n.02,bowl.n.04,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+spoon,bowl,common_hypernym,0.3333333333333333,spoon.n.01,bowl.n.08,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+spoon,can,common_hypernym,0.3333333333333333,spoon.n.02,can.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+spoon,can,common_hypernym,0.3333333333333333,spoon.n.01,can.n.01,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+spoon,cup,common_hypernym,0.3333333333333333,spoon.n.02,cup.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+spoon,cup,common_hypernym,0.3333333333333333,spoon.n.01,cup.n.01,"['tableware.n.01', 'instrumentality.n.03', 'artifact.n.01']"
+spoon,plate,common_hypernym,0.3333333333333333,spoon.n.02,plate.n.05,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+spoon,tank,common_hypernym,0.3333333333333333,spoon.n.02,tank.n.03,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+stained glass,bottle,common_hypernym,0.3333333333333333,glass.n.03,bottle.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+stained glass,bowl,common_hypernym,0.3333333333333333,glass.n.03,bowl.n.04,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+stained glass,bowl,common_hypernym,0.3333333333333333,glass.n.02,bowl.n.08,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+stained glass,can,common_hypernym,0.3333333333333333,glass.n.03,can.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+stained glass,can,common_hypernym,0.3333333333333333,glass.n.02,can.n.01,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+stained glass,cup,common_hypernym,0.3333333333333333,glass.n.03,cup.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+stained glass,cup,common_hypernym,0.3333333333333333,glass.n.02,cup.n.01,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+stained glass,plate,common_hypernym,0.3333333333333333,glass.n.03,plate.n.05,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+stained glass,tank,common_hypernym,0.3333333333333333,glass.n.03,tank.n.03,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+steering wheel,bicycle,identical,1.0,bicycle.n.01,bicycle.n.01,
+steering wheel,man,common_hypernym,0.3333333333333333,roulette_wheel.n.01,man.n.10,"['equipment.n.01', 'instrumentality.n.03', 'game_equipment.n.01']"
+stirrups,bridge,common_hypernym,0.3333333333333333,stirrup.n.01,bridge.n.06,"['device.n.01', 'instrumentality.n.03', 'support.n.10']"
+sunflower 101,orchid,common_hypernym,0.3333333333333333,sunflower.n.01,orchid.n.01,"['spermatophyte.n.01', 'flower.n.01', 'angiosperm.n.01']"
+sunflower 101,poppy,common_hypernym,0.3333333333333333,sunflower.n.01,poppy.n.01,"['spermatophyte.n.01', 'flower.n.01', 'angiosperm.n.01']"
+sunflower 101,sunflower,identical,1.0,sunflower.n.01,sunflower.n.01,
+teddy bear,bear,identical,1.0,bear.n.01,bear.n.01,
+teddy bear,bear,identical,1.0,bear.n.02,bear.n.02,
+telephone box,bottle,common_hypernym,0.3333333333333333,box.n.03,bottle.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+telephone box,bowl,common_hypernym,0.3333333333333333,box.n.01,bowl.n.08,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+telephone box,bowl,common_hypernym,0.3333333333333333,box.n.03,bowl.n.04,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+telephone box,can,common_hypernym,0.3333333333333333,box.n.01,can.n.01,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+telephone box,can,common_hypernym,0.3333333333333333,box.n.03,can.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+telephone box,chair,common_hypernym,0.3333333333333333,box.n.08,chair.n.01,"['furniture.n.01', 'seat.n.03', 'furnishing.n.02']"
+telephone box,couch,common_hypernym,0.3333333333333333,box.n.08,sofa.n.01,"['furniture.n.01', 'seat.n.03', 'furnishing.n.02']"
+telephone box,cup,common_hypernym,0.3333333333333333,box.n.01,cup.n.01,"['artifact.n.01', 'container.n.01', 'instrumentality.n.03']"
+telephone box,cup,common_hypernym,0.3333333333333333,box.n.03,cup.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+telephone box,plate,common_hypernym,0.3333333333333333,box.n.03,plate.n.05,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+telephone box,rose,common_hypernym,0.3333333333333333,box.n.06,rose.n.01,"['woody_plant.n.01', 'vascular_plant.n.01', 'shrub.n.01']"
+telephone box,tank,common_hypernym,0.3333333333333333,box.n.03,tank.n.03,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+telephone box,telephone,identical,1.0,telephone.n.01,telephone.n.01,
+telephone box,telephone,identical,1.0,telephone.n.02,telephone.n.02,
+tennis ball,bowl,caltech_is_hypernym,0.8,ball.n.01,bowl.n.07,
+tennis ball,bowl,common_hypernym,0.5,ball.n.01,bowl.n.07,"['equipment.n.01', 'game_equipment.n.01']"
+tennis ball,bowl,caltech_is_hypernym,0.8,ball.n.01,bowling_ball.n.01,
+tennis ball,bowl,common_hypernym,0.5,ball.n.01,bowling_ball.n.01,"['equipment.n.01', 'game_equipment.n.01']"
+tennis ball,bowl,common_hypernym,0.3333333333333333,tennis_ball.n.01,bowl.n.07,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+tennis ball,bowl,common_hypernym,0.3333333333333333,tennis_ball.n.01,bowling_ball.n.01,"['equipment.n.01', 'game_equipment.n.01', 'ball.n.01']"
+tennis ball,bowl,similar,0.5,ball.n.01,bowl.n.07,
+tennis ball,bridge,common_hypernym,0.3333333333333333,ball.n.10,bridge.n.04,"['part.n.03', 'body_part.n.01', 'structure.n.04']"
+tennis ball,man,common_hypernym,0.3333333333333333,ball.n.01,man.n.10,"['equipment.n.01', 'instrumentality.n.03', 'game_equipment.n.01']"
+tennis ball,plate,common_hypernym,0.3333333333333333,ball.n.10,plate.n.09,"['part.n.03', 'body_part.n.01', 'structure.n.04']"
+tennis court,can,common_hypernym,0.3333333333333333,court.n.02,toilet.n.01,"['room.n.01', 'structure.n.01', 'area.n.05']"
+tennis court,house,cifar_is_hypernym,0.8,court.n.09,house.n.01,
+tennis court,house,common_hypernym,0.3333333333333333,court.n.09,house.n.01,"['building.n.01', 'dwelling.n.01']"
+tomato,rocket,common_hypernym,0.3333333333333333,tomato.n.02,rocket.n.03,"['plant.n.02', 'vascular_plant.n.01', 'herb.n.01']"
+top hat,beaver,caltech_is_hypernym,0.8,hat.n.01,beaver.n.06,
+top hat,beaver,common_hypernym,0.3333333333333333,hat.n.01,beaver.n.06,['headdress.n.01']
+top hat,beaver,caltech_is_hypernym,0.8,hat.n.01,dress_hat.n.01,
+top hat,beaver,common_hypernym,0.5,hat.n.01,dress_hat.n.01,"['headdress.n.01', 'clothing.n.01', 'consumer_goods.n.01']"
+top hat,beaver,identical,1.0,dress_hat.n.01,dress_hat.n.01,
+top hat,beaver,similar,0.5,hat.n.01,dress_hat.n.01,
+top hat,house,common_hypernym,0.3333333333333333,top.n.01,sign_of_the_zodiac.n.01,"['region.n.01', 'object.n.01', 'location.n.01']"
+touring bike,bicycle,identical,1.0,bicycle.n.01,bicycle.n.01,
+touring bike,motorcycle,identical,1.0,motorcycle.n.01,motorcycle.n.01,
+tower pisa,bowl,common_hypernym,0.3333333333333333,tower.n.01,stadium.n.01,"['artifact.n.01', 'whole.n.02', 'structure.n.01']"
+tower pisa,bridge,common_hypernym,0.3333333333333333,tower.n.01,bridge.n.01,"['artifact.n.01', 'whole.n.02', 'structure.n.01']"
+traffic light,keyboard,common_hypernym,0.3333333333333333,lighter.n.02,keyboard.n.01,"['device.n.01', 'artifact.n.01', 'instrumentality.n.03']"
+traffic light,lamp,common_hypernym,0.3333333333333333,light.n.02,lamp.n.01,"['device.n.01', 'instrumentality.n.03', 'source_of_illumination.n.01']"
+traffic light,ray,caltech_is_hypernym,0.8,light.n.01,beam.n.04,
+traffic light,ray,common_hypernym,0.5,light.n.01,beam.n.04,"['actinic_radiation.n.01', 'electromagnetic_radiation.n.01']"
+traffic light,ray,similar,0.5,light.n.01,beam.n.04,
+traffic light,rocket,common_hypernym,0.3333333333333333,light.n.14,rocket.n.04,"['communication.n.02', 'signal.n.01', 'visual_signal.n.01']"
+traffic light,wardrobe,common_hypernym,0.3333333333333333,traffic.n.01,wardrobe.n.02,"['group.n.01', 'abstraction.n.06', 'collection.n.01']"
+traffic light,wardrobe,common_hypernym,0.3333333333333333,traffic.n.01,wardrobe.n.03,"['group.n.01', 'abstraction.n.06', 'collection.n.01']"
+triceratops,dinosaur,cifar_is_hypernym,0.8,triceratops.n.01,dinosaur.n.01,
+tricycle,bicycle,common_hypernym,0.3333333333333333,tricycle.n.01,bicycle.n.01,"['vehicle.n.01', 'wheeled_vehicle.n.01', 'instrumentality.n.03']"
+t shirt,turtle,caltech_is_hypernym,0.8,shirt.n.01,turtleneck.n.01,
+t shirt,turtle,common_hypernym,0.3333333333333333,shirt.n.01,turtleneck.n.01,"['garment.n.01', 'clothing.n.01']"
+video projector,television,identical,1.0,television.n.01,television.n.01,
+washing machine,baby,common_hypernym,0.3333333333333333,machine.n.02,child.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+washing machine,bus,caltech_is_hypernym,0.8,car.n.01,bus.n.04,
+washing machine,bus,common_hypernym,0.5,car.n.01,bus.n.04,"['motor_vehicle.n.01', 'self-propelled_vehicle.n.01']"
+washing machine,bus,similar,0.5,car.n.01,bus.n.04,
+washing machine,crab,common_hypernym,0.3333333333333333,machine.n.02,cancer.n.02,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+washing machine,keyboard,common_hypernym,0.3333333333333333,machine.n.01,keyboard.n.01,"['device.n.01', 'artifact.n.01', 'instrumentality.n.03']"
+washing machine,lion,common_hypernym,0.3333333333333333,machine.n.02,leo.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+washing machine,man,common_hypernym,0.3333333333333333,machine.n.02,man.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+washing machine,motorcycle,common_hypernym,0.3333333333333333,car.n.01,motorcycle.n.01,"['motor_vehicle.n.01', 'self-propelled_vehicle.n.01', 'wheeled_vehicle.n.01']"
+washing machine,mouse,common_hypernym,0.3333333333333333,machine.n.02,mouse.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+washing machine,tiger,common_hypernym,0.3333333333333333,machine.n.02,tiger.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+watch 101,clock,common_hypernym,0.3333333333333333,watch.n.01,clock.n.01,"['timepiece.n.01', 'measuring_instrument.n.01', 'instrument.n.01']"
+waterfall,sea,common_hypernym,0.3333333333333333,waterfall.n.01,sea.n.01,"['body_of_water.n.01', 'physical_entity.n.01', 'thing.n.12']"
+wine bottle,bottle,cifar_is_hypernym,0.8,wine_bottle.n.01,bottle.n.01,
+wine bottle,bottle,common_hypernym,0.5,wine_bottle.n.01,bottle.n.01,"['vessel.n.03', 'container.n.01']"
+wine bottle,bottle,common_hypernym,0.3333333333333333,bottle.n.03,bottle.n.01,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+wine bottle,bottle,identical,1.0,bottle.n.03,bottle.n.03,
+wine bottle,bottle,identical,1.0,bottle.n.01,bottle.n.01,
+wine bottle,bottle,common_hypernym,0.3333333333333333,bottle.n.01,bottle.n.03,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+wine bottle,bottle,identical,1.0,bottle.n.02,bottle.n.02,
+wine bottle,bottle,similar,0.5,wine_bottle.n.01,bottle.n.01,
+wine bottle,bowl,common_hypernym,0.3333333333333333,bottle.n.03,bowl.n.01,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+wine bottle,bowl,common_hypernym,0.3333333333333333,bottle.n.01,bowl.n.01,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+wine bottle,bowl,common_hypernym,0.3333333333333333,bottle.n.02,bowl.n.04,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+wine bottle,can,common_hypernym,0.3333333333333333,bottle.n.02,can.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+wine bottle,cup,common_hypernym,0.3333333333333333,bottle.n.02,cup.n.02,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+wine bottle,plate,common_hypernym,0.3333333333333333,bottle.n.02,plate.n.05,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+wine bottle,rose,caltech_is_hypernym,0.8,wine.n.01,blush_wine.n.01,
+wine bottle,rose,common_hypernym,0.5,wine.n.01,blush_wine.n.01,"['drug_of_abuse.n.01', 'beverage.n.01', 'alcohol.n.01']"
+wine bottle,rose,similar,0.5,wine.n.01,blush_wine.n.01,
+wine bottle,tank,common_hypernym,0.3333333333333333,bottle.n.03,tank.n.02,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+wine bottle,tank,common_hypernym,0.3333333333333333,bottle.n.01,tank.n.02,"['vessel.n.03', 'container.n.01', 'instrumentality.n.03']"
+wine bottle,tank,common_hypernym,0.3333333333333333,bottle.n.02,tank.n.03,"['measure.n.02', 'indefinite_quantity.n.01', 'containerful.n.01']"
+car side 101,bed,common_hypernym,0.3333333333333333,side.n.05,bed.n.07,"['surface.n.01', 'whole.n.02', 'artifact.n.01']"
+car side 101,bicycle,common_hypernym,0.3333333333333333,car.n.02,bicycle.n.01,"['vehicle.n.01', 'wheeled_vehicle.n.01', 'instrumentality.n.03']"
+car side 101,bus,caltech_is_hypernym,0.8,car.n.01,bus.n.04,
+car side 101,bus,common_hypernym,0.5,car.n.01,bus.n.04,"['motor_vehicle.n.01', 'self-propelled_vehicle.n.01']"
+car side 101,bus,similar,0.5,car.n.01,bus.n.04,
+car side 101,house,common_hypernym,0.3333333333333333,side.n.01,sign_of_the_zodiac.n.01,"['region.n.01', 'object.n.01', 'location.n.01']"
+car side 101,house,common_hypernym,0.3333333333333333,side.n.02,family.n.01,"['social_group.n.01', 'organization.n.01', 'unit.n.03']"
+car side 101,motorcycle,common_hypernym,0.3333333333333333,car.n.01,motorcycle.n.01,"['motor_vehicle.n.01', 'self-propelled_vehicle.n.01', 'wheeled_vehicle.n.01']"
+car side 101,tank,caltech_is_hypernym,0.8,car.n.02,tank_car.n.01,
+car side 101,tank,common_hypernym,0.3333333333333333,car.n.02,tank_car.n.01,['wheeled_vehicle.n.01']
+faces easy 101,baby,common_hypernym,0.3333333333333333,face.n.05,child.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+faces easy 101,bed,common_hypernym,0.3333333333333333,face.n.04,bed.n.07,"['surface.n.01', 'whole.n.02', 'artifact.n.01']"
+faces easy 101,crab,common_hypernym,0.3333333333333333,face.n.05,cancer.n.02,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+faces easy 101,lion,common_hypernym,0.3333333333333333,face.n.05,leo.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+faces easy 101,man,common_hypernym,0.3333333333333333,face.n.05,man.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+faces easy 101,mouse,common_hypernym,0.3333333333333333,face.n.05,mouse.n.03,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+faces easy 101,tiger,common_hypernym,0.3333333333333333,face.n.05,tiger.n.01,"['living_thing.n.01', 'physical_entity.n.01', 'organism.n.01']"
+tennis shoes,plate,cifar_is_hypernym,0.8,horseshoe.n.02,plate.n.14,
+tennis shoes,plate,common_hypernym,0.5,horseshoe.n.02,plate.n.14,"['protective_covering.n.01', 'shield.n.01']"
+tennis shoes,plate,similar,0.5,horseshoe.n.02,plate.n.14,
