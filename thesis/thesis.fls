@@ -285,6 +285,7 @@ INPUT ./thesis.aux
 INPUT ./sources/title.aux
 INPUT ./sources/abstract.aux
 INPUT ./sources/introduction.aux
+INPUT ./sources/related-work.aux
 INPUT ./sources/method.aux
 INPUT ./sources/results.aux
 INPUT ./sources/discussion.aux
@@ -312,6 +313,8 @@ INPUT ./thesis.toc
 OUTPUT thesis.toc
 OUTPUT sources/introduction.aux
 INPUT ./sources/introduction.tex
+OUTPUT sources/related-work.aux
+INPUT ./sources/related-work.tex
 OUTPUT sources/method.aux
 INPUT ./sources/method.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi9.tfm
@@ -387,6 +390,7 @@ INPUT ./thesis.aux
 INPUT ./sources/title.aux
 INPUT ./sources/abstract.aux
 INPUT ./sources/introduction.aux
+INPUT ./sources/related-work.aux
 INPUT ./sources/method.aux
 INPUT ./sources/results.aux
 INPUT ./sources/discussion.aux

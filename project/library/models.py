@@ -204,7 +204,7 @@ class UniversalResNetModel(pl.LightningModule):
         )
 
         # Use KL Divergence loss for universal class activations
-        self.criterion = torch.nn.KLDivLoss()
+        self.criterion = torch.nn.KLDivLoss(reduction="batchmean")
 
     def _precompute_conversion_matrices(self):
         """Pre-compute raw weight matrices for all domains for efficient batch processing."""
