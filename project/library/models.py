@@ -199,18 +199,12 @@ class UniversalResNetModel(pl.LightningModule):
         # Replace final layer with universal class output
         num_features = self.model.fc.in_features
         self.model.fc = torch.nn.Sequential(  # type: ignore
-            torch.nn.Dropout(0.5),
-            torch.nn.Linear(num_features, num_features),
-            torch.nn.Dropout(0.2),
-            torch.nn.Linear(num_features, num_features),
-            torch.nn.Dropout(0.2),
-            torch.nn.Linear(num_features, num_features),
-            torch.nn.Dropout(0.2),
-            torch.nn.Linear(num_features, self.num_universal_classes),
+            torch.nn.Linear(num_features, 1024),
+            torch.nn.Linear(1024, self.num_universal_classes),
         )
 
         # Use KL Divergence loss for universal class activations
-        self.criterion = torch.nn.KLDivLoss(reduction="batchmean")
+        self.criterion = torch.nn.KLDivLoss()
 
     def _precompute_conversion_matrices(self):
         """Pre-compute raw weight matrices for all domains for efficient batch processing."""
