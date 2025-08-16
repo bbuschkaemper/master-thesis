@@ -200,15 +200,13 @@ class UniversalResNetModel(pl.LightningModule):
         num_features = self.model.fc.in_features
         self.model.fc = torch.nn.Sequential(  # type: ignore
             torch.nn.Dropout(0.5),
-            torch.nn.Linear(num_features, 1024),
+            torch.nn.Linear(num_features, num_features),
             torch.nn.Dropout(0.2),
-            torch.nn.Linear(1024, 512),
+            torch.nn.Linear(num_features, num_features),
             torch.nn.Dropout(0.2),
-            torch.nn.Linear(512, 256),
+            torch.nn.Linear(num_features, num_features),
             torch.nn.Dropout(0.2),
-            torch.nn.Linear(256, 128),
-            torch.nn.Dropout(0.2),
-            torch.nn.Linear(128, self.num_universal_classes),
+            torch.nn.Linear(num_features, self.num_universal_classes),
         )
 
         # Use KL Divergence loss for universal class activations

@@ -499,8 +499,8 @@ and therefore perform poorly in real-world scenarios where models will not be ab
 To mitigate this issue, we try to synthetically create a different domain for each variant by applying transforms to the
 underlying dataset images.
 An example subset of the domain-shifted images is shown in Figure~\ref{fig:domain_shift}:
-Using different transforms, the images appear in different styles and with different kinds of distortions,
-synthetically worsening the model prediction accuracy and simulating different domains
+Using different transforms, the images appear in unique styles and distortions,
+synthetically changing their visual characteristics
 while retaining the same classes and relationships.
 
 \input{figures/evaluation_results_domain_shifted.tex}
@@ -580,6 +580,10 @@ depends on the individual composition of the datasets.
 
 \section{Universal Models}
 
+% TODO Write about modified custom architecture
+% TODO Explain custom loss function and prediction layer
+% TODO Write about matrix calculation
+% TODO Create baseline model with same modified architecture but without taxonomy layer to verify results
 % TODO Compare universal taxonomy model with baseline domain models
 % TODO Which relationship selection method performs best?
 % TODO Can we derive which metric (EDR, F1, Precision) is most important?
