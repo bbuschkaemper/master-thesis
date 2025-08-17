@@ -519,5 +519,97 @@ Using these counts, we can then compute the precision, recall, and F1 score as f
 
 \subsection{Universal Model Learning}
 
-% TODO Explain creation of mapping matrix from taxonomy
-% TODO Explain learning function for universal model
+After constructing our universal taxonomy, we need to train a model that can classify images
+using the universal classes rather than the original domain-specific classes.
+This requires creating a mapping system that converts between domain classes and universal classes,
+and adapting our learning algorithm to work with this unified representation.
+
+\subsubsection{Creation of Mapping Matrix from Taxonomy}
+
+To enable a neural network to learn from multiple domains simultaneously,
+we need to create a mapping matrix that converts domain class labels to universal class targets.
+This mapping is derived directly from the relationships in our universal taxonomy.
+
+For each domain $i$ with classes $C_i = \{c_1^i, c_2^i, \ldots, c_{k_i}^i\}$,
+we construct a mapping matrix $M_i \in \mathbb{R}^{|C_i| \times |U|}$,
+where $U$ is the set of universal classes and $|U|$ is the number of universal classes.
+
+Each element $M_i(j, u)$ represents the weight of the relationship between domain class $c_j^i$ and universal class $u$.
+Formally, this weight is defined as:
+
+\begin{equation}
+      M_i(j, u) =
+      \begin{cases}
+            w & \text{if there exists a relationship } c_j^i \rightarrow u \text{ with weight } w \\
+            0 & \text{otherwise}
+      \end{cases}
+\end{equation}
+
+For converting domain class labels to universal class targets, we normalize each row of the matrix
+to ensure valid probability distributions:
+
+\begin{equation}
+      \hat{M}_i(j, u) = \frac{M_i(j, u)}{\sum_{u' \in U} M_i(j, u')}
+\end{equation}
+
+For example, if domain class $c_1^0$ has relationships to universal classes $u_1$ with weight 0.8
+and $u_2$ with weight 0.4, the normalized probabilities would be:
+
+\begin{align*}
+      \hat{M}_0(1, u_1) & = \frac{0.8}{0.8 + 0.4} = \frac{2}{3} \\
+      \hat{M}_0(1, u_2) & = \frac{0.4}{0.8 + 0.4} = \frac{1}{3}
+\end{align*}
+
+\subsubsection{Learning Function for Universal Model}
+
+Our universal model architecture consists of a standard convolutional neural network
+(e.g. ResNet) followed by a fully connected layer that outputs logits for each universal class.
+The key innovation lies in the loss function and target generation process.
+
+\paragraph{Target Generation}
+
+For each training sample $(x, c_j^i, i)$ where $x$ is an image, $c_j^i$ is the domain class label,
+and $i$ is the domain identifier, we generate the universal class target using the normalized mapping matrix:
+
+\begin{equation}
+      \mathbf{t} = \hat{M}_i[j, :]
+\end{equation}
+
+where $\mathbf{t} \in [0,1]^{|U|}$ is a probability distribution over universal classes.
+
+\paragraph{Loss Function}
+
+Since our targets are probability distributions rather than one-hot vectors,
+we use the Kullback-Leibler (KL) divergence loss instead of standard cross-entropy loss.
+For model predictions $\mathbf{p} = \text{softmax}(\mathbf{z})$ where $\mathbf{z}$ are the logits,
+the loss is defined as:
+
+\begin{equation}
+      \mathcal{L}(\mathbf{p}, \mathbf{t}) = \text{KL}(\mathbf{t} \| \mathbf{p}) = \sum_{u=1}^{|U|} \mathbf{t}(u) \log \frac{\mathbf{t}(u)}{\mathbf{p}(u)}
+\end{equation}
+
+This loss function encourages the model to produce predictions that match
+the target distribution derived from our universal taxonomy.
+
+\paragraph{Inference and Evaluation}
+
+During inference, the model outputs a probability distribution over universal classes.
+To evaluate performance on the original domain classes, we need to convert these universal predictions
+back to domain-specific predictions using the transpose of the original (unnormalized) mapping matrix.
+
+For universal predictions $\mathbf{p} \in [0,1]^{|U|}$ and domain $i$,
+the domain class predictions are computed as:
+
+\begin{equation}
+      \mathbf{d}_i = M_i^T \mathbf{p}
+\end{equation}
+
+where $\mathbf{d}_i \in \mathbb{R}^{|C_i|}$ represents the predicted probabilities for each class in domain $i$.
+The final prediction is then $\hat{c} = \text{argmax}(\mathbf{d}_i)$.
+
+Note that we use the original unnormalized matrix $M_i$ (not $\hat{M}_i$) for this reverse mapping,
+as normalization would not change the final predictions.
+
+This approach allows our universal model to learn shared representations across domains
+represented by universal classes, trying to match the distribution over universal classes
+that lead to a target domain class.
