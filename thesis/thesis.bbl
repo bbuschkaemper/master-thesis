@@ -898,6 +898,55 @@
       \verb http://ufldl.stanford.edu/housenumbers/nips2011_housenumbers.pdf
       \endverb
     \endentry
+    \entry{pan_survey_2010}{article}{}
+      \name{author}{2}{}{%
+        {{hash=224c02b5d289fefd08d4f9f1a83c5d0c}{%
+           family={Pan},
+           familyi={P\bibinitperiod},
+           given={Sinno\bibnamedelima Jialin},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=55242d2a60270145342841e4d4238da0}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Qiang},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \strng{namehash}{770fc1d95710074c9506ab4f7d386573}
+      \strng{fullhash}{770fc1d95710074c9506ab4f7d386573}
+      \strng{bibnamehash}{770fc1d95710074c9506ab4f7d386573}
+      \strng{authorbibnamehash}{770fc1d95710074c9506ab4f7d386573}
+      \strng{authornamehash}{770fc1d95710074c9506ab4f7d386573}
+      \strng{authorfullhash}{770fc1d95710074c9506ab4f7d386573}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A major assumption in many machine learning and data mining algorithms is that the training and future data must be in the same feature space and have the same distribution. However, in many real-world applications, this assumption may not hold. For example, we sometimes have a classification task in one domain of interest, but we only have sufficient training data in another domain of interest, where the latter data may be in a different feature space or follow a different data distribution. In such cases, knowledge transfer, if done successfully, would greatly improve the performance of learning by avoiding much expensive data-labeling efforts. In recent years, transfer learning has emerged as a new learning framework to address this problem. This survey focuses on categorizing and reviewing the current progress on transfer learning for classification, regression, and clustering problems. In this survey, we discuss the relationship between transfer learning and other related machine learning techniques such as domain adaptation, multitask learning and sample selection bias, as well as covariate shift. We also explore some potential future issues in transfer learning research.}
+      \field{issn}{1558-2191}
+      \field{journaltitle}{{IEEE} Transactions on Knowledge and Data Engineering}
+      \field{month}{10}
+      \field{number}{10}
+      \field{title}{A Survey on Transfer Learning}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{volume}{22}
+      \field{year}{2010}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1345\bibrangedash 1359}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1109/TKDE.2009.191
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/5288526
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/5288526
+      \endverb
+      \keyw{Data mining,Knowledge engineering,Knowledge transfer,Labeling,Learning systems,Machine learning,Machine learning algorithms,Space technology,Testing,Training data,Transfer learning,data mining.,machine learning,survey}
+    \endentry
     \entry{russakovsky_imagenet_2015}{misc}{}
       \name{author}{12}{}{%
         {{hash=2a74ec28b731b015747e2af5f0b519e1}{%
@@ -1074,6 +1123,88 @@
       \field{year}{1958}
       \field{dateera}{ce}
     \endentry
+    \entry{vaswani_attention_2023}{misc}{}
+      \name{author}{8}{}{%
+        {{hash=7f28e84700536646dd6620a0db07ad09}{%
+           family={Vaswani},
+           familyi={V\bibinitperiod},
+           given={Ashish},
+           giveni={A\bibinitperiod}}}%
+        {{hash=62efade83d70f0323fe248755e6c90c5}{%
+           family={Shazeer},
+           familyi={S\bibinitperiod},
+           given={Noam},
+           giveni={N\bibinitperiod}}}%
+        {{hash=06649ebab1ea5cac0250746a19764975}{%
+           family={Parmar},
+           familyi={P\bibinitperiod},
+           given={Niki},
+           giveni={N\bibinitperiod}}}%
+        {{hash=831027ee0ebf22375e2a86afc1881909}{%
+           family={Uszkoreit},
+           familyi={U\bibinitperiod},
+           given={Jakob},
+           giveni={J\bibinitperiod}}}%
+        {{hash=2fd2982e30ebcec93ec1cf76e0d797fd}{%
+           family={Jones},
+           familyi={J\bibinitperiod},
+           given={Llion},
+           giveni={L\bibinitperiod}}}%
+        {{hash=27b07e4eacbf4ef7a1438e3badb7dd8d}{%
+           family={Gomez},
+           familyi={G\bibinitperiod},
+           given={Aidan\bibnamedelima N.},
+           giveni={A\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=f2bc899b1160163417da7bf510f15d33}{%
+           family={Kaiser},
+           familyi={K\bibinitperiod},
+           given={Lukasz},
+           giveni={L\bibinitperiod}}}%
+        {{hash=95595a0fefb86187cbc36e551017d332}{%
+           family={Polosukhin},
+           familyi={P\bibinitperiod},
+           given={Illia},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{f82970bbd2bdd7a002d2af62b743d5cc}
+      \strng{fullhash}{f82970bbd2bdd7a002d2af62b743d5cc}
+      \strng{bibnamehash}{f82970bbd2bdd7a002d2af62b743d5cc}
+      \strng{authorbibnamehash}{f82970bbd2bdd7a002d2af62b743d5cc}
+      \strng{authornamehash}{f82970bbd2bdd7a002d2af62b743d5cc}
+      \strng{authorfullhash}{f82970bbd2bdd7a002d2af62b743d5cc}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 {BLEU} on the {WMT} 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 {BLEU}. On the {WMT} 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art {BLEU} score of 41.8 after training for 3.5 days on eight {GPUs}, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.}
+      \field{day}{2}
+      \field{eprinttype}{arxiv}
+      \field{month}{8}
+      \field{number}{{arXiv}:1706.03762}
+      \field{title}{Attention Is All You Need}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.1706.03762
+      \endverb
+      \verb{eprint}
+      \verb 1706.03762 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1706.03762
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1706.03762
+      \endverb
+      \keyw{Computer Science - Computation and Language,Computer Science - Machine Learning}
+    \endentry
     \entry{noauthor_wordnet_nodate}{online}{}
       \field{sortinit}{W}
       \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
@@ -1091,6 +1222,138 @@
       \verb{url}
       \verb https://wordnet.princeton.edu/homepage
       \endverb
+    \endentry
+    \entry{zhang_overview_2018}{article}{}
+      \name{author}{2}{}{%
+        {{hash=9a4f4a1ff661cd600eb26523a5ba8bb4}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Yu},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=55242d2a60270145342841e4d4238da0}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Qiang},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \strng{namehash}{6cd6b62eb7a185a0d85f22af0ef449f2}
+      \strng{fullhash}{6cd6b62eb7a185a0d85f22af0ef449f2}
+      \strng{bibnamehash}{6cd6b62eb7a185a0d85f22af0ef449f2}
+      \strng{authorbibnamehash}{6cd6b62eb7a185a0d85f22af0ef449f2}
+      \strng{authornamehash}{6cd6b62eb7a185a0d85f22af0ef449f2}
+      \strng{authorfullhash}{6cd6b62eb7a185a0d85f22af0ef449f2}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{As a promising area in machine learning, multi-task learning ({MTL}) aims to improve the performance of multiple related learning tasks by leveraging useful information among them. In this paper, we give an overview of {MTL} by first giving a definition of {MTL}. Then several different settings of {MTL} are introduced, including multi-task supervised learning, multi-task unsupervised learning, multi-task semi-supervised learning, multi-task active learning, multi-task reinforcement learning, multi-task online learning and multi-task multi-view learning. For each setting, representative {MTL} models are presented. In order to speed up the learning process, parallel and distributed {MTL} models are introduced. Many areas, including computer vision, bioinformatics, health informatics, speech, natural language processing, web applications and ubiquitous computing, use {MTL} to improve the performance of the applications involved and some representative works are reviewed. Finally, recent theoretical analyses for {MTL} are presented.}
+      \field{day}{1}
+      \field{issn}{2095-5138}
+      \field{journaltitle}{National Science Review}
+      \field{month}{1}
+      \field{number}{1}
+      \field{shortjournal}{Natl Sci Rev}
+      \field{title}{An overview of multi-task learning}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{volume}{5}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{30\bibrangedash 43}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1093/nsr/nwx105
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1093/nsr/nwx105
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1093/nsr/nwx105
+      \endverb
+    \endentry
+    \entry{zhuang_comprehensive_2020}{misc}{}
+      \name{author}{8}{}{%
+        {{hash=f80c633bdaeb37dfe8ee7a8562a118b0}{%
+           family={Zhuang},
+           familyi={Z\bibinitperiod},
+           given={Fuzhen},
+           giveni={F\bibinitperiod}}}%
+        {{hash=1170a654922724ea47c36d0961bcdba3}{%
+           family={Qi},
+           familyi={Q\bibinitperiod},
+           given={Zhiyuan},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=ccc5fede6d425151794d6eabaefb1f08}{%
+           family={Duan},
+           familyi={D\bibinitperiod},
+           given={Keyu},
+           giveni={K\bibinitperiod}}}%
+        {{hash=65b14154afccb41d2c3d56f51927c049}{%
+           family={Xi},
+           familyi={X\bibinitperiod},
+           given={Dongbo},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b76935a05c886aa24f9e3861344c420c}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Yongchun},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=9b711e1aff9a8c67d1eb39bca853aa41}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Hengshu},
+           giveni={H\bibinitperiod}}}%
+        {{hash=aa0c7ab0b9dad5902ab8fc501f57cd77}{%
+           family={Xiong},
+           familyi={X\bibinitperiod},
+           given={Hui},
+           giveni={H\bibinitperiod}}}%
+        {{hash=7c27f1b2b48feefb0593a05e9c6a8b12}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Qing},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{1bdcca6dad1bcac9c936c6829c869185}
+      \strng{fullhash}{1bdcca6dad1bcac9c936c6829c869185}
+      \strng{bibnamehash}{1bdcca6dad1bcac9c936c6829c869185}
+      \strng{authorbibnamehash}{1bdcca6dad1bcac9c936c6829c869185}
+      \strng{authornamehash}{1bdcca6dad1bcac9c936c6829c869185}
+      \strng{authorfullhash}{1bdcca6dad1bcac9c936c6829c869185}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Transfer learning aims at improving the performance of target learners on target domains by transferring the knowledge contained in different but related source domains. In this way, the dependence on a large number of target domain data can be reduced for constructing target learners. Due to the wide application prospects, transfer learning has become a popular and promising area in machine learning. Although there are already some valuable and impressive surveys on transfer learning, these surveys introduce approaches in a relatively isolated way and lack the recent advances in transfer learning. Due to the rapid expansion of the transfer learning area, it is both necessary and challenging to comprehensively review the relevant studies. This survey attempts to connect and systematize the existing transfer learning researches, as well as to summarize and interpret the mechanisms and the strategies of transfer learning in a comprehensive way, which may help readers have a better understanding of the current research status and ideas. Unlike previous surveys, this survey paper reviews more than forty representative transfer learning approaches, especially homogeneous transfer learning approaches, from the perspectives of data and model. The applications of transfer learning are also briefly introduced. In order to show the performance of different transfer learning models, over twenty representative transfer learning models are used for experiments. The models are performed on three different datasets, i.e., Amazon Reviews, Reuters-21578, and Office-31. And the experimental results demonstrate the importance of selecting appropriate transfer learning models for different applications in practice.}
+      \field{day}{23}
+      \field{eprinttype}{arxiv}
+      \field{month}{6}
+      \field{number}{{arXiv}:1911.02685}
+      \field{title}{A Comprehensive Survey on Transfer Learning}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.1911.02685
+      \endverb
+      \verb{eprint}
+      \verb 1911.02685 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1911.02685
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1911.02685
+      \endverb
+      \keyw{Computer Science - Machine Learning,Statistics - Machine Learning}
     \endentry
   \enddatalist
 \endrefsection
