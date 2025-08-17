@@ -1,2 +1,49 @@
 \chapter{Related Work}
-% TODO The Missing Link paper as reference in thresholding section
+
+
+We will base our method of finding shared concepts between datasets on works
+in the field of label-alignment and taxonomy learning.
+Creating connections between datasets is an important and fundamental task
+in the field of machine learning: Many datasets are created for specific tasks
+and may not be directly comparable to each other. Also, inconsistency in labeling
+and data collection practices can further complicate the integration of datasets.
+Methods to create connections between datasets can help to align labels, improve
+data quality, and facilitate knowledge transfer between models trained on different
+datasets.
+
+The most obvious and straightforward approach to align labels across datasets
+is a fully manual mapping of labels from one dataset to another.
+This method is time-consuming and error-prone, especially for large datasets.
+Also, it can lead to further inconsistencies if multiple annotators are involved
+or if the datasets are updated independently over time~\cite{bordea_semeval-2016_2016,jurgens_semeval-2016_2016,yang_literature-driven_2013}.
+
+An improvement over this manual approach is a hybrid method that works
+automated, but involves manual corrections.
+For example, Firmani et al.~\cite{firmani_building_2024} proposes a weakly supervised
+approach where domain experts answer targeted questions about the datasets
+to guide the automated label alignment process.
+This method tries to balance automation and human expertise, leveraging the strengths of both.
+
+With the rise of large language models (LLMs), new methods have emerged
+that replace the human domain experts with automated systems.
+These systems leverage the capabilities of LLMs to understand and align labels
+across datasets without the need for human input,
+creating a pseudo-hybrid approach where the human role is replaced with LLMs~\cite{kargupta_taxoadapt_2025,chen_prompting_2023,gunn_creating_2024}.
+
+
+For fully automated, non-LLM-based approaches, there are several different options available:
+\begin{itemize}
+    \item \textbf{WordNet} is a lexical database that groups English words into sets of synonyms called synsets, providing short definitions and usage examples.
+          It can be used to find relationships between words and concepts, making it a valuable resource for aligning labels across datasets.
+          However, as we will later see in \ref{sec:wordnet_synsets}, this method is error-prone and not suitable for all datasets.
+    \item \textbf{Cross-Domain Classification} methods use domain models trained on a specific dataset to create cross-domain predictions.
+          For example, a dataset \textit{A} can have a class \textit{A:vehicle} while a dataset \textit{B}
+          has a class \textit{B:car}. By predicting an image from class \textit{B:car} using a model trained on dataset \textit{A}
+          as \textit{A:vehicle}, we can collect cross-domain co-occurrences and build a mapping between the two datasets~\cite{uijlings_missing_2022,bevandic_automatic_2022,bevandic_weakly_2024}.
+\end{itemize}
+
+We will base our taxonomy construction algorithm on the works of Bevandic et al.~\cite{bevandic_automatic_2022,bevandic_weakly_2024}.
+Our method will be adapted to shift the focus from aligning labels in a universal cross-domain taxonomy
+towards building relationships between classes in different datasets.
+Relationships will not, as in the original work, define a hierarchical structure,
+but rather point out shared attributes between classes.

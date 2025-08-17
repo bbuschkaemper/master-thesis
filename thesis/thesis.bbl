@@ -140,6 +140,156 @@
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition}
     \endentry
+    \entry{bordea_semeval-2016_2016}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=c55d1c8403db778016516ef42e4405f3}{%
+           family={Bordea},
+           familyi={B\bibinitperiod},
+           given={Georgeta},
+           giveni={G\bibinitperiod}}}%
+        {{hash=5b1f52cff2cf7fe6a420eee09bdb0f54}{%
+           family={Lefever},
+           familyi={L\bibinitperiod},
+           given={Els},
+           giveni={E\bibinitperiod}}}%
+        {{hash=04cb4f2ce7c00466a678941aef7dab90}{%
+           family={Buitelaar},
+           familyi={B\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod}}}%
+      }
+      \name{editor}{6}{}{%
+        {{hash=49a90d0c36d5abd2de968939b124c604}{%
+           family={Bethard},
+           familyi={B\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=9cf67a53d9ebd335c787b143ec098196}{%
+           family={Carpuat},
+           familyi={C\bibinitperiod},
+           given={Marine},
+           giveni={M\bibinitperiod}}}%
+        {{hash=73291503692ca44df1071d1d8a59a3a1}{%
+           family={Cer},
+           familyi={C\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=453dbaae6267b6b55c5b9531d3eed911}{%
+           family={Jurgens},
+           familyi={J\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b1e0f88aae37cfd1c213a370797c03b3}{%
+           family={Nakov},
+           familyi={N\bibinitperiod},
+           given={Preslav},
+           giveni={P\bibinitperiod}}}%
+        {{hash=d2bddcda907ea93d3a82a0623d8d0930}{%
+           family={Zesch},
+           familyi={Z\bibinitperiod},
+           given={Torsten},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {San Diego, California}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{ec87c618999b7ffb32b71ed77531e1b3}
+      \strng{fullhash}{ec87c618999b7ffb32b71ed77531e1b3}
+      \strng{bibnamehash}{ec87c618999b7ffb32b71ed77531e1b3}
+      \strng{authorbibnamehash}{ec87c618999b7ffb32b71ed77531e1b3}
+      \strng{authornamehash}{ec87c618999b7ffb32b71ed77531e1b3}
+      \strng{authorfullhash}{ec87c618999b7ffb32b71ed77531e1b3}
+      \strng{editorbibnamehash}{613bab1db02a377ddea0ad847b17eb65}
+      \strng{editornamehash}{613bab1db02a377ddea0ad847b17eb65}
+      \strng{editorfullhash}{613bab1db02a377ddea0ad847b17eb65}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{booktitle}{Proceedings of the 10th International Workshop on Semantic Evaluation ({SemEval}-2016)}
+      \field{eventtitle}{{SemEval} 2016}
+      \field{month}{6}
+      \field{shorttitle}{{SemEval}-2016 Task 13}
+      \field{title}{{SemEval}-2016 Task 13: Taxonomy Extraction Evaluation ({TExEval}-2)}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1081\bibrangedash 1091}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.18653/v1/S16-1168
+      \endverb
+      \verb{urlraw}
+      \verb https://aclanthology.org/S16-1168/
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/S16-1168/
+      \endverb
+    \endentry
+    \entry{chen_prompting_2023}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=298dac068921fdca25dc123b8883ecde}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Boqi},
+           giveni={B\bibinitperiod}}}%
+        {{hash=8e91aacf83bd7f9cf9cc33fa7faad14f}{%
+           family={Yi},
+           familyi={Y\bibinitperiod},
+           given={Fandi},
+           giveni={F\bibinitperiod}}}%
+        {{hash=f54190ff266e02128b40dbab3fe1f605}{%
+           family={Varró},
+           familyi={V\bibinitperiod},
+           given={Dániel},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{37e17a1a3ad31cde4fedb35f7298599f}
+      \strng{fullhash}{37e17a1a3ad31cde4fedb35f7298599f}
+      \strng{bibnamehash}{37e17a1a3ad31cde4fedb35f7298599f}
+      \strng{authorbibnamehash}{37e17a1a3ad31cde4fedb35f7298599f}
+      \strng{authornamehash}{37e17a1a3ad31cde4fedb35f7298599f}
+      \strng{authorfullhash}{37e17a1a3ad31cde4fedb35f7298599f}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Taxonomies represent hierarchical relations between entities, frequently applied in various software modeling and natural language processing ({NLP}) activities. They are typically subject to a set of structural constraints restricting their content. However, manual taxonomy construction can be time-consuming, incomplete, and costly to maintain. Recent studies of large language models ({LLMs}) have demonstrated that appropriate user inputs (called prompting) can effectively guide {LLMs}, such as {GPT}-3, in diverse {NLP} tasks without explicit (re-)training. However, existing approaches for automated taxonomy construction typically involve fine-tuning a language model by adjusting model parameters. In this paper, we present a general framework for taxonomy construction that takes into account structural constraints. We subsequently conduct a systematic comparison between the prompting and fine-tuning approaches performed on a hypernym taxonomy and a novel computer science taxonomy dataset. Our result reveals the following: (1) Even without explicit training on the dataset, the prompting approach outperforms fine-tuning-based approaches. Moreover, the performance gap between prompting and fine-tuning widens when the training dataset is small. However, (2) taxonomies generated by the fine-tuning approach can be easily post-processed to satisfy all the constraints, whereas handling violations of the taxonomies produced by the prompting approach can be challenging. These evaluation findings provide guidance on selecting the appropriate method for taxonomy construction and highlight potential enhancements for both approaches.}
+      \field{day}{4}
+      \field{eprinttype}{arxiv}
+      \field{month}{9}
+      \field{number}{{arXiv}:2309.01715}
+      \field{shorttitle}{Prompting or Fine-tuning?}
+      \field{title}{Prompting or Fine-tuning? A Comparative Study of Large Language Models for Taxonomy Construction}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2309.01715
+      \endverb
+      \verb{eprint}
+      \verb 2309.01715 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2309.01715
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2309.01715
+      \endverb
+      \keyw{Computer Science - Computation and Language,Computer Science - Machine Learning}
+    \endentry
     \entry{deng_imagenet_2009}{inproceedings}{}
       \name{author}{6}{}{%
         {{hash=cbaf4f8829c5ef01cf9659d1d6975526}{%
@@ -288,6 +438,55 @@
       \verb https://doi.org/10.7551/mitpress/7287.001.0001
       \endverb
     \endentry
+    \entry{firmani_building_2024}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=dcb3b8d6ce2e108ed664d4f3f11194c8}{%
+           family={Firmani},
+           familyi={F\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=648427f0b9369590dd3d44d5eddb79c2}{%
+           family={Galhotra},
+           familyi={G\bibinitperiod},
+           given={Sainyam},
+           giveni={S\bibinitperiod}}}%
+        {{hash=299bfc85caae5602ee1c9916f27bd014}{%
+           family={Saha},
+           familyi={S\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+        {{hash=91cb7fecb798a5f49d9b97b4ef97be90}{%
+           family={Srivastava},
+           familyi={S\bibinitperiod},
+           given={Divesh},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{8a019dc7cd6e2ed9623d8db3eea54fc4}
+      \strng{fullhash}{8a019dc7cd6e2ed9623d8db3eea54fc4}
+      \strng{bibnamehash}{8a019dc7cd6e2ed9623d8db3eea54fc4}
+      \strng{authorbibnamehash}{8a019dc7cd6e2ed9623d8db3eea54fc4}
+      \strng{authornamehash}{8a019dc7cd6e2ed9623d8db3eea54fc4}
+      \strng{authorfullhash}{8a019dc7cd6e2ed9623d8db3eea54fc4}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The organization of records referring to different entities into a taxonomy is crucial for capturing their relationships. Nevertheless, the automatic identification of such relationships often faces inaccuracies due to noise and heterogeneity of records across various sources. Simultaneously, manual maintenance of these relationships proves impractical and lacks scalability. This study addresses these challenges by adopting a weak supervision strategy, in the form of an oracle, to solve a novel Hierarchical Entity Resolution task. Within our framework, records are organized into a tree-like structure that encompasses records at the bottom level and encapsulates entities and categories at the higher levels. To make the most effective use of supervision, we employ a triplet comparison oracle, which takes three records as input and output the most similar pair(s). Finally, we introduce {HierER} , a querying strategy utilizing record pair similarities to minimize the number of oracle queries while simultaneously maximizing the identification of the hierarchical structure. Theoretical and empirical analyses demonstrate the effectiveness and efficiency of {HierER} with noisy datasets with millions of records.}
+      \field{eventtitle}{Sistemi Evoluti per Basi di Dati}
+      \field{title}{Building Taxonomies with Triplet Queries}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.semanticscholar.org/paper/Building-Taxonomies-with-Triplet-Queries-Firmani-Galhotra/91e314dd5df505d036aa49ddeb3562551770afb6
+      \endverb
+      \verb{url}
+      \verb https://www.semanticscholar.org/paper/Building-Taxonomies-with-Triplet-Queries-Firmani-Galhotra/91e314dd5df505d036aa49ddeb3562551770afb6
+      \endverb
+    \endentry
     \entry{griffin_caltech_2022}{misc}{}
       \name{author}{3}{}{%
         {{hash=0c276668bd6739ab142e84d4de9000da}{%
@@ -340,6 +539,63 @@
       \verb https://data.caltech.edu/records/20087
       \endverb
       \keyw{computer vision,machine learning}
+    \endentry
+    \entry{gunn_creating_2024}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=381644d8277f155b78cdfd180fc1c556}{%
+           family={Gunn},
+           familyi={G\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=d5285c43934b321acaddb74941dcf2cd}{%
+           family={Park},
+           familyi={P\bibinitperiod},
+           given={Dohyun},
+           giveni={D\bibinitperiod}}}%
+        {{hash=48165013b0d1394de1a2422a5e322a14}{%
+           family={Kamath},
+           familyi={K\bibinitperiod},
+           given={Nidhish},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{7869d1bb4bce7874c9f23be0e5aa21bd}
+      \strng{fullhash}{7869d1bb4bce7874c9f23be0e5aa21bd}
+      \strng{bibnamehash}{7869d1bb4bce7874c9f23be0e5aa21bd}
+      \strng{authorbibnamehash}{7869d1bb4bce7874c9f23be0e5aa21bd}
+      \strng{authornamehash}{7869d1bb4bce7874c9f23be0e5aa21bd}
+      \strng{authorfullhash}{7869d1bb4bce7874c9f23be0e5aa21bd}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In this study, we investigate the potential of {GPT}-4 and its advanced iteration, {GPT}-4 Turbo, in autonomously developing a detailed entity type taxonomy. Our objective is to construct a comprehensive taxonomy, starting from a broad classification of entity types - including objects, time, locations, organizations, events, actions, and subjects - similar to existing manually curated taxonomies. This classification is then progressively refined through iterative prompting techniques, leveraging {GPT}-4's internal knowledge base. The result is an extensive taxonomy comprising over 5000 nuanced entity types, which demonstrates remarkable quality upon subjective evaluation. We employed a straightforward yet effective prompting strategy, enabling the taxonomy to be dynamically expanded. The practical applications of this detailed taxonomy are diverse and significant. It facilitates the creation of new, more intricate branches through pattern-based combinations and notably enhances information extraction tasks, such as relation extraction and event argument extraction. Our methodology not only introduces an innovative approach to taxonomy creation but also opens new avenues for applying such taxonomies in various computational linguistics and {AI}-related fields.}
+      \field{day}{19}
+      \field{eprinttype}{arxiv}
+      \field{month}{2}
+      \field{number}{{arXiv}:2402.12557}
+      \field{title}{Creating a Fine Grained Entity Type Taxonomy Using {LLMs}}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2402.12557
+      \endverb
+      \verb{eprint}
+      \verb 2402.12557 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2402.12557
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2402.12557
+      \endverb
+      \keyw{Computer Science - Computation and Language}
     \endentry
     \entry{he_deep_2015}{misc}{}
       \name{author}{4}{}{%
@@ -624,6 +880,167 @@
       \verb{url}
       \verb https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1469-8137.1912.tb05611.x
       \endverb
+    \endentry
+    \entry{jurgens_semeval-2016_2016}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=453dbaae6267b6b55c5b9531d3eed911}{%
+           family={Jurgens},
+           familyi={J\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=25546e3752457eae386c91911a2fb5f8}{%
+           family={Pilehvar},
+           familyi={P\bibinitperiod},
+           given={Mohammad\bibnamedelima Taher},
+           giveni={M\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \name{editor}{6}{}{%
+        {{hash=49a90d0c36d5abd2de968939b124c604}{%
+           family={Bethard},
+           familyi={B\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=9cf67a53d9ebd335c787b143ec098196}{%
+           family={Carpuat},
+           familyi={C\bibinitperiod},
+           given={Marine},
+           giveni={M\bibinitperiod}}}%
+        {{hash=73291503692ca44df1071d1d8a59a3a1}{%
+           family={Cer},
+           familyi={C\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=453dbaae6267b6b55c5b9531d3eed911}{%
+           family={Jurgens},
+           familyi={J\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b1e0f88aae37cfd1c213a370797c03b3}{%
+           family={Nakov},
+           familyi={N\bibinitperiod},
+           given={Preslav},
+           giveni={P\bibinitperiod}}}%
+        {{hash=d2bddcda907ea93d3a82a0623d8d0930}{%
+           family={Zesch},
+           familyi={Z\bibinitperiod},
+           given={Torsten},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {San Diego, California}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{26741717b242e4328cccf6381077430f}
+      \strng{fullhash}{26741717b242e4328cccf6381077430f}
+      \strng{bibnamehash}{26741717b242e4328cccf6381077430f}
+      \strng{authorbibnamehash}{26741717b242e4328cccf6381077430f}
+      \strng{authornamehash}{26741717b242e4328cccf6381077430f}
+      \strng{authorfullhash}{26741717b242e4328cccf6381077430f}
+      \strng{editorbibnamehash}{613bab1db02a377ddea0ad847b17eb65}
+      \strng{editornamehash}{613bab1db02a377ddea0ad847b17eb65}
+      \strng{editorfullhash}{613bab1db02a377ddea0ad847b17eb65}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{booktitle}{Proceedings of the 10th International Workshop on Semantic Evaluation ({SemEval}-2016)}
+      \field{eventtitle}{{SemEval} 2016}
+      \field{month}{6}
+      \field{shorttitle}{{SemEval}-2016 Task 14}
+      \field{title}{{SemEval}-2016 Task 14: Semantic Taxonomy Enrichment}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1092\bibrangedash 1102}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.18653/v1/S16-1169
+      \endverb
+      \verb{urlraw}
+      \verb https://aclanthology.org/S16-1169/
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/S16-1169/
+      \endverb
+    \endentry
+    \entry{kargupta_taxoadapt_2025}{misc}{}
+      \name{author}{6}{}{%
+        {{hash=1aa6fddafd4b49b3b40fdab7d9becc6e}{%
+           family={Kargupta},
+           familyi={K\bibinitperiod},
+           given={Priyanka},
+           giveni={P\bibinitperiod}}}%
+        {{hash=50541ce48b62a59478859829bdda8bad}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Nan},
+           giveni={N\bibinitperiod}}}%
+        {{hash=46b08070734059747be09df3462fb2e8}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Yunyi},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0672466dc7c3a8cec050e5ac091fd0ac}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Rui},
+           giveni={R\bibinitperiod}}}%
+        {{hash=1830bc3848a0cda63f4a76b15fc00352}{%
+           family={Mitra},
+           familyi={M\bibinitperiod},
+           given={Prasenjit},
+           giveni={P\bibinitperiod}}}%
+        {{hash=7cacfe272c4d395c979d6aecd2f5ec9c}{%
+           family={Han},
+           familyi={H\bibinitperiod},
+           given={Jiawei},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{de332a296019333589fef80881a3682c}
+      \strng{fullhash}{de332a296019333589fef80881a3682c}
+      \strng{bibnamehash}{de332a296019333589fef80881a3682c}
+      \strng{authorbibnamehash}{de332a296019333589fef80881a3682c}
+      \strng{authornamehash}{de332a296019333589fef80881a3682c}
+      \strng{authorfullhash}{de332a296019333589fef80881a3682c}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The rapid evolution of scientific fields introduces challenges in organizing and retrieving scientific literature. While expert-curated taxonomies have traditionally addressed this need, the process is time-consuming and expensive. Furthermore, recent automatic taxonomy construction methods either (1) over-rely on a specific corpus, sacrificing generalizability, or (2) depend heavily on the general knowledge of large language models ({LLMs}) contained within their pre-training datasets, often overlooking the dynamic nature of evolving scientific domains. Additionally, these approaches fail to account for the multi-faceted nature of scientific literature, where a single research paper may contribute to multiple dimensions (e.g., methodology, new tasks, evaluation metrics, benchmarks). To address these gaps, we propose {TaxoAdapt}, a framework that dynamically adapts an {LLM}-generated taxonomy to a given corpus across multiple dimensions. {TaxoAdapt} performs iterative hierarchical classification, expanding both the taxonomy width and depth based on corpus' topical distribution. We demonstrate its state-of-the-art performance across a diverse set of computer science conferences over the years to showcase its ability to structure and capture the evolution of scientific fields. As a multidimensional method, {TaxoAdapt} generates taxonomies that are 26.51\% more granularity-preserving and 50.41\% more coherent than the most competitive baselines judged by {LLMs}.}
+      \field{day}{12}
+      \field{eprinttype}{arxiv}
+      \field{month}{6}
+      \field{note}{version: 1}
+      \field{number}{{arXiv}:2506.10737}
+      \field{shorttitle}{{TaxoAdapt}}
+      \field{title}{{TaxoAdapt}: Aligning {LLM}-Based Multidimensional Taxonomy Construction to Evolving Research Corpora}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2506.10737
+      \endverb
+      \verb{eprint}
+      \verb 2506.10737 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2506.10737
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2506.10737
+      \endverb
+      \keyw{Computer Science - Computation and Language,Computer Science - Information Retrieval}
     \endentry
     \entry{krizhevsky_learning_2009}{article}{}
       \name{author}{2}{}{%
@@ -1123,6 +1540,64 @@
       \field{year}{1958}
       \field{dateera}{ce}
     \endentry
+    \entry{uijlings_missing_2022}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=6f5d1be5ec88ac21f855db10eafb0fa5}{%
+           family={Uijlings},
+           familyi={U\bibinitperiod},
+           given={Jasper},
+           giveni={J\bibinitperiod}}}%
+        {{hash=ffc3c50f7f2f5814db998defff4b2ccd}{%
+           family={Mensink},
+           familyi={M\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=2d9b2bb140830bf8f7f642c17692a8e4}{%
+           family={Ferrari},
+           familyi={F\bibinitperiod},
+           given={Vittorio},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{f6debcd6ae919461ee6384fa5b6e2b29}
+      \strng{fullhash}{f6debcd6ae919461ee6384fa5b6e2b29}
+      \strng{bibnamehash}{f6debcd6ae919461ee6384fa5b6e2b29}
+      \strng{authorbibnamehash}{f6debcd6ae919461ee6384fa5b6e2b29}
+      \strng{authornamehash}{f6debcd6ae919461ee6384fa5b6e2b29}
+      \strng{authorfullhash}{f6debcd6ae919461ee6384fa5b6e2b29}
+      \field{sortinit}{U}
+      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Computer vision is driven by the many datasets available for training or evaluating novel methods. However, each dataset has a different set of class labels, visual definition of classes, images following a specific distribution, annotation protocols, etc. In this paper we explore the automatic discovery of visual-semantic relations between labels across datasets. We aim to understand how instances of a certain class in a dataset relate to the instances of another class in another dataset. Are they in an identity, parent/child, overlap relation? Or is there no link between them at all? To find relations between labels across datasets, we propose methods based on language, on vision, and on their combination. We show that we can effectively discover label relations across datasets, as well as their type. We apply our method to four applications: understand label relations, identify missing aspects, increase label specificity, and predict transfer learning gains. We conclude that label relations cannot be established by looking at the names of classes alone, as they depend strongly on how each of the datasets was constructed.}
+      \field{day}{9}
+      \field{eprinttype}{arxiv}
+      \field{month}{8}
+      \field{number}{{arXiv}:2206.04453}
+      \field{shorttitle}{The Missing Link}
+      \field{title}{The Missing Link: Finding label relations across datasets}
+      \field{urlday}{23}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2206.04453
+      \endverb
+      \verb{eprint}
+      \verb 2206.04453 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2206.04453
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2206.04453
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
     \entry{vaswani_attention_2023}{misc}{}
       \name{author}{8}{}{%
         {{hash=7f28e84700536646dd6620a0db07ad09}{%
@@ -1221,6 +1696,108 @@
       \endverb
       \verb{url}
       \verb https://wordnet.princeton.edu/homepage
+      \endverb
+    \endentry
+    \entry{yang_literature-driven_2013}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=7b02a887a26927ad3e1ec395faa493f2}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Hui},
+           giveni={H\bibinitperiod}}}%
+        {{hash=d13ba9c6ccf73ae7b5d5dd48c984a8e4}{%
+           family={Willis},
+           familyi={W\bibinitperiod},
+           given={Alistair},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a99b554bb66a02a553a45833cd1a7abd}{%
+           family={Morse},
+           familyi={M\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=1a80f513948af2f24c2021619de35483}{%
+           family={Roeck},
+           familyi={R\bibinitperiod},
+           given={Anne},
+           giveni={A\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \name{editor}{7}{}{%
+        {{hash=ad127755d25c931a0b4362ff9733003a}{%
+           family={Maynard},
+           familyi={M\bibinitperiod},
+           given={Diana},
+           giveni={D\bibinitperiod}}}%
+        {{hash=6f5eab98e65d7d968c2b306241f37fd6}{%
+           family={Erp},
+           familyi={E\bibinitperiod},
+           given={Marieke},
+           giveni={M\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=54e1546337d7b0ed7a82e9308d56e20b}{%
+           family={Davis},
+           familyi={D\bibinitperiod},
+           given={Brian},
+           giveni={B\bibinitperiod}}}%
+        {{hash=bb806c5cc577d4fd140fcedc7520bedd}{%
+           family={Osenova},
+           familyi={O\bibinitperiod},
+           given={Petya},
+           giveni={P\bibinitperiod}}}%
+        {{hash=a75c9ac0e9807a82a1a2e80548b23df7}{%
+           family={Simov},
+           familyi={S\bibinitperiod},
+           given={Kiril},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f84d1ba24c6f3ebe103a311f5d9ee047}{%
+           family={Georgiev},
+           familyi={G\bibinitperiod},
+           given={Georgi},
+           giveni={G\bibinitperiod}}}%
+        {{hash=b1e0f88aae37cfd1c213a370797c03b3}{%
+           family={Nakov},
+           familyi={N\bibinitperiod},
+           given={Preslav},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Hissar, Bulgaria}%
+      }
+      \list{publisher}{1}{%
+        {{INCOMA} Ltd. Shoumen, {BULGARIA}}%
+      }
+      \strng{namehash}{24e2a5081657ce08fac8e1e85d512e48}
+      \strng{fullhash}{24e2a5081657ce08fac8e1e85d512e48}
+      \strng{bibnamehash}{24e2a5081657ce08fac8e1e85d512e48}
+      \strng{authorbibnamehash}{24e2a5081657ce08fac8e1e85d512e48}
+      \strng{authornamehash}{24e2a5081657ce08fac8e1e85d512e48}
+      \strng{authorfullhash}{24e2a5081657ce08fac8e1e85d512e48}
+      \strng{editorbibnamehash}{4bc06701b8ac087f6510f53fb592f9a3}
+      \strng{editornamehash}{4bc06701b8ac087f6510f53fb592f9a3}
+      \strng{editorfullhash}{4bc06701b8ac087f6510f53fb592f9a3}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Joint Workshop on {NLP}\&{LOD} and {SWAIE}: Semantic Web, Linked Open Data and Information Extraction}
+      \field{eventtitle}{{SWAIE} 2013}
+      \field{month}{9}
+      \field{title}{Literature-driven Curation for Taxonomic Name Databases}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{25\bibrangedash 32}
+      \range{pages}{8}
+      \verb{urlraw}
+      \verb https://aclanthology.org/W13-5207/
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/W13-5207/
       \endverb
     \endentry
     \entry{zhang_overview_2018}{article}{}

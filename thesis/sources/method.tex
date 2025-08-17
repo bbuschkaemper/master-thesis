@@ -17,35 +17,35 @@ To formalise our algorithm for building a universal taxonomy,
 we first need to define some terms:
 
 \begin{itemize}
-    \item \textbf{Dataset} $D$: A collection of images and labels
-          written as $D = \{(x_1, c_1), (x_2, c_2), \ldots, (x_n, c_n)\}$,
-          where $x_i$ is an image and $c_i$ is its label.
-          Since we are dealing with multiple datasets, we number them
-          as $D_i = \{(x_1^i, c_1^i), (x_2^i, c_2^i), \ldots, (x_n^i, c_n^i)\}$,
-          where $D_i$ is the dataset $D$ with index $i$.
-          In the same way, we denote the set of all classes in a dataset as $C_i = \{c_1^i, c_2^i, \ldots, c_k^i\}$.
-    \item \textbf{Model} $m$: A neural network trained on a dataset $D_I$
-          which maps an image $x\in X$ to a class $c_i^I\in C_I$, denoted as $m_I: X \mapsto C_I$.
-    \item \textbf{Domain}: Since both models and classes are dataset-specific,
-          we define the term \textbf{domain} as the dataset $D_i$ and its classes $C_i$
-          that we are working with.
-    \item \textbf{Universal Classes}: Our universal taxonomy will contain a set of classes
-          that are not specific to any dataset.
-          We denote these classes as $C_U = \{c_1^U, c_2^U, \ldots, c_k^U\}$.
-          A universal class is a concept represented by a set of domain classes
-          that share similar characteristics. We therefore define a function
-          $\text{classes}: C_U \mapsto \mathcal{P}(C)$, where $\mathcal{P}(C)$ is the power set of $C$,
-          to represent the set of domain classes that belong to a universal class.
-    \item \textbf{Graph}: We represent our taxonomy as a directed graph $G = (V, E)$,
-          where $V$ is a set of vertices and $E$ is a set of edges.
-          Each vertex $v_i$ represents a single class or universal class,
-          which we define with $\text{class}: V \mapsto C$.
-          Every edge $e_{ij}$ between two vertices $v_i$ and $v_j$ indicates
-          a relationship $\text{class}(v_i) \rightarrow \text{class}(v_j)$.
-    \item \textbf{Probability}: Every edge $e_{ij}$ has a probability associated with it,
-          which indicates the likelihood of classifying an image from class $\text{class}(v_i)$
-          as class $\text{class}(v_j)$.
-          We denote this as a function $\text{probability}: E \mapsto [0, 1]$.
+      \item \textbf{Dataset} $D$: A collection of images and labels
+            written as $D = \{(x_1, c_1), (x_2, c_2), \ldots, (x_n, c_n)\}$,
+            where $x_i$ is an image and $c_i$ is its label.
+            Since we are dealing with multiple datasets, we number them
+            as $D_i = \{(x_1^i, c_1^i), (x_2^i, c_2^i), \ldots, (x_n^i, c_n^i)\}$,
+            where $D_i$ is the dataset $D$ with index $i$.
+            In the same way, we denote the set of all classes in a dataset as $C_i = \{c_1^i, c_2^i, \ldots, c_k^i\}$.
+      \item \textbf{Model} $m$: A neural network trained on a dataset $D_I$
+            which maps an image $x\in X$ to a class $c_i^I\in C_I$, denoted as $m_I: X \mapsto C_I$.
+      \item \textbf{Domain}: Since both models and classes are dataset-specific,
+            we define the term \textbf{domain} as the dataset $D_i$ and its classes $C_i$
+            that we are working with.
+      \item \textbf{Universal Classes}: Our universal taxonomy will contain a set of classes
+            that are not specific to any dataset.
+            We denote these classes as $C_U = \{c_1^U, c_2^U, \ldots, c_k^U\}$.
+            A universal class is a concept represented by a set of domain classes
+            that share similar characteristics. We therefore define a function
+            $\text{classes}: C_U \mapsto \mathcal{P}(C)$, where $\mathcal{P}(C)$ is the power set of $C$,
+            to represent the set of domain classes that belong to a universal class.
+      \item \textbf{Graph}: We represent our taxonomy as a directed graph $G = (V, E)$,
+            where $V$ is a set of vertices and $E$ is a set of edges.
+            Each vertex $v_i$ represents a single class or universal class,
+            which we define with $\text{class}: V \mapsto C$.
+            Every edge $e_{ij}$ between two vertices $v_i$ and $v_j$ indicates
+            a relationship $\text{class}(v_i) \rightarrow \text{class}(v_j)$.
+      \item \textbf{Probability}: Every edge $e_{ij}$ has a probability associated with it,
+            which indicates the likelihood of classifying an image from class $\text{class}(v_i)$
+            as class $\text{class}(v_j)$.
+            We denote this as a function $\text{probability}: E \mapsto [0, 1]$.
 \end{itemize}
 
 \section{Cross-Domain Graph Generation} \label{sec:graph_construction}
@@ -54,39 +54,39 @@ Before building our universal taxonomy,
 we need to construct our initial graph that captures the relationships between classes across different domains:
 
 \begin{enumerate}
-    \item \textbf{Foreign predictions}: For each dataset with its corresponding model,
-          we run the model on all images from all other datasets.
-          This gives us a set of predictions $P_{ab} = \{(x_i^a, c_j^b)\}$,
-          where $x_i^a$ is an image from dataset $D_a$ and $c_j^b$ is the class
-          predicted by model $m_b$ for that image.
-    \item \textbf{Prediction probabilities}: We count the number of times each class $c_i^a$ was predicted
-          as a foreign-domain class $c_j^b$.
-          We denote this count in a matrix $M_{ab}\in {\mathbb{N}^+}^{|C_a| \times |C_b|}$,
-          where $M_{ab}(i, j)$ is the number of times class $c_i^a$ was predicted
-          as class $c_j^b$.
-          We then divide each entry in the matrix by its row sum to get the
-          probability of classifying an image from class $c_i^a$ as class $c_j^b$:
-          \begin{equation*}
-              P_{ab}(i, j) = \frac{M_{ab}(i, j)}{\sum_{k=1}^{|C_a|} M_{ab}(i, k)}
-          \end{equation*}
-          This gives us a matrix $P_{ab}\in [0, 1]^{|C_a| \times |C_b|}$,
-          where $P_{ab}(i, j)$ is the probability of classifying an image from class $c_i^a$
-          as class $c_j^b$.
-    \item \textbf{Graph construction}: We now create a directed graph that represents the relationships between classes and datasets
-          by iterating over every dataset $D_a$ with every dataset $D_b$ where $a \neq b$ for cross-predictions:
-          \begin{enumerate}
-              \item We want to evaluate different methods for selecting the most relevant relationships,
-                    so we formalise a function $\text{select\_relationships}(P_{ab}): [0, 1]^{|C_a| \times |C_b|} \mapsto \mathcal{P}(\mathbb{N}^2)$
-                    that selects a set of relationships from the probability matrix $P_{ab}$.
-              \item For every $(i, j) \in \text{select\_relationships}(P_{ab})$:
-                    \begin{enumerate}
-                        \item We create the vertices $v_k$ and $v_l$ for classes $c_i^a$ and $c_j^b$ respectively
-                              if they do not already exist and add them to the graph
-                              (otherwise we find the existing vertices for these classes as $v_k$ and $v_l$).
-                        \item We create an edge $e_{kl}$ between the vertices $v_k$ and $v_l$ and add it to the graph.
-                        \item We define $\text{probability}(e_{kl}) = P_{ab}(i, j)$.
-                    \end{enumerate}
-          \end{enumerate}
+      \item \textbf{Foreign predictions}: For each dataset with its corresponding model,
+            we run the model on all images from all other datasets.
+            This gives us a set of predictions $P_{ab} = \{(x_i^a, c_j^b)\}$,
+            where $x_i^a$ is an image from dataset $D_a$ and $c_j^b$ is the class
+            predicted by model $m_b$ for that image.
+      \item \textbf{Prediction probabilities}: We count the number of times each class $c_i^a$ was predicted
+            as a foreign-domain class $c_j^b$.
+            We denote this count in a matrix $M_{ab}\in {\mathbb{N}^+}^{|C_a| \times |C_b|}$,
+            where $M_{ab}(i, j)$ is the number of times class $c_i^a$ was predicted
+            as class $c_j^b$.
+            We then divide each entry in the matrix by its row sum to get the
+            probability of classifying an image from class $c_i^a$ as class $c_j^b$:
+            \begin{equation*}
+                  P_{ab}(i, j) = \frac{M_{ab}(i, j)}{\sum_{k=1}^{|C_a|} M_{ab}(i, k)}
+            \end{equation*}
+            This gives us a matrix $P_{ab}\in [0, 1]^{|C_a| \times |C_b|}$,
+            where $P_{ab}(i, j)$ is the probability of classifying an image from class $c_i^a$
+            as class $c_j^b$.
+      \item \textbf{Graph construction}: We now create a directed graph that represents the relationships between classes and datasets
+            by iterating over every dataset $D_a$ with every dataset $D_b$ where $a \neq b$ for cross-predictions:
+            \begin{enumerate}
+                  \item We want to evaluate different methods for selecting the most relevant relationships,
+                        so we formalise a function $\text{select\_relationships}(P_{ab}): [0, 1]^{|C_a| \times |C_b|} \mapsto \mathcal{P}(\mathbb{N}^2)$
+                        that selects a set of relationships from the probability matrix $P_{ab}$.
+                  \item For every $(i, j) \in \text{select\_relationships}(P_{ab})$:
+                        \begin{enumerate}
+                              \item We create the vertices $v_k$ and $v_l$ for classes $c_i^a$ and $c_j^b$ respectively
+                                    if they do not already exist and add them to the graph
+                                    (otherwise we find the existing vertices for these classes as $v_k$ and $v_l$).
+                              \item We create an edge $e_{kl}$ between the vertices $v_k$ and $v_l$ and add it to the graph.
+                              \item We define $\text{probability}(e_{kl}) = P_{ab}(i, j)$.
+                        \end{enumerate}
+            \end{enumerate}
 \end{enumerate}
 
 \subsection{Selecting Relationships}
@@ -97,24 +97,24 @@ we define a range of different methods and later evaluate their performance.
 Our main challenges are:
 
 \begin{itemize}
-    \item \textbf{Unknown number of shared concepts}: We don't know how many concepts two classes from different
-          domains share, so we do not know how high the probability of a relationship should be.
-    \item \textbf{Noisy predictions}: A low model accuracy can severely impact the relationship
-          predictions, since - depending on the number of foreign classes that share concepts with the class -
-          the target probabilities can be very low, making even a small number of wrong predictions
-          a huge obstacle.
-    \item \textbf{Unbalanced datasets}: Some datasets might have more images for a class than others,
-          which can lead to skewed probabilities.
-          This can be mitigated by preprocessing the datasets to balance the number of images per class,
-          but our goal is to create a methodology that can be applied to any dataset without
-          specific requirements on the datasets.
+      \item \textbf{Unknown number of shared concepts}: We don't know how many concepts two classes from different
+            domains share, so we do not know how high the probability of a relationship should be.
+      \item \textbf{Noisy predictions}: A low model accuracy can severely impact the relationship
+            predictions, since - depending on the number of foreign classes that share concepts with the class -
+            the target probabilities can be very low, making even a small number of wrong predictions
+            a huge obstacle.
+      \item \textbf{Unbalanced datasets}: Some datasets might have more images for a class than others,
+            which can lead to skewed probabilities.
+            This can be mitigated by preprocessing the datasets to balance the number of images per class,
+            but our goal is to create a methodology that can be applied to any dataset without
+            specific requirements on the datasets.
 \end{itemize}
 
 \subsubsection{Naive Thresholding}
 
 The most straightforward method is to apply a fixed threshold to the probabilities:
 \begin{equation*}
-    \text{select\_relationships}(P_{ab}) = \{(i, j) \mid P_{ab}(i, j) \geq t\}
+      \text{select\_relationships}(P_{ab}) = \{(i, j) \mid P_{ab}(i, j) \geq t\}
 \end{equation*}
 where $t$ is a threshold value between 0 and 1.
 
@@ -123,7 +123,7 @@ where $t$ is a threshold value between 0 and 1.
 As in the paper that provided the ground work for our methodology~\cite{bevandic_automatic_2022},
 we can also select the single most common foreign prediction for each class:
 \begin{equation*}
-    \text{select\_relationships}(P_{ab}) = \{(i, j) \mid j = \text{argmax}_{j'} P_{ab}(i, j')\}
+      \text{select\_relationships}(P_{ab}) = \{(i, j) \mid j = \text{argmax}_{j'} P_{ab}(i, j')\}
 \end{equation*}
 
 \subsubsection{Density Thresholding}
@@ -133,14 +133,14 @@ whose summed probabilities cover a certain percentage of the total probability m
 This can be done by sorting the probabilities in descending order and then selecting the smallest set of relationships
 that covers at least $p$ percent of the total probability mass:
 \begin{enumerate}
-    \item We define $R=\emptyset$ as the set of relationships to select.
-    \item For every $i\in \{1, \ldots, |C_a|\}$:
-          \begin{enumerate}
-              \item Let $X_i$ be the list of all probabilities in row $i$ of $P_{ab}$ sorted in descending order.
-              \item We find the smallest $k$ such that $\sum_{j=1}^k X_i(j) \geq p$.
-              \item We add the first $k$ relationships of the sorted list $X_i$ to $R$.
-          \end{enumerate}
-    \item We return $R$ for the function $\text{select\_relationships}(P_{ab})$.
+      \item We define $R=\emptyset$ as the set of relationships to select.
+      \item For every $i\in \{1, \ldots, |C_a|\}$:
+            \begin{enumerate}
+                  \item Let $X_i$ be the list of all probabilities in row $i$ of $P_{ab}$ sorted in descending order.
+                  \item We find the smallest $k$ such that $\sum_{j=1}^k X_i(j) \geq p$.
+                  \item We add the first $k$ relationships of the sorted list $X_i$ to $R$.
+            \end{enumerate}
+      \item We return $R$ for the function $\text{select\_relationships}(P_{ab})$.
 \end{enumerate}
 
 \subsubsection{Relationship Hypothesis}
@@ -153,17 +153,17 @@ should be roughly equal.
 We can therefore hypothesise the probability distribution based on the number of relationships
 and compare this hypothesis against the actual probabilities in the matrix $P_{ab}$:
 \begin{enumerate}
-    \item We define $R=\emptyset$ as the set of relationships to select.
-    \item For every $i\in \{1, \ldots, |C_a|\}$:
-          \begin{enumerate}
-              \item Let $X_i$ be the list of all probabilities in row $i$ of $P_{ab}$ sorted in descending order.
-              \item We find the $k\in\{1, \ldots, n\}$ such that we minimise:
-                    \begin{equation*}
-                        \sum_{j=1}^k \left| X_i(j) - \frac{1}{k} \right| + \sum_{j=k+1}^{|C_b|} X_i(j)
-                    \end{equation*}
-              \item We add the first $k$ relationships of the sorted list $X_i$ to $R$.
-          \end{enumerate}
-    \item We return $R$ for the function $\text{select\_relationships}(P_{ab})$.
+      \item We define $R=\emptyset$ as the set of relationships to select.
+      \item For every $i\in \{1, \ldots, |C_a|\}$:
+            \begin{enumerate}
+                  \item Let $X_i$ be the list of all probabilities in row $i$ of $P_{ab}$ sorted in descending order.
+                  \item We find the $k\in\{1, \ldots, n\}$ such that we minimise:
+                        \begin{equation*}
+                              \sum_{j=1}^k \left| X_i(j) - \frac{1}{k} \right| + \sum_{j=k+1}^{|C_b|} X_i(j)
+                        \end{equation*}
+                  \item We add the first $k$ relationships of the sorted list $X_i$ to $R$.
+            \end{enumerate}
+      \item We return $R$ for the function $\text{select\_relationships}(P_{ab})$.
 \end{enumerate}
 
 In this equation, $n$ is the upper bound of the number of relationships
@@ -176,20 +176,20 @@ for a class $c_i^a$ that we want to test against.
 To evaluate our taxonomy generation methods, we need a reliable ground truth with known relationships between datasets. This presents a challenge, as most existing image classification datasets lack clear inter-dataset relationships:
 
 \begin{itemize}
-    \item \textbf{ImageNet}~\cite{deng_imagenet_2009,russakovsky_imagenet_2015}
-          uses WordNet's~\cite{fellbaum_wordnet_1998} hierarchical structure to organize classes.
-          However, this strict hierarchy doesn't match our use case where we need to connect
-          datasets with different class structures and partial overlaps.
+      \item \textbf{ImageNet}~\cite{deng_imagenet_2009,russakovsky_imagenet_2015}
+            uses WordNet's~\cite{fellbaum_wordnet_1998} hierarchical structure to organize classes.
+            However, this strict hierarchy doesn't match our use case where we need to connect
+            datasets with different class structures and partial overlaps.
 
-    \item \textbf{Open Images}~\cite{kuznetsova_open_2020} contains approximately 9 million
-          images with multiple labels per image generated by Google's Cloud Vision API\footnote{\url{https://cloud.google.com/vision}}.
-          This multi-label approach makes it difficult to determine a single class for each image,
-          which is required for our evaluation. Additionally, since most labels were automatically
-          generated, it doesn't provide the verified ground truth we need.
+      \item \textbf{Open Images}~\cite{kuznetsova_open_2020} contains approximately 9 million
+            images with multiple labels per image generated by Google's Cloud Vision API\footnote{\url{https://cloud.google.com/vision}}.
+            This multi-label approach makes it difficult to determine a single class for each image,
+            which is required for our evaluation. Additionally, since most labels were automatically
+            generated, it doesn't provide the verified ground truth we need.
 
-    \item \textbf{iNaturalist}~\cite{horn_inaturalist_2018} offers a detailed taxonomy of
-          plant and animal species, but its domain-specific nature makes it unsuitable
-          for developing a general-purpose evaluation framework.
+      \item \textbf{iNaturalist}~\cite{horn_inaturalist_2018} offers a detailed taxonomy of
+            plant and animal species, but its domain-specific nature makes it unsuitable
+            for developing a general-purpose evaluation framework.
 \end{itemize}
 
 \subsection{Our Approach: Building Synthetic Datasets}
@@ -197,9 +197,9 @@ To evaluate our taxonomy generation methods, we need a reliable ground truth wit
 Instead of relying on existing taxonomies, we developed a method to generate synthetic datasets with controlled relationships. Our approach:
 
 \begin{enumerate}
-    \item Define a set of "atomic concepts" that serve as building blocks for classes
-    \item Create multiple domains by sampling these concepts to form classes
-    \item Calculate inter-domain relationships based on shared concepts
+      \item Define a set of "atomic concepts" that serve as building blocks for classes
+      \item Create multiple domains by sampling these concepts to form classes
+      \item Calculate inter-domain relationships based on shared concepts
 \end{enumerate}
 
 This method allows us to precisely control the taxonomy structure while creating realistic relationships between domains. To generate images for these synthetic classes, we can leverage existing datasets by treating each original class as an atomic concept.
@@ -209,11 +209,11 @@ This method allows us to precisely control the taxonomy structure while creating
 We define our synthetic taxonomy framework on top of the definitions from \autoref{sec:taxonomy_definitions}:
 
 \begin{itemize}
-    \item \textbf{Atomic Concepts} $\mathcal{U}=\{1,2,\ldots,n\}$:
-          A set of atomic concepts will be a universe of concepts that make up the basis for our synthetic class generation.
-    \item \textbf{Synthetic Class}: A class $c^i_j$ will contain a subset of the atomic concepts
-          from our universe: $c^i_j \subseteq \mathcal{U}$.
-          To maintain disjoint class definitions, we ensure that $c^i_j \cap c^i_k = \emptyset$ for all $j \neq k$.
+      \item \textbf{Atomic Concepts} $\mathcal{U}=\{1,2,\ldots,n\}$:
+            A set of atomic concepts will be a universe of concepts that make up the basis for our synthetic class generation.
+      \item \textbf{Synthetic Class}: A class $c^i_j$ will contain a subset of the atomic concepts
+            from our universe: $c^i_j \subseteq \mathcal{U}$.
+            To maintain disjoint class definitions, we ensure that $c^i_j \cap c^i_k = \emptyset$ for all $j \neq k$.
 \end{itemize}
 
 \subsection{Randomized Domain Generation}
@@ -226,25 +226,25 @@ This allows us to generate domains with varying sizes and complexities, mimickin
 We sample the number of classes per domain and the number of concepts per class from truncated normal distributions to ensure realistic variation while maintaining control. Since normal distributions are unbounded, we use a truncated version:
 
 \begin{equation*}
-    f(x|\mu, \sigma, a, b) =
-    \begin{cases}
-        \frac{\phi\left(\frac{x-\mu}{\sigma}\right)}{\sigma\left[\Phi\left(\frac{b-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)\right]} & \text{if } a \leq x \leq b \\
-        0                                                                                                                                              & \text{otherwise}
-    \end{cases}
+      f(x|\mu, \sigma, a, b) =
+      \begin{cases}
+            \frac{\phi\left(\frac{x-\mu}{\sigma}\right)}{\sigma\left[\Phi\left(\frac{b-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)\right]} & \text{if } a \leq x \leq b \\
+            0                                                                                                                                              & \text{otherwise}
+      \end{cases}
 \end{equation*}
 
 Where:
 \begin{itemize}
-    \item $\phi$ is the standard normal PDF
-    \item $\Phi$ is the standard normal CDF
-    \item $a$ and $b$ are lower and upper bounds
+      \item $\phi$ is the standard normal PDF
+      \item $\Phi$ is the standard normal CDF
+      \item $a$ and $b$ are lower and upper bounds
 \end{itemize}
 
 We implement this using SciPy's \texttt{truncnorm} module\footnote{\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.truncnorm.html}},
 handling SciPy's standardization of bounds internally:
 
 \begin{equation*}
-    X \sim \text{TruncNorm}(\mu, \sigma^2, a, b)
+      X \sim \text{TruncNorm}(\mu, \sigma^2, a, b)
 \end{equation*}
 
 \subsubsection{Domain Generation Algorithm}
@@ -252,31 +252,31 @@ handling SciPy's standardization of bounds internally:
 To generate a domain $C_i$, we follow these steps:
 
 \begin{enumerate}
-    \item \textbf{Sample set size}: Determine how many concepts $l$ to use for the domain:
-          \begin{equation*}
-              l \sim \lfloor\text{TruncNorm}(\mu_{\text{concepts}}, \sigma^2_{\text{concepts}}, 1, n)\rceil
-          \end{equation*}
+      \item \textbf{Sample set size}: Determine how many concepts $l$ to use for the domain:
+            \begin{equation*}
+                  l \sim \lfloor\text{TruncNorm}(\mu_{\text{concepts}}, \sigma^2_{\text{concepts}}, 1, n)\rceil
+            \end{equation*}
 
-    \item \textbf{Sample concept pool}: Randomly select $l$ concepts from the universe $\mathcal{U}$:
-          \begin{align*}
-              P = \{a, b, c, \ldots\} \quad \text{where } a, b, c, \ldots \text{ are sampled without replacement from } \mathcal{U}
-          \end{align*}
+      \item \textbf{Sample concept pool}: Randomly select $l$ concepts from the universe $\mathcal{U}$:
+            \begin{align*}
+                  P = \{a, b, c, \ldots\} \quad \text{where } a, b, c, \ldots \text{ are sampled without replacement from } \mathcal{U}
+            \end{align*}
 
-    \item \textbf{Initialise domain}: $C_i = \{\}$
+      \item \textbf{Initialise domain}: $C_i = \{\}$
 
-    \item \textbf{Generate classes}: While concepts remain in the pool ($P \neq \emptyset$):
-          \begin{enumerate}
-              \item Sample class size $s_j$:
-                    \begin{equation*}
-                        s_j \sim \lfloor\text{TruncNorm}(\mu_{\text{classes}}, \sigma^2_{\text{classes}}, 1, |P|)\rceil
-                    \end{equation*}
+      \item \textbf{Generate classes}: While concepts remain in the pool ($P \neq \emptyset$):
+            \begin{enumerate}
+                  \item Sample class size $s_j$:
+                        \begin{equation*}
+                              s_j \sim \lfloor\text{TruncNorm}(\mu_{\text{classes}}, \sigma^2_{\text{classes}}, 1, |P|)\rceil
+                        \end{equation*}
 
-              \item Form class $c^i_j$ by selecting $s_j$ concepts randomly from $P$
+                  \item Form class $c^i_j$ by selecting $s_j$ concepts randomly from $P$
 
-              \item Remove selected concepts: $P = P \setminus c_j^i$
+                  \item Remove selected concepts: $P = P \setminus c_j^i$
 
-              \item Add class to domain: $C_i = C_i \cup \{c^i_j\}$
-          \end{enumerate}
+                  \item Add class to domain: $C_i = C_i \cup \{c^i_j\}$
+            \end{enumerate}
 \end{enumerate}
 
 This algorithm ensures that each concept is assigned to exactly one class within the domain, maintaining our disjointness constraint.
@@ -294,36 +294,36 @@ Our taxonomy generation method assumes that neural network classifiers will pred
 For any two domains $C_A$ and $C_B$, we calculate the probability of classifying an instance of class $c^A_i$ as class $c^B_j$ using:
 
 \begin{equation}
-    \begin{aligned}
-        \text{NaiveProbability}(i, j) & = \frac{|c^A_i \cap c^B_j|}{|c^A_i|}                                              \\
-        P_{i,j}                       & = \text{NaiveProbability}(i, j) + \frac{1 - \text{NaiveProbability}(i, j)}{|C_B|}
-    \end{aligned}
+      \begin{aligned}
+            \text{NaiveProbability}(i, j) & = \frac{|c^A_i \cap c^B_j|}{|c^A_i|}                                              \\
+            P_{i,j}                       & = \text{NaiveProbability}(i, j) + \frac{1 - \text{NaiveProbability}(i, j)}{|C_B|}
+      \end{aligned}
 \end{equation}
 
 Where:
 \begin{itemize}
-    \item $\text{NaiveProbability}(i, j)$ is the proportion of concepts in class $c_i^A$ that also appear in class $c_j^B$
-    \item The second term distributes remaining probability mass evenly across all classes in domain $C_B$, simulating the behavior of a neural network when encountering concepts it hasn't seen before
+      \item $\text{NaiveProbability}(i, j)$ is the proportion of concepts in class $c_i^A$ that also appear in class $c_j^B$
+      \item The second term distributes remaining probability mass evenly across all classes in domain $C_B$, simulating the behavior of a neural network when encountering concepts it hasn't seen before
 \end{itemize}
 
 \subsubsection{A Concrete Example}
 
 To illustrate this approach, consider two domains:
 \begin{itemize}
-    \item Domain A: $C_A = \{c^A_1=\{1,2\}, c^A_2=\{3,4\}\}$
-    \item Domain B: $C_B = \{c^B_1=\{1,2,4\}, c^B_2=\{5,6\}\}$
+      \item Domain A: $C_A = \{c^A_1=\{1,2\}, c^A_2=\{3,4\}\}$
+      \item Domain B: $C_B = \{c^B_1=\{1,2,4\}, c^B_2=\{5,6\}\}$
 \end{itemize}
 
 For the relationship $c^A_1 \rightarrow c^B_1$:
 \begin{itemize}
-    \item $\text{NaiveProbability}(1,1) = \frac{|\{1,2\} \cap \{1,2,4\}|}{|\{1,2\}|} = \frac{2}{2} = 1$
-    \item $P_{1,1} = 1 + \frac{1-1}{2} = 1$
+      \item $\text{NaiveProbability}(1,1) = \frac{|\{1,2\} \cap \{1,2,4\}|}{|\{1,2\}|} = \frac{2}{2} = 1$
+      \item $P_{1,1} = 1 + \frac{1-1}{2} = 1$
 \end{itemize}
 
 For the relationship $c^A_2 \rightarrow c^B_1$:
 \begin{itemize}
-    \item $\text{NaiveProbability}(2,1) = \frac{|\{3,4\} \cap \{1,2,4\}|}{|\{3,4\}|} = \frac{1}{2} = 0.5$
-    \item $P_{2,1} = 0.5 + \frac{1-0.5}{2} = 0.5 + 0.25 = 0.75$
+      \item $\text{NaiveProbability}(2,1) = \frac{|\{3,4\} \cap \{1,2,4\}|}{|\{3,4\}|} = \frac{1}{2} = 0.5$
+      \item $P_{2,1} = 0.5 + \frac{1-0.5}{2} = 0.5 + 0.25 = 0.75$
 \end{itemize}
 
 This example shows how our framework captures partial relationships between classes
@@ -347,39 +347,39 @@ that merges classes from different datasets into universal classes where they sh
 \subsection{Taxonomy Building Rules}
 
 \begin{enumerate}
-    \item \textbf{Isolated Node Rule}: For any domain class A that has no relationships
-          (neither incoming nor outgoing edges), create a new universal class B
-          and add the relationship $A \rightarrow B$.
-          We also define the probability of the relationship's edge as 1 and
-          the classes of the universal class as $\{A\}$.
+      \item \textbf{Isolated Node Rule}: For any domain class A that has no relationships
+            (neither incoming nor outgoing edges), create a new universal class B
+            and add the relationship $A \rightarrow B$.
+            We also define the probability of the relationship's edge as 1 and
+            the classes of the universal class as $\{A\}$.
 
-          This ensures that all domain classes without relationships (which can be created by later rules)
-          are still represented in the universal taxonomy.
+            This ensures that all domain classes without relationships (which can be created by later rules)
+            are still represented in the universal taxonomy.
 
-    \item \textbf{Bidirectional Relationship Rule}: When two classes have bidirectional relationships
-          (A $\rightarrow$ B and B $\rightarrow$ A), they likely represent the same concept.
-          We resolve this by creating a new universal class C and adding relationships
-          $A \rightarrow C$ and $B \rightarrow C$ to the graph.
-          The probability of the new relationships is set to the average of the bidirectional relationships and the classes of the universal class
-          will be the two classes that were merged (or, if the two classes are universal classes themselves,
-          the union of their classes).
+      \item \textbf{Bidirectional Relationship Rule}: When two classes have bidirectional relationships
+            (A $\rightarrow$ B and B $\rightarrow$ A), they likely represent the same concept.
+            We resolve this by creating a new universal class C and adding relationships
+            $A \rightarrow C$ and $B \rightarrow C$ to the graph.
+            The probability of the new relationships is set to the average of the bidirectional relationships and the classes of the universal class
+            will be the two classes that were merged (or, if the two classes are universal classes themselves,
+            the union of their classes).
 
-    \item \textbf{Transitive Cycle Rule}: If we have relationships A $\rightarrow$ B $\rightarrow$ C
-          where A and C are in the same domain, we have a problem since classes within a domain
-          are disjoint, which means that one of the relationships must be incorrect.
-          We solve this by removing the relationship with the lower probability,
-          thus breaking the cycle.
+      \item \textbf{Transitive Cycle Rule}: If we have relationships A $\rightarrow$ B $\rightarrow$ C
+            where A and C are in the same domain, we have a problem since classes within a domain
+            are disjoint, which means that one of the relationships must be incorrect.
+            We solve this by removing the relationship with the lower probability,
+            thus breaking the cycle.
 
-    \item \textbf{Unilateral Relationship Rule}: A uniliteral relationship
-          A $\rightarrow$ B indicates that the concepts of class A are a subset of the concepts of class B.
-          We therefore create two new universal classes:
-          \begin{itemize}
-              \item Class C, which contains both classes A and B and has incoming relationships
-                    from both classes with the probability of the uniliteral relationship.
-                    This universal class represents the union of the two classes.
-              \item Class D, which contains only class B and has a relationship from class B with a probability 1.
-                    This universal class represents the concepts of class B that are not in class A.
-          \end{itemize}
+      \item \textbf{Unilateral Relationship Rule}: A uniliteral relationship
+            A $\rightarrow$ B indicates that the concepts of class A are a subset of the concepts of class B.
+            We therefore create two new universal classes:
+            \begin{itemize}
+                  \item Class C, which contains both classes A and B and has incoming relationships
+                        from both classes with the probability of the uniliteral relationship.
+                        This universal class represents the union of the two classes.
+                  \item Class D, which contains only class B and has a relationship from class B with a probability 1.
+                        This universal class represents the concepts of class B that are not in class A.
+            \end{itemize}
 \end{enumerate}
 
 \subsection{Difference to algorithm of Bevandic et al.}
@@ -396,9 +396,9 @@ Their algorithm operates on the principle that semantic classes can be viewed as
 and uses three resolution rules to handle overlaps between classes from different datasets:
 
 \begin{enumerate}
-    \item \textbf{Exact Match Rule}: If two classes match exactly across datasets, they are merged into a single universal class.
-    \item \textbf{Subset/Superset Rule}: If one class is a subset of another, the superset is decomposed into the subset plus a remainder class.
-    \item \textbf{Partial Overlap Rule}: If two classes partially overlap, they are split into three disjoint classes: the intersection, and the two remainders.
+      \item \textbf{Exact Match Rule}: If two classes match exactly across datasets, they are merged into a single universal class.
+      \item \textbf{Subset/Superset Rule}: If one class is a subset of another, the superset is decomposed into the subset plus a remainder class.
+      \item \textbf{Partial Overlap Rule}: If two classes partially overlap, they are split into three disjoint classes: the intersection, and the two remainders.
 \end{enumerate}
 
 The algorithm iteratively applies these rules until all classes in the multiset are disjoint,
@@ -409,27 +409,27 @@ creating a flat universal taxonomy that encompasses the entire semantic range of
 Our approach adapts their methodology for image classification with several key modifications:
 
 \begin{itemize}
-    \item \textbf{Classification vs. Segmentation}: While Bevandic et al. focused on pixel-level prediction for semantic segmentation,
-          our method addresses image-level classification where each image has a single label from each dataset.
+      \item \textbf{Classification vs. Segmentation}: While Bevandic et al. focused on pixel-level prediction for semantic segmentation,
+            our method addresses image-level classification where each image has a single label from each dataset.
 
-    \item \textbf{Probabilistic Relationships}: Instead of binary relationships between classes,
-          we derive probabilities from the cross-domain predictions of our neural networks.
-          This allows us to not only evaluate the quantity of relationships but also their quality
-          e.g. useability for later classification tasks.
+      \item \textbf{Probabilistic Relationships}: Instead of binary relationships between classes,
+            we derive probabilities from the cross-domain predictions of our neural networks.
+            This allows us to not only evaluate the quantity of relationships but also their quality
+            e.g. useability for later classification tasks.
 
-    \item \textbf{Flexible Relationship Selection}: We introduce multiple methods for selecting relevant relationships from probability matrices (naive thresholding, most common predictions, density thresholding, relationship hypothesis)
-          and try to evaluate their performance on a synthetic ground truth.
+      \item \textbf{Flexible Relationship Selection}: We introduce multiple methods for selecting relevant relationships from probability matrices (naive thresholding, most common predictions, density thresholding, relationship hypothesis)
+            and try to evaluate their performance on a synthetic ground truth.
 
-    \item \textbf{Simplified Taxonomy Rules}: Our taxonomy building rules are adapted for the graph structure and focus on four main cases: isolated nodes, bidirectional relationships, transitive cycles, and unilateral relationships.
-          They are very similar to the original rules, but simplified for our use case.
-          For example, we do not need to handle the case of partial overlaps since we do not have pixel-level predictions.
+      \item \textbf{Simplified Taxonomy Rules}: Our taxonomy building rules are adapted for the graph structure and focus on four main cases: isolated nodes, bidirectional relationships, transitive cycles, and unilateral relationships.
+            They are very similar to the original rules, but simplified for our use case.
+            For example, we do not need to handle the case of partial overlaps since we do not have pixel-level predictions.
 
-    \item \textbf{Multi-domain Extension}: While the Bevandic et al. algorithm was designed for two datasets
-          (and later iteratively adding more datasets),
-          we directly support a multi-domain setting by constructing a single graph
-          that captures relationships across all datasets.
-          This allows us to build a universal taxonomy that connects multiple datasets in one go,
-          rather than iteratively merging them.
+      \item \textbf{Multi-domain Extension}: While the Bevandic et al. algorithm was designed for two datasets
+            (and later iteratively adding more datasets),
+            we directly support a multi-domain setting by constructing a single graph
+            that captures relationships across all datasets.
+            This allows us to build a universal taxonomy that connects multiple datasets in one go,
+            rather than iteratively merging them.
 \end{itemize}
 
 These modifications allow our algorithm to work effectively in the image classification domain
@@ -441,15 +441,15 @@ Now that we have methods for generating a ground truth synthetic taxonomy,
 we need to define metrics to compare the predicted taxonomy against the ground truth.
 Comparison can happen at two points in our pipeline:
 \begin{itemize}
-    \item \textbf{Universal Taxonomy Comparison}: Comparing the predicted universal taxonomy against the ground truth universal taxonomy.
-          This is done after applying our universal taxonomy generation algorithm
-          and allows us to evaluate the quality of the final taxonomy.
-          However, the algorithm might change the scale of differences between our predicted and ground truth taxonomies
-          (e.g. a unilateral vs. bidirectional relationship would be a small difference before the algorithm,
-          but would result in a subset hypothesis with two universal classes vs. one universal class after the algorithm).
-    \item \textbf{Relationship Graph Comparison}: Comparing the predicted graph of relationships between classes against the ground truth graph.
-          This is done before converting the relationship graph into a universal taxonomy
-          and allows us to evaluate the quality of the relationships between classes.
+      \item \textbf{Universal Taxonomy Comparison}: Comparing the predicted universal taxonomy against the ground truth universal taxonomy.
+            This is done after applying our universal taxonomy generation algorithm
+            and allows us to evaluate the quality of the final taxonomy.
+            However, the algorithm might change the scale of differences between our predicted and ground truth taxonomies
+            (e.g. a unilateral vs. bidirectional relationship would be a small difference before the algorithm,
+            but would result in a subset hypothesis with two universal classes vs. one universal class after the algorithm).
+      \item \textbf{Relationship Graph Comparison}: Comparing the predicted graph of relationships between classes against the ground truth graph.
+            This is done before converting the relationship graph into a universal taxonomy
+            and allows us to evaluate the quality of the relationships between classes.
 \end{itemize}
 
 \subsection{Constructing Adjacency Matrices}
@@ -476,7 +476,7 @@ For two adjacency matrices $A_1$ and $A_2$ of graphs $G_1$ and $G_2$,
 we define the edge difference ratio as follows:
 
 \begin{equation}
-    \text{EDR}(G_1, G_2) = \frac{\sum_{i,j} |A_1(i,j) - A_2(i,j)|}{\sum_{i,j} \max(A_1(i,j), A_2(i,j))}
+      \text{EDR}(G_1, G_2) = \frac{\sum_{i,j} |A_1(i,j) - A_2(i,j)|}{\sum_{i,j} \max(A_1(i,j), A_2(i,j))}
 \end{equation}
 
 This definition captures the difference in edge weights between the two graphs,
@@ -503,15 +503,21 @@ where $B_1(i,j) = 1$ if $A_1(i,j) > 0$ and $B_2(i,j) = 1$ if $A_2(i,j) > 0$.
 Next, we compute the true positives, false positives, and false negatives as follows:
 
 \begin{itemize}
-    \item \textbf{True Positives (TP)}: The number of edges that are present in both $B_1$ and $B_2$.
-    \item \textbf{False Positives (FP)}: The number of edges that are present in $B_1$ but not in $B_2$.
-    \item \textbf{False Negatives (FN)}: The number of edges that are present in $B_2$ but not in $B_1$.
+      \item \textbf{True Positives (TP)}: The number of edges that are present in both $B_1$ and $B_2$.
+      \item \textbf{False Positives (FP)}: The number of edges that are present in $B_1$ but not in $B_2$.
+      \item \textbf{False Negatives (FN)}: The number of edges that are present in $B_2$ but not in $B_1$.
 \end{itemize}
 
 Using these counts, we can then compute the precision, recall, and F1 score as follows:
 
 \begin{itemize}
-    \item \textbf{Precision}: The ratio of true positives to the sum of true positives and false positives.
-    \item \textbf{Recall}: The ratio of true positives to the sum of true positives and false negatives.
-    \item \textbf{F1 Score}: The harmonic mean of precision and recall.
+      \item \textbf{Precision}: The ratio of true positives to the sum of true positives and false positives.
+      \item \textbf{Recall}: The ratio of true positives to the sum of true positives and false negatives.
+      \item \textbf{F1 Score}: The harmonic mean of precision and recall.
 \end{itemize}
+
+
+\subsection{Universal Model Learning}
+
+% TODO Explain creation of mapping matrix from taxonomy
+% TODO Explain learning function for universal model

@@ -413,7 +413,7 @@ To verify or disprove our findings, we will try to create new, more realistic gr
             and therefore create a more \enquote{difficult} dataset for our methods.
 \end{itemize}
 
-\subsubsection{Alternate Evaluation Methods - WordNet Synsets}
+\subsubsection{Alternate Evaluation Methods - WordNet Synsets} \label{sec:wordnet_synsets}
 
 We test the usage of WordNet Synsets on the Caltech-101 and Caltech-256 datasets to build a relationship graph.
 It can be observed that the relationship weights (Wu \& Palmer similarity scores) are very high (ranging between 0.8 and 1.0),
@@ -581,9 +581,7 @@ depends on the individual composition of the datasets.
 \section{Universal Models}
 
 % TODO Write about modified custom architecture
-% TODO Explain custom loss function and prediction layer
-% TODO Write about matrix calculation
 % TODO Create baseline model with same modified architecture but without taxonomy layer to verify results
-% TODO Compare universal taxonomy model with baseline domain models
-% TODO Which relationship selection method performs best?
+% TODO Train with the top relationship selection methods and compare their universal model accuracies
+% TODO Compare best universal taxonomy model with baseline domain models
 % TODO Can we derive which metric (EDR, F1, Precision) is most important?
