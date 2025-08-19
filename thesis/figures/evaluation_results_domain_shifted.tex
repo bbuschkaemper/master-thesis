@@ -1,13 +1,20 @@
 \begin{table}[ht]
 \centering
-\caption{Evaluation results on test sets for domain-shifted variant. Models were checkpointed after every epoch and evaluated on the validation loss. The model with the lowest validation loss was selected for evaluation on the test set.}
+\caption{Evaluation results on test sets for domain-shifted experiments. Models were trained with different domain shift transformations and checkpointed after every epoch. The model with the lowest validation loss was selected for evaluation on the test set.}
 \label{tab:evaluation_results_domain_shifted}
 \begin{tabular}{cccc}
 \toprule
 Dataset Variant & Domain & Steps & Accuracy \\
 \midrule
-Caltech-256 2-Domain Variant Domain Shifted & A & 14450 & 0.713 \\
-Caltech-256 2-Domain Variant Domain Shifted & B & 14700 & 0.738 \\
+Caltech-256 2-Domain Domain Shifted Variant 1 & A & 13800 & 0.72 \\
+Caltech-256 2-Domain Domain Shifted Variant 1 & B & 13050 & 0.76 \\
+Caltech-256 2-Domain Domain Shifted Variant 2 & A & 14450 & 0.70 \\
+Caltech-256 2-Domain Domain Shifted Variant 2 & B & 14700 & 0.75 \\
+Caltech-256 3-Domain Domain Shifted Variant & A & 13800 & 0.70 \\
+Caltech-256 3-Domain Domain Shifted Variant & B & 13750 & 0.75 \\
+Caltech-256 3-Domain Domain Shifted Variant & C & 12350 & 0.74 \\
+CIFAR-100 2-Domain Domain Shifted Variant & A & 8200 & 0.57 \\
+CIFAR-100 2-Domain Domain Shifted Variant & B & 7900 & 0.63 \\
 \bottomrule
 \end{tabular}
 \end{table}

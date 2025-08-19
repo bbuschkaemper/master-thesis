@@ -1,0 +1,30 @@
+\begin{table}[ht]
+\centering
+\caption{Best EDR results for relationship discovery methods on domain-shifted experiments. For each dataset variant and method, the parameter values that yielded the lowest Edge Difference Ratio (EDR) are shown along with the corresponding F1-score.}
+\label{tab:relationship_methods_best_edr_domain_shifted}
+\begin{tabular}{llccc}
+\toprule
+Dataset Variant & Method & EDR & F1-score & Parameter \\
+\midrule
+Caltech-256 2-Domain Domain Shifted Variant 1 & MCFP & 0.722 & 0.500 & N/A \\
+Caltech-256 2-Domain Domain Shifted Variant 1 & Naive Thresholding & \textbf{0.593} & \textbf{0.690} & 0.10 \\
+Caltech-256 2-Domain Domain Shifted Variant 1 & Density Thresholding & 0.627 & 0.573 & 0.55 \\
+Caltech-256 2-Domain Domain Shifted Variant 1 & Relationship Hypothesis & 0.604 & 0.674 & 4 \\
+\hline
+Caltech-256 2-Domain Domain Shifted Variant 2 & MCFP & 0.873 & 0.261 & N/A \\
+Caltech-256 2-Domain Domain Shifted Variant 2 & Naive Thresholding & 0.851 & 0.307 & 0.15 \\
+Caltech-256 2-Domain Domain Shifted Variant 2 & Density Thresholding & \textbf{0.846} & \textbf{0.325} & 0.60 \\
+Caltech-256 2-Domain Domain Shifted Variant 2 & Relationship Hypothesis & 0.849 & 0.323 & 4 \\
+\hline
+Caltech-256 3-Domain Domain Shifted Variant & MCFP & 0.859 & 0.256 & N/A \\
+Caltech-256 3-Domain Domain Shifted Variant & Naive Thresholding & \textbf{0.700} & \textbf{0.554} & 0.05 \\
+Caltech-256 3-Domain Domain Shifted Variant & Density Thresholding & 0.707 & 0.527 & 0.75 \\
+Caltech-256 3-Domain Domain Shifted Variant & Relationship Hypothesis & 0.710 & 0.552 & 6 \\
+\hline
+CIFAR-100 2-Domain Domain Shifted Variant & MCFP & 0.912 & 0.205 & N/A \\
+CIFAR-100 2-Domain Domain Shifted Variant & Naive Thresholding & 0.874 & 0.253 & 0.20 \\
+CIFAR-100 2-Domain Domain Shifted Variant & Density Thresholding & 0.871 & 0.309 & 0.50 \\
+CIFAR-100 2-Domain Domain Shifted Variant & Relationship Hypothesis & \textbf{0.834} & \textbf{0.323} & 4 \\
+\bottomrule
+\end{tabular}
+\end{table}

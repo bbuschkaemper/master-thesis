@@ -1,0 +1,15 @@
+\begin{table}[ht]
+\centering
+\caption{Average performance metrics for relationship discovery methods with globally optimal parameters on domain-shifted experiments. Each method uses the parameter value that minimizes the average EDR across all domain-shifted dataset variants. Performance metrics are then averaged across all dataset variants using these optimal parameters.}
+\label{tab:relationship_methods_global_optimal_domain_shifted}
+\begin{tabular}{lccccc}
+\toprule
+Method & Parameter & EDR & Precision & Recall & F1-score \\
+\midrule
+MCFP & N/A & 0.842 & \textbf{0.490} & 0.226 & 0.305 \\
+Naive Thresholding & 0.10 & 0.761 & 0.418 & 0.519 & \textbf{0.450} \\
+Density Thresholding & 0.60 & 0.766 & 0.349 & \textbf{0.582} & 0.426 \\
+Relationship Hypothesis & 5 & \textbf{0.759} & 0.390 & 0.543 & 0.444 \\
+\bottomrule
+\end{tabular}
+\end{table}
