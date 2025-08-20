@@ -1,6 +1,6 @@
 \chapter{Results}
 
-\section{Domain-Model Training}
+\section{Domain Models}
 
 \subsection{Datasets}
 
@@ -32,7 +32,7 @@ we first need a set of datasets that we can use to train and evaluate our domain
             how well our methods perform for different challenges.
 \end{itemize}
 
-\subsection{Training Domain Models}
+\subsection{Training}
 
 \subsubsection{Model Architecture}
 
@@ -601,10 +601,35 @@ depends on the individual composition of the datasets.
 
 \section{Universal Models} \label{sec:universal_models}
 
-\subsection{Universal Model Architecture}
+\subsection{Training}
 
-% TODO Write about modified custom architecture
-% TODO Create baseline model with same modified architecture but without taxonomy layer to verify results
+\subsubsection{Modifications to Baseline Architecture}
+
+Building upon the ResNet-50 architecture used for the individual domain models, we developed a \texttt{UniversalResNetModel} that incorporates several key modifications to enable multi-domain training through our universal taxonomy approach.
+
+The most significant architectural change is the replacement of the standard classification head. While the baseline \texttt{ResNetModel} uses a multi-layer fully connected classifier with dropout regularization that outputs logits for domain-specific classes, the \texttt{UniversalResNetModel} employs a simplified two-layer fully connected head that outputs logits for universal classes:
+
+\begin{itemize}
+      \item \textbf{Baseline classifier}: A 6-layer fully connected network with dropout (0.5, 0.2, 0.2, 0.2, 0.2) that progressively reduces dimensionality from ResNet features $\rightarrow$ 1024 $\rightarrow$ 512 $\rightarrow$ 256 $\rightarrow$ 128 $\rightarrow$ domain classes
+      \item \textbf{Universal classifier}: A 2-layer fully connected network (ResNet features $\rightarrow$ 1024 $\rightarrow$ universal classes) without dropout regularization
+\end{itemize}
+
+The simplified architecture proved to be more effective in training runs vs. the more complex hopper + dropout architecture used in the baseline models.
+
+Another crucial modification is the loss function:
+The baseline models use standard cross-entropy loss with one-hot encoded targets,
+while the universal model employs Kullback-Leibler (KL) divergence loss with probability distribution targets.
+This change accommodates the fact that domain classes may map to multiple universal classes with different weights, as determined by the taxonomy relationships
+(full explanation in Section~\ref{sec:universal_model_learning}).
+
+\subsubsection{Multi-Domain Training Procedure}
+
+Instead of training separate models on individual datasets, we create a new combined dataset that merges multiple datasets while preserving domain identity.
+Each training sample is augmented with a domain identifier, transforming the standard $(image, label)$ pairs into $(image, (domain\_id, label))$ tuples.
+This allows the model to handle samples from different datasets within the same batch
+(since we need to know the image domain to apply the correct target mapping).
+
+
 % TODO Train with the top relationship selection methods and compare their universal model accuracies
 % TODO Compare best universal taxonomy model with baseline domain models
 % TODO Create universal model for cifar100-caltech256 also

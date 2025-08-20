@@ -37,9 +37,9 @@
 \contentsline {paragraph}{\nonumberline Loss Function}{18}{paragraph*.33}%
 \contentsline {paragraph}{\nonumberline Inference and Evaluation}{18}{paragraph*.35}%
 \contentsline {chapter}{\numberline {4}Results}{19}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Domain-Model Training}{19}{section.4.1}%
+\contentsline {section}{\numberline {4.1}Domain Models}{19}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Datasets}{19}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Training Domain Models}{20}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.2}Training}{20}{subsection.4.1.2}%
 \contentsline {subsubsection}{\nonumberline Model Architecture}{20}{subsubsection*.37}%
 \contentsline {subsubsection}{\nonumberline Training Procedure}{20}{subsubsection*.40}%
 \contentsline {subsection}{\numberline {4.1.3}Model Performance}{21}{subsection.4.1.3}%
@@ -54,8 +54,10 @@
 \contentsline {subsubsection}{\nonumberline Alternate Evaluation Methods - Domain-Shift Synthetic Datasets}{29}{subsubsection*.65}%
 \contentsline {subsection}{\numberline {4.2.2}Universal Taxonomy Generation}{30}{subsection.4.2.2}%
 \contentsline {section}{\numberline {4.3}Universal Models}{31}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Universal Model Architecture}{31}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.1}Training}{31}{subsection.4.3.1}%
+\contentsline {subsubsection}{\nonumberline Modifications to Baseline Architecture}{31}{subsubsection*.73}%
+\contentsline {subsubsection}{\nonumberline Multi-Domain Training Procedure}{32}{subsubsection*.75}%
 \contentsline {chapter}{\numberline {5}Discussion}{39}{chapter.5}%
 \contentsline {chapter}{\numberline {6}Conclusion}{41}{chapter.6}%
-\contentsline {chapter}{\nonumberline Bibliography}{43}{chapter*.72}%
+\contentsline {chapter}{\nonumberline Bibliography}{43}{chapter*.76}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

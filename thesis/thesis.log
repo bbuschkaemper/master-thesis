@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  20 AUG 2025 11:06
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  20 AUG 2025 11:31
  system commands enabled.
  file:line:error style messages enabled.
 **/home/bjoern/dev/master-thesis/thesis/thesis.tex
@@ -1814,17 +1814,22 @@ File: figures/bad_taxonomy.png Graphic file (type png)
 <use figures/bad_taxonomy.png>
 Package luatex.def Info: figures/bad_taxonomy.png  used on input line 557.
 (luatex.def)             Requested size: 139.42094pt x 131.35115pt.
-[30]) [31] [32<./figures/caltech256_2domain.png><./figures/caltech256_2domain_variant.png><./figures/caltech256_3domain.png><./figures/cifar100_2domain.png>] [33] [34<./figures/naive_threshold_method_precision_recall-img0.png><./figures/naive_threshold_method_precision_recall-img1.png><./figures/naive_threshold_method_precision_recall-img2.png><./figures/naive_threshold_method_precision_recall-img3.png>] [35<./figures/density_threshold_method_precision_recall-img0.png><./figures/density_threshold_method_precision_recall-img1.png><./figures/density_threshold_method_precision_recall-img2.png><./figures/density_threshold_method_precision_recall-img3.png><./figures/hypothesis_method_precision_recall-img0.png><./figures/hypothesis_method_precision_recall-img1.png><./figures/hypothesis_method_precision_recall-img2.png><./figures/hypothesis_method_precision_recall-img3.png>] [36<./figures/wordnet.png><./figures/svhn_mnist.png><./figures/domain_shift_visualization.png>] [37<./figures/taxonomy.png><./figures/wheel_concept.png><./figures/bad_taxonomy.png>]
+[30] [31]
+Overfull \hbox (38.8582pt too wide) in paragraph at lines 627--631
+\TU/EBGaramond(0)/m/n/10.95 with a do-main iden-ti-fier, trans-form-ing the stan-dard $\TU/GaramondMath(1)/m/n/10.95 (𝑖𝑚𝑎𝑔𝑒, 𝑙𝑎𝑏𝑒𝑙)$ \TU/EBGaramond(0)/m/n/10.95 pairs into $\TU/GaramondMath(1)/m/n/10.95 (𝑖𝑚𝑎𝑔𝑒, (𝑑𝑜𝑚𝑎𝑖𝑛[]𝑖𝑑, 𝑙𝑎𝑏𝑒𝑙))$
+ []
+
+) [32] [33<./figures/caltech256_2domain.png><./figures/caltech256_2domain_variant.png><./figures/caltech256_3domain.png><./figures/cifar100_2domain.png>] [34] [35<./figures/naive_threshold_method_precision_recall-img0.png><./figures/naive_threshold_method_precision_recall-img1.png><./figures/naive_threshold_method_precision_recall-img2.png><./figures/naive_threshold_method_precision_recall-img3.png>] [36<./figures/density_threshold_method_precision_recall-img0.png><./figures/density_threshold_method_precision_recall-img1.png><./figures/density_threshold_method_precision_recall-img2.png><./figures/density_threshold_method_precision_recall-img3.png><./figures/hypothesis_method_precision_recall-img0.png><./figures/hypothesis_method_precision_recall-img1.png><./figures/hypothesis_method_precision_recall-img2.png><./figures/hypothesis_method_precision_recall-img3.png>] [37<./figures/wordnet.png><./figures/svhn_mnist.png><./figures/domain_shift_visualization.png>] [38<./figures/taxonomy.png><./figures/wheel_concept.png><./figures/bad_taxonomy.png>]
 \openout2 = sources/discussion.aux
- (./sources/discussion.tex [38
+ (./sources/discussion.tex
+chapter 5.
+) [39
 
 
 
 
 
 ]
-chapter 5.
-) [39]
 \openout2 = sources/conclusion.aux
  (./sources/conclusion.tex [40
 
@@ -1905,19 +1910,19 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 51320 strings out of 476553
- 381499,2848258 words of node,token memory allocated
+ 51325 strings out of 476553
+ 381512,2848258 words of node,token memory allocated
  1149 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 glyph, 107 attribute, 93 glue_spec, 55 attribute_list, 2 write, 20 pdf_action nodes
-   avail lists: 1:13,2:60164,3:22784,4:979,5:871,6:188,7:15113,8:136,9:2533,10:15,11:976
- 71818 multiletter control sequences out of 65536+600000
- 150 fonts using 76964171 bytes
+   avail lists: 1:12,2:60164,3:22784,4:979,5:872,6:189,7:15113,8:136,9:2533,10:15,11:976
+ 71819 multiletter control sequences out of 65536+600000
+ 150 fonts using 76964011 bytes
  122i,20n,120p,10939b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf>
-Output written on thesis.pdf (52 pages, 7948510 bytes).
+Output written on thesis.pdf (52 pages, 7951897 bytes).
 
-PDF statistics: 879 PDF objects out of 1000 (max. 8388607)
- 741 compressed objects within 8 object streams
- 239 named destinations out of 1000 (max. 131072)
+PDF statistics: 885 PDF objects out of 1000 (max. 8388607)
+ 747 compressed objects within 8 object streams
+ 243 named destinations out of 1000 (max. 131072)
  280 words of extra memory for PDF output out of 10000 (max. 100000000)
 
