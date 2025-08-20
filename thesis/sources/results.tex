@@ -504,10 +504,31 @@ synthetically changing their visual characteristics
 while retaining the same classes and relationships.
 
 \input{figures/evaluation_results_domain_shifted.tex}
-\input{figures/relationship_methods_domain_shifted_results.tex}
+\input{figures/relationship_methods_global_optimal_domain_shifted.tex}
 
-% TODO Use the new table with results averaged and training for all taxonomies
-% TODO Observation: We can observe large cluster buildings like with the real taxonomies (did this also happen in the normal synthetic variants?)
+The training performance of these new domain-shifted models can be seen in Table~\ref{tab:evaluation_results_domain_shifted}.
+We can observe a $10\%$ decrease in accuracy on the test data compared to the original synthetic dataset variants.
+This was to be expected due to the increased complexity of the domain-shifted tasks.
+
+When comparing the new averaged relationship method evaluation results in Table~\ref{tab:relationship_methods_global_optimal_domain_shifted}
+to our original non-domain-shifted results in Table~\ref{tab:relationship_methods_global_optimal},
+we can observe significant differences:
+
+\begin{itemize}
+      \item Our new best performing relationship selection method,
+            based on averaged maximum EDR scores, changes from MCFP to the relationship hypothesis method.
+      \item In general, all methods have a lower EDR score than their non-domain-shifted counterparts.
+            This is a direct result of the decreased domain model accuracy and was to be expected.
+      \item The MCFP method still has the highest relative precision with $0.49$.
+            If precision is more important than EDR for a high universal model accuracy
+            will be evaluated in the universal model training section (see Section~\ref{sec:universal_models}).
+\end{itemize}
+
+We will use the most promising relationship selection methods,
+MCFP and relationship hypothesis, for our universal model training.
+Our final evaluation will focus on the model accuracy of the trained universal Models
+built with the universal taxonomies of the two preselected relationship selection methods
+(using the selection method parameters that have the best EDR score).
 
 \subsection{Universal Taxonomy Generation}
 
@@ -578,10 +599,15 @@ Addressing these issues is a complex task, since a suitable threshold for the re
 depends on the individual composition of the datasets.
 
 
-\section{Universal Models}
+\section{Universal Models} \label{sec:universal_models}
+
+\subsection{Universal Model Architecture}
 
 % TODO Write about modified custom architecture
 % TODO Create baseline model with same modified architecture but without taxonomy layer to verify results
 % TODO Train with the top relationship selection methods and compare their universal model accuracies
 % TODO Compare best universal taxonomy model with baseline domain models
+% TODO Create universal model for cifar100-caltech256 also
+% TODO Create 3-domain model with caltech256-caltech101-cifar100
 % TODO Can we derive which metric (EDR, F1, Precision) is most important?
+% TODO Might the decrease in accuracy on the domain models influence the performance of the universal model?

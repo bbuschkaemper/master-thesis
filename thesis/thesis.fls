@@ -374,7 +374,7 @@ INPUT ./figures/svhn_mnist.png
 INPUT ./figures/domain_shift_visualization.png
 INPUT ./figures/domain_shift_visualization.png
 INPUT ./figures/evaluation_results_domain_shifted.tex
-INPUT ./figures/relationship_methods_domain_shifted_results.tex
+INPUT ./figures/relationship_methods_global_optimal_domain_shifted.tex
 INPUT ./figures/taxonomy.png
 INPUT ./figures/taxonomy.png
 INPUT ./figures/wheel_concept.png

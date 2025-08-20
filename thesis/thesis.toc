@@ -52,9 +52,10 @@
 \contentsline {subsubsection}{\nonumberline Alternate Evaluation Methods - WordNet Synsets}{27}{subsubsection*.59}%
 \contentsline {subsubsection}{\nonumberline Alternate Evaluation Methods - SVHN-MNIST}{28}{subsubsection*.62}%
 \contentsline {subsubsection}{\nonumberline Alternate Evaluation Methods - Domain-Shift Synthetic Datasets}{29}{subsubsection*.65}%
-\contentsline {subsection}{\numberline {4.2.2}Universal Taxonomy Generation}{29}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Universal Models}{30}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Discussion}{37}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Conclusion}{39}{chapter.6}%
-\contentsline {chapter}{\nonumberline Bibliography}{41}{chapter*.72}%
+\contentsline {subsection}{\numberline {4.2.2}Universal Taxonomy Generation}{30}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Universal Models}{31}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Universal Model Architecture}{31}{subsection.4.3.1}%
+\contentsline {chapter}{\numberline {5}Discussion}{39}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Conclusion}{41}{chapter.6}%
+\contentsline {chapter}{\nonumberline Bibliography}{43}{chapter*.72}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
