@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  20 AUG 2025 11:31
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  20 AUG 2025 23:11
  system commands enabled.
  file:line:error style messages enabled.
 **/home/bjoern/dev/master-thesis/thesis/thesis.tex
@@ -1815,7 +1815,7 @@ File: figures/bad_taxonomy.png Graphic file (type png)
 Package luatex.def Info: figures/bad_taxonomy.png  used on input line 557.
 (luatex.def)             Requested size: 139.42094pt x 131.35115pt.
 [30] [31]
-Overfull \hbox (38.8582pt too wide) in paragraph at lines 627--631
+Overfull \hbox (38.8582pt too wide) in paragraph at lines 627--632
 \TU/EBGaramond(0)/m/n/10.95 with a do-main iden-ti-fier, trans-form-ing the stan-dard $\TU/GaramondMath(1)/m/n/10.95 (𝑖𝑚𝑎𝑔𝑒, 𝑙𝑎𝑏𝑒𝑙)$ \TU/EBGaramond(0)/m/n/10.95 pairs into $\TU/GaramondMath(1)/m/n/10.95 (𝑖𝑚𝑎𝑔𝑒, (𝑑𝑜𝑚𝑎𝑖𝑛[]𝑖𝑑, 𝑙𝑎𝑏𝑒𝑙))$
  []
 
@@ -1916,7 +1916,7 @@ Here is how much of LuaTeX's memory you used:
    7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 glyph, 107 attribute, 93 glue_spec, 55 attribute_list, 2 write, 20 pdf_action nodes
    avail lists: 1:12,2:60164,3:22784,4:979,5:872,6:189,7:15113,8:136,9:2533,10:15,11:976
  71819 multiletter control sequences out of 65536+600000
- 150 fonts using 76964011 bytes
+ 150 fonts using 76964331 bytes
  122i,20n,120p,10939b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf>
 Output written on thesis.pdf (52 pages, 7951897 bytes).

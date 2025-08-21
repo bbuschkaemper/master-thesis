@@ -628,10 +628,13 @@ Instead of training separate models on individual datasets, we create a new comb
 Each training sample is augmented with a domain identifier, transforming the standard $(image, label)$ pairs into $(image, (domain\_id, label))$ tuples.
 This allows the model to handle samples from different datasets within the same batch
 (since we need to know the image domain to apply the correct target mapping).
+% TODO Update section if we change anything
 
+% TODO Update learning function in method
 
 % TODO Train with the top relationship selection methods and compare their universal model accuracies
-% TODO Compare best universal taxonomy model with baseline domain models
+% TODO Compare best universal taxonomy model with baseline domain models (calc accuracy per-domain in universal model)
+% TODO Compare with other multi-domain methods/papers
 % TODO Create universal model for cifar100-caltech256 also
 % TODO Create 3-domain model with caltech256-caltech101-cifar100
 % TODO Can we derive which metric (EDR, F1, Precision) is most important?

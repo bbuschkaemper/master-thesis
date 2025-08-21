@@ -9,7 +9,7 @@ from torchvision.models.resnet import (
     ResNet152_Weights,
 )
 from torch.optim import AdamW, SGD
-from torch.optim.lr_scheduler import MultiStepLR, StepLR
+from torch.optim.lr_scheduler import MultiStepLR, StepLR, CosineAnnealingLR
 from .taxonomy import Taxonomy
 from .types import DomainClass, UniversalClass
 
@@ -203,8 +203,8 @@ class UniversalResNetModel(pl.LightningModule):
             torch.nn.Linear(1024, self.num_universal_classes),
         )
 
-        # Use KL Divergence loss for universal class activations
-        self.criterion = torch.nn.KLDivLoss(reduction="batchmean")
+        # Use CrossEntropy loss for universal class activations
+        self.criterion = torch.nn.CrossEntropyLoss(label_smoothing=0.1)
 
     def _precompute_conversion_matrices(self):
         """Pre-compute raw weight matrices for all domains for efficient batch processing."""
@@ -448,6 +448,11 @@ class UniversalResNetModel(pl.LightningModule):
             )
         elif self.lr_scheduler == "step":
             scheduler = StepLR(
+                optimizer,
+                **self.lr_scheduler_kwargs,  # type: ignore
+            )
+        elif self.lr_scheduler == "cosine":
+            scheduler = CosineAnnealingLR(
                 optimizer,
                 **self.lr_scheduler_kwargs,  # type: ignore
             )
