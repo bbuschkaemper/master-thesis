@@ -102,11 +102,12 @@ class CombinedDataModule(LightningDataModule):
         batch_size: Batch size for data loaders
     """
 
-    def __init__(self, dataset_modules, domain_ids, batch_size=64):
+    def __init__(self, dataset_modules, domain_ids, batch_size=64, num_workers=1):
         super().__init__()
         self.dataset_modules = dataset_modules
         self.domain_ids = domain_ids
         self.batch_size = batch_size
+        self.num_workers = num_workers
 
         assert len(dataset_modules) == len(
             domain_ids
@@ -142,6 +143,7 @@ class CombinedDataModule(LightningDataModule):
     def train_dataloader(self):
         return DataLoader(
             self.train,
+            num_workers=self.num_workers,
             batch_size=self.batch_size,
             shuffle=True,
             collate_fn=collate_multi_domain_batch,
@@ -149,17 +151,24 @@ class CombinedDataModule(LightningDataModule):
 
     def val_dataloader(self):
         return DataLoader(
-            self.val, batch_size=self.batch_size, collate_fn=collate_multi_domain_batch
+            self.val,
+            num_workers=self.num_workers,
+            batch_size=self.batch_size,
+            collate_fn=collate_multi_domain_batch,
         )
 
     def test_dataloader(self):
         return DataLoader(
-            self.test, batch_size=self.batch_size, collate_fn=collate_multi_domain_batch
+            self.test,
+            num_workers=self.num_workers,
+            batch_size=self.batch_size,
+            collate_fn=collate_multi_domain_batch,
         )
 
     def predict_dataloader(self):
         return DataLoader(
             self.predict_dataset,
+            num_workers=self.num_workers,
             batch_size=self.batch_size,
             collate_fn=collate_multi_domain_batch,
         )
