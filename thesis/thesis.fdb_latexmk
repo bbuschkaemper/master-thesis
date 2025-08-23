@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber thesis"] 0 "thesis.bcf" "thesis.bbl" "thesis" 1755861113.95207 -1
-  "thesis.bcf" 1755861113.34437 111384 7569199d6acbd160d39336d43fb6784d "lualatex"
+["biber thesis"] 0 "thesis.bcf" "thesis.bbl" "thesis" 1755963327.68867 -1
+  "thesis.bcf" 1755963327.09316 111384 7569199d6acbd160d39336d43fb6784d "lualatex"
   "thesis.bib" 1755433374.70347 45865 ab07417ab69b587187169aadf9579ea3 ""
   (generated)
   "thesis.bbl"
   "thesis.blg"
   (rewritten before read)
-["lualatex"] 1755861097.21145 "/home/bjoern/dev/master-thesis/thesis/thesis.tex" "thesis.pdf" "thesis" 1755861113.95237 0
+["lualatex"] 1755963314.00257 "/home/bjoern/dev/master-thesis/thesis/thesis.tex" "thesis.pdf" "thesis" 1755963327.68893 0
   "/home/bjoern/.texlive2023/texmf-var/luatex-cache/generic/fonts/otl/ebgaramond-bold.luc" 1753874231.46544 775384 a27328b6c86b82947b2132521a8acadc ""
   "/home/bjoern/.texlive2023/texmf-var/luatex-cache/generic/fonts/otl/ebgaramond-bolditalic.luc" 1753874228.73411 651856 315f97ab3f506fab2134d517c2854827 ""
   "/home/bjoern/.texlive2023/texmf-var/luatex-cache/generic/fonts/otl/ebgaramond-italic.luc" 1753874232.30105 529275 7718281912aea2e86fe25759d886cd74 ""
@@ -323,31 +323,33 @@
   "figures/resnet_funnel.pdf" 1753120869.94593 41963 44ad1c05b5ddaa86278fd3c5cbb6bf97 ""
   "figures/svhn_mnist.png" 1754924452.67192 49678 d4893bdde172eec892d9dfd3dd1ca442 ""
   "figures/taxonomy.png" 1754135977.32754 165355 f37f6638198dfcec98e58959472ef831 ""
+  "figures/universal_model_results.tex" 1755963002.8936 530 cbd78408877c111c67cf933985356f2c ""
+  "figures/universal_model_training_curves.pgf" 1755963012.24338 102707 3d9d1ef151f845d4aeaee7d87f54db4e ""
   "figures/wheel_concept.png" 1754131092.06977 44218 3302ce06a7323ee1673c6bed18897258 ""
   "figures/wordnet.png" 1754923525.31042 32359 5377098a4109f036b986dd56f662dbaf ""
   "mimosis.cls" 1753120869.82467 6713 c0e6ce26425fb3cf88a8c1a606976e8a ""
-  "sources/abstract.aux" 1755861105.5012 4059 4f8351853059dec860ea9567c26046ba "lualatex"
+  "sources/abstract.aux" 1755963318.98991 4059 4f8351853059dec860ea9567c26046ba "lualatex"
   "sources/abstract.tex" 1753120869.83495 214 6c364c5bbf68e3946608464ecaac3f86 ""
-  "sources/conclusion.aux" 1755861112.91875 4248 07d88b03c869a88c0c719140fd4b3420 "lualatex"
+  "sources/conclusion.aux" 1755963326.6785 4248 9a95892ff5b0ccfec8dd22594853b272 "lualatex"
   "sources/conclusion.tex" 1755429863.02324 70 55c11813a4634212043cb9e568d380d7 ""
-  "sources/discussion.aux" 1755861112.90056 4248 3071338f490fb71ffd8b991ed5d529c8 "lualatex"
+  "sources/discussion.aux" 1755963326.66709 4248 c74c3df1417af4aff1ca71e52955aee4 "lualatex"
   "sources/discussion.tex" 1755431631.36066 91 4ff759f6ac3613681e03a7a58ff9e0d1 ""
-  "sources/introduction.aux" 1755861105.67946 4249 23a698e7dbbdc71e53167f86870132a8 "lualatex"
+  "sources/introduction.aux" 1755963319.15749 4249 23a698e7dbbdc71e53167f86870132a8 "lualatex"
   "sources/introduction.tex" 1755431332.28602 4995 76cd762e50ebb3e8d4ddb8616f235971 ""
-  "sources/method.aux" 1755861106.82537 9289 6c3a6ac7b5eb10f9dfd64ea803efd725 "lualatex"
+  "sources/method.aux" 1755963320.2798 9289 6c3a6ac7b5eb10f9dfd64ea803efd725 "lualatex"
   "sources/method.tex" 1755860043.78347 34472 8690e124c7d60af39ed9cd3874f41cec ""
-  "sources/related-work.aux" 1755861105.77404 4249 de571712fc9749d2c588ff3902107474 "lualatex"
+  "sources/related-work.aux" 1755963319.24885 4249 de571712fc9749d2c588ff3902107474 "lualatex"
   "sources/related-work.tex" 1755435394.31583 3508 5de5e657a2a9a2c390f834ee7fd9451b ""
-  "sources/results.aux" 1755861112.88964 21450 4fe347b153d8fd08366835ef7b65af07 "lualatex"
-  "sources/results.tex" 1755861083.68429 38595 23486860fc3caa2d226b0f7a9323275d ""
-  "sources/title.aux" 1755861105.49029 4056 56aab59dea3abea3ce68d0c3368116d3 "lualatex"
+  "sources/results.aux" 1755963326.65187 22817 d007b99c64fd43550b69d62816126f26 "lualatex"
+  "sources/results.tex" 1755963313.68828 39160 4297a4374ad514536c6c4e97e5efac0a ""
+  "sources/title.aux" 1755963318.97848 4056 56aab59dea3abea3ce68d0c3368116d3 "lualatex"
   "sources/title.tex" 1753120869.83946 662 ef030922993eb5d3f30e62c7ae134f8b ""
-  "thesis.aux" 1755861113.31891 20902 cfbec8f339552f0839d92633efc42121 "lualatex"
+  "thesis.aux" 1755963327.06653 20902 946b15598cea249d5d5cf8af6bae6bae "lualatex"
   "thesis.bbl" 1755435406.50056 95014 5647ecf8bee484293632da1718ba9627 "biber thesis"
   "thesis.ind" 1755859518.46411 0 d41d8cd98f00b204e9800998ecf8427e "makeindex thesis.idx"
-  "thesis.run.xml" 1755861113.34437 2389 0239a95ea246b752574cf5af365717b0 "lualatex"
+  "thesis.run.xml" 1755963327.09316 2389 0239a95ea246b752574cf5af365717b0 "lualatex"
   "thesis.tex" 1755361821.3134 3710 350800aa342f4a2fa658f25abe6fabca ""
-  "thesis.toc" 1755861113.34437 5656 2c1a1e0c18c731c6f7fe337fc2b56b76 "lualatex"
+  "thesis.toc" 1755963327.09316 5656 39d193577a4d7fce2edba2ca16b0e608 "lualatex"
   (generated)
   "sources/abstract.aux"
   "sources/conclusion.aux"
@@ -365,8 +367,8 @@
   "thesis.run.xml"
   "thesis.toc"
   (rewritten before read)
-["makeindex thesis.idx"] 1755859518.3127 "thesis.idx" "thesis.ind" "thesis" 1755861113.9519 0
-  "thesis.idx" 1755861105.06102 0 d41d8cd98f00b204e9800998ecf8427e "lualatex"
+["makeindex thesis.idx"] 1755859518.3127 "thesis.idx" "thesis.ind" "thesis" 1755963327.68852 0
+  "thesis.idx" 1755963318.55191 0 d41d8cd98f00b204e9800998ecf8427e "lualatex"
   (generated)
   "thesis.ilg"
   "thesis.ind"

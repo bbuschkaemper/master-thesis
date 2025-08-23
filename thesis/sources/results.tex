@@ -632,11 +632,22 @@ transforming the standard $(\texttt{image}, \texttt{label})$ pairs into $(\textt
 This allows the model to handle samples from different datasets within the same batch
 (since we need to know the image domain to apply the correct target mapping).
 
+\input{figures/universal_model_results.tex}
+
+\begin{figure}[ht]
+      \centering
+      \scalebox{0.35}{\input{figures/universal_model_training_curves.pgf}}
+      \caption{Training curves for universal models using both hypothesis and MCFP taxonomies on the multi-domain Caltech-101 + Caltech-256 dataset. Both models show stable convergence with the hypothesis taxonomy achieving slightly better performance.}
+      \label{fig:universal_model_training_curves}
+\end{figure}
+
 % TODO Update section if we change anything
 % TODO Write that we use val accuracy max instead of val loss min
 
 % TODO Why is val accuracy rising and val loss also?
 % TODO WHY is eval acc lower than val acc???
+
+% TODO For all result tables, include wall time as time formatted (also write sth to it).
 
 % TODO Train with the top relationship selection methods and compare their universal model accuracies
 % TODO Compare best universal taxonomy model with baseline domain models (calc accuracy per-domain in universal model)
