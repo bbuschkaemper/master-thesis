@@ -315,7 +315,7 @@ class Caltech256DataModule(LightningDataModule):
 
 
 class CIFAR100DataModule(LightningDataModule):
-    def __init__(self, batch_size=64, split=(0.8, 0.1, 0.1)):
+    def __init__(self, batch_size=256, split=(0.8, 0.1, 0.1)):
         super().__init__()
         self.batch_size = batch_size
         self.split = split
@@ -339,7 +339,6 @@ class CIFAR100DataModule(LightningDataModule):
                 v2.ColorJitter(
                     brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1
                 ),  # Add color jitter
-                v2.RandomErasing(p=0.1, scale=(0.02, 0.33), ratio=(0.3, 3.3)),
                 v2.Normalize(
                     mean=[0.5071, 0.4867, 0.4408], std=[0.2675, 0.2565, 0.2761]
                 ),
@@ -377,16 +376,18 @@ class CIFAR100DataModule(LightningDataModule):
         self.test = test_dataset
 
     def train_dataloader(self):
-        return DataLoader(self.train, batch_size=self.batch_size, shuffle=True)
+        return DataLoader(
+            self.train, batch_size=self.batch_size, shuffle=True, num_workers=4
+        )
 
     def val_dataloader(self):
-        return DataLoader(self.val, batch_size=self.batch_size)
+        return DataLoader(self.val, batch_size=self.batch_size, num_workers=4)
 
     def test_dataloader(self):
-        return DataLoader(self.test, batch_size=self.batch_size)
+        return DataLoader(self.test, batch_size=self.batch_size, num_workers=4)
 
     def predict_dataloader(self):
-        return DataLoader(self.test, batch_size=self.batch_size)
+        return DataLoader(self.test, batch_size=self.batch_size, num_workers=4)
 
 
 class Caltech256MappedDataModule(LightningDataModule):

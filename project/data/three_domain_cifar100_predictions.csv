@@ -1383,7 +1383,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 37,256,64
 8,256,23
 25,256,50
-52,256,50
+52,256,5
 29,197,7
 44,84,50
 12,256,54
@@ -1658,7 +1658,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 45,256,50
 25,256,69
 61,256,3
-56,256,51
+56,256,55
 68,256,26
 27,256,26
 13,256,0
@@ -1932,7 +1932,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 22,256,71
 69,256,50
 9,256,23
-78,256,51
+78,256,55
 4,83,81
 69,209,40
 46,256,50
@@ -2053,7 +2053,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 15,256,26
 39,256,42
 49,189,47
-93,256,51
+93,256,50
 39,256,13
 77,256,51
 69,10,32
@@ -2686,7 +2686,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 20,256,32
 2,256,26
 16,256,27
-26,256,88
+26,256,73
 91,131,68
 88,256,65
 85,256,31
@@ -2978,7 +2978,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 73,256,42
 47,256,21
 65,256,43
-77,256,55
+77,256,28
 51,256,92
 61,256,23
 30,256,51
@@ -3289,7 +3289,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 91,256,88
 90,256,55
 71,256,43
-49,256,55
+49,256,81
 42,256,97
 57,256,43
 20,256,0
@@ -3635,7 +3635,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 73,184,40
 50,256,55
 47,256,40
-51,256,23
+51,197,23
 78,256,49
 26,33,62
 50,256,27
@@ -4977,7 +4977,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 47,256,9
 31,161,67
 62,256,55
-62,91,77
+62,147,77
 90,256,35
 8,256,55
 9,256,55
@@ -4986,7 +4986,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 80,256,46
 79,256,55
 22,256,21
-18,256,51
+18,256,73
 61,256,23
 62,203,43
 54,256,73
@@ -5035,7 +5035,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 44,83,28
 75,189,36
 84,209,0
-33,256,72
+33,256,27
 41,256,32
 6,189,26
 71,256,40
@@ -5099,7 +5099,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 91,256,9
 68,256,9
 64,256,23
-76,256,51
+76,256,55
 5,256,69
 9,256,81
 43,256,51
@@ -6878,7 +6878,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 54,256,46
 45,256,81
 65,256,25
-50,256,26
+50,256,29
 3,197,27
 68,256,26
 17,256,69
@@ -7466,7 +7466,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 71,10,24
 61,256,67
 30,184,26
-45,256,50
+45,256,67
 75,256,51
 94,256,81
 29,189,73
@@ -7679,7 +7679,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 14,256,81
 75,256,50
 53,256,38
-3,256,0
+3,256,50
 5,256,0
 35,131,23
 82,256,51
@@ -7886,7 +7886,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 89,32,23
 5,256,0
 76,256,0
-83,256,72
+83,256,26
 74,256,73
 85,24,79
 24,256,55
@@ -8970,7 +8970,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 6,174,90
 80,256,26
 81,129,50
-99,256,84
+99,256,88
 28,256,23
 50,189,73
 57,256,51
@@ -9481,7 +9481,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 21,256,27
 87,256,12
 71,256,9
-53,203,3
+53,203,50
 27,91,5
 63,256,28
 1,256,26
@@ -9494,7 +9494,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 10,256,11
 83,256,94
 91,256,26
-85,125,73
+85,125,51
 34,256,26
 24,256,81
 50,256,6
@@ -9814,7 +9814,7 @@ cifar100,predictions_caltech256_on_cifar100,predictions_caltech101_on_cifar100
 79,256,55
 67,256,28
 40,48,4
-13,256,50
+13,256,96
 98,256,26
 37,256,55
 21,256,6
