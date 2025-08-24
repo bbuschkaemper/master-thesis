@@ -390,6 +390,82 @@ class CIFAR100DataModule(LightningDataModule):
         return DataLoader(self.test, batch_size=self.batch_size, num_workers=4)
 
 
+class CIFAR100ScaledDataModule(LightningDataModule):
+    def __init__(self, batch_size=256, split=(0.8, 0.1, 0.1)):
+        super().__init__()
+        self.batch_size = batch_size
+        self.split = split
+
+    def prepare_data(self):
+        torchvision.datasets.CIFAR100(
+            root="datasets/cifar100", download=True, train=True
+        )
+        torchvision.datasets.CIFAR100(
+            root="datasets/cifar100", download=True, train=False
+        )
+
+    def setup(self, stage):
+        transform_train = v2.Compose(
+            [
+                v2.ToImage(),
+                v2.ToDtype(torch.float32, scale=True),
+                v2.Resize(size=(224, 224)),  # Scale CIFAR100 images to 224x224
+                v2.RandomHorizontalFlip(p=0.5),
+                v2.RandomResizedCrop(size=(224, 224), scale=(0.8, 1.0)),  # Keep at 224x224
+                v2.ColorJitter(
+                    brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1
+                ),  # Add color jitter
+                v2.Normalize(
+                    mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]  # Use ImageNet normalization for consistency
+                ),
+            ]
+        )
+
+        transform_test = v2.Compose(
+            [
+                v2.ToImage(),
+                v2.ToDtype(torch.float32, scale=True),
+                v2.Resize(size=(224, 224)),
+                v2.Normalize(
+                    mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]  # Use ImageNet normalization for consistency
+                ),
+            ]
+        )
+
+        # Load CIFAR100 datasets
+        train_dataset = torchvision.datasets.CIFAR100(
+            root="datasets/cifar100", train=True, transform=transform_train
+        )
+        test_dataset = torchvision.datasets.CIFAR100(
+            root="datasets/cifar100", train=False, transform=transform_test
+        )
+
+        # Split train dataset into train/val according to the split ratio
+        train_size = int(self.split[0] * len(train_dataset))
+        val_size = len(train_dataset) - train_size
+
+        self.train, self.val = random_split(
+            train_dataset,
+            [train_size, val_size],
+            generator=torch.Generator().manual_seed(42),
+        )
+        self.test = test_dataset
+
+    def train_dataloader(self):
+        return DataLoader(
+            self.train, batch_size=self.batch_size, shuffle=True, num_workers=4
+        )
+
+    def val_dataloader(self):
+        return DataLoader(self.val, batch_size=self.batch_size, num_workers=4)
+
+    def test_dataloader(self):
+        return DataLoader(self.test, batch_size=self.batch_size, num_workers=4)
+
+    def predict_dataloader(self):
+        return DataLoader(self.test, batch_size=self.batch_size, num_workers=4)
+
+
 class Caltech256MappedDataModule(LightningDataModule):
     def __init__(
         self,
