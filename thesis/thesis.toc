@@ -57,6 +57,7 @@
 \contentsline {subsection}{\numberline {4.3.1}Training}{33}{subsection.4.3.1}%
 \contentsline {subsubsection}{\nonumberline Modifications to Baseline Architecture}{33}{subsubsection*.69}%
 \contentsline {subsubsection}{\nonumberline Multi-Domain Training Procedure}{34}{subsubsection*.71}%
+\contentsline {subsection}{\numberline {4.3.2}Performance}{34}{subsection.4.3.2}%
 \contentsline {chapter}{\numberline {5}Discussion}{43}{chapter.5}%
 \contentsline {chapter}{\numberline {6}Conclusion}{45}{chapter.6}%
 \contentsline {chapter}{\nonumberline Bibliography}{47}{chapter*.74}%

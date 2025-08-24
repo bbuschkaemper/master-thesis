@@ -632,6 +632,30 @@ transforming the standard $(\texttt{image}, \texttt{label})$ pairs into $(\textt
 This allows the model to handle samples from different datasets within the same batch
 (since we need to know the image domain to apply the correct target mapping).
 
+During training experiments, the validation loss starts to increase again after a few epochs, indicating potential overfitting.
+However, the validation accuracy continues to improve, suggesting that the model is still learning useful features.
+To still use the best performing model checkpoint, we change checkpointing to monitor validation accuracy instead of validation loss.
+
+This seemingly contradictory behavior of rising validation loss with rising validation accuracy can be explained by several factors:
+
+\begin{itemize}
+      \item \textbf{Multi-target probability distributions}: Unlike standard classification with one-hot targets,
+            our universal model uses discrete probability distributions as targets.
+            The model may be learning to better predict the correct class ranks while becoming less confident about exact probability values,
+            leading to higher cross-entropy loss but better top-1 accuracy.
+      \item \textbf{Label smoothing}: The universal taxonomy creates implicit
+            label smoothing effects where domain classes map to multiple universal classes
+            with different weights.
+            For perfect accuracy across all domains, it might not be possible to also hit
+            the exact probability values, leading to higher loss \textit{and} higher accuracy simultaneously
+            while training.
+      \item \textbf{Learning dynamics}: The model may be transitioning
+            from overfitting to individual domain patterns toward learning more generalisable
+            universal features, causing higher loss when switching between phases of learning.
+\end{itemize}
+
+\subsection{Performance}
+
 \input{figures/universal_model_results.tex}
 
 \begin{figure}[ht]
@@ -641,13 +665,35 @@ This allows the model to handle samples from different datasets within the same 
       \label{fig:universal_model_training_curves}
 \end{figure}
 
-% TODO Update section if we change anything
-% TODO Write that we use val accuracy max instead of val loss min
+On the Caltech-101 + Caltech-256 multi-domain dataset,
+we train universal models on the two most promising taxonomies \textit{hypothesis} and \textit{MCFP}
+(due to high learning times, we will focus on these two instead of testing every relationship selection method).
 
-% TODO Why is val accuracy rising and val loss also?
-% TODO WHY is eval acc lower than val acc???
+When looking at the training curves in Figure~\ref{fig:universal_model_training_curves},
+we observe slight overfitting in the later training steps,
+but overall the models show stable convergence.
+It is interesting to note that some rapid, short fluctuations occur in the training curves
+which get quickly mitigated.
+This could indicate exploding gradients or other instabilities during training,
+but since they are short-lived and do not affect the overall convergence,
+we can conclude that the training process is robust.
 
-% TODO For all result tables, include wall time as time formatted (also write sth to it).
+When looking at the performance comparison in Table~\ref{tab:universal_model_results},
+we can observe a slightly better performance for the hypothesis taxonomy compared to the MCFP taxonomy.
+We also see that the universal models achieve competitive performance across both domains:
+The hypothesis taxonomy universal model performs $5.19\%$ worse than the baseline model
+for the easier Caltech-101 dataset, while performing $7.32\%$ better on the more challenging Caltech-256 dataset.
+The baseline models we use for comparison were trained under similar conditions for 50 epochs
+using the same ResNet-50 architecture.
+
+Seeing an improved performance on the more complex Caltech-256 dataset can be explained with
+the concept taxonomy providing a \enquote{predetermined} feature learning being superior
+to the tradition \enquote{blind learning} approach, where we simply define our output layer
+and hope that the neurons will represent useful features.
+
+% TODO Compare performance, param count and training time (is it worth it)
+
+% TODO For three domain, write about modified cifar100 architecture (resnet152)
 
 % TODO Train with the top relationship selection methods and compare their universal model accuracies
 % TODO Compare best universal taxonomy model with baseline domain models (calc accuracy per-domain in universal model)

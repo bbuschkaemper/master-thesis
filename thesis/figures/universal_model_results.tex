@@ -1,13 +1,13 @@
 \begin{table}[ht]
 \centering
-\caption{Universal model evaluation results on multi-domain Caltech-101 + Caltech-256 dataset. Models were trained on both domains simultaneously and evaluated on individual domains as well as the combined test set. Accuracy values are shown as percentages.}
+\caption{Universal model evaluation results on multi-domain Caltech-101 + Caltech-256 test dataset. Models were trained on both domains simultaneously and evaluated on individual domains as well as the combined test set. Domain accuracy values show performance compared to single-domain ResNet-50 baselines (Caltech-101: 97.23\%, Caltech-256: 75.65\%). All accuracy values are shown as percentages.}
 \label{tab:universal_model_results}
-\begin{tabular}{lccc}
+\begin{tabular}{lcccc}
 \toprule
-Taxonomy Method & Caltech-101 & Caltech-256 & Combined \\
+Taxonomy Method & Training Time & Caltech-101 & Caltech-256 & Combined \\
 \midrule
-hypothesis & 92.04 & 82.97 & 84.57 \\
-mcfp & 90.89 & 80.59 & 82.84 \\
+hypothesis & 2h 7m & 92.04 (-5.19) & 82.97 (+7.32) & 84.57 \\
+mcfp & 2h 17m & 90.89 (-6.34) & 80.59 (+4.94) & 82.84 \\
 \bottomrule
 \end{tabular}
 \end{table}
