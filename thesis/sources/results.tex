@@ -654,8 +654,13 @@ This seemingly contradictory behavior of rising validation loss with rising vali
             universal features, causing higher loss when switching between phases of learning.
 \end{itemize}
 
+As a final note on the training procedure,
+we rescale the CIFAR-100 images to match the size of the other datasets (224x224 pixels),
+so that we can process all images uniformly in the same model architecture.
+
 \subsection{Performance}
 
+\input{figures/baseline_model_results.tex}
 \input{figures/universal_model_results.tex}
 
 \begin{figure}[ht]
@@ -678,33 +683,26 @@ This could indicate exploding gradients or other instabilities during training,
 but since they are short-lived and do not affect the overall convergence,
 we can conclude that the training process is robust.
 
-When looking at the performance comparison in Table~\ref{tab:universal_model_results},
-we can observe a slightly better performance for the hypothesis taxonomy compared to the MCFP taxonomy.
-We also see that the universal models achieve competitive performance across both domains:
-The hypothesis taxonomy universal model performs $5.19\%$ worse than the baseline model
-for the easier Caltech-101 dataset, while performing $7.32\%$ better on the more challenging Caltech-256 dataset.
-The baseline models we use for comparison were trained under similar conditions for 50 epochs
-using the same ResNet-50 architecture.
+We compare the performance of the universal models with baseline models
+(models using the same architecture and training conditions, but trained for a single domain).
+Our baseline model performances are shown in Table~\ref{tab:baseline_model_results}:
+We use the same ResNet-50 architecture that we use in the universal models
+(except for CIFAR-100, where we achieve an unsuitable test accuracy of below $50\%$ when using ResNet-50,
+so we decided to use ResNet-152).
+The baseline models were also used for generating the universal taxonomies that the universal models
+are using.
 
-Seeing an improved performance on the more complex Caltech-256 dataset can be explained with
-the concept taxonomy providing a \enquote{predetermined} feature learning being superior
-to the tradition \enquote{blind learning} approach, where we simply define our output layer
-and hope that the neurons will represent useful features.
+The final evaluation results of our universal models are shown in Table~\ref{tab:universal_model_results}.
+We can observe multiple things:
+\begin{itemize}
+      \item The universal models are able to outperform the baseline models.
+            Our method of \enquote{predefining} the output layer concepts allows the model to better leverage shared knowledge across domains.
+      \item The hypothesis relationship selection method proves superior to the MCFP method,
+            achieving higher accuracies across all datasets except CIFAR-100 (where the MCFP method performs marginally better with $0.9\%$ improvement).
+\end{itemize}
 
 % TODO Compare performance, param count and training time (is it worth it)
 
-% TODO For three domain, write about modified cifar100 architecture (resnet152)
-% TODO For three domain, write about rescaling cifar100 images to match size
-% TODO Put all baseline models into subheading and write about it (also separate table for baseline accuracy)
-% TODO Add three domain training plot
-% TODO Three domain training duration is missing
-% TODO Change table ordering to be mcfp, mcfp, hypothesis, hypothesis
-% TODO CHECK AND VERIFY THE ACCURACY MANUALLY!!!
-
-% TODO Train with the top relationship selection methods and compare their universal model accuracies
-% TODO Compare best universal taxonomy model with baseline domain models (calc accuracy per-domain in universal model)
 % TODO Compare with other multi-domain methods/papers
-% TODO Create universal model for cifar100-caltech256 also
-% TODO Create 3-domain model with caltech256-caltech101-cifar100
 % TODO Can we derive which metric (EDR, F1, Precision) is most important?
 % TODO Might the decrease in accuracy on the domain models influence the performance of the universal model?

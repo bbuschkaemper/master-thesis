@@ -1,0 +1,14 @@
+\begin{table}[ht]
+\centering
+\caption{Baseline ResNet model performance on individual datasets. These single-domain models serve as reference points for evaluating the universal models.}
+\label{tab:baseline_model_results}
+\begin{tabular}{lcccc}
+\toprule
+Dataset & Architecture & Optimizer & Learning Rate & Test Accuracy \\
+\midrule
+Caltech-101 & ResNet-50 & SGD & 0.010000 & 92.04 \\
+Caltech-256 & ResNet-50 & AdamW & 0.001000 & 69.97 \\
+CIFAR-100 & ResNet-152 & AdamW & 0.001000 & 10.86 \\
+\bottomrule
+\end{tabular}
+\end{table}
