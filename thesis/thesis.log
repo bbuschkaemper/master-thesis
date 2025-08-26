@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  26 AUG 2025 17:49
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  26 AUG 2025 19:00
  system commands enabled.
  file:line:error style messages enabled.
 **/home/bjoern/dev/master-thesis/thesis/thesis.tex
@@ -1820,16 +1820,11 @@ Overfull \hbox (50.73785pt too wide) in paragraph at lines 628--634
 \TU/EBGaramond(0)/m/n/10.95 with a do-main iden-ti-fier, trans-form-ing the stan-dard $\TU/GaramondMath(1)/m/n/10.95 ([], [])$ \TU/EBGaramond(0)/m/n/10.95 pairs into $\TU/GaramondMath(1)/m/n/10.95 ([], ([], []))$
  []
 
-(./figures/baseline_model_results.tex) (./figures/universal_model_results.tex
-Overfull \hbox (54.49126pt too wide) in paragraph at lines 5--15
- [][] 
- []
-
-) (./figures/universal_model_training_curves.pgf)
+(./figures/baseline_model_results.tex) (./figures/universal_model_results.tex) (./figures/universal_model_training_curves.pgf)
 Underfull \vbox (badness 1067) has occurred while \output is active []
 
  [34] [35]
-Overfull \hbox (3.3175pt too wide) in paragraph at lines 700--702
+Overfull \hbox (3.3175pt too wide) in paragraph at lines 701--703
 []\TU/EBGaramond(0)/m/n/10.95 The hy-poth-e-sis re-la-tion-ship se-lec-tion method proves su-pe-rior to the MCFP method, achiev-
  []
 
@@ -1925,15 +1920,15 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 
 Here is how much of LuaTeX's memory you used:
  51360 strings out of 476553
- 476874,2848258 words of node,token memory allocated
+ 476880,2848258 words of node,token memory allocated
  1158 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 sub_mlist, 1 glyph, 109 attribute, 93 glue_spec, 56 attribute_list, 2 write, 20 pdf_action nodes
-   avail lists: 1:13,2:76544,3:28797,4:1104,5:900,6:190,7:16474,8:136,9:2835,10:15,11:1127
+   avail lists: 1:13,2:76490,3:28798,4:1104,5:905,6:190,7:16396,8:136,9:2819,10:15,11:1127
  71828 multiletter control sequences out of 65536+600000
- 152 fonts using 77512891 bytes
+ 152 fonts using 77513211 bytes
  122i,21n,120p,10939b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf>
-Output written on thesis.pdf (58 pages, 7985140 bytes).
+Output written on thesis.pdf (58 pages, 7985188 bytes).
 
 PDF statistics: 929 PDF objects out of 1000 (max. 8388607)
  784 compressed objects within 8 object streams

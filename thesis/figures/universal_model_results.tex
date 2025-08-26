@@ -2,14 +2,14 @@
 \centering
 \caption{Universal model evaluation results on multi-domain test datasets. Two-domain models were trained on Caltech-101 + Caltech-256, while three-domain models were trained on all three datasets. Models were evaluated on individual domains as well as the combined test set (no weighting was applied, the individual test sets were simply concatenated). Domain accuracy values show performance differences compared to single-domain baseline models (see Table~\ref{tab:baseline_model_results}). Best results per column are shown in bold. All accuracy values are shown as percentages.}
 \label{tab:universal_model_results}
-\begin{tabular}{lcccccc}
+\begin{tabular}{lcccc}
 \toprule
-Taxonomy & Training Time & Caltech-101 & Caltech-256 & CIFAR-100 & Avg \\
+Taxonomy & Caltech-101 & Caltech-256 & CIFAR-100 & Avg \\
 \midrule
-Hypothesis (2 Domain) & 2h 7m & 92.04 (+0.00) & 82.75 (+12.78) & N/A & 84.70 \\
-MCFP (2 Domain) & 2h 17m & 90.89 (-1.15) & 80.49 (+10.52) & N/A & 82.71 \\
-Hypothesis (3 Domain) & 4h 58m & \textbf{95.73 (+3.69)} & \textbf{86.70 (+16.73)} & 75.20 (+64.34) & 78.83 \\
-MCFP (3 Domain) & 4h 59m & 83.04 (-9.00) & 76.76 (+6.79) & \textbf{76.10 (+65.24)} & 76.76 \\
+Hypothesis (2 Domain) & 92.04 (+1.04) & 82.42 (+13.07) & N/A & 84.70 \\
+MCFP (2 Domain) & 90.89 (-0.11) & 80.33 (+10.98) & N/A & 82.99 \\
+Hypothesis (3 Domain) & \textbf{95.85 (+4.85)} & \textbf{86.37 (+17.02)} & 75.20 (+14.72) & 79.09 \\
+MCFP (3 Domain) & 83.04 (-7.96) & 77.16 (+7.81) & \textbf{76.10 (+15.62)} & 76.59 \\
 \bottomrule
 \end{tabular}
 \end{table}
