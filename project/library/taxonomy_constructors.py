@@ -12,12 +12,14 @@ from .types import Deviation, DeviationClass, SimulatedPredictions
 
 _RelationshipFilteringMethod: TypeAlias = Literal[
     "mcfp",
+    "mcfp_binary",
     "hypothesis",
     "density_threshold",
     "threshold",
 ]
 _SyntheticRelationshipFilteringMethod: TypeAlias = Literal[
     "mcfp",
+    "mcfp_binary",
     "true",
 ]
 
@@ -62,6 +64,11 @@ class CrossPredictionsTaxonomy(Taxonomy):
             If not provided, class IDs will be used as labels.
         relationship_type : _RELATIONSHIP_TYPE, optional
             The type of relationship to establish between domains. Defaults to "mcfp".
+            - "mcfp": Most Common Foreign Prediction - uses the class with highest prediction probability and its actual weight
+            - "mcfp_binary": Most Common Foreign Prediction Binary - uses the class with highest prediction probability but with weight 1.0
+            - "hypothesis": Uses multiple relationships based on hypothesis testing
+            - "density_threshold": Uses density-based thresholding for relationships
+            - "threshold": Uses all relationships above a specified threshold
         threshold : float, optional
             The threshold for establishing relationships.
             This applies only to "threshold" and "density_threshold" relationship types.
@@ -133,6 +140,23 @@ class CrossPredictionsTaxonomy(Taxonomy):
                     obj._add_relationship(
                         Relationship((target_class, source_class, probability))
                     )
+                elif relationship_type == "mcfp_binary":
+                    source_class_idx = np.argmax(class_probabilities)
+                    probability = class_probabilities[source_class_idx]
+
+                    # Create source domain class (from the model's domain)
+                    source_class = DomainClass(
+                        (np.intp(model_domain_id), np.intp(source_class_idx))
+                    )
+
+                    # Skip if the probability is zero.
+                    if probability == 0.0:
+                        continue
+
+                    # Add the relationship to the taxonomy graph with binary weight (1.0)
+                    obj._add_relationship(
+                        Relationship((target_class, source_class, 1.0))
+                    )
                 elif relationship_type == "hypothesis":
                     relationships = hypothesis_relationships(
                         class_probabilities, upper_bound
@@ -190,7 +214,7 @@ class CrossPredictionsTaxonomy(Taxonomy):
                 else:
                     raise ValueError(
                         f"Unknown relationship type: {relationship_type}. "
-                        "Supported types are 'mcfp' and 'threshold'."
+                        "Supported types are 'mcfp', 'mcfp_binary', 'hypothesis', 'density_threshold', and 'threshold'."
                     )
 
         return obj
@@ -301,6 +325,9 @@ class SyntheticTaxonomy(Taxonomy):
             we need to distribute probabilities differently.
         relationship_type : _RELATIONSHIP_TYPE, optional
             The type of relationship to establish between domains. Defaults to "mcfp".
+            - "mcfp": Most Common Foreign Prediction - uses the class with highest prediction probability and its actual weight
+            - "mcfp_binary": Most Common Foreign Prediction Binary - uses the class with highest prediction probability but with weight 1.0
+            - "true": Uses all true relationships with their actual probabilities
         atomic_concept_labels : List[str], optional
             Optional list of labels for atomic concepts.
             If provided, these labels will be used for atomic concepts
@@ -394,6 +421,23 @@ class SyntheticTaxonomy(Taxonomy):
                         (target_class, source_class, prediction_confidence)
                     )
                     obj._add_relationship(relationship)
+                elif relationship_type == "mcfp_binary":
+                    # Get the most likely prediction for this class
+                    source_class_id = np.argmax(class_predictions)
+                    prediction_confidence = float(class_predictions[source_class_id])
+
+                    # Create domain classes for source and target
+                    source_class = DomainClass(
+                        (np.intp(source_domain_id), np.intp(source_class_id))
+                    )
+
+                    # If zero, skip the relationship
+                    if prediction_confidence == 0.0:
+                        continue
+
+                    # Add the relationship to the taxonomy graph with binary weight (1.0)
+                    relationship = Relationship((target_class, source_class, 1.0))
+                    obj._add_relationship(relationship)
                 elif relationship_type == "true":
                     # Iterate through all source classes and their probabilities
                     for source_class_id, confidence in enumerate(class_predictions):
@@ -414,7 +458,7 @@ class SyntheticTaxonomy(Taxonomy):
                 else:
                     raise ValueError(
                         f"Unknown relationship type: {relationship_type}. "
-                        "Supported types are 'mcfp' and 'threshold'."
+                        "Supported types are 'mcfp', 'mcfp_binary', and 'true'."
                     )
 
         return obj
