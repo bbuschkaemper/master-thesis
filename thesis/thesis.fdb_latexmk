@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber thesis"] 0 "thesis.bcf" "thesis.bbl" "thesis" 1756391679.54525 -1
-  "thesis.bcf" 1756391678.92729 111384 7569199d6acbd160d39336d43fb6784d "lualatex"
+["biber thesis"] 0 "thesis.bcf" "thesis.bbl" "thesis" 1756476871.7585 -1
+  "thesis.bcf" 1756476871.14382 111384 7569199d6acbd160d39336d43fb6784d "lualatex"
   "thesis.bib" 1755433374.70347 45865 ab07417ab69b587187169aadf9579ea3 ""
   (generated)
   "thesis.bbl"
   "thesis.blg"
   (rewritten before read)
-["lualatex"] 1756391663.04877 "/home/bjoern/dev/master-thesis/thesis/thesis.tex" "thesis.pdf" "thesis" 1756391679.54551 0
+["lualatex"] 1756476857.08446 "/home/bjoern/dev/master-thesis/thesis/thesis.tex" "thesis.pdf" "thesis" 1756476871.75876 0
   "/home/bjoern/.texlive2023/texmf-var/luatex-cache/generic/fonts/otl/ebgaramond-bold.luc" 1753874231.46544 775384 a27328b6c86b82947b2132521a8acadc ""
   "/home/bjoern/.texlive2023/texmf-var/luatex-cache/generic/fonts/otl/ebgaramond-bolditalic.luc" 1753874228.73411 651856 315f97ab3f506fab2134d517c2854827 ""
   "/home/bjoern/.texlive2023/texmf-var/luatex-cache/generic/fonts/otl/ebgaramond-italic.luc" 1753874232.30105 529275 7718281912aea2e86fe25759d886cd74 ""
@@ -294,7 +294,7 @@
   "english-mimosis.lbx" 1753120869.82016 804 39040837b4810ef4f1fb137edfe88d51 ""
   "figures/all_training_runs.pgf" 1755964154.95161 209426 246e89cde24c0c3c0b8b6343c2010ddc ""
   "figures/bad_taxonomy.png" 1754131075.24018 101527 83b001c10fff96522171fce35bade43f ""
-  "figures/baseline_model_results.tex" 1756227643.5685 528 95476072d1ed31b66e0df091319d11b6 ""
+  "figures/baseline_model_results.tex" 1756476718.22148 528 8b9ce8286261d6267b0fee464ffded91 ""
   "figures/caltech256_2domain.png" 1753120869.9349 701169 765cf9548e678935662dc3b94df88f3d ""
   "figures/caltech256_2domain_variant.png" 1753120870.00288 215014 b649efbf6fe5d50d7fe325d868bcac75 ""
   "figures/caltech256_3domain.png" 1753120870.02493 1124401 e8c2bb0f9b654d4fce97b6dcc489e68d ""
@@ -324,33 +324,33 @@
   "figures/resnet_funnel.pdf" 1753120869.94593 41963 44ad1c05b5ddaa86278fd3c5cbb6bf97 ""
   "figures/svhn_mnist.png" 1754924452.67192 49678 d4893bdde172eec892d9dfd3dd1ca442 ""
   "figures/taxonomy.png" 1754135977.32754 165355 f37f6638198dfcec98e58959472ef831 ""
-  "figures/universal_model_results.tex" 1756227643.59881 1110 bfb63b37193518588225646774480ac9 ""
-  "figures/universal_model_training_curves.pgf" 1756227646.44811 256166 1e2d2874949e5c57113ba66e2c363df8 ""
+  "figures/universal_model_results.tex" 1756476852.09582 1267 514f63e6ee5e28a83ba0e5c7aac15e15 ""
+  "figures/universal_model_training_curves.pgf" 1756476855.93182 372404 111df18645713377e180cd3bc49b8c5b ""
   "figures/wheel_concept.png" 1754131092.06977 44218 3302ce06a7323ee1673c6bed18897258 ""
   "figures/wordnet.png" 1754923525.31042 32359 5377098a4109f036b986dd56f662dbaf ""
   "mimosis.cls" 1753120869.82467 6713 c0e6ce26425fb3cf88a8c1a606976e8a ""
-  "sources/abstract.aux" 1756391669.10619 4059 4f8351853059dec860ea9567c26046ba "lualatex"
+  "sources/abstract.aux" 1756476862.10382 4059 4f8351853059dec860ea9567c26046ba "lualatex"
   "sources/abstract.tex" 1753120869.83495 214 6c364c5bbf68e3946608464ecaac3f86 ""
-  "sources/conclusion.aux" 1756391678.45283 4248 3fbd784fb1f2737257230aaea03ca744 "lualatex"
+  "sources/conclusion.aux" 1756476870.68782 4248 3fbd784fb1f2737257230aaea03ca744 "lualatex"
   "sources/conclusion.tex" 1756222263.42008 106 6e84b511f3fd6a3c057f12318b770993 ""
-  "sources/discussion.aux" 1756391678.43728 4248 99ff0f14323a28287a463e94d46df478 "lualatex"
+  "sources/discussion.aux" 1756476870.67582 4248 99ff0f14323a28287a463e94d46df478 "lualatex"
   "sources/discussion.tex" 1755431631.36066 91 4ff759f6ac3613681e03a7a58ff9e0d1 ""
-  "sources/introduction.aux" 1756391669.30452 4249 23a698e7dbbdc71e53167f86870132a8 "lualatex"
+  "sources/introduction.aux" 1756476862.29182 4249 23a698e7dbbdc71e53167f86870132a8 "lualatex"
   "sources/introduction.tex" 1755431332.28602 4995 76cd762e50ebb3e8d4ddb8616f235971 ""
-  "sources/method.aux" 1756391671.441 9289 6c3a6ac7b5eb10f9dfd64ea803efd725 "lualatex"
+  "sources/method.aux" 1756476863.51982 9289 6c3a6ac7b5eb10f9dfd64ea803efd725 "lualatex"
   "sources/method.tex" 1755860043.78347 34472 8690e124c7d60af39ed9cd3874f41cec ""
-  "sources/related-work.aux" 1756391669.40175 4249 de571712fc9749d2c588ff3902107474 "lualatex"
+  "sources/related-work.aux" 1756476862.38382 4249 de571712fc9749d2c588ff3902107474 "lualatex"
   "sources/related-work.tex" 1755435394.31583 3508 5de5e657a2a9a2c390f834ee7fd9451b ""
-  "sources/results.aux" 1756391678.42561 24505 c45ffdf9e50838ec7f1053bf2f6e7b6e "lualatex"
-  "sources/results.tex" 1756391662.6006 42634 839820a5c0ce02b3715a0535fb1e8d9b ""
-  "sources/title.aux" 1756391669.09063 4056 56aab59dea3abea3ce68d0c3368116d3 "lualatex"
+  "sources/results.aux" 1756476870.66382 24505 c45ffdf9e50838ec7f1053bf2f6e7b6e "lualatex"
+  "sources/results.tex" 1756476402.29213 42635 8317e5a06c63ba4098378a622f4e1b4f ""
+  "sources/title.aux" 1756476862.09182 4056 56aab59dea3abea3ce68d0c3368116d3 "lualatex"
   "sources/title.tex" 1753120869.83946 662 ef030922993eb5d3f30e62c7ae134f8b ""
-  "thesis.aux" 1756391678.90007 21155 418e73bfe1a5c042255e849c65d90564 "lualatex"
+  "thesis.aux" 1756476871.11582 21155 418e73bfe1a5c042255e849c65d90564 "lualatex"
   "thesis.bbl" 1756195424.94465 95014 5647ecf8bee484293632da1718ba9627 "biber thesis"
   "thesis.ind" 1756220888.41699 0 d41d8cd98f00b204e9800998ecf8427e "makeindex thesis.idx"
-  "thesis.run.xml" 1756391678.92729 2389 0239a95ea246b752574cf5af365717b0 "lualatex"
+  "thesis.run.xml" 1756476871.14382 2389 0239a95ea246b752574cf5af365717b0 "lualatex"
   "thesis.tex" 1755361821.3134 3710 350800aa342f4a2fa658f25abe6fabca ""
-  "thesis.toc" 1756391678.92729 5738 261d6e3115764591c0050af69645e817 "lualatex"
+  "thesis.toc" 1756476871.14782 5738 261d6e3115764591c0050af69645e817 "lualatex"
   (generated)
   "sources/abstract.aux"
   "sources/conclusion.aux"
@@ -368,8 +368,8 @@
   "thesis.run.xml"
   "thesis.toc"
   (rewritten before read)
-["makeindex thesis.idx"] 1756220888.32178 "thesis.idx" "thesis.ind" "thesis" 1756391679.54512 0
-  "thesis.idx" 1756391668.61619 0 d41d8cd98f00b204e9800998ecf8427e "lualatex"
+["makeindex thesis.idx"] 1756220888.32178 "thesis.idx" "thesis.ind" "thesis" 1756476871.75836 0
+  "thesis.idx" 1756476861.62382 0 d41d8cd98f00b204e9800998ecf8427e "lualatex"
   (generated)
   "thesis.ilg"
   "thesis.ind"
