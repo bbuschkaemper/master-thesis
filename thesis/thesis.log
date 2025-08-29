@@ -1817,4 +1817,126 @@ Package luatex.def Info: figures/bad_taxonomy.png  used on input line 557.
 (luatex.def)             Requested size: 139.42094pt x 131.35115pt.
  [32] [33]
 Overfull \hbox (50.73785pt too wide) in paragraph at lines 628--634
-\TU/EBGaramond(0)/m/n/10.95 with a do-main iden-ti-fier, trans-form-ing th
+\TU/EBGaramond(0)/m/n/10.95 with a do-main iden-ti-fier, trans-form-ing the stan-dard $\TU/GaramondMath(1)/m/n/10.95 ([], [])$ \TU/EBGaramond(0)/m/n/10.95 pairs into $\TU/GaramondMath(1)/m/n/10.95 ([], ([], []))$
+ []
+
+(./figures/baseline_model_results.tex) (./figures/universal_model_results.tex) (./figures/universal_model_training_curves.pgf)
+Overfull \hbox (52.81956pt too wide) in paragraph at lines 668--669
+ [][] 
+ []
+
+
+Underfull \vbox (badness 1067) has occurred while \output is active []
+
+ [34] [35]
+Overfull \hbox (3.3175pt too wide) in paragraph at lines 701--703
+[]\TU/EBGaramond(0)/m/n/10.95 The hy-poth-e-sis re-la-tion-ship se-lec-tion method proves su-pe-rior to the MCFP method, achiev-
+ []
+
+) [36] [37<./figures/caltech256_2domain.png><./figures/caltech256_2domain_variant.png><./figures/caltech256_3domain.png><./figures/cifar100_2domain.png>] [38] [39<./figures/naive_threshold_method_precision_recall-img0.png><./figures/naive_threshold_method_precision_recall-img1.png><./figures/naive_threshold_method_precision_recall-img2.png><./figures/naive_threshold_method_precision_recall-img3.png>] [40<./figures/density_threshold_method_precision_recall-img0.png><./figures/density_threshold_method_precision_recall-img1.png><./figures/density_threshold_method_precision_recall-img2.png><./figures/density_threshold_method_precision_recall-img3.png><./figures/hypothesis_method_precision_recall-img0.png><./figures/hypothesis_method_precision_recall-img1.png><./figures/hypothesis_method_precision_recall-img2.png><./figures/hypothesis_method_precision_recall-img3.png>] [41<./figures/wordnet.png><./figures/svhn_mnist.png><./figures/domain_shift_visualization.png>] [42<./figures/taxonomy.png><./figures/wheel_concept.png><./figures/bad_taxonomy.png>] [43]
+\openout2 = sources/discussion.aux
+ (./sources/discussion.tex [44
+
+
+
+
+
+]
+chapter 5.
+) [45]
+\openout2 = sources/conclusion.aux
+ (./sources/conclusion.tex [46
+
+
+
+
+
+]
+chapter 6.
+) [47] [48
+
+
+
+
+] (./thesis.ind)
+chapter without number
+
+Overfull \hbox (2.18365pt too wide) in paragraph at lines 143--143
+[]\TU/EBGaramond(0)/m/n/10.95 W. Fal-con and The Py-Torch Light-ning team. \TU/EBGaramond(0)/m/it/10.95 Py-Torch Light-ning\TU/EBGaramond(0)/m/n/10.95 . Ver-sion 1.4. 2019. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 .
+ []
+
+
+Overfull \hbox (40.58322pt too wide) in paragraph at lines 143--143
+[]\TU/EBGaramond(0)/m/n/10.95 C. Fell-baum. \TU/EBGaramond(0)/m/it/10.95 Word-Net: An Elec-tronic Lex-i-cal Database\TU/EBGaramond(0)/m/n/10.95 . The MIT Press, 1998. \TU/EBGaramond(0)/m/sc/10.95 󰅱󰆢󰅑󰆈\TU/EBGaramond(0)/m/n/10.95 : 9780262272551.
+ []
+
+
+Overfull \hbox (9.6265pt too wide) in paragraph at lines 143--143
+\TU/EBGaramond(0)/m/n/10.95 Queries”. In: Sis-temi Evo-luti per Basi di Dati. 2024. \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 https : / / www . semanticscholar .
+ []
+
+[49
+
+
+]
+Overfull \hbox (5.90498pt too wide) in paragraph at lines 143--143
+\TU/SourceCodePro(0)/m/n/10.95 ARXIV . 1207 . 0580$[][]\TU/EBGaramond(0)/m/n/10.95 . \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 https : / / arxiv . org / abs / 1207 . 0580$[][] \TU/EBGaramond(0)/m/n/10.95 (vis-ited on 06/21/2025). 
+ []
+
+[50]
+Overfull \hbox (2.6348pt too wide) in paragraph at lines 143--143
+[]\TU/EBGaramond(0)/m/n/10.95 F.[]F. Li, M. An-dreeto, M. Ran-zato, and P. Per-ona. \TU/EBGaramond(0)/m/it/10.95 Cal-tech 101\TU/EBGaramond(0)/m/n/10.95 . Ver-sion 1.0. 6, 2022. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 .
+ []
+
+
+Overfull \hbox (4.7355pt too wide) in paragraph at lines 143--143
+[]\TU/EBGaramond(0)/m/n/10.95 I. Loshchilov and F. Hut-ter. \TU/EBGaramond(0)/m/it/10.95 De-cou-pled Weight De-cay Reg-u-lar-iza-tion\TU/EBGaramond(0)/m/n/10.95 . 2017. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 . 48550 /
+ []
+
+
+Overfull \hbox (12.01189pt too wide) in paragraph at lines 143--143
+[]\TU/EBGaramond(0)/m/n/10.95 T. T. Tan-i-moto. \TU/EBGaramond(0)/m/it/10.95 An El-e-men-tary Math-e-mat-i-cal The-ory of Clas-si-fi-ca-tion and Pre-dic-tion\TU/EBGaramond(0)/m/n/10.95 . Google-
+ []
+
+[51]
+Overfull \hbox (8.86124pt too wide) in paragraph at lines 143--143
+[]\TU/EBGaramond(0)/m/n/10.95 J. Ui-jlings, T. Mensink, and V. Fer-rari. \TU/EBGaramond(0)/m/it/10.95 The Miss-ing Link: Find-ing la-bel re-la-tions across datasets\TU/EBGaramond(0)/m/n/10.95 .
+ []
+
+
+Overfull \hbox (1.91948pt too wide) in paragraph at lines 143--143
+[]\TU/EBGaramond(0)/m/it/10.95 Word-Net\TU/EBGaramond(0)/m/n/10.95 . \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 https : / / wordnet . princeton . edu / homepage$[][] \TU/EBGaramond(0)/m/n/10.95 (vis-ited on 08/06/2025). 
+ []
+
+
+Overfull \hbox (26.1948pt too wide) in paragraph at lines 143--143
+\TU/EBGaramond(0)/m/n/10.95 Ltd. Shoumen, BUL-GARIA, Hissar, Bul-garia, 2013, pp. 25–32. \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 https : / / aclanthology .
+ []
+
+[52] (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/related-work.aux) (./sources/method.aux) (./sources/results.aux) (./sources/discussion.aux) (./sources/conclusion.aux))
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2020/03/25>
+ ***********
+Package logreq Info: Writing requests to 'thesis.run.xml'.
+
+\openout1 = thesis.run.xml
+)
+
+Here is how much of LuaTeX's memory you used:
+ 51360 strings out of 476553
+ 476873,2848258 words of node,token memory allocated
+ 1158 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 sub_mlist, 1 glyph, 109 attribute, 93 glue_spec, 56 attribute_list, 2 write, 20 pdf_action nodes
+   avail lists: 1:13,2:84095,3:33610,4:1189,5:920,6:190,7:16953,8:136,9:2969,10:15,11:1148
+ 71828 multiletter control sequences out of 65536+600000
+ 152 fonts using 77534811 bytes
+ 122i,21n,120p,10939b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf>
+Output written on thesis.pdf (58 pages, 7996241 bytes).
+
+PDF statistics: 930 PDF objects out of 1000 (max. 8388607)
+ 785 compressed objects within 8 object streams
+ 251 named destinations out of 1000 (max. 131072)
+ 304 words of extra memory for PDF output out of 10000 (max. 100000000)
+
