@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  30 AUG 2025 13:30
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  30 AUG 2025 16:36
  system commands enabled.
  file:line:error style messages enabled.
 **/home/bjoern/dev/master-thesis/thesis/thesis.tex
@@ -1467,7 +1467,14 @@ Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
 \pgf@nodesepend=\dimen295
 ) (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
-))
+)) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count496
+\float@exts=\toks56
+\float@box=\box79
+\@float@everytoks=\toks57
+\@floatcapt=\box80
+)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
  (./thesis.aux (./sources/title.aux) (./sources/abstract.aux) (./sources/introduction.aux) (./sources/related-work.aux) (./sources/method.aux) (./sources/results.aux) (./sources/discussion.aux) (./sources/conclusion.aux))
@@ -1505,17 +1512,17 @@ Package scrbase Info: activating english \bibname on input line 119.
 Package scrbase Info: activating english \indexname on input line 119.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count496
+\scratchcounter=\count497
 \scratchdimen=\dimen296
-\scratchbox=\box79
-\nofMPsegments=\count497
-\nofMParguments=\count498
-\everyMPshowfont=\toks56
-\MPscratchCnt=\count499
+\scratchbox=\box81
+\nofMPsegments=\count498
+\nofMParguments=\count499
+\everyMPshowfont=\toks58
+\MPscratchCnt=\count500
 \MPscratchDim=\dimen297
-\MPnumerator=\count500
-\makeMPintoPDFobject=\count501
-\everyMPtoPDFconversion=\toks57
+\MPnumerator=\count501
+\makeMPintoPDFobject=\count502
+\everyMPtoPDFconversion=\toks59
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1523,6 +1530,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
  (/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty
@@ -1598,6 +1606,21 @@ LaTeX Font Info:    Font shape `TU/EBGaramond(0)/m/sl' in size <10.95> not avail
 \openout2 = sources/introduction.aux
  (./sources/introduction.tex
 chapter 1.
+
+Class scrbook Warning: \float@addtolists detected!
+(scrbook)              Implementation of \float@addtolist became
+(scrbook)              deprecated in KOMA-Script v3.01 2008/11/14 and
+(scrbook)              has been replaced by several more flexible
+(scrbook)              features of package `tocbasic`.
+(scrbook)              Since Version 3.12 support for deprecated
+(scrbook)              \float@addtolist interface has been
+(scrbook)              restricted to only some of the KOMA-Script
+(scrbook)              features and been removed from others.
+(scrbook)              Loading of package `scrhack' may help to
+(scrbook)              avoid this warning, if you are using a
+(scrbook)              a package that still implements the
+(scrbook)              deprecated \float@addtolist interface.
+
 [1
 
 
@@ -1671,164 +1694,187 @@ warning  (file figures/resnet_funnel.pdf) (pdf inclusion): PDF inclusion: found 
 File: figures/resnet_funnel.pdf Graphic file (type pdf)
 <use figures/resnet_funnel.pdf>
 Package luatex.def Info: figures/resnet_funnel.pdf  used on input line 54.
-(luatex.def)             Requested size: 239.0056pt x 350.15303pt.
-(./figures/cifar100_overfitting.pgf
+(luatex.def)             Requested size: 159.33302pt x 233.43004pt.
+[22<./figures/resnet_funnel.pdf>] (./figures/cifar100_overfitting.pgf
 LaTeX Font Info:    Calculating math sizes for size <11> on input line 102.
-) [22] [23<./figures/resnet_funnel.pdf>] [24]
-<figures/caltech256_2domain.png, id=434, 1820.8025pt x 1802.735pt>
+) [23]
+<figures/caltech256_2domain.png, id=426, 1820.8025pt x 1802.735pt>
 File: figures/caltech256_2domain.png Graphic file (type png)
 <use figures/caltech256_2domain.png>
 Package luatex.def Info: figures/caltech256_2domain.png  used on input line 159.
-(luatex.def)             Requested size: 159.33302pt x 157.72792pt.
-<figures/caltech256_2domain_variant.png, id=435, 569.12625pt x 779.91376pt>
+(luatex.def)             Requested size: 139.42094pt x 138.03256pt.
+<figures/caltech256_2domain_variant.png, id=427, 569.12625pt x 779.91376pt>
 File: figures/caltech256_2domain_variant.png Graphic file (type png)
 <use figures/caltech256_2domain_variant.png>
 Package luatex.def Info: figures/caltech256_2domain_variant.png  used on input line 168.
-(luatex.def)             Requested size: 159.33302pt x 218.35056pt.
-<figures/caltech256_3domain.png, id=436, 1159.33125pt x 828.09375pt>
+(luatex.def)             Requested size: 139.42094pt x 191.06268pt.
+<figures/caltech256_3domain.png, id=428, 1159.33125pt x 828.09375pt>
 File: figures/caltech256_3domain.png Graphic file (type png)
 <use figures/caltech256_3domain.png>
 Package luatex.def Info: figures/caltech256_3domain.png  used on input line 177.
-(luatex.def)             Requested size: 159.33302pt x 113.7969pt.
-<figures/cifar100_2domain.png, id=437, 1617.04124pt x 1627.07875pt>
+(luatex.def)             Requested size: 139.42094pt x 99.58176pt.
+<figures/cifar100_2domain.png, id=429, 1617.04124pt x 1627.07875pt>
 File: figures/cifar100_2domain.png Graphic file (type png)
 <use figures/cifar100_2domain.png>
 Package luatex.def Info: figures/cifar100_2domain.png  used on input line 186.
-(luatex.def)             Requested size: 159.33302pt x 160.30916pt.
+(luatex.def)             Requested size: 139.42094pt x 140.27362pt.
 
-Overfull \hbox (3.53003pt too wide) in paragraph at lines 217--220
+Underfull \vbox (badness 4479) has occurred while \output is active []
+
+ [24] (./figures/all_training_runs.pgf)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [25<./figures/caltech256_2domain.png><./figures/caltech256_2domain_variant.png><./figures/caltech256_3domain.png><./figures/cifar100_2domain.png>] (./figures/evaluation_results.tex) [26]
+Overfull \hbox (3.53003pt too wide) in paragraph at lines 229--232
 []\TU/EBGaramond(0)/m/n/10.95 The CIFAR-100 vari-ants have a slightly lower ac-cu-racy than the Caltech-256 vari-ants, which
  []
 
-(./figures/all_training_runs.pgf) (./figures/evaluation_results.tex) (./figures/naive_threshold_method_precision_recall.pgf
-<figures/naive_threshold_method_precision_recall-img0.png, id=440, interpolate=true, 21.07875pt x 409.53pt>
+[27] (./figures/relationship_methods_results.tex
+Overfull \hbox (5.48038pt too wide) in paragraph at lines 5--30
+ [][] 
+ []
+
+) (./figures/naive_threshold_method_precision_recall.pgf
+<figures/naive_threshold_method_precision_recall-img0.png, id=466, interpolate=true, 21.07875pt x 409.53pt>
 File: figures/naive_threshold_method_precision_recall-img0.png Graphic file (type png)
 <use figures/naive_threshold_method_precision_recall-img0.png>
 Package luatex.def Info: figures/naive_threshold_method_precision_recall-img0.png  used on input line 4289.
 (luatex.def)             Requested size: 15.1773pt x 294.88011pt.
-<figures/naive_threshold_method_precision_recall-img1.png, id=441, interpolate=true, 20.075pt x 409.53pt>
+<figures/naive_threshold_method_precision_recall-img1.png, id=467, interpolate=true, 20.075pt x 409.53pt>
 File: figures/naive_threshold_method_precision_recall-img1.png Graphic file (type png)
 <use figures/naive_threshold_method_precision_recall-img1.png>
 Package luatex.def Info: figures/naive_threshold_method_precision_recall-img1.png  used on input line 4484.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/naive_threshold_method_precision_recall-img2.png, id=442, interpolate=true, 21.07875pt x 409.53pt>
+<figures/naive_threshold_method_precision_recall-img2.png, id=468, interpolate=true, 21.07875pt x 409.53pt>
 File: figures/naive_threshold_method_precision_recall-img2.png Graphic file (type png)
 <use figures/naive_threshold_method_precision_recall-img2.png>
 Package luatex.def Info: figures/naive_threshold_method_precision_recall-img2.png  used on input line 4679.
 (luatex.def)             Requested size: 15.1773pt x 294.88011pt.
-<figures/naive_threshold_method_precision_recall-img3.png, id=443, interpolate=true, 20.075pt x 409.53pt>
+<figures/naive_threshold_method_precision_recall-img3.png, id=469, interpolate=true, 20.075pt x 409.53pt>
 File: figures/naive_threshold_method_precision_recall-img3.png Graphic file (type png)
 <use figures/naive_threshold_method_precision_recall-img3.png>
 Package luatex.def Info: figures/naive_threshold_method_precision_recall-img3.png  used on input line 4874.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-) (./figures/density_threshold_method_precision_recall.pgf
-<figures/density_threshold_method_precision_recall-img0.png, id=444, interpolate=true, 21.07875pt x 409.53pt>
+)
+Underfull \vbox (badness 2253) has occurred while \output is active []
+
+ [28] (./figures/density_threshold_method_precision_recall.pgf
+<figures/density_threshold_method_precision_recall-img0.png, id=476, interpolate=true, 21.07875pt x 409.53pt>
 File: figures/density_threshold_method_precision_recall-img0.png Graphic file (type png)
 <use figures/density_threshold_method_precision_recall-img0.png>
 Package luatex.def Info: figures/density_threshold_method_precision_recall-img0.png  used on input line 4289.
 (luatex.def)             Requested size: 15.1773pt x 294.88011pt.
-<figures/density_threshold_method_precision_recall-img1.png, id=445, interpolate=true, 20.075pt x 409.53pt>
+<figures/density_threshold_method_precision_recall-img1.png, id=477, interpolate=true, 20.075pt x 409.53pt>
 File: figures/density_threshold_method_precision_recall-img1.png Graphic file (type png)
 <use figures/density_threshold_method_precision_recall-img1.png>
 Package luatex.def Info: figures/density_threshold_method_precision_recall-img1.png  used on input line 4484.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/density_threshold_method_precision_recall-img2.png, id=446, interpolate=true, 21.07875pt x 409.53pt>
+<figures/density_threshold_method_precision_recall-img2.png, id=478, interpolate=true, 21.07875pt x 409.53pt>
 File: figures/density_threshold_method_precision_recall-img2.png Graphic file (type png)
 <use figures/density_threshold_method_precision_recall-img2.png>
 Package luatex.def Info: figures/density_threshold_method_precision_recall-img2.png  used on input line 4679.
 (luatex.def)             Requested size: 15.1773pt x 294.88011pt.
-<figures/density_threshold_method_precision_recall-img3.png, id=447, interpolate=true, 20.075pt x 409.53pt>
+<figures/density_threshold_method_precision_recall-img3.png, id=479, interpolate=true, 20.075pt x 409.53pt>
 File: figures/density_threshold_method_precision_recall-img3.png Graphic file (type png)
 <use figures/density_threshold_method_precision_recall-img3.png>
 Package luatex.def Info: figures/density_threshold_method_precision_recall-img3.png  used on input line 4874.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
 ) (./figures/hypothesis_method_precision_recall.pgf
-<figures/hypothesis_method_precision_recall-img0.png, id=448, interpolate=true, 20.075pt x 409.53pt>
+<figures/hypothesis_method_precision_recall-img0.png, id=480, interpolate=true, 20.075pt x 409.53pt>
 File: figures/hypothesis_method_precision_recall-img0.png Graphic file (type png)
 <use figures/hypothesis_method_precision_recall-img0.png>
 Package luatex.def Info: figures/hypothesis_method_precision_recall-img0.png  used on input line 3233.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/hypothesis_method_precision_recall-img1.png, id=449, interpolate=true, 20.075pt x 409.53pt>
+<figures/hypothesis_method_precision_recall-img1.png, id=481, interpolate=true, 20.075pt x 409.53pt>
 File: figures/hypothesis_method_precision_recall-img1.png Graphic file (type png)
 <use figures/hypothesis_method_precision_recall-img1.png>
 Package luatex.def Info: figures/hypothesis_method_precision_recall-img1.png  used on input line 3528.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/hypothesis_method_precision_recall-img2.png, id=450, interpolate=true, 20.075pt x 409.53pt>
+<figures/hypothesis_method_precision_recall-img2.png, id=482, interpolate=true, 20.075pt x 409.53pt>
 File: figures/hypothesis_method_precision_recall-img2.png Graphic file (type png)
 <use figures/hypothesis_method_precision_recall-img2.png>
 Package luatex.def Info: figures/hypothesis_method_precision_recall-img2.png  used on input line 3823.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-<figures/hypothesis_method_precision_recall-img3.png, id=451, interpolate=true, 20.075pt x 409.53pt>
+<figures/hypothesis_method_precision_recall-img3.png, id=483, interpolate=true, 20.075pt x 409.53pt>
 File: figures/hypothesis_method_precision_recall-img3.png Graphic file (type png)
 <use figures/hypothesis_method_precision_recall-img3.png>
 Package luatex.def Info: figures/hypothesis_method_precision_recall-img3.png  used on input line 4118.
 (luatex.def)             Requested size: 14.45396pt x 294.88011pt.
-) (./figures/relationship_methods_results.tex
-Overfull \hbox (5.48038pt too wide) in paragraph at lines 5--30
- [][] 
- []
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-) [25] [26] [27]
-Overfull \hbox (6.61784pt too wide) in paragraph at lines 339--348
+ [29<./figures/naive_threshold_method_precision_recall-img0.png><./figures/naive_threshold_method_precision_recall-img1.png><./figures/naive_threshold_method_precision_recall-img2.png><./figures/naive_threshold_method_precision_recall-img3.png><./figures/density_threshold_method_precision_recall-img0.png><./figures/density_threshold_method_precision_recall-img1.png><./figures/density_threshold_method_precision_recall-img2.png><./figures/density_threshold_method_precision_recall-img3.png>]
+Overfull \hbox (6.61784pt too wide) in paragraph at lines 337--346
 \TU/EBGaramond(0)/m/n/10.95 thresh-old-ing method, but has a con-spic-u-ous drop for the CIFAR-100 dataset vari-ant (promi-
  []
 
-(./figures/relationship_methods_global_optimal.tex) [28]
-<figures/wordnet.png, id=497, 575.90157pt x 244.66406pt>
+
+Underfull \vbox (badness 2096) has occurred while \output is active []
+
+ [30<./figures/hypothesis_method_precision_recall-img0.png><./figures/hypothesis_method_precision_recall-img1.png><./figures/hypothesis_method_precision_recall-img2.png><./figures/hypothesis_method_precision_recall-img3.png>] (./figures/relationship_methods_global_optimal.tex) [31]
+<figures/wordnet.png, id=524, 575.90157pt x 244.66406pt>
 File: figures/wordnet.png Graphic file (type png)
 <use figures/wordnet.png>
-Package luatex.def Info: figures/wordnet.png  used on input line 425.
-(luatex.def)             Requested size: 139.42094pt x 59.23203pt.
- [29]
-<figures/svhn_mnist.png, id=508, 575.90157pt x 542.77782pt>
+Package luatex.def Info: figures/wordnet.png  used on input line 423.
+(luatex.def)             Requested size: 239.0056pt x 101.53741pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32]
+<figures/svhn_mnist.png, id=535, 575.90157pt x 542.77782pt>
 File: figures/svhn_mnist.png Graphic file (type png)
 <use figures/svhn_mnist.png>
-Package luatex.def Info: figures/svhn_mnist.png  used on input line 454.
-(luatex.def)             Requested size: 139.42094pt x 131.40398pt.
+Package luatex.def Info: figures/svhn_mnist.png  used on input line 452.
+(luatex.def)             Requested size: 239.0056pt x 225.25687pt.
 
-Underfull \vbox (badness 3354) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [30]
-<figures/domain_shift_visualization.png, id=519, 1949.8446pt x 878.5623pt>
+ [33<./figures/wordnet.png>] [34<./figures/svhn_mnist.png>]
+<figures/domain_shift_visualization.png, id=556, 1949.8446pt x 878.5623pt>
 File: figures/domain_shift_visualization.png Graphic file (type png)
 <use figures/domain_shift_visualization.png>
-Package luatex.def Info: figures/domain_shift_visualization.png  used on input line 489.
-(luatex.def)             Requested size: 398.33864pt x 179.47636pt.
- (./figures/evaluation_results_domain_shifted.tex) (./figures/relationship_methods_global_optimal_domain_shifted.tex)
-Overfull \hbox (1.61008pt too wide) in paragraph at lines 518--520
+Package luatex.def Info: figures/domain_shift_visualization.png  used on input line 486.
+(luatex.def)             Requested size: 239.0056pt x 107.68849pt.
+ (./figures/evaluation_results_domain_shifted.tex) (./figures/relationship_methods_global_optimal_domain_shifted.tex
+Underfull \vbox (badness 4378) has occurred while \output is active []
+
+ [35<./figures/domain_shift_visualization.png>])
+Overfull \hbox (1.61008pt too wide) in paragraph at lines 516--518
 []\TU/EBGaramond(0)/m/n/10.95 Our new best per-form-ing re-la-tion-ship se-lec-tion method, based on av-er-aged max-i-mum EDR
  []
 
-[31]
-<figures/taxonomy.png, id=536, 641.39626pt x 609.77812pt>
+<figures/taxonomy.png, id=571, 641.39626pt x 609.77812pt>
 File: figures/taxonomy.png Graphic file (type png)
 <use figures/taxonomy.png>
-Package luatex.def Info: figures/taxonomy.png  used on input line 537.
-(luatex.def)             Requested size: 139.42094pt x 132.54193pt.
-<figures/wheel_concept.png, id=537, 411.78844pt x 496.85625pt>
+Package luatex.def Info: figures/taxonomy.png  used on input line 535.
+(luatex.def)             Requested size: 159.33302pt x 151.47649pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [36]
+<figures/wheel_concept.png, id=580, 411.78844pt x 496.85625pt>
 File: figures/wheel_concept.png Graphic file (type png)
 <use figures/wheel_concept.png>
-Package luatex.def Info: figures/wheel_concept.png  used on input line 547.
-(luatex.def)             Requested size: 139.42094pt x 168.22382pt.
-<figures/bad_taxonomy.png, id=538, 494.59781pt x 465.99094pt>
+Package luatex.def Info: figures/wheel_concept.png  used on input line 559.
+(luatex.def)             Requested size: 159.33302pt x 192.24928pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [37<./figures/taxonomy.png>]
+<figures/bad_taxonomy.png, id=589, 494.59781pt x 465.99094pt>
 File: figures/bad_taxonomy.png Graphic file (type png)
 <use figures/bad_taxonomy.png>
-Package luatex.def Info: figures/bad_taxonomy.png  used on input line 557.
-(luatex.def)             Requested size: 139.42094pt x 131.35115pt.
- [32] [33]
-Overfull \hbox (50.73785pt too wide) in paragraph at lines 628--634
+Package luatex.def Info: figures/bad_taxonomy.png  used on input line 575.
+(luatex.def)             Requested size: 159.33302pt x 150.1156pt.
+ [38<./figures/wheel_concept.png><./figures/bad_taxonomy.png>]
+Overfull \hbox (50.73785pt too wide) in paragraph at lines 626--632
 \TU/EBGaramond(0)/m/n/10.95 with a do-main iden-ti-fier, trans-form-ing the stan-dard $\TU/GaramondMath(1)/m/n/10.95 ([], [])$ \TU/EBGaramond(0)/m/n/10.95 pairs into $\TU/GaramondMath(1)/m/n/10.95 ([], ([], []))$
  []
 
-(./figures/baseline_model_results.tex) (./figures/universal_model_results_2domain.tex) (./figures/universal_model_results_3domain.tex) (./figures/universal_model_training_curves.pgf)
-Overfull \hbox (50.51616pt too wide) in paragraph at lines 669--670
- [][] 
- []
+[39] (./figures/universal_model_training_curves.pgf) [40] (./figures/baseline_model_results.tex) (./figures/universal_model_results_2domain.tex) (./figures/universal_model_results_3domain.tex)
+Underfull \vbox (badness 2088) has occurred while \output is active []
 
-[34]
-Underfull \vbox (badness 5681) has occurred while \output is active []
-
- [35] [36]) [37] [38<./figures/caltech256_2domain.png><./figures/caltech256_2domain_variant.png><./figures/caltech256_3domain.png><./figures/cifar100_2domain.png>] [39] [40<./figures/naive_threshold_method_precision_recall-img0.png><./figures/naive_threshold_method_precision_recall-img1.png><./figures/naive_threshold_method_precision_recall-img2.png><./figures/naive_threshold_method_precision_recall-img3.png>] [41<./figures/density_threshold_method_precision_recall-img0.png><./figures/density_threshold_method_precision_recall-img1.png><./figures/density_threshold_method_precision_recall-img2.png><./figures/density_threshold_method_precision_recall-img3.png><./figures/hypothesis_method_precision_recall-img0.png><./figures/hypothesis_method_precision_recall-img1.png><./figures/hypothesis_method_precision_recall-img2.png><./figures/hypothesis_method_precision_recall-img3.png>] [42<./figures/wordnet.png><./figures/svhn_mnist.png><./figures/domain_shift_visualization.png>] [43<./figures/taxonomy.png><./figures/wheel_concept.png><./figures/bad_taxonomy.png>] [44]
+ [41] [42] (./figures/universal_features_2domain_tsne.pgf) (./figures/universal_features_3domain_tsne.pgf) [43]) [44]
 \openout2 = sources/discussion.aux
  (./sources/discussion.tex
 chapter 5.
@@ -1924,19 +1970,19 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 51386 strings out of 476553
- 596094,2848258 words of node,token memory allocated
+ 51464 strings out of 476553
+ 745126,4101490 words of node,token memory allocated
  1182 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 sub_mlist, 1 glyph, 113 attribute, 93 glue_spec, 58 attribute_list, 2 write, 22 pdf_action nodes
-   avail lists: 1:14,2:100708,3:44100,4:1459,5:1025,6:188,7:18871,8:136,9:3544,10:16,11:1286
- 71844 multiletter control sequences out of 65536+600000
- 152 fonts using 77576411 bytes
+   avail lists: 1:13,2:150606,3:83497,4:968,5:620,6:188,7:11557,8:136,9:2465,10:16,11:749
+ 71905 multiletter control sequences out of 65536+600000
+ 152 fonts using 77694491 bytes
  122i,21n,120p,10939b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf>
-Output written on thesis.pdf (58 pages, 8023991 bytes).
+Output written on thesis.pdf (58 pages, 8119419 bytes).
 
-PDF statistics: 952 PDF objects out of 1000 (max. 8388607)
- 805 compressed objects within 9 object streams
+PDF statistics: 960 PDF objects out of 1000 (max. 8388607)
+ 813 compressed objects within 9 object streams
  255 named destinations out of 1000 (max. 131072)
  312 words of extra memory for PDF output out of 10000 (max. 100000000)
 

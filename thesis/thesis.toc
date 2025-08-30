@@ -42,23 +42,22 @@
 \contentsline {subsection}{\numberline {4.1.2}Training}{22}{subsection.4.1.2}%
 \contentsline {subsubsection}{\nonumberline Model Architecture}{22}{subsubsection*.33}%
 \contentsline {subsubsection}{\nonumberline Training Procedure}{22}{subsubsection*.36}%
-\contentsline {subsection}{\numberline {4.1.3}Model Performance}{23}{subsection.4.1.3}%
-\contentsline {subsubsection}{\nonumberline Synthetic Variants}{23}{subsubsection*.39}%
+\contentsline {subsection}{\numberline {4.1.3}Model Performance}{24}{subsection.4.1.3}%
+\contentsline {subsubsection}{\nonumberline Synthetic Variants}{24}{subsubsection*.39}%
 \contentsline {subsubsection}{\nonumberline Model Accuracy}{25}{subsubsection*.42}%
-\contentsline {section}{\numberline {4.2}Taxonomy Generation}{25}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Relationship Selection Methods}{25}{subsection.4.2.1}%
-\contentsline {subsubsection}{\nonumberline Synthetic Dataset Variants}{25}{subsubsection*.46}%
-\contentsline {subsubsection}{\nonumberline Critique on Synthetic Dataset Variants}{28}{subsubsection*.53}%
-\contentsline {subsubsection}{\nonumberline Alternate Evaluation Methods - WordNet Synsets}{29}{subsubsection*.55}%
-\contentsline {subsubsection}{\nonumberline Alternate Evaluation Methods - SVHN-MNIST}{30}{subsubsection*.58}%
-\contentsline {subsubsection}{\nonumberline Alternate Evaluation Methods - Domain-Shift Synthetic Datasets}{31}{subsubsection*.61}%
-\contentsline {subsection}{\numberline {4.2.2}Universal Taxonomy Generation}{32}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Universal Models}{33}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Training}{33}{subsection.4.3.1}%
-\contentsline {subsubsection}{\nonumberline Modifications to Baseline Architecture}{33}{subsubsection*.69}%
-\contentsline {subsubsection}{\nonumberline Multi-Domain Training Procedure}{34}{subsubsection*.71}%
-\contentsline {subsection}{\numberline {4.3.2}Performance}{34}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Feature Visualization}{37}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.2}Taxonomy Generation}{27}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Relationship Selection Methods}{27}{subsection.4.2.1}%
+\contentsline {subsubsection}{\nonumberline Critique on Synthetic Dataset Variants}{31}{subsubsection*.51}%
+\contentsline {subsubsection}{\nonumberline WordNet Synsets}{32}{subsubsection*.53}%
+\contentsline {subsubsection}{\nonumberline SVHN-MNIST}{33}{subsubsection*.56}%
+\contentsline {subsubsection}{\nonumberline Domain-Shift Synthetic Datasets}{34}{subsubsection*.59}%
+\contentsline {subsection}{\numberline {4.2.2}Universal Taxonomy Generation}{37}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Universal Models}{39}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Training}{39}{subsection.4.3.1}%
+\contentsline {subsubsection}{\nonumberline Modifications to Baseline Architecture}{39}{subsubsection*.67}%
+\contentsline {subsubsection}{\nonumberline Multi-Domain Training Procedure}{40}{subsubsection*.69}%
+\contentsline {subsection}{\numberline {4.3.2}Performance}{40}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Feature Visualization}{43}{subsection.4.3.3}%
 \contentsline {chapter}{\numberline {5}Discussion}{45}{chapter.5}%
 \contentsline {chapter}{\numberline {6}Conclusion}{47}{chapter.6}%
 \contentsline {chapter}{\nonumberline Bibliography}{49}{chapter*.76}%

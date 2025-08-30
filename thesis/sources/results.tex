@@ -49,9 +49,9 @@ We adapt the ResNet-50 architecture to our datasets by switching out
 the final fully connected layer with a funnel architecture that ends
 in an output layer matching the number of classes per dataset (see Figure~\ref{fig:resnet_funnel}).
 
-\begin{figure}[ht]
+\begin{figure}[H]
       \centering
-      \includegraphics[width=0.6\textwidth]{figures/resnet_funnel.pdf}
+      \includegraphics[width=0.4\textwidth]{figures/resnet_funnel.pdf}
       \caption{Our ResNet-50 architecture with a funnel layer for classification.
             Blue blocks represent the input from the ResNet-50 architecture,
             red blocks represent the final output layer,
@@ -77,9 +77,9 @@ To mitigate this, we apply several regularisation techniques:
             and help the model to generalise better by exposing it to a wider variety of input data.
 \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}[H]
       \centering
-      \scalebox{0.6}{\input{figures/cifar100_overfitting.pgf}}
+      \resizebox{0.6\textwidth}{!}{\input{figures/cifar100_overfitting.pgf}}
       \caption{Overfitting on the CIFAR-100 dataset during training.
             The blue line represents the training accuracy,
             while the orange line represents the validation accuracy.
@@ -152,9 +152,9 @@ and create synthetic variants of these datasets:
             is shown in Figure~\ref{fig:cifar100_2domain}.
 \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}[H]
       \centering
-      \begin{subfigure}[b]{0.4\textwidth}
+      \begin{subfigure}[b]{0.35\textwidth}
             \centering
             \includegraphics[width=\textwidth]{figures/caltech256_2domain.png}
             \caption{Caltech-256 2-domain variant 1\\
@@ -163,7 +163,7 @@ and create synthetic variants of these datasets:
             \label{fig:caltech256_2domain}
       \end{subfigure}
       \hfill
-      \begin{subfigure}[b]{0.4\textwidth}
+      \begin{subfigure}[b]{0.35\textwidth}
             \centering
             \includegraphics[width=\textwidth]{figures/caltech256_2domain_variant.png}
             \caption{Caltech-256 2-domain variant 2\\
@@ -172,7 +172,7 @@ and create synthetic variants of these datasets:
             \label{fig:caltech256_2domain_variant}
       \end{subfigure}
 
-      \begin{subfigure}[b]{0.4\textwidth}
+      \begin{subfigure}[b]{0.35\textwidth}
             \centering
             \includegraphics[width=\textwidth]{figures/caltech256_3domain.png}
             \caption{Caltech-256 3-domain variant\\
@@ -181,7 +181,7 @@ and create synthetic variants of these datasets:
             \label{fig:caltech256_3domain}
       \end{subfigure}
       \hfill
-      \begin{subfigure}[b]{0.4\textwidth}
+      \begin{subfigure}[b]{0.35\textwidth}
             \centering
             \includegraphics[width=\textwidth]{figures/cifar100_2domain.png}
             \caption{CIFAR-100 2-domain variant\\
@@ -200,6 +200,18 @@ and create synthetic variants of these datasets:
 Let us now take a look at the accuracy of our models trained on the synthetic dataset variants.
 We use checkpoints to save the model after each epoch and pick the model checkpoint with the lowest validation loss
 for our final evaluation.
+
+\begin{figure}[H]
+      \centering
+      \resizebox{0.6\textwidth}{!}{\input{figures/all_training_runs.pgf}}
+
+      \caption{Accuracy curves for all synthetic dataset variants.
+            Each subplot shows training and validation accuracy over training steps for all domains in that variant.
+            The models achieve final training accuracies of approximately 0.96-0.98 and validation accuracies of approximately 0.73-0.83.}
+      \label{fig:all_training_runs}
+\end{figure}
+
+\input{figures/evaluation_results.tex}
 
 We can see our final training runs in Figure~\ref{fig:all_training_runs}.
 It can be observed that our overfitting mitigation techniques have worked sufficiently well,
@@ -224,18 +236,6 @@ Multiple things can be observed:
             but the deviation in accuracy is negligible ($\leq 0.05$).
 \end{itemize}
 
-\begin{figure}[ht]
-      \centering
-      \scalebox{0.35}{\input{figures/all_training_runs.pgf}}
-
-      \caption{Accuracy curves for all synthetic dataset variants.
-            Each subplot shows training and validation accuracy over training steps for all domains in that variant.
-            The models achieve final training accuracies of approximately 0.96-0.98 and validation accuracies of approximately 0.73-0.83.}
-      \label{fig:all_training_runs}
-\end{figure}
-
-\input{figures/evaluation_results.tex}
-
 Now that we have sufficiently good domain models,
 we can use them to evaluate our relationship selection methods
 and generate taxonomies from the relationship graphs we create.
@@ -244,35 +244,7 @@ and generate taxonomies from the relationship graphs we create.
 
 \subsection{Relationship Selection Methods} \label{sec:relationship_selection}
 
-\subsubsection{Synthetic Dataset Variants}
-
 \graphicspath{{figures/}}
-
-\begin{figure}[ht]
-      \centering
-      \scalebox{0.35}{\input{figures/naive_threshold_method_precision_recall.pgf}}
-      \caption{Precision and recall plot of the \textbf{naive thresholding method}
-            for different thresholds on the Caltech-256 2-domain, Caltech-256 3-domain, and CIFAR-100 2-domain synthetic dataset variants.}
-      \label{fig:naive_thresholding_precision_recall}
-\end{figure}
-
-\begin{figure}[ht]
-      \centering
-      \scalebox{0.35}{\input{figures/density_threshold_method_precision_recall.pgf}}
-      \caption{Precision and recall plot of the \textbf{density thresholding method}
-            for different thresholds on the Caltech-256 2-domain, Caltech-256 3-domain, and CIFAR-100 2-domain synthetic dataset variants.}
-      \label{fig:density_thresholding_precision_recall}
-\end{figure}
-
-\begin{figure}[ht]
-      \centering
-      \scalebox{0.35}{\input{figures/hypothesis_method_precision_recall.pgf}}
-      \caption{Precision and recall plot of the \textbf{hypothesis method}
-            for different upper bounds on the Caltech-256 2-domain, Caltech-256 3-domain, and CIFAR-100 2-domain synthetic dataset variants.}
-      \label{fig:hypothesis_method_precision_recall}
-\end{figure}
-
-\input{figures/relationship_methods_results.tex}
 
 Now that we have trained our domain models on the synthetic dataset variants,
 we can use them to evaluate our different relationship selection methods.
@@ -306,6 +278,8 @@ We will evalute every relationship selection method on every dataset variant
 by selecting the method parameters that yield the best edge difference ratio
 on that dataset variant.
 
+\input{figures/relationship_methods_results.tex}
+
 When looking at the results in Table~\ref{tab:relationship_methods_best_edr},
 we can observe two things:
 \begin{itemize}
@@ -320,6 +294,30 @@ we can observe two things:
             This was to be expected since our synthetic dataset variants rarely have
             classes with only a single outgoing relationship.
 \end{itemize}
+
+\begin{figure}[H]
+      \centering
+      \resizebox{0.6\textwidth}{!}{\input{figures/naive_threshold_method_precision_recall.pgf}}
+      \caption{Precision and recall plot of the \textbf{naive thresholding method}
+            for different thresholds on the Caltech-256 2-domain, Caltech-256 3-domain, and CIFAR-100 2-domain synthetic dataset variants.}
+      \label{fig:naive_thresholding_precision_recall}
+\end{figure}
+
+\begin{figure}[H]
+      \centering
+      \resizebox{0.6\textwidth}{!}{\input{figures/density_threshold_method_precision_recall.pgf}}
+      \caption{Precision and recall plot of the \textbf{density thresholding method}
+            for different thresholds on the Caltech-256 2-domain, Caltech-256 3-domain, and CIFAR-100 2-domain synthetic dataset variants.}
+      \label{fig:density_thresholding_precision_recall}
+\end{figure}
+
+\begin{figure}[H]
+      \centering
+      \resizebox{0.6\textwidth}{!}{\input{figures/hypothesis_method_precision_recall.pgf}}
+      \caption{Precision and recall plot of the \textbf{hypothesis method}
+            for different upper bounds on the Caltech-256 2-domain, Caltech-256 3-domain, and CIFAR-100 2-domain synthetic dataset variants.}
+      \label{fig:hypothesis_method_precision_recall}
+\end{figure}
 
 Let us take a deeper look at each of the methods and their performance
 on the synthetic dataset variants using precision-recall curves for different parameters:
@@ -413,16 +411,16 @@ To verify or disprove our findings, we will try to create new, more realistic gr
             and therefore create a more \enquote{difficult} dataset for our methods.
 \end{itemize}
 
-\subsubsection{Alternate Evaluation Methods - WordNet Synsets} \label{sec:wordnet_synsets}
+\subsubsection{WordNet Synsets} \label{sec:wordnet_synsets}
 
 We test the usage of WordNet Synsets on the Caltech-101 and Caltech-256 datasets to build a relationship graph.
 It can be observed that the relationship weights (Wu \& Palmer similarity scores) are very high (ranging between 0.8 and 1.0),
 even for weakly related synsets (e.g. between the Caltech256 class \textit{snake} and the Caltech101 class \textit{crocodile},
 we observe a 0.88 relationship weight in both directions).
 
-\begin{figure}[ht]
+\begin{figure}[H]
       \centering
-      \includegraphics[width=0.35\textwidth]{figures/wordnet.png}
+      \includegraphics[width=0.6\textwidth]{figures/wordnet.png}
 
       \caption{An example of a bad WordNet cluster in a relationship graph between Caltech256 and Caltech101.
             These false positives occur commonly and make WordNet unsuitable as a ground truth taxonomy.}
@@ -440,7 +438,7 @@ Unfortunately upon manual inspection, these false positives occur frequently.
 Since we try to build a ground truth taxonomy to evaluate relationship selection methods,
 these false positives can significantly skew the results and make WordNet unsuitable for our purposes.
 
-\subsubsection{Alternate Evaluation Methods - SVHN-MNIST}
+\subsubsection{SVHN-MNIST}
 
 Next, we try to use the SVHN and MNIST datasets to create a relationship graph.
 These datasets provide a special usability for our purposes,
@@ -449,9 +447,9 @@ Also, since the datasets have a sufficiently shifted domain (i.e. drawn, greysca
 from different angles, lighting conditions, etc.),
 the differences are large enough to make the task of relationship selection more difficult and realistic.
 
-\begin{figure}[ht]
+\begin{figure}[H]
       \centering
-      \includegraphics[width=0.35\textwidth]{figures/svhn_mnist.png}
+      \includegraphics[width=0.6\textwidth]{figures/svhn_mnist.png}
 
       \caption{This figure shows the complete relationship graph between the SVHN and MNIST datasets.
             The relationships are unequivocal and straightforward, as the classes are identical across both datasets;
@@ -472,7 +470,7 @@ we decide against this method upon further reflection:
             This taxonomy will be limited to numbers.
 \end{itemize}
 
-\subsubsection{Alternate Evaluation Methods - Domain-Shift Synthetic Datasets}
+\subsubsection{Domain-Shift Synthetic Datasets}
 
 The main advantage of our synthetic dataset variants is their ability to create a proven correct ground truth taxonomy.
 Instead of trying to derive a ground truth using new, suboptimal methods,
@@ -483,10 +481,9 @@ which result in a near-perfect, unrealistic cross-domain model prediction accura
 Due to this high model confidence, the best performing relationship selection methods are likely to be overly optimistic
 and therefore perform poorly in real-world scenarios where models will not be able to perform as well across domains.
 
-
-\begin{figure}[ht]
+\begin{figure}[H]
       \centering
-      \includegraphics[width=\textwidth]{figures/domain_shift_visualization.png}
+      \includegraphics[width=0.6\textwidth]{figures/domain_shift_visualization.png}
 
       \caption{Example images from the domain-shifted synthetic variants.
             We apply different transformations to the images of the original synthetic dataset
@@ -504,11 +501,12 @@ synthetically changing their visual characteristics
 while retaining the same classes and relationships.
 
 \input{figures/evaluation_results_domain_shifted.tex}
-\input{figures/relationship_methods_global_optimal_domain_shifted.tex}
 
 The training performance of these new domain-shifted models can be seen in Table~\ref{tab:evaluation_results_domain_shifted}.
 We can observe a $10\%$ decrease in accuracy on the test data compared to the original synthetic dataset variants.
 This was to be expected due to the increased complexity of the domain-shifted tasks.
+
+\input{figures/relationship_methods_global_optimal_domain_shifted.tex}
 
 When comparing the new averaged relationship method evaluation results in Table~\ref{tab:relationship_methods_global_optimal_domain_shifted}
 to our original non-domain-shifted results in Table~\ref{tab:relationship_methods_global_optimal},
@@ -532,35 +530,14 @@ built with the universal taxonomies of the two preselected relationship selectio
 
 \subsection{Universal Taxonomy Generation}
 
-\begin{figure}[ht]
+\begin{figure}[H]
       \centering
-      \includegraphics[width=0.35\textwidth]{figures/taxonomy.png}
+      \includegraphics[width=0.4\textwidth]{figures/taxonomy.png}
 
       \caption{This figure shows the complete Caltech101-Caltech256 universal taxonomy.
             While most classes build smaller clusters build smaller clusters of 2-3 classes,
             some large clusters can be observed.}
       \label{fig:taxonomy}
-\end{figure}
-
-\begin{figure}[ht]
-      \centering
-      \includegraphics[width=0.35\textwidth]{figures/wheel_concept.png}
-
-      \caption{In the Caltech101-Caltech256 universal taxonomy,
-            this cluster only contains vehicles. The universal classes created can be interpreted as
-            sharing a common concept of \enquote{wheel}.}
-      \label{fig:wheel_concept}
-\end{figure}
-
-\begin{figure}[ht]
-      \centering
-      \includegraphics[width=0.35\textwidth]{figures/bad_taxonomy.png}
-
-      \caption{This example in the Caltech101-Caltech256 universal taxonomy shows a wrong relationship
-            cluster towards the Caltech101 class \enquote{binocular}. Many of the Caltech256 classes
-            do not have a suitable representation in the Caltech101 dataset
-            and then connect to the Caltech101 class \enquote{binocular} instead.}
-      \label{fig:bad_taxonomy}
 \end{figure}
 
 We now have our domain models trained and our relationship selection methods evaluated.
@@ -577,11 +554,32 @@ We can observe many smaller clusters of 2-3 classes which build from a single do
 the Caltech-101 dataset and multiple domain classes in the Caltech-256 dataset
 (since the Caltech-256 dataset has more granular classes, this is to be expected).
 
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=0.4\textwidth]{figures/wheel_concept.png}
+
+      \caption{In the Caltech101-Caltech256 universal taxonomy,
+            this cluster only contains vehicles. The universal classes created can be interpreted as
+            sharing a common concept of \enquote{wheel}.}
+      \label{fig:wheel_concept}
+\end{figure}
+
 An example of a \enquote{good} cluster is shown in Figure~\ref{fig:wheel_concept}:
 This cluster centers around the Caltech101 class \enquote{wheelchair} and contains
 multiple Caltech256 classes that share the concept of \enquote{wheel} (e.g. \enquote{mountain bike}, \enquote{segway}, \enquote{touring bike}, etc.).
 The universal classes between the Caltech101 and Caltech256 classes
 will provide a useful mapping for our universal model training.
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=0.4\textwidth]{figures/bad_taxonomy.png}
+
+      \caption{This example in the Caltech101-Caltech256 universal taxonomy shows a wrong relationship
+            cluster towards the Caltech101 class \enquote{binocular}. Many of the Caltech256 classes
+            do not have a suitable representation in the Caltech101 dataset
+            and then connect to the Caltech101 class \enquote{binocular} instead.}
+      \label{fig:bad_taxonomy}
+\end{figure}
 
 However, we can also observe \enquote{bad} clusters in the universal taxonomy,
 such as the one shown in Figure~\ref{fig:bad_taxonomy}:
@@ -660,23 +658,19 @@ so that we can process all images uniformly in the same model architecture.
 
 \subsection{Performance}
 
-\input{figures/baseline_model_results.tex}
-\input{figures/universal_model_results_2domain.tex}
-\input{figures/universal_model_results_3domain.tex}
-
-\begin{figure}[ht]
-      \centering
-      \scalebox{0.25}{\input{figures/universal_model_training_curves.pgf}}
-      \caption{Training curves for universal models using both hypothesis and MCFP taxonomies on the multi-domain Caltech-101 + Caltech-256 dataset. Both models show stable convergence with the hypothesis taxonomy achieving slightly better performance.}
-      \label{fig:universal_model_training_curves}
-\end{figure}
-
 On the Caltech-101 + Caltech-256 multi-domain dataset,
 we train universal models on all four relationship selection methods.
 Additionally, we introduce a \textit{MCFP binary} relationship selection method,
 which uses a fixed weight of 1 for every relationship.
 This additional variant mimics the original MCFP method by Bevandic et al.~\cite{bevandic_automatic_2022}
 and serves as an additional baseline for comparison.
+
+\begin{figure}[H]
+      \centering
+      \resizebox{0.6\textwidth}{!}{\input{figures/universal_model_training_curves.pgf}}
+      \caption{Training curves for universal models using both hypothesis and MCFP taxonomies on the multi-domain Caltech-101 + Caltech-256 dataset. Both models show stable convergence with the hypothesis taxonomy achieving slightly better performance.}
+      \label{fig:universal_model_training_curves}
+\end{figure}
 
 When looking at the training curves in Figure~\ref{fig:universal_model_training_curves},
 we observe slight overfitting in the later training steps,
@@ -687,6 +681,8 @@ This could indicate exploding gradients or other instabilities during training,
 but since they are short-lived and do not affect the overall convergence,
 we can conclude that the training process is robust.
 
+\input{figures/baseline_model_results.tex}
+
 We compare the performance of the universal models with baseline models
 (models using the same architecture and training conditions, but trained for a single domain).
 Our baseline model performances are shown in Table~\ref{tab:baseline_model_results}:
@@ -695,6 +691,9 @@ We use the same ResNet-50 architecture that we use in the universal models
 so we decided to use ResNet-152).
 The baseline models were also used as domain models to create the cross-prediction mappings
 for the universal taxonomies that the universal models are using.
+
+\input{figures/universal_model_results_2domain.tex}
+\input{figures/universal_model_results_3domain.tex}
 
 The final evaluation results of our universal models are shown in Table~\ref{tab:universal_model_results_2domain}
 and Table~\ref{tab:universal_model_results_3domain}.
@@ -743,4 +742,36 @@ We choose t-SNE as our dimensionality reduction technique
 because it preserved local structure information which we want to inspect,
 making it better suited than simpler, linear techniques like PCA~\cite{gewers_principal_2021}.
 
-% TODO Use feature dim. reduction to visualize feature separation/cluster (use t-sne)
+\begin{figure}[H]
+      \centering
+      \resizebox{0.6\textwidth}{!}{\input{figures/universal_features_2domain_tsne.pgf}}
+      \caption{t-SNE visualization of the final output layer representations for the universal models on the Caltech-101 + Caltech-256 taxonomies.
+            Classes are represented through colours, marker shapes indicate the dataset.
+            Circles represent the Caltech-101 dataset, stars represent the Caltech-256 dataset.}
+      \label{fig:universal_features_2domain_tsne}
+\end{figure}
+
+\begin{figure}[H]
+      \centering
+      \resizebox{0.6\textwidth}{!}{\input{figures/universal_features_3domain_tsne.pgf}}
+      \caption{t-SNE visualization of the final output layer representations for the universal models on the Caltech-101 + Caltech-256 + CIFAR-100 taxonomies.
+            Classes are represented through colours, marker shapes indicate the dataset.
+            Circles represent the Caltech-101 dataset, stars represent the Caltech-256 dataset, and triangles represent the CIFAR-100 dataset.}
+      \label{fig:universal_features_3domain_tsne}
+\end{figure}
+
+We see the t-SNE visualizations in Figure~\ref{fig:universal_features_2domain_tsne} and Figure~\ref{fig:universal_features_3domain_tsne}.
+For the 2-domain taxonomy (Caltech-101 + Caltech-256),
+we observe 2-3 clusters forming, possibly the clutter clusters we observed in Figure~\ref{fig:bad_taxonomy}.
+
+For both the 2-domain and the 3-domain taxonomy,
+we observe many smaller clusters with a mix of classes from different datasets.
+These clusters indicate potential overlaps and shared features between the datasets,
+highlighting the advantages of using a universal taxonomy to capture these relationships.
+
+In other examples, we can observe a separation of classes from different datasets,
+possibly for classes that do not share any concepts or features with other datasets.
+
+We can conclude that the feature space of our universal models is sufficiently rich to capture the underlying relationships between different datasets and classes.
+The structural differences that are noticable in the t-SNE visualizations
+between the different relationship selection methods support the need for further investigation into their impact on model performance.

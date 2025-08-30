@@ -121,12 +121,18 @@ class UniversalModelAnalyzer:
                 universal_outputs = self.model(inputs)
                 universal_features.append(universal_outputs.cpu().numpy())
 
-                # Process targets
-                if isinstance(targets[0], tuple):
-                    # Targets are (domain_id, class_id) tuples
+                # Process targets - handle different formats
+                if isinstance(targets, list) and len(targets) == 2:
+                    # Targets are [domain_ids_tensor, class_ids_tensor] from CombinedDataModule
+                    domain_ids_tensor, class_ids_tensor = targets
+                    batch_labels = list(
+                        zip(domain_ids_tensor.tolist(), class_ids_tensor.tolist())
+                    )
+                elif isinstance(targets[0], tuple):
+                    # Targets are already (domain_id, class_id) tuples
                     batch_labels = targets
                 else:
-                    # Convert tensor targets to tuples if needed
+                    # Convert other formats if needed
                     batch_labels = [(int(t[0]), int(t[1])) for t in targets]
 
                 labels.extend(batch_labels)
@@ -252,12 +258,18 @@ class UniversalModelAnalyzer:
                     # Forward pass to trigger the hook
                     _ = self.model(inputs)
 
-                    # Process targets
-                    if isinstance(targets[0], tuple):
-                        # Targets are (domain_id, class_id) tuples
+                    # Process targets - handle different formats
+                    if isinstance(targets, list) and len(targets) == 2:
+                        # Targets are [domain_ids_tensor, class_ids_tensor] from CombinedDataModule
+                        domain_ids_tensor, class_ids_tensor = targets
+                        batch_labels = list(
+                            zip(domain_ids_tensor.tolist(), class_ids_tensor.tolist())
+                        )
+                    elif isinstance(targets[0], tuple):
+                        # Targets are already (domain_id, class_id) tuples
                         batch_labels = targets
                     else:
-                        # Convert tensor targets to tuples if needed
+                        # Convert other formats if needed
                         batch_labels = [(int(t[0]), int(t[1])) for t in targets]
 
                     labels.extend(batch_labels)

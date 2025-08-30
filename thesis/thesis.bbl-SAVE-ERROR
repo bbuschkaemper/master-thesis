@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 3.3 $
+% $ biblatex bbl format version 3.2 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -18,8 +18,77 @@
 
 
 \refsection{0}
-  \datalist[entry]{nty/global//global/global/global}
-    \entry{bevandic_automatic_2022}{misc}{}{}
+  \datalist[entry]{nty/global//global/global}
+    \entry{bevandic_weakly_2024}{article}{}
+      \name{author}{5}{}{%
+        {{hash=4e1f30a3fd1df5cb15da7e539c0024f0}{%
+           family={Bevandić},
+           familyi={B\bibinitperiod},
+           given={Petra},
+           giveni={P\bibinitperiod}}}%
+        {{hash=333fbb1c036d783bd71d0ee9b60a28ad}{%
+           family={Oršić},
+           familyi={O\bibinitperiod},
+           given={Marin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=445e2cb017e3946318d3c87b7bf28771}{%
+           family={Grubišić},
+           familyi={G\bibinitperiod},
+           given={Ivan},
+           giveni={I\bibinitperiod}}}%
+        {{hash=e1a075bb7ae04767cf943e8a14cbe5a9}{%
+           family={Šarić},
+           familyi={Š\bibinitperiod},
+           given={Josip},
+           giveni={J\bibinitperiod}}}%
+        {{hash=76d56baf1c4ef7fe123a26208520fb30}{%
+           family={Šegvić},
+           familyi={Š\bibinitperiod},
+           given={Siniša},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{056aad95a1ca37e6fb16e7d0a294af94}
+      \strng{fullhash}{056aad95a1ca37e6fb16e7d0a294af94}
+      \strng{bibnamehash}{056aad95a1ca37e6fb16e7d0a294af94}
+      \strng{authorbibnamehash}{056aad95a1ca37e6fb16e7d0a294af94}
+      \strng{authornamehash}{056aad95a1ca37e6fb16e7d0a294af94}
+      \strng{authorfullhash}{056aad95a1ca37e6fb16e7d0a294af94}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Deep supervised models have an unprecedented capacity to absorb large quantities of training data. Hence, training on multiple datasets becomes a method of choice towards strong generalization in usual scenes and graceful performance degradation in edge cases. Unfortunately, different datasets often have incompatible labels. For instance, the Cityscapes road class subsumes all driving surfaces, while Vistas defines separate classes for road markings, manholes etc. Furthermore, many datasets have overlapping labels. For instance, pickups are labeled as trucks in {VIPER}, cars in Vistas, and vans in {ADE}20k. We address this challenge by considering labels as unions of universal visual concepts. This allows seamless and principled learning on multi-domain dataset collections without requiring any relabeling effort. Our method achieves competitive within-dataset and cross-dataset generalization, as well as ability to learn visual concepts which are not separately labeled in any of the training datasets. Experiments reveal competitive or state-of-the-art performance on two multi-domain dataset collections and on the {WildDash} 2 benchmark.}
+      \field{eprinttype}{arxiv}
+      \field{issn}{0920-5691, 1573-1405}
+      \field{journaltitle}{International Journal of Computer Vision}
+      \field{month}{7}
+      \field{number}{7}
+      \field{shortjournal}{Int J Comput Vis}
+      \field{title}{Weakly supervised training of universal visual concepts for multi-domain semantic segmentation}
+      \field{urlday}{19}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{volume}{132}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{2450\bibrangedash 2472}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1007/s11263-024-01986-z
+      \endverb
+      \verb{eprint}
+      \verb 2212.10340 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2212.10340
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2212.10340
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
+    \entry{bevandic_automatic_2022}{misc}{}
       \name{author}{2}{}{%
         {{hash=4e1f30a3fd1df5cb15da7e539c0024f0}{%
            family={Bevandić},
@@ -37,12 +106,10 @@
       }
       \strng{namehash}{0403d2c7c0f6e05833f89761938e250e}
       \strng{fullhash}{0403d2c7c0f6e05833f89761938e250e}
-      \strng{fullhashraw}{0403d2c7c0f6e05833f89761938e250e}
       \strng{bibnamehash}{0403d2c7c0f6e05833f89761938e250e}
       \strng{authorbibnamehash}{0403d2c7c0f6e05833f89761938e250e}
       \strng{authornamehash}{0403d2c7c0f6e05833f89761938e250e}
       \strng{authorfullhash}{0403d2c7c0f6e05833f89761938e250e}
-      \strng{authorfullhashraw}{0403d2c7c0f6e05833f89761938e250e}
       \field{sortinit}{B}
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{labelnamesource}{author}
@@ -73,7 +140,157 @@
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition}
     \endentry
-    \entry{deng_imagenet_2009}{inproceedings}{}{}
+    \entry{bordea_semeval-2016_2016}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=c55d1c8403db778016516ef42e4405f3}{%
+           family={Bordea},
+           familyi={B\bibinitperiod},
+           given={Georgeta},
+           giveni={G\bibinitperiod}}}%
+        {{hash=5b1f52cff2cf7fe6a420eee09bdb0f54}{%
+           family={Lefever},
+           familyi={L\bibinitperiod},
+           given={Els},
+           giveni={E\bibinitperiod}}}%
+        {{hash=04cb4f2ce7c00466a678941aef7dab90}{%
+           family={Buitelaar},
+           familyi={B\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod}}}%
+      }
+      \name{editor}{6}{}{%
+        {{hash=49a90d0c36d5abd2de968939b124c604}{%
+           family={Bethard},
+           familyi={B\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=9cf67a53d9ebd335c787b143ec098196}{%
+           family={Carpuat},
+           familyi={C\bibinitperiod},
+           given={Marine},
+           giveni={M\bibinitperiod}}}%
+        {{hash=73291503692ca44df1071d1d8a59a3a1}{%
+           family={Cer},
+           familyi={C\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=453dbaae6267b6b55c5b9531d3eed911}{%
+           family={Jurgens},
+           familyi={J\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b1e0f88aae37cfd1c213a370797c03b3}{%
+           family={Nakov},
+           familyi={N\bibinitperiod},
+           given={Preslav},
+           giveni={P\bibinitperiod}}}%
+        {{hash=d2bddcda907ea93d3a82a0623d8d0930}{%
+           family={Zesch},
+           familyi={Z\bibinitperiod},
+           given={Torsten},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {San Diego, California}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{ec87c618999b7ffb32b71ed77531e1b3}
+      \strng{fullhash}{ec87c618999b7ffb32b71ed77531e1b3}
+      \strng{bibnamehash}{ec87c618999b7ffb32b71ed77531e1b3}
+      \strng{authorbibnamehash}{ec87c618999b7ffb32b71ed77531e1b3}
+      \strng{authornamehash}{ec87c618999b7ffb32b71ed77531e1b3}
+      \strng{authorfullhash}{ec87c618999b7ffb32b71ed77531e1b3}
+      \strng{editorbibnamehash}{613bab1db02a377ddea0ad847b17eb65}
+      \strng{editornamehash}{613bab1db02a377ddea0ad847b17eb65}
+      \strng{editorfullhash}{613bab1db02a377ddea0ad847b17eb65}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{booktitle}{Proceedings of the 10th International Workshop on Semantic Evaluation ({SemEval}-2016)}
+      \field{eventtitle}{{SemEval} 2016}
+      \field{month}{6}
+      \field{shorttitle}{{SemEval}-2016 Task 13}
+      \field{title}{{SemEval}-2016 Task 13: Taxonomy Extraction Evaluation ({TExEval}-2)}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1081\bibrangedash 1091}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.18653/v1/S16-1168
+      \endverb
+      \verb{urlraw}
+      \verb https://aclanthology.org/S16-1168/
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/S16-1168/
+      \endverb
+    \endentry
+    \entry{chen_prompting_2023}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=298dac068921fdca25dc123b8883ecde}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Boqi},
+           giveni={B\bibinitperiod}}}%
+        {{hash=8e91aacf83bd7f9cf9cc33fa7faad14f}{%
+           family={Yi},
+           familyi={Y\bibinitperiod},
+           given={Fandi},
+           giveni={F\bibinitperiod}}}%
+        {{hash=f54190ff266e02128b40dbab3fe1f605}{%
+           family={Varró},
+           familyi={V\bibinitperiod},
+           given={Dániel},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{37e17a1a3ad31cde4fedb35f7298599f}
+      \strng{fullhash}{37e17a1a3ad31cde4fedb35f7298599f}
+      \strng{bibnamehash}{37e17a1a3ad31cde4fedb35f7298599f}
+      \strng{authorbibnamehash}{37e17a1a3ad31cde4fedb35f7298599f}
+      \strng{authornamehash}{37e17a1a3ad31cde4fedb35f7298599f}
+      \strng{authorfullhash}{37e17a1a3ad31cde4fedb35f7298599f}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Taxonomies represent hierarchical relations between entities, frequently applied in various software modeling and natural language processing ({NLP}) activities. They are typically subject to a set of structural constraints restricting their content. However, manual taxonomy construction can be time-consuming, incomplete, and costly to maintain. Recent studies of large language models ({LLMs}) have demonstrated that appropriate user inputs (called prompting) can effectively guide {LLMs}, such as {GPT}-3, in diverse {NLP} tasks without explicit (re-)training. However, existing approaches for automated taxonomy construction typically involve fine-tuning a language model by adjusting model parameters. In this paper, we present a general framework for taxonomy construction that takes into account structural constraints. We subsequently conduct a systematic comparison between the prompting and fine-tuning approaches performed on a hypernym taxonomy and a novel computer science taxonomy dataset. Our result reveals the following: (1) Even without explicit training on the dataset, the prompting approach outperforms fine-tuning-based approaches. Moreover, the performance gap between prompting and fine-tuning widens when the training dataset is small. However, (2) taxonomies generated by the fine-tuning approach can be easily post-processed to satisfy all the constraints, whereas handling violations of the taxonomies produced by the prompting approach can be challenging. These evaluation findings provide guidance on selecting the appropriate method for taxonomy construction and highlight potential enhancements for both approaches.}
+      \field{day}{4}
+      \field{eprinttype}{arxiv}
+      \field{month}{9}
+      \field{number}{{arXiv}:2309.01715}
+      \field{shorttitle}{Prompting or Fine-tuning?}
+      \field{title}{Prompting or Fine-tuning? A Comparative Study of Large Language Models for Taxonomy Construction}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2309.01715
+      \endverb
+      \verb{eprint}
+      \verb 2309.01715 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2309.01715
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2309.01715
+      \endverb
+      \keyw{Computer Science - Computation and Language,Computer Science - Machine Learning}
+    \endentry
+    \entry{deng_imagenet_2009}{inproceedings}{}
       \name{author}{6}{}{%
         {{hash=cbaf4f8829c5ef01cf9659d1d6975526}{%
            family={Deng},
@@ -108,12 +325,10 @@
       }
       \strng{namehash}{fec3a590a384f905f4a8183a7c8ec390}
       \strng{fullhash}{fec3a590a384f905f4a8183a7c8ec390}
-      \strng{fullhashraw}{fec3a590a384f905f4a8183a7c8ec390}
       \strng{bibnamehash}{fec3a590a384f905f4a8183a7c8ec390}
       \strng{authorbibnamehash}{fec3a590a384f905f4a8183a7c8ec390}
       \strng{authornamehash}{fec3a590a384f905f4a8183a7c8ec390}
       \strng{authorfullhash}{fec3a590a384f905f4a8183a7c8ec390}
-      \strng{authorfullhashraw}{fec3a590a384f905f4a8183a7c8ec390}
       \field{sortinit}{D}
       \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
       \field{labelnamesource}{author}
@@ -123,7 +338,34 @@
       \field{year}{2009}
       \field{dateera}{ce}
     \endentry
-    \entry{falcon_pytorch_2019}{software}{}{}
+    \entry{deng_mnist_2012}{article}{}
+      \name{author}{1}{}{%
+        {{hash=2f5fbdc5c3cf91f62a64663cd72397b3}{%
+           family={Deng},
+           familyi={D\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{2f5fbdc5c3cf91f62a64663cd72397b3}
+      \strng{fullhash}{2f5fbdc5c3cf91f62a64663cd72397b3}
+      \strng{bibnamehash}{2f5fbdc5c3cf91f62a64663cd72397b3}
+      \strng{authorbibnamehash}{2f5fbdc5c3cf91f62a64663cd72397b3}
+      \strng{authornamehash}{2f5fbdc5c3cf91f62a64663cd72397b3}
+      \strng{authorfullhash}{2f5fbdc5c3cf91f62a64663cd72397b3}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{IEEE} Signal Processing Magazine}
+      \field{number}{6}
+      \field{title}{The mnist database of handwritten digit images for machine learning research}
+      \field{volume}{29}
+      \field{year}{2012}
+      \field{dateera}{ce}
+      \field{pages}{141\bibrangedash 142}
+      \range{pages}{2}
+    \endentry
+    \entry{falcon_pytorch_2019}{software}{}
       \name{author}{2}{}{%
         {{hash=c79553dc17ef05e7d1ef9e6149db42c5}{%
            family={Falcon},
@@ -136,12 +378,10 @@
       }
       \strng{namehash}{c9d39750462da2c4be77c24b26eafc97}
       \strng{fullhash}{c9d39750462da2c4be77c24b26eafc97}
-      \strng{fullhashraw}{c9d39750462da2c4be77c24b26eafc97}
       \strng{bibnamehash}{c9d39750462da2c4be77c24b26eafc97}
       \strng{authorbibnamehash}{c9d39750462da2c4be77c24b26eafc97}
       \strng{authornamehash}{c9d39750462da2c4be77c24b26eafc97}
       \strng{authorfullhash}{c9d39750462da2c4be77c24b26eafc97}
-      \strng{authorfullhashraw}{c9d39750462da2c4be77c24b26eafc97}
       \field{sortinit}{F}
       \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
       \field{labelnamesource}{author}
@@ -161,7 +401,7 @@
       \verb https://github.com/Lightning-AI/lightning
       \endverb
     \endentry
-    \entry{fellbaum_wordnet_1998}{book}{}{}
+    \entry{fellbaum_wordnet_1998}{book}{}
       \name{author}{1}{}{%
         {{hash=34ede4192dcababa339fd9e0e9c1df7d}{%
            family={Fellbaum},
@@ -174,12 +414,10 @@
       }
       \strng{namehash}{34ede4192dcababa339fd9e0e9c1df7d}
       \strng{fullhash}{34ede4192dcababa339fd9e0e9c1df7d}
-      \strng{fullhashraw}{34ede4192dcababa339fd9e0e9c1df7d}
       \strng{bibnamehash}{34ede4192dcababa339fd9e0e9c1df7d}
       \strng{authorbibnamehash}{34ede4192dcababa339fd9e0e9c1df7d}
       \strng{authornamehash}{34ede4192dcababa339fd9e0e9c1df7d}
       \strng{authorfullhash}{34ede4192dcababa339fd9e0e9c1df7d}
-      \strng{authorfullhashraw}{34ede4192dcababa339fd9e0e9c1df7d}
       \field{sortinit}{F}
       \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
       \field{labelnamesource}{author}
@@ -200,7 +438,124 @@
       \verb https://doi.org/10.7551/mitpress/7287.001.0001
       \endverb
     \endentry
-    \entry{griffin_caltech_2022}{misc}{}{}
+    \entry{firmani_building_2024}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=dcb3b8d6ce2e108ed664d4f3f11194c8}{%
+           family={Firmani},
+           familyi={F\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=648427f0b9369590dd3d44d5eddb79c2}{%
+           family={Galhotra},
+           familyi={G\bibinitperiod},
+           given={Sainyam},
+           giveni={S\bibinitperiod}}}%
+        {{hash=299bfc85caae5602ee1c9916f27bd014}{%
+           family={Saha},
+           familyi={S\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+        {{hash=91cb7fecb798a5f49d9b97b4ef97be90}{%
+           family={Srivastava},
+           familyi={S\bibinitperiod},
+           given={Divesh},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{8a019dc7cd6e2ed9623d8db3eea54fc4}
+      \strng{fullhash}{8a019dc7cd6e2ed9623d8db3eea54fc4}
+      \strng{bibnamehash}{8a019dc7cd6e2ed9623d8db3eea54fc4}
+      \strng{authorbibnamehash}{8a019dc7cd6e2ed9623d8db3eea54fc4}
+      \strng{authornamehash}{8a019dc7cd6e2ed9623d8db3eea54fc4}
+      \strng{authorfullhash}{8a019dc7cd6e2ed9623d8db3eea54fc4}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The organization of records referring to different entities into a taxonomy is crucial for capturing their relationships. Nevertheless, the automatic identification of such relationships often faces inaccuracies due to noise and heterogeneity of records across various sources. Simultaneously, manual maintenance of these relationships proves impractical and lacks scalability. This study addresses these challenges by adopting a weak supervision strategy, in the form of an oracle, to solve a novel Hierarchical Entity Resolution task. Within our framework, records are organized into a tree-like structure that encompasses records at the bottom level and encapsulates entities and categories at the higher levels. To make the most effective use of supervision, we employ a triplet comparison oracle, which takes three records as input and output the most similar pair(s). Finally, we introduce {HierER} , a querying strategy utilizing record pair similarities to minimize the number of oracle queries while simultaneously maximizing the identification of the hierarchical structure. Theoretical and empirical analyses demonstrate the effectiveness and efficiency of {HierER} with noisy datasets with millions of records.}
+      \field{eventtitle}{Sistemi Evoluti per Basi di Dati}
+      \field{title}{Building Taxonomies with Triplet Queries}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.semanticscholar.org/paper/Building-Taxonomies-with-Triplet-Queries-Firmani-Galhotra/91e314dd5df505d036aa49ddeb3562551770afb6
+      \endverb
+      \verb{url}
+      \verb https://www.semanticscholar.org/paper/Building-Taxonomies-with-Triplet-Queries-Firmani-Galhotra/91e314dd5df505d036aa49ddeb3562551770afb6
+      \endverb
+    \endentry
+    \entry{gewers_principal_2021}{article}{}
+      \name{author}{7}{}{%
+        {{hash=0b7d4cd30ee6bf554de708a2beffbd99}{%
+           family={Gewers},
+           familyi={G\bibinitperiod},
+           given={Felipe\bibnamedelima L.},
+           giveni={F\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=a57b3aefb3931416314526464b27378d}{%
+           family={Ferreira},
+           familyi={F\bibinitperiod},
+           given={Gustavo\bibnamedelima R.},
+           giveni={G\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=3b6c7b969b9401b4f2e0e02dd2b6cf12}{%
+           family={Arruda},
+           familyi={A\bibinitperiod},
+           given={Henrique\bibnamedelimb F.\bibnamedelimi De},
+           giveni={H\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=772da394348b72361a9084bab9ad0ad4}{%
+           family={Silva},
+           familyi={S\bibinitperiod},
+           given={Filipi\bibnamedelima N.},
+           giveni={F\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=2b3b5a9264027baed28e12e0800df759}{%
+           family={Comin},
+           familyi={C\bibinitperiod},
+           given={Cesar\bibnamedelima H.},
+           giveni={C\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=328a093ac51e7337bfa1602e81021cfe}{%
+           family={Amancio},
+           familyi={A\bibinitperiod},
+           given={Diego\bibnamedelima R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=f7a1deec4c7889addd4b22be83b17f26}{%
+           family={Costa},
+           familyi={C\bibinitperiod},
+           given={Luciano\bibnamedelimb Da\bibnamedelima F.},
+           giveni={L\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \strng{namehash}{93766e4b5690822101847d1de3b27f0b}
+      \strng{fullhash}{93766e4b5690822101847d1de3b27f0b}
+      \strng{bibnamehash}{93766e4b5690822101847d1de3b27f0b}
+      \strng{authorbibnamehash}{93766e4b5690822101847d1de3b27f0b}
+      \strng{authornamehash}{93766e4b5690822101847d1de3b27f0b}
+      \strng{authorfullhash}{93766e4b5690822101847d1de3b27f0b}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Principal component analysis ({PCA}) is often applied for analyzing data in the most diverse areas. This work reports, in an accessible and integrated manner, several theoretical and practical aspects of {PCA}. The basic principles underlying {PCA}, data standardization, possible visualizations of the {PCA} results, and outlier detection are subsequently addressed. Next, the potential of using {PCA} for dimensionality reduction is illustrated on several real-world datasets. Finally, we summarize {PCA}-related approaches and other dimensionality reduction techniques. All in all, the objective of this work is to assist researchers from the most diverse areas in using and interpreting {PCA}.}
+      \field{issn}{0360-0300}
+      \field{journaltitle}{{ACM} Comput. Surv.}
+      \field{month}{5}
+      \field{number}{4}
+      \field{title}{Principal Component Analysis: A Natural Approach to Data Exploration}
+      \field{volume}{54}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1145/3447755
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/3447755
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/3447755
+      \endverb
+      \keyw{Statistical methods,covariance and correlation,data visualization,dimensionality reduction,principal component analysis}
+    \endentry
+    \entry{griffin_caltech_2022}{misc}{}
       \name{author}{3}{}{%
         {{hash=0c276668bd6739ab142e84d4de9000da}{%
            family={Griffin},
@@ -223,12 +578,10 @@
       }
       \strng{namehash}{1b5a4898a33fca8d61b05ac9d9fd8c0a}
       \strng{fullhash}{1b5a4898a33fca8d61b05ac9d9fd8c0a}
-      \strng{fullhashraw}{1b5a4898a33fca8d61b05ac9d9fd8c0a}
       \strng{bibnamehash}{1b5a4898a33fca8d61b05ac9d9fd8c0a}
       \strng{authorbibnamehash}{1b5a4898a33fca8d61b05ac9d9fd8c0a}
       \strng{authornamehash}{1b5a4898a33fca8d61b05ac9d9fd8c0a}
       \strng{authorfullhash}{1b5a4898a33fca8d61b05ac9d9fd8c0a}
-      \strng{authorfullhashraw}{1b5a4898a33fca8d61b05ac9d9fd8c0a}
       \field{sortinit}{G}
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
       \field{labelnamesource}{author}
@@ -255,7 +608,64 @@
       \endverb
       \keyw{computer vision,machine learning}
     \endentry
-    \entry{he_deep_2015}{misc}{}{}
+    \entry{gunn_creating_2024}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=381644d8277f155b78cdfd180fc1c556}{%
+           family={Gunn},
+           familyi={G\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=d5285c43934b321acaddb74941dcf2cd}{%
+           family={Park},
+           familyi={P\bibinitperiod},
+           given={Dohyun},
+           giveni={D\bibinitperiod}}}%
+        {{hash=48165013b0d1394de1a2422a5e322a14}{%
+           family={Kamath},
+           familyi={K\bibinitperiod},
+           given={Nidhish},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{7869d1bb4bce7874c9f23be0e5aa21bd}
+      \strng{fullhash}{7869d1bb4bce7874c9f23be0e5aa21bd}
+      \strng{bibnamehash}{7869d1bb4bce7874c9f23be0e5aa21bd}
+      \strng{authorbibnamehash}{7869d1bb4bce7874c9f23be0e5aa21bd}
+      \strng{authornamehash}{7869d1bb4bce7874c9f23be0e5aa21bd}
+      \strng{authorfullhash}{7869d1bb4bce7874c9f23be0e5aa21bd}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In this study, we investigate the potential of {GPT}-4 and its advanced iteration, {GPT}-4 Turbo, in autonomously developing a detailed entity type taxonomy. Our objective is to construct a comprehensive taxonomy, starting from a broad classification of entity types - including objects, time, locations, organizations, events, actions, and subjects - similar to existing manually curated taxonomies. This classification is then progressively refined through iterative prompting techniques, leveraging {GPT}-4's internal knowledge base. The result is an extensive taxonomy comprising over 5000 nuanced entity types, which demonstrates remarkable quality upon subjective evaluation. We employed a straightforward yet effective prompting strategy, enabling the taxonomy to be dynamically expanded. The practical applications of this detailed taxonomy are diverse and significant. It facilitates the creation of new, more intricate branches through pattern-based combinations and notably enhances information extraction tasks, such as relation extraction and event argument extraction. Our methodology not only introduces an innovative approach to taxonomy creation but also opens new avenues for applying such taxonomies in various computational linguistics and {AI}-related fields.}
+      \field{day}{19}
+      \field{eprinttype}{arxiv}
+      \field{month}{2}
+      \field{number}{{arXiv}:2402.12557}
+      \field{title}{Creating a Fine Grained Entity Type Taxonomy Using {LLMs}}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2402.12557
+      \endverb
+      \verb{eprint}
+      \verb 2402.12557 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2402.12557
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2402.12557
+      \endverb
+      \keyw{Computer Science - Computation and Language}
+    \endentry
+    \entry{he_deep_2015}{misc}{}
       \name{author}{4}{}{%
         {{hash=6b4b60e909e78633945f3f9c9dc83e01}{%
            family={He},
@@ -283,12 +693,10 @@
       }
       \strng{namehash}{42c4b52dc3a62cebabbc11c73e1afb53}
       \strng{fullhash}{42c4b52dc3a62cebabbc11c73e1afb53}
-      \strng{fullhashraw}{42c4b52dc3a62cebabbc11c73e1afb53}
       \strng{bibnamehash}{42c4b52dc3a62cebabbc11c73e1afb53}
       \strng{authorbibnamehash}{42c4b52dc3a62cebabbc11c73e1afb53}
       \strng{authornamehash}{42c4b52dc3a62cebabbc11c73e1afb53}
       \strng{authorfullhash}{42c4b52dc3a62cebabbc11c73e1afb53}
-      \strng{authorfullhashraw}{42c4b52dc3a62cebabbc11c73e1afb53}
       \field{extraname}{1}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
@@ -313,7 +721,7 @@
       \endverb
       \keyw{Computer Vision and Pattern Recognition (cs.{CV}),{FOS}: Computer and information sciences}
     \endentry
-    \entry{he_identity_2016}{article}{}{}
+    \entry{he_identity_2016}{article}{}
       \name{author}{4}{}{%
         {{hash=6b4b60e909e78633945f3f9c9dc83e01}{%
            family={He},
@@ -338,12 +746,10 @@
       }
       \strng{namehash}{42c4b52dc3a62cebabbc11c73e1afb53}
       \strng{fullhash}{42c4b52dc3a62cebabbc11c73e1afb53}
-      \strng{fullhashraw}{42c4b52dc3a62cebabbc11c73e1afb53}
       \strng{bibnamehash}{42c4b52dc3a62cebabbc11c73e1afb53}
       \strng{authorbibnamehash}{42c4b52dc3a62cebabbc11c73e1afb53}
       \strng{authornamehash}{42c4b52dc3a62cebabbc11c73e1afb53}
       \strng{authorfullhash}{42c4b52dc3a62cebabbc11c73e1afb53}
-      \strng{authorfullhashraw}{42c4b52dc3a62cebabbc11c73e1afb53}
       \field{extraname}{2}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
@@ -354,7 +760,7 @@
       \field{year}{2016}
       \field{dateera}{ce}
     \endentry
-    \entry{hinton_improving_2012}{misc}{}{}
+    \entry{hinton_improving_2012}{misc}{}
       \name{author}{5}{}{%
         {{hash=813bd95fe553e6079cd53a567b238287}{%
            family={Hinton},
@@ -387,12 +793,10 @@
       }
       \strng{namehash}{08830d3157ae1f7f62929260dfb1d0c0}
       \strng{fullhash}{08830d3157ae1f7f62929260dfb1d0c0}
-      \strng{fullhashraw}{08830d3157ae1f7f62929260dfb1d0c0}
       \strng{bibnamehash}{08830d3157ae1f7f62929260dfb1d0c0}
       \strng{authorbibnamehash}{08830d3157ae1f7f62929260dfb1d0c0}
       \strng{authornamehash}{08830d3157ae1f7f62929260dfb1d0c0}
       \strng{authorfullhash}{08830d3157ae1f7f62929260dfb1d0c0}
-      \strng{authorfullhashraw}{08830d3157ae1f7f62929260dfb1d0c0}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
       \field{labelnamesource}{author}
@@ -416,7 +820,7 @@
       \endverb
       \keyw{Computer Vision and Pattern Recognition (cs.{CV}),{FOS}: Computer and information sciences,Machine Learning (cs.{LG}),Neural and Evolutionary Computing (cs.{NE})}
     \endentry
-    \entry{horn_inaturalist_2018}{misc}{}{}
+    \entry{horn_inaturalist_2018}{misc}{}
       \name{author}{9}{}{%
         {{hash=2fbd0dba8d6c0e20dfd0e41fe5139b83}{%
            family={Horn},
@@ -469,12 +873,10 @@
       }
       \strng{namehash}{16c2de1be5f707316cff2388bd68f6e9}
       \strng{fullhash}{16c2de1be5f707316cff2388bd68f6e9}
-      \strng{fullhashraw}{16c2de1be5f707316cff2388bd68f6e9}
       \strng{bibnamehash}{16c2de1be5f707316cff2388bd68f6e9}
       \strng{authorbibnamehash}{16c2de1be5f707316cff2388bd68f6e9}
       \strng{authornamehash}{16c2de1be5f707316cff2388bd68f6e9}
       \strng{authorfullhash}{16c2de1be5f707316cff2388bd68f6e9}
-      \strng{authorfullhashraw}{16c2de1be5f707316cff2388bd68f6e9}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
       \field{labelnamesource}{author}
@@ -505,7 +907,7 @@
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition}
     \endentry
-    \entry{jaccard_distribution_1912}{article}{}{}
+    \entry{jaccard_distribution_1912}{article}{}
       \name{author}{1}{}{%
         {{hash=c4a98c7a2913792b5501ecdcb067315d}{%
            family={Jaccard},
@@ -515,12 +917,10 @@
       }
       \strng{namehash}{c4a98c7a2913792b5501ecdcb067315d}
       \strng{fullhash}{c4a98c7a2913792b5501ecdcb067315d}
-      \strng{fullhashraw}{c4a98c7a2913792b5501ecdcb067315d}
       \strng{bibnamehash}{c4a98c7a2913792b5501ecdcb067315d}
       \strng{authorbibnamehash}{c4a98c7a2913792b5501ecdcb067315d}
       \strng{authornamehash}{c4a98c7a2913792b5501ecdcb067315d}
       \strng{authorfullhash}{c4a98c7a2913792b5501ecdcb067315d}
-      \strng{authorfullhashraw}{c4a98c7a2913792b5501ecdcb067315d}
       \field{sortinit}{J}
       \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
       \field{labelnamesource}{author}
@@ -549,7 +949,168 @@
       \verb https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1469-8137.1912.tb05611.x
       \endverb
     \endentry
-    \entry{krizhevsky_learning_2009}{article}{}{}
+    \entry{jurgens_semeval-2016_2016}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=453dbaae6267b6b55c5b9531d3eed911}{%
+           family={Jurgens},
+           familyi={J\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=25546e3752457eae386c91911a2fb5f8}{%
+           family={Pilehvar},
+           familyi={P\bibinitperiod},
+           given={Mohammad\bibnamedelima Taher},
+           giveni={M\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \name{editor}{6}{}{%
+        {{hash=49a90d0c36d5abd2de968939b124c604}{%
+           family={Bethard},
+           familyi={B\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=9cf67a53d9ebd335c787b143ec098196}{%
+           family={Carpuat},
+           familyi={C\bibinitperiod},
+           given={Marine},
+           giveni={M\bibinitperiod}}}%
+        {{hash=73291503692ca44df1071d1d8a59a3a1}{%
+           family={Cer},
+           familyi={C\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=453dbaae6267b6b55c5b9531d3eed911}{%
+           family={Jurgens},
+           familyi={J\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b1e0f88aae37cfd1c213a370797c03b3}{%
+           family={Nakov},
+           familyi={N\bibinitperiod},
+           given={Preslav},
+           giveni={P\bibinitperiod}}}%
+        {{hash=d2bddcda907ea93d3a82a0623d8d0930}{%
+           family={Zesch},
+           familyi={Z\bibinitperiod},
+           given={Torsten},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {San Diego, California}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{26741717b242e4328cccf6381077430f}
+      \strng{fullhash}{26741717b242e4328cccf6381077430f}
+      \strng{bibnamehash}{26741717b242e4328cccf6381077430f}
+      \strng{authorbibnamehash}{26741717b242e4328cccf6381077430f}
+      \strng{authornamehash}{26741717b242e4328cccf6381077430f}
+      \strng{authorfullhash}{26741717b242e4328cccf6381077430f}
+      \strng{editorbibnamehash}{613bab1db02a377ddea0ad847b17eb65}
+      \strng{editornamehash}{613bab1db02a377ddea0ad847b17eb65}
+      \strng{editorfullhash}{613bab1db02a377ddea0ad847b17eb65}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{booktitle}{Proceedings of the 10th International Workshop on Semantic Evaluation ({SemEval}-2016)}
+      \field{eventtitle}{{SemEval} 2016}
+      \field{month}{6}
+      \field{shorttitle}{{SemEval}-2016 Task 14}
+      \field{title}{{SemEval}-2016 Task 14: Semantic Taxonomy Enrichment}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1092\bibrangedash 1102}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.18653/v1/S16-1169
+      \endverb
+      \verb{urlraw}
+      \verb https://aclanthology.org/S16-1169/
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/S16-1169/
+      \endverb
+    \endentry
+    \entry{kargupta_taxoadapt_2025}{misc}{}
+      \name{author}{6}{}{%
+        {{hash=1aa6fddafd4b49b3b40fdab7d9becc6e}{%
+           family={Kargupta},
+           familyi={K\bibinitperiod},
+           given={Priyanka},
+           giveni={P\bibinitperiod}}}%
+        {{hash=50541ce48b62a59478859829bdda8bad}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Nan},
+           giveni={N\bibinitperiod}}}%
+        {{hash=46b08070734059747be09df3462fb2e8}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Yunyi},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0672466dc7c3a8cec050e5ac091fd0ac}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Rui},
+           giveni={R\bibinitperiod}}}%
+        {{hash=1830bc3848a0cda63f4a76b15fc00352}{%
+           family={Mitra},
+           familyi={M\bibinitperiod},
+           given={Prasenjit},
+           giveni={P\bibinitperiod}}}%
+        {{hash=7cacfe272c4d395c979d6aecd2f5ec9c}{%
+           family={Han},
+           familyi={H\bibinitperiod},
+           given={Jiawei},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{de332a296019333589fef80881a3682c}
+      \strng{fullhash}{de332a296019333589fef80881a3682c}
+      \strng{bibnamehash}{de332a296019333589fef80881a3682c}
+      \strng{authorbibnamehash}{de332a296019333589fef80881a3682c}
+      \strng{authornamehash}{de332a296019333589fef80881a3682c}
+      \strng{authorfullhash}{de332a296019333589fef80881a3682c}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The rapid evolution of scientific fields introduces challenges in organizing and retrieving scientific literature. While expert-curated taxonomies have traditionally addressed this need, the process is time-consuming and expensive. Furthermore, recent automatic taxonomy construction methods either (1) over-rely on a specific corpus, sacrificing generalizability, or (2) depend heavily on the general knowledge of large language models ({LLMs}) contained within their pre-training datasets, often overlooking the dynamic nature of evolving scientific domains. Additionally, these approaches fail to account for the multi-faceted nature of scientific literature, where a single research paper may contribute to multiple dimensions (e.g., methodology, new tasks, evaluation metrics, benchmarks). To address these gaps, we propose {TaxoAdapt}, a framework that dynamically adapts an {LLM}-generated taxonomy to a given corpus across multiple dimensions. {TaxoAdapt} performs iterative hierarchical classification, expanding both the taxonomy width and depth based on corpus' topical distribution. We demonstrate its state-of-the-art performance across a diverse set of computer science conferences over the years to showcase its ability to structure and capture the evolution of scientific fields. As a multidimensional method, {TaxoAdapt} generates taxonomies that are 26.51\% more granularity-preserving and 50.41\% more coherent than the most competitive baselines judged by {LLMs}.}
+      \field{day}{12}
+      \field{eprinttype}{arxiv}
+      \field{month}{6}
+      \field{note}{version: 1}
+      \field{number}{{arXiv}:2506.10737}
+      \field{shorttitle}{{TaxoAdapt}}
+      \field{title}{{TaxoAdapt}: Aligning {LLM}-Based Multidimensional Taxonomy Construction to Evolving Research Corpora}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2506.10737
+      \endverb
+      \verb{eprint}
+      \verb 2506.10737 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2506.10737
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2506.10737
+      \endverb
+      \keyw{Computer Science - Computation and Language,Computer Science - Information Retrieval}
+    \endentry
+    \entry{krizhevsky_learning_2009}{article}{}
       \name{author}{2}{}{%
         {{hash=c5e3a676e2ac1164b3afcd539c131fc9}{%
            family={Krizhevsky},
@@ -564,12 +1125,10 @@
       }
       \strng{namehash}{db1738a0374d10d152a785eb2a94ce8c}
       \strng{fullhash}{db1738a0374d10d152a785eb2a94ce8c}
-      \strng{fullhashraw}{db1738a0374d10d152a785eb2a94ce8c}
       \strng{bibnamehash}{db1738a0374d10d152a785eb2a94ce8c}
       \strng{authorbibnamehash}{db1738a0374d10d152a785eb2a94ce8c}
       \strng{authornamehash}{db1738a0374d10d152a785eb2a94ce8c}
       \strng{authorfullhash}{db1738a0374d10d152a785eb2a94ce8c}
-      \strng{authorfullhashraw}{db1738a0374d10d152a785eb2a94ce8c}
       \field{sortinit}{K}
       \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
       \field{labelnamesource}{author}
@@ -588,7 +1147,7 @@
       \verb http://www.cs.utoronto.ca/~kriz/learning-features-2009-TR.pdf
       \endverb
     \endentry
-    \entry{kuznetsova_open_2020}{article}{}{}
+    \entry{kuznetsova_open_2020}{article}{}
       \name{author}{12}{}{%
         {{hash=1ffbb486153d1382dd6a2b66fb5956a2}{%
            family={Kuznetsova},
@@ -653,12 +1212,10 @@
       }
       \strng{namehash}{d361944fa4d5a50b07387c18d040c56d}
       \strng{fullhash}{d361944fa4d5a50b07387c18d040c56d}
-      \strng{fullhashraw}{d361944fa4d5a50b07387c18d040c56d}
       \strng{bibnamehash}{d361944fa4d5a50b07387c18d040c56d}
       \strng{authorbibnamehash}{d361944fa4d5a50b07387c18d040c56d}
       \strng{authornamehash}{d361944fa4d5a50b07387c18d040c56d}
       \strng{authorfullhash}{d361944fa4d5a50b07387c18d040c56d}
-      \strng{authorfullhashraw}{d361944fa4d5a50b07387c18d040c56d}
       \field{sortinit}{K}
       \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
       \field{labelnamesource}{author}
@@ -668,7 +1225,7 @@
       \field{year}{2020}
       \field{dateera}{ce}
     \endentry
-    \entry{li_caltech_2022}{misc}{}{}
+    \entry{li_caltech_2022}{misc}{}
       \name{author}{4}{}{%
         {{hash=9147b1a8523fee33e02ea8ada6fde536}{%
            family={Li},
@@ -696,12 +1253,10 @@
       }
       \strng{namehash}{156f1eb0665261f6761d98ca2aa2a189}
       \strng{fullhash}{156f1eb0665261f6761d98ca2aa2a189}
-      \strng{fullhashraw}{156f1eb0665261f6761d98ca2aa2a189}
       \strng{bibnamehash}{156f1eb0665261f6761d98ca2aa2a189}
       \strng{authorbibnamehash}{156f1eb0665261f6761d98ca2aa2a189}
       \strng{authornamehash}{156f1eb0665261f6761d98ca2aa2a189}
       \strng{authorfullhash}{156f1eb0665261f6761d98ca2aa2a189}
-      \strng{authorfullhashraw}{156f1eb0665261f6761d98ca2aa2a189}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{labelnamesource}{author}
@@ -729,7 +1284,7 @@
       \endverb
       \keyw{computer vision,machine learning}
     \endentry
-    \entry{loshchilov_decoupled_2017}{misc}{}{}
+    \entry{loshchilov_decoupled_2017}{misc}{}
       \name{author}{2}{}{%
         {{hash=1241b8181104f1917578d4c7f9b323b6}{%
            family={Loshchilov},
@@ -747,12 +1302,10 @@
       }
       \strng{namehash}{b308ccb07134a06ec3735828ac4f15e2}
       \strng{fullhash}{b308ccb07134a06ec3735828ac4f15e2}
-      \strng{fullhashraw}{b308ccb07134a06ec3735828ac4f15e2}
       \strng{bibnamehash}{b308ccb07134a06ec3735828ac4f15e2}
       \strng{authorbibnamehash}{b308ccb07134a06ec3735828ac4f15e2}
       \strng{authornamehash}{b308ccb07134a06ec3735828ac4f15e2}
       \strng{authorfullhash}{b308ccb07134a06ec3735828ac4f15e2}
-      \strng{authorfullhashraw}{b308ccb07134a06ec3735828ac4f15e2}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{labelnamesource}{author}
@@ -776,7 +1329,148 @@
       \endverb
       \keyw{{FOS}: Computer and information sciences,{FOS}: Mathematics,Machine Learning (cs.{LG}),Neural and Evolutionary Computing (cs.{NE}),Optimization and Control (math.{OC})}
     \endentry
-    \entry{russakovsky_imagenet_2015}{misc}{}{}
+    \entry{maaten_visualizing_2008}{article}{}
+      \name{author}{2}{}{%
+        {{hash=47fbe2837893a84fb516e9e85ba7aa36}{%
+           family={Maaten},
+           familyi={M\bibinitperiod},
+           given={Laurens\bibnamedelimb van\bibnamedelima der},
+           giveni={L\bibinitperiod\bibinitdelim v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+        {{hash=9a8750ccdb2a4cf14d2655face1ce016}{%
+           family={Hinton},
+           familyi={H\bibinitperiod},
+           given={Geoffrey},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{07df37c1f29fdfb7765c821206be824a}
+      \strng{fullhash}{07df37c1f29fdfb7765c821206be824a}
+      \strng{bibnamehash}{07df37c1f29fdfb7765c821206be824a}
+      \strng{authorbibnamehash}{07df37c1f29fdfb7765c821206be824a}
+      \strng{authornamehash}{07df37c1f29fdfb7765c821206be824a}
+      \strng{authorfullhash}{07df37c1f29fdfb7765c821206be824a}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Machine Learning Research}
+      \field{number}{86}
+      \field{title}{Visualizing Data using t-{SNE}}
+      \field{volume}{9}
+      \field{year}{2008}
+      \field{dateera}{ce}
+      \field{pages}{2579\bibrangedash 2605}
+      \range{pages}{27}
+      \verb{urlraw}
+      \verb http://jmlr.org/papers/v9/vandermaaten08a.html
+      \endverb
+      \verb{url}
+      \verb http://jmlr.org/papers/v9/vandermaaten08a.html
+      \endverb
+    \endentry
+    \entry{netzer_reading_2011}{inproceedings}{}
+      \name{author}{6}{}{%
+        {{hash=0f7e4a0d497b3c8d2f7ee118c56a3648}{%
+           family={Netzer},
+           familyi={N\bibinitperiod},
+           given={Yuval},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=ad1506e9f10da2cad4389eac16751647}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Tao},
+           giveni={T\bibinitperiod}}}%
+        {{hash=2a6ca55dc46029c413e9054d19502b28}{%
+           family={Coates},
+           familyi={C\bibinitperiod},
+           given={Adam},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ca74d879be333e3c866921ac0675fcc4}{%
+           family={Bissacco},
+           familyi={B\bibinitperiod},
+           given={Alessandro},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a3467545efc97f24be8a5d66e4c70ab4}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Bo},
+           giveni={B\bibinitperiod}}}%
+        {{hash=49e889356ff39df159461bc2895c7e16}{%
+           family={Ng},
+           familyi={N\bibinitperiod},
+           given={Andrew\bibnamedelima Y.},
+           giveni={A\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{01a282440004292c6234911e54c036f7}
+      \strng{fullhash}{01a282440004292c6234911e54c036f7}
+      \strng{bibnamehash}{01a282440004292c6234911e54c036f7}
+      \strng{authorbibnamehash}{01a282440004292c6234911e54c036f7}
+      \strng{authornamehash}{01a282440004292c6234911e54c036f7}
+      \strng{authorfullhash}{01a282440004292c6234911e54c036f7}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{NIPS} Workshop on Deep Learning and Unsupervised Feature Learning 2011}
+      \field{title}{Reading Digits in Natural Images with Unsupervised Feature Learning}
+      \field{year}{2011}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb http://ufldl.stanford.edu/housenumbers/nips2011_housenumbers.pdf
+      \endverb
+      \verb{url}
+      \verb http://ufldl.stanford.edu/housenumbers/nips2011_housenumbers.pdf
+      \endverb
+    \endentry
+    \entry{pan_survey_2010}{article}{}
+      \name{author}{2}{}{%
+        {{hash=224c02b5d289fefd08d4f9f1a83c5d0c}{%
+           family={Pan},
+           familyi={P\bibinitperiod},
+           given={Sinno\bibnamedelima Jialin},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=55242d2a60270145342841e4d4238da0}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Qiang},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \strng{namehash}{770fc1d95710074c9506ab4f7d386573}
+      \strng{fullhash}{770fc1d95710074c9506ab4f7d386573}
+      \strng{bibnamehash}{770fc1d95710074c9506ab4f7d386573}
+      \strng{authorbibnamehash}{770fc1d95710074c9506ab4f7d386573}
+      \strng{authornamehash}{770fc1d95710074c9506ab4f7d386573}
+      \strng{authorfullhash}{770fc1d95710074c9506ab4f7d386573}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A major assumption in many machine learning and data mining algorithms is that the training and future data must be in the same feature space and have the same distribution. However, in many real-world applications, this assumption may not hold. For example, we sometimes have a classification task in one domain of interest, but we only have sufficient training data in another domain of interest, where the latter data may be in a different feature space or follow a different data distribution. In such cases, knowledge transfer, if done successfully, would greatly improve the performance of learning by avoiding much expensive data-labeling efforts. In recent years, transfer learning has emerged as a new learning framework to address this problem. This survey focuses on categorizing and reviewing the current progress on transfer learning for classification, regression, and clustering problems. In this survey, we discuss the relationship between transfer learning and other related machine learning techniques such as domain adaptation, multitask learning and sample selection bias, as well as covariate shift. We also explore some potential future issues in transfer learning research.}
+      \field{issn}{1558-2191}
+      \field{journaltitle}{{IEEE} Transactions on Knowledge and Data Engineering}
+      \field{month}{10}
+      \field{number}{10}
+      \field{title}{A Survey on Transfer Learning}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{volume}{22}
+      \field{year}{2010}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1345\bibrangedash 1359}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1109/TKDE.2009.191
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/5288526
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/5288526
+      \endverb
+      \keyw{Data mining,Knowledge engineering,Knowledge transfer,Labeling,Learning systems,Machine learning,Machine learning algorithms,Space technology,Testing,Training data,Transfer learning,data mining.,machine learning,survey}
+    \endentry
+    \entry{russakovsky_imagenet_2015}{misc}{}
       \name{author}{12}{}{%
         {{hash=2a74ec28b731b015747e2af5f0b519e1}{%
            family={Russakovsky},
@@ -844,12 +1538,10 @@
       }
       \strng{namehash}{59755200ef94ffc1362c28c17d315fe0}
       \strng{fullhash}{59755200ef94ffc1362c28c17d315fe0}
-      \strng{fullhashraw}{59755200ef94ffc1362c28c17d315fe0}
       \strng{bibnamehash}{59755200ef94ffc1362c28c17d315fe0}
       \strng{authorbibnamehash}{59755200ef94ffc1362c28c17d315fe0}
       \strng{authornamehash}{59755200ef94ffc1362c28c17d315fe0}
       \strng{authorfullhash}{59755200ef94ffc1362c28c17d315fe0}
-      \strng{authorfullhashraw}{59755200ef94ffc1362c28c17d315fe0}
       \field{sortinit}{R}
       \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
       \field{labelnamesource}{author}
@@ -880,7 +1572,7 @@
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition}
     \endentry
-    \entry{sutskever_importance_2013}{inproceedings}{}{}
+    \entry{sutskever_importance_2013}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=8d569d1d5b8b5a7836017a98b430f959}{%
            family={Sutskever},
@@ -908,12 +1600,10 @@
       }
       \strng{namehash}{9cdbdb5ed37d642e2881c7a467f38028}
       \strng{fullhash}{9cdbdb5ed37d642e2881c7a467f38028}
-      \strng{fullhashraw}{9cdbdb5ed37d642e2881c7a467f38028}
       \strng{bibnamehash}{9cdbdb5ed37d642e2881c7a467f38028}
       \strng{authorbibnamehash}{9cdbdb5ed37d642e2881c7a467f38028}
       \strng{authornamehash}{9cdbdb5ed37d642e2881c7a467f38028}
       \strng{authorfullhash}{9cdbdb5ed37d642e2881c7a467f38028}
-      \strng{authorfullhashraw}{9cdbdb5ed37d642e2881c7a467f38028}
       \field{sortinit}{S}
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
       \field{labelnamesource}{author}
@@ -928,7 +1618,7 @@
       \field{pages}{III--1139--III\bibrangedash 1147}
       \range{pages}{-1}
     \endentry
-    \entry{tanimoto_elementary_1958}{book}{}{}
+    \entry{tanimoto_elementary_1958}{book}{}
       \name{author}{1}{}{%
         {{hash=33281b8864b45e9e44e515737f8898f7}{%
            family={Tanimoto},
@@ -941,12 +1631,10 @@
       }
       \strng{namehash}{33281b8864b45e9e44e515737f8898f7}
       \strng{fullhash}{33281b8864b45e9e44e515737f8898f7}
-      \strng{fullhashraw}{33281b8864b45e9e44e515737f8898f7}
       \strng{bibnamehash}{33281b8864b45e9e44e515737f8898f7}
       \strng{authorbibnamehash}{33281b8864b45e9e44e515737f8898f7}
       \strng{authornamehash}{33281b8864b45e9e44e515737f8898f7}
       \strng{authorfullhash}{33281b8864b45e9e44e515737f8898f7}
-      \strng{authorfullhashraw}{33281b8864b45e9e44e515737f8898f7}
       \field{sortinit}{T}
       \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
       \field{labelnamesource}{author}
@@ -957,6 +1645,398 @@
       \field{title}{An Elementary Mathematical Theory of Classification and Prediction}
       \field{year}{1958}
       \field{dateera}{ce}
+    \endentry
+    \entry{uijlings_missing_2022}{misc}{}
+      \name{author}{3}{}{%
+        {{hash=6f5d1be5ec88ac21f855db10eafb0fa5}{%
+           family={Uijlings},
+           familyi={U\bibinitperiod},
+           given={Jasper},
+           giveni={J\bibinitperiod}}}%
+        {{hash=ffc3c50f7f2f5814db998defff4b2ccd}{%
+           family={Mensink},
+           familyi={M\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=2d9b2bb140830bf8f7f642c17692a8e4}{%
+           family={Ferrari},
+           familyi={F\bibinitperiod},
+           given={Vittorio},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{f6debcd6ae919461ee6384fa5b6e2b29}
+      \strng{fullhash}{f6debcd6ae919461ee6384fa5b6e2b29}
+      \strng{bibnamehash}{f6debcd6ae919461ee6384fa5b6e2b29}
+      \strng{authorbibnamehash}{f6debcd6ae919461ee6384fa5b6e2b29}
+      \strng{authornamehash}{f6debcd6ae919461ee6384fa5b6e2b29}
+      \strng{authorfullhash}{f6debcd6ae919461ee6384fa5b6e2b29}
+      \field{sortinit}{U}
+      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Computer vision is driven by the many datasets available for training or evaluating novel methods. However, each dataset has a different set of class labels, visual definition of classes, images following a specific distribution, annotation protocols, etc. In this paper we explore the automatic discovery of visual-semantic relations between labels across datasets. We aim to understand how instances of a certain class in a dataset relate to the instances of another class in another dataset. Are they in an identity, parent/child, overlap relation? Or is there no link between them at all? To find relations between labels across datasets, we propose methods based on language, on vision, and on their combination. We show that we can effectively discover label relations across datasets, as well as their type. We apply our method to four applications: understand label relations, identify missing aspects, increase label specificity, and predict transfer learning gains. We conclude that label relations cannot be established by looking at the names of classes alone, as they depend strongly on how each of the datasets was constructed.}
+      \field{day}{9}
+      \field{eprinttype}{arxiv}
+      \field{month}{8}
+      \field{number}{{arXiv}:2206.04453}
+      \field{shorttitle}{The Missing Link}
+      \field{title}{The Missing Link: Finding label relations across datasets}
+      \field{urlday}{23}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2206.04453
+      \endverb
+      \verb{eprint}
+      \verb 2206.04453 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2206.04453
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2206.04453
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
+    \entry{vaswani_attention_2023}{misc}{}
+      \name{author}{8}{}{%
+        {{hash=7f28e84700536646dd6620a0db07ad09}{%
+           family={Vaswani},
+           familyi={V\bibinitperiod},
+           given={Ashish},
+           giveni={A\bibinitperiod}}}%
+        {{hash=62efade83d70f0323fe248755e6c90c5}{%
+           family={Shazeer},
+           familyi={S\bibinitperiod},
+           given={Noam},
+           giveni={N\bibinitperiod}}}%
+        {{hash=06649ebab1ea5cac0250746a19764975}{%
+           family={Parmar},
+           familyi={P\bibinitperiod},
+           given={Niki},
+           giveni={N\bibinitperiod}}}%
+        {{hash=831027ee0ebf22375e2a86afc1881909}{%
+           family={Uszkoreit},
+           familyi={U\bibinitperiod},
+           given={Jakob},
+           giveni={J\bibinitperiod}}}%
+        {{hash=2fd2982e30ebcec93ec1cf76e0d797fd}{%
+           family={Jones},
+           familyi={J\bibinitperiod},
+           given={Llion},
+           giveni={L\bibinitperiod}}}%
+        {{hash=27b07e4eacbf4ef7a1438e3badb7dd8d}{%
+           family={Gomez},
+           familyi={G\bibinitperiod},
+           given={Aidan\bibnamedelima N.},
+           giveni={A\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=f2bc899b1160163417da7bf510f15d33}{%
+           family={Kaiser},
+           familyi={K\bibinitperiod},
+           given={Lukasz},
+           giveni={L\bibinitperiod}}}%
+        {{hash=95595a0fefb86187cbc36e551017d332}{%
+           family={Polosukhin},
+           familyi={P\bibinitperiod},
+           given={Illia},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{f82970bbd2bdd7a002d2af62b743d5cc}
+      \strng{fullhash}{f82970bbd2bdd7a002d2af62b743d5cc}
+      \strng{bibnamehash}{f82970bbd2bdd7a002d2af62b743d5cc}
+      \strng{authorbibnamehash}{f82970bbd2bdd7a002d2af62b743d5cc}
+      \strng{authornamehash}{f82970bbd2bdd7a002d2af62b743d5cc}
+      \strng{authorfullhash}{f82970bbd2bdd7a002d2af62b743d5cc}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 {BLEU} on the {WMT} 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 {BLEU}. On the {WMT} 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art {BLEU} score of 41.8 after training for 3.5 days on eight {GPUs}, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.}
+      \field{day}{2}
+      \field{eprinttype}{arxiv}
+      \field{month}{8}
+      \field{number}{{arXiv}:1706.03762}
+      \field{title}{Attention Is All You Need}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.1706.03762
+      \endverb
+      \verb{eprint}
+      \verb 1706.03762 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1706.03762
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1706.03762
+      \endverb
+      \keyw{Computer Science - Computation and Language,Computer Science - Machine Learning}
+    \endentry
+    \entry{noauthor_wordnet_nodate}{online}{}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Any opinions, findings, and conclusions or recommendations expressed in this material are those of the creators of {WordNet} and do not necessarily reflect the views of any funding agency or Princeton University.What is {WordNet}?Current Status of the {WordNet} {ProjectPrinceton} {WordNet} is no longer developed, though the database and all tools are freely}
+      \field{langid}{english}
+      \field{title}{{WordNet}}
+      \field{urlday}{6}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://wordnet.princeton.edu/homepage
+      \endverb
+      \verb{url}
+      \verb https://wordnet.princeton.edu/homepage
+      \endverb
+    \endentry
+    \entry{yang_literature-driven_2013}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=7b02a887a26927ad3e1ec395faa493f2}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Hui},
+           giveni={H\bibinitperiod}}}%
+        {{hash=d13ba9c6ccf73ae7b5d5dd48c984a8e4}{%
+           family={Willis},
+           familyi={W\bibinitperiod},
+           given={Alistair},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a99b554bb66a02a553a45833cd1a7abd}{%
+           family={Morse},
+           familyi={M\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=1a80f513948af2f24c2021619de35483}{%
+           family={Roeck},
+           familyi={R\bibinitperiod},
+           given={Anne},
+           giveni={A\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \name{editor}{7}{}{%
+        {{hash=ad127755d25c931a0b4362ff9733003a}{%
+           family={Maynard},
+           familyi={M\bibinitperiod},
+           given={Diana},
+           giveni={D\bibinitperiod}}}%
+        {{hash=6f5eab98e65d7d968c2b306241f37fd6}{%
+           family={Erp},
+           familyi={E\bibinitperiod},
+           given={Marieke},
+           giveni={M\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=54e1546337d7b0ed7a82e9308d56e20b}{%
+           family={Davis},
+           familyi={D\bibinitperiod},
+           given={Brian},
+           giveni={B\bibinitperiod}}}%
+        {{hash=bb806c5cc577d4fd140fcedc7520bedd}{%
+           family={Osenova},
+           familyi={O\bibinitperiod},
+           given={Petya},
+           giveni={P\bibinitperiod}}}%
+        {{hash=a75c9ac0e9807a82a1a2e80548b23df7}{%
+           family={Simov},
+           familyi={S\bibinitperiod},
+           given={Kiril},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f84d1ba24c6f3ebe103a311f5d9ee047}{%
+           family={Georgiev},
+           familyi={G\bibinitperiod},
+           given={Georgi},
+           giveni={G\bibinitperiod}}}%
+        {{hash=b1e0f88aae37cfd1c213a370797c03b3}{%
+           family={Nakov},
+           familyi={N\bibinitperiod},
+           given={Preslav},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Hissar, Bulgaria}%
+      }
+      \list{publisher}{1}{%
+        {{INCOMA} Ltd. Shoumen, {BULGARIA}}%
+      }
+      \strng{namehash}{24e2a5081657ce08fac8e1e85d512e48}
+      \strng{fullhash}{24e2a5081657ce08fac8e1e85d512e48}
+      \strng{bibnamehash}{24e2a5081657ce08fac8e1e85d512e48}
+      \strng{authorbibnamehash}{24e2a5081657ce08fac8e1e85d512e48}
+      \strng{authornamehash}{24e2a5081657ce08fac8e1e85d512e48}
+      \strng{authorfullhash}{24e2a5081657ce08fac8e1e85d512e48}
+      \strng{editorbibnamehash}{4bc06701b8ac087f6510f53fb592f9a3}
+      \strng{editornamehash}{4bc06701b8ac087f6510f53fb592f9a3}
+      \strng{editorfullhash}{4bc06701b8ac087f6510f53fb592f9a3}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Joint Workshop on {NLP}\&{LOD} and {SWAIE}: Semantic Web, Linked Open Data and Information Extraction}
+      \field{eventtitle}{{SWAIE} 2013}
+      \field{month}{9}
+      \field{title}{Literature-driven Curation for Taxonomic Name Databases}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{25\bibrangedash 32}
+      \range{pages}{8}
+      \verb{urlraw}
+      \verb https://aclanthology.org/W13-5207/
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/W13-5207/
+      \endverb
+    \endentry
+    \entry{zhang_overview_2018}{article}{}
+      \name{author}{2}{}{%
+        {{hash=9a4f4a1ff661cd600eb26523a5ba8bb4}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Yu},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=55242d2a60270145342841e4d4238da0}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Qiang},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \strng{namehash}{6cd6b62eb7a185a0d85f22af0ef449f2}
+      \strng{fullhash}{6cd6b62eb7a185a0d85f22af0ef449f2}
+      \strng{bibnamehash}{6cd6b62eb7a185a0d85f22af0ef449f2}
+      \strng{authorbibnamehash}{6cd6b62eb7a185a0d85f22af0ef449f2}
+      \strng{authornamehash}{6cd6b62eb7a185a0d85f22af0ef449f2}
+      \strng{authorfullhash}{6cd6b62eb7a185a0d85f22af0ef449f2}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{As a promising area in machine learning, multi-task learning ({MTL}) aims to improve the performance of multiple related learning tasks by leveraging useful information among them. In this paper, we give an overview of {MTL} by first giving a definition of {MTL}. Then several different settings of {MTL} are introduced, including multi-task supervised learning, multi-task unsupervised learning, multi-task semi-supervised learning, multi-task active learning, multi-task reinforcement learning, multi-task online learning and multi-task multi-view learning. For each setting, representative {MTL} models are presented. In order to speed up the learning process, parallel and distributed {MTL} models are introduced. Many areas, including computer vision, bioinformatics, health informatics, speech, natural language processing, web applications and ubiquitous computing, use {MTL} to improve the performance of the applications involved and some representative works are reviewed. Finally, recent theoretical analyses for {MTL} are presented.}
+      \field{day}{1}
+      \field{issn}{2095-5138}
+      \field{journaltitle}{National Science Review}
+      \field{month}{1}
+      \field{number}{1}
+      \field{shortjournal}{Natl Sci Rev}
+      \field{title}{An overview of multi-task learning}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{volume}{5}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{30\bibrangedash 43}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1093/nsr/nwx105
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1093/nsr/nwx105
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1093/nsr/nwx105
+      \endverb
+    \endentry
+    \entry{zhuang_comprehensive_2020}{misc}{}
+      \name{author}{8}{}{%
+        {{hash=f80c633bdaeb37dfe8ee7a8562a118b0}{%
+           family={Zhuang},
+           familyi={Z\bibinitperiod},
+           given={Fuzhen},
+           giveni={F\bibinitperiod}}}%
+        {{hash=1170a654922724ea47c36d0961bcdba3}{%
+           family={Qi},
+           familyi={Q\bibinitperiod},
+           given={Zhiyuan},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=ccc5fede6d425151794d6eabaefb1f08}{%
+           family={Duan},
+           familyi={D\bibinitperiod},
+           given={Keyu},
+           giveni={K\bibinitperiod}}}%
+        {{hash=65b14154afccb41d2c3d56f51927c049}{%
+           family={Xi},
+           familyi={X\bibinitperiod},
+           given={Dongbo},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b76935a05c886aa24f9e3861344c420c}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Yongchun},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=9b711e1aff9a8c67d1eb39bca853aa41}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Hengshu},
+           giveni={H\bibinitperiod}}}%
+        {{hash=aa0c7ab0b9dad5902ab8fc501f57cd77}{%
+           family={Xiong},
+           familyi={X\bibinitperiod},
+           given={Hui},
+           giveni={H\bibinitperiod}}}%
+        {{hash=7c27f1b2b48feefb0593a05e9c6a8b12}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Qing},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{1bdcca6dad1bcac9c936c6829c869185}
+      \strng{fullhash}{1bdcca6dad1bcac9c936c6829c869185}
+      \strng{bibnamehash}{1bdcca6dad1bcac9c936c6829c869185}
+      \strng{authorbibnamehash}{1bdcca6dad1bcac9c936c6829c869185}
+      \strng{authornamehash}{1bdcca6dad1bcac9c936c6829c869185}
+      \strng{authorfullhash}{1bdcca6dad1bcac9c936c6829c869185}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Transfer learning aims at improving the performance of target learners on target domains by transferring the knowledge contained in different but related source domains. In this way, the dependence on a large number of target domain data can be reduced for constructing target learners. Due to the wide application prospects, transfer learning has become a popular and promising area in machine learning. Although there are already some valuable and impressive surveys on transfer learning, these surveys introduce approaches in a relatively isolated way and lack the recent advances in transfer learning. Due to the rapid expansion of the transfer learning area, it is both necessary and challenging to comprehensively review the relevant studies. This survey attempts to connect and systematize the existing transfer learning researches, as well as to summarize and interpret the mechanisms and the strategies of transfer learning in a comprehensive way, which may help readers have a better understanding of the current research status and ideas. Unlike previous surveys, this survey paper reviews more than forty representative transfer learning approaches, especially homogeneous transfer learning approaches, from the perspectives of data and model. The applications of transfer learning are also briefly introduced. In order to show the performance of different transfer learning models, over twenty representative transfer learning models are used for experiments. The models are performed on three different datasets, i.e., Amazon Reviews, Reuters-21578, and Office-31. And the experimental results demonstrate the importance of selecting appropriate transfer learning models for different applications in practice.}
+      \field{day}{23}
+      \field{eprinttype}{arxiv}
+      \field{month}{6}
+      \field{number}{{arXiv}:1911.02685}
+      \field{title}{A Comprehensive Survey on Transfer Learning}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.1911.02685
+      \endverb
+      \verb{eprint}
+      \verb 1911.02685 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1911.02685
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1911.02685
+      \endverb
+      \keyw{Computer Science - Machine Learning,Statistics - Machine Learning}
     \endentry
   \enddatalist
 \endrefsection
