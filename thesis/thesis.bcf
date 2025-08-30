@@ -2409,6 +2409,9 @@
     <bcf:citekey order="30" intorder="2">noauthor_wordnet_nodate</bcf:citekey>
     <bcf:citekey order="31" intorder="1">deng_mnist_2012</bcf:citekey>
     <bcf:citekey order="32" intorder="1">netzer_reading_2011</bcf:citekey>
+    <bcf:citekey order="33" intorder="1">bevandic_automatic_2022</bcf:citekey>
+    <bcf:citekey order="34" intorder="1">maaten_visualizing_2008</bcf:citekey>
+    <bcf:citekey order="35" intorder="1">gewers_principal_2021</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

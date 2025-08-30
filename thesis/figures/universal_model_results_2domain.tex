@@ -1,0 +1,16 @@
+\begin{table}[ht]
+\centering
+\caption{Universal model evaluation results for two-domain models trained on Caltech-101 + Caltech-256. Models were evaluated on the test sets of the individual domains. Domain accuracy values show performance differences compared to single-domain baseline models (see Table~\ref{tab:baseline_model_results}). Best results per column are shown in bold. All accuracy values are shown as percentages. Density Threshold models use parameter 0.6, Naive Threshold models use parameter 0.1.}
+\label{tab:universal_model_results_2domain}
+\begin{tabular}{lccc}
+\toprule
+Taxonomy & Caltech-101 & Caltech-256 & Avg \\
+\midrule
+Hypothesis & 91.81 (+0.00) & 82.84 (+13.36) & 87.33 \\
+MCFP & 91.23 (-0.58) & 80.75 (+11.27) & 85.99 \\
+MCFP Binary & 92.73 (+0.92) & \textbf{89.71 (+20.23)} & \textbf{91.22} \\
+Density Threshold & 92.96 (+1.15) & 81.54 (+12.06) & 87.25 \\
+Naive Threshold & \textbf{93.19 (+1.38)} & 82.25 (+12.77) & 87.72 \\
+\bottomrule
+\end{tabular}
+\end{table}

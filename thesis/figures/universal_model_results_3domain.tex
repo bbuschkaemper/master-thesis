@@ -1,0 +1,16 @@
+\begin{table}[ht]
+\centering
+\caption{Universal model evaluation results for three-domain models trained on Caltech-101 + Caltech-256 + CIFAR-100. Models were evaluated on the test sets of the individual domains. Domain accuracy values show performance differences compared to single-domain baseline models (see Table~\ref{tab:baseline_model_results}). Best results per column are shown in bold. All accuracy values are shown as percentages. Density Threshold models use parameter 0.6, Naive Threshold models use parameter 0.1.}
+\label{tab:universal_model_results_3domain}
+\begin{tabular}{lcccc}
+\toprule
+Taxonomy & Caltech-101 & Caltech-256 & CIFAR-100 & Avg \\
+\midrule
+Hypothesis & 68.74 (-23.07) & 58.17 (-11.31) & 69.03 (+8.55) & 65.31 \\
+MCFP & 83.28 (-8.53) & 76.50 (+7.02) & 76.10 (+15.62) & 78.63 \\
+MCFP Binary & 94.58 (+2.77) & 85.13 (+15.65) & 82.71 (+22.23) & \textbf{87.47} \\
+Density Threshold & 95.39 (+3.58) & 83.53 (+14.05) & \textbf{83.14 (+22.66)} & 87.35 \\
+Naive Threshold & \textbf{95.50 (+3.69)} & \textbf{85.36 (+15.88)} & 72.56 (+12.08) & 84.47 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -661,18 +661,22 @@ so that we can process all images uniformly in the same model architecture.
 \subsection{Performance}
 
 \input{figures/baseline_model_results.tex}
-\input{figures/universal_model_results.tex}
+\input{figures/universal_model_results_2domain.tex}
+\input{figures/universal_model_results_3domain.tex}
 
 \begin{figure}[ht]
       \centering
-      \scalebox{0.35}{\input{figures/universal_model_training_curves.pgf}}
+      \scalebox{0.25}{\input{figures/universal_model_training_curves.pgf}}
       \caption{Training curves for universal models using both hypothesis and MCFP taxonomies on the multi-domain Caltech-101 + Caltech-256 dataset. Both models show stable convergence with the hypothesis taxonomy achieving slightly better performance.}
       \label{fig:universal_model_training_curves}
 \end{figure}
 
 On the Caltech-101 + Caltech-256 multi-domain dataset,
-we train universal models on the two most promising taxonomies \textit{hypothesis} and \textit{MCFP}
-(due to high learning times, we will focus on these two instead of testing every relationship selection method).
+we train universal models on all four relationship selection methods.
+Additionally, we introduce a \textit{MCFP binary} relationship selection method,
+which uses a fixed weight of 1 for every relationship.
+This additional variant mimics the original MCFP method by Bevandic et al.~\cite{bevandic_automatic_2022}
+and serves as an additional baseline for comparison.
 
 When looking at the training curves in Figure~\ref{fig:universal_model_training_curves},
 we observe slight overfitting in the later training steps,
@@ -689,22 +693,54 @@ Our baseline model performances are shown in Table~\ref{tab:baseline_model_resul
 We use the same ResNet-50 architecture that we use in the universal models
 (except for CIFAR-100, where we achieve an unsuitable test accuracy of below $50\%$ when using ResNet-50,
 so we decided to use ResNet-152).
-The baseline models were also used for generating the universal taxonomies that the universal models
-are using.
+The baseline models were also used as domain models to create the cross-prediction mappings
+for the universal taxonomies that the universal models are using.
 
-The final evaluation results of our universal models are shown in Table~\ref{tab:universal_model_results}.
+The final evaluation results of our universal models are shown in Table~\ref{tab:universal_model_results_2domain}
+and Table~\ref{tab:universal_model_results_3domain}.
 All versions use ResNet-50 with AdamW optimizers and train for 50 epochs.
-We can observe multiple things:
+
+First of all, we notice that the domain models get outperformed by most of the universal models,
+with some relationship selection methods (e.g. density thresholding) achieving significantly
+better results than the baselines across all taxonomies and datasets.
+
+Our comparison between the original MCFP binary relationship selection method
+and our proposed new methods is quite ambiguous:
+While the MCFP binary method achieves best overall average performance across the
+used individual datasets for both taxonomies,
+other relationship selection methods outperform it on specific datasets.
+
+It is also important to note that no single relationship selection method consistently outperforms the others across all datasets and taxonomies.
+We have multiple possible explanations for this phenomenon:
 \begin{itemize}
-      \item The universal models are able to outperform the baseline models.
-            Our method of \enquote{predefining} the output layer concepts allows the model to better leverage shared knowledge across domains.
-      \item The hypothesis relationship selection method proves superior to the MCFP method,
-            achieving higher accuracies across all datasets except CIFAR-100 (where the MCFP method performs marginally better with $0.9\%$ improvement).
+      \item Our relationship selection parameters were badly chosen and do not represent a global optimum.
+            Our synthetic taxonomies may not adequately capture the complexities of the real-world relationships present in the data,
+            or, the metric of edge difference ratio may not be as relevant for universal model generalization as we initially thought.
+            A sensible approach to address this issue would be to use a grid search by training multiple universal models
+            with different relationship selection parameters and selecting the best performing one.
+            However, since this would require significant computation resources, we leave this as future work.
+      \item It might not be possible to find a single, universally optimal relationship selection method.
+            Different datasets and taxonomies may require different approaches to relationship selection
+            to achieve the best performance.
+            A possible solution could be to start a reduced test run to preselect promising relationship selection parameters
+            before conducting a full-scale training run.
+            However, this would need to be explored thoroughly in future work.
 \end{itemize}
 
-% TODO Add other 2 rel sel methods as well to eval 
-% TODO Binary mcfp as baseline/comparison and compare if better/worse
-% TODO Use feature dim. reduction to visualize feature separation/cluster (use t-sne)
+We can conclude that much further work is needed to explore the relationship selection methods and their impact on universal model performance.
+There is also no clear correlation between our relationship selection metrics (see Table~\ref{tab:relationship_methods_global_optimal_domain_shifted})
+and the universal model performance.
 
-% TODO Split models into separate files for better organization
-% TODO Look which other files are too long and split if possible
+It needs to be investigated what factors contribute to the observed discrepancies between the relationship selection metrics and the universal model performance
+(e.g. dataset characteristics, number of datasets used in the taxonomies, etc.).
+
+\subsection{Feature Visualization}
+
+As a final evaluation of our different universal models,
+we will visualize the final output layer representations using t-SNE~\cite{maaten_visualizing_2008}.
+
+We choose t-SNE as our dimensionality reduction technique
+because it preserved local structure information which we want to inspect,
+making it better suited than simpler, linear techniques like PCA~\cite{gewers_principal_2021}.
+
+% TODO Use feature dim. reduction to visualize feature separation/cluster (use t-sne)

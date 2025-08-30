@@ -382,7 +382,8 @@ INPUT ./figures/wheel_concept.png
 INPUT ./figures/bad_taxonomy.png
 INPUT ./figures/bad_taxonomy.png
 INPUT ./figures/baseline_model_results.tex
-INPUT ./figures/universal_model_results.tex
+INPUT ./figures/universal_model_results_2domain.tex
+INPUT ./figures/universal_model_results_3domain.tex
 INPUT ./figures/universal_model_training_curves.pgf
 OUTPUT sources/discussion.aux
 INPUT ./sources/discussion.tex

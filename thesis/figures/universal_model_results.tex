@@ -1,17 +1,21 @@
 \begin{table}[ht]
 \centering
-\caption{Universal model evaluation results on multi-domain test datasets. Two-domain models were trained on Caltech-101 + Caltech-256, while three-domain models were trained on all three datasets. Models were evaluated on individual domains as well as the combined test set (no weighting was applied, the individual test sets were simply concatenated). Domain accuracy values show performance differences compared to single-domain baseline models (see Table~\ref{tab:baseline_model_results}). Best results per column are shown in bold. All accuracy values are shown as percentages.}
+\caption{Universal model evaluation results on multi-domain test datasets. Two-domain models were trained on Caltech-101 + Caltech-256, while three-domain models were trained on all three datasets. Models were evaluated on individual domains as well as the combined test set (no weighting was applied, the individual test sets were simply concatenated). Domain accuracy values show performance differences compared to single-domain baseline models (see Table~\ref{tab:baseline_model_results}). Best results per column are shown in bold. All accuracy values are shown as percentages. Density Threshold models use parameter 0.6, Naive Threshold models use parameter 0.1.}
 \label{tab:universal_model_results}
 \begin{tabular}{lcccc}
 \toprule
 Taxonomy & Caltech-101 & Caltech-256 & CIFAR-100 & Avg \\
 \midrule
-Hypothesis (2 Domain) & 91.93 (+1.39) & 82.65 (+13.11) & N/A & 84.62 \\
-MCFP (2 Domain) & 91.00 (+0.46) & 80.26 (+10.72) & N/A & 82.58 \\
-MCFP Binary (2 Domain) & 92.96 (+2.42) & \textbf{89.51 (+19.97)} & N/A & 90.68 \\
-Hypothesis (3 Domain) & \textbf{95.27 (+4.73)} & 85.88 (+16.34) & 73.56 (+13.08) & 77.69 \\
-MCFP (3 Domain) & 82.47 (-8.07) & 77.35 (+7.81) & 76.10 (+15.62) & 76.66 \\
-MCFP Binary (3 Domain) & 95.27 (+4.73) & 85.20 (+15.66) & \textbf{82.71 (+22.23)} & 84.05 \\
+Hypothesis (2 Domain) & 92.16 (-0.00) & 82.48 (+12.22) & N/A & 84.34 \\
+MCFP (2 Domain) & 90.77 (-1.39) & 80.75 (+10.49) & N/A & 82.63 \\
+MCFP Binary (2 Domain) & 92.73 (+0.57) & \textbf{90.33 (+20.07)} & N/A & 90.25 \\
+Density Threshold (2 Domain) & 92.39 (+0.23) & 81.31 (+11.05) & N/A & 83.42 \\
+Naive Threshold (2 Domain) & 94.35 (+2.19) & 82.12 (+11.86) & N/A & 84.52 \\
+Hypothesis (3 Domain) & 69.55 (-22.61) & 58.24 (-12.02) & 69.03 (+8.55) & 66.72 \\
+MCFP (3 Domain) & 82.58 (-9.58) & 76.80 (+6.54) & 76.10 (+15.62) & 76.69 \\
+MCFP Binary (3 Domain) & 93.77 (+1.61) & 85.33 (+15.07) & 82.71 (+22.23) & 83.92 \\
+Density Threshold (3 Domain) & \textbf{95.39 (+3.23)} & 83.04 (+12.78) & \textbf{83.14 (+22.66)} & 83.97 \\
+Naive Threshold (3 Domain) & 95.39 (+3.23) & 86.31 (+16.05) & 72.56 (+12.08) & 76.92 \\
 \bottomrule
 \end{tabular}
 \end{table}
