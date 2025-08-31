@@ -282,6 +282,9 @@ INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.t
 INPUT /usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/koma-script/scrhack.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/koma-script/float.hak
+INPUT /usr/share/texlive/texmf-dist/tex/latex/koma-script/setspace.hak
 INPUT ./thesis.aux
 INPUT ./sources/title.aux
 INPUT ./sources/abstract.aux
@@ -289,7 +292,6 @@ INPUT ./sources/introduction.aux
 INPUT ./sources/related-work.aux
 INPUT ./sources/method.aux
 INPUT ./sources/results.aux
-INPUT ./sources/discussion.aux
 INPUT ./sources/conclusion.aux
 OUTPUT thesis.aux
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -388,8 +390,6 @@ INPUT ./figures/universal_model_results_2domain.tex
 INPUT ./figures/universal_model_results_3domain.tex
 INPUT ./figures/universal_features_2domain_tsne.pgf
 INPUT ./figures/universal_features_3domain_tsne.pgf
-OUTPUT sources/discussion.aux
-INPUT ./sources/discussion.tex
 OUTPUT sources/conclusion.aux
 INPUT ./sources/conclusion.tex
 INPUT ./thesis.ind
@@ -400,7 +400,6 @@ INPUT ./sources/introduction.aux
 INPUT ./sources/related-work.aux
 INPUT ./sources/method.aux
 INPUT ./sources/results.aux
-INPUT ./sources/discussion.aux
 INPUT ./sources/conclusion.aux
 INPUT ./thesis.run.xml
 OUTPUT thesis.run.xml

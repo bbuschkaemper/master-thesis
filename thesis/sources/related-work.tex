@@ -33,13 +33,13 @@ creating a pseudo-hybrid approach where the human role is replaced with LLMs~\ci
 
 For fully automated, non-LLM-based approaches, there are several different options available:
 \begin{itemize}
-    \item \textbf{WordNet} is a lexical database that groups English words into sets of synonyms called synsets, providing short definitions and usage examples.
-          It can be used to find relationships between words and concepts, making it a valuable resource for aligning labels across datasets.
-          However, as we will later see in \ref{sec:wordnet_synsets}, this method is error-prone and not suitable for all datasets.
-    \item \textbf{Cross-Domain Classification} methods use domain models trained on a specific dataset to create cross-domain predictions.
-          For example, a dataset \textit{A} can have a class \textit{A:vehicle} while a dataset \textit{B}
-          has a class \textit{B:car}. By predicting an image from class \textit{B:car} using a model trained on dataset \textit{A}
-          as \textit{A:vehicle}, we can collect cross-domain co-occurrences and build a mapping between the two datasets~\cite{uijlings_missing_2022,bevandic_automatic_2022,bevandic_weakly_2024}.
+      \item \textbf{WordNet} is a lexical database that groups English words into sets of synonyms called synsets, providing short definitions and usage examples.
+            It can be used to find relationships between words and concepts, making it a valuable resource for aligning labels across datasets.
+            However, as we will later see in \ref{sec:wordnet_synsets}, this method is error-prone and not suitable for all datasets.
+      \item \textbf{Cross-Domain Classification} methods use domain models trained on a specific dataset to create cross-domain predictions.
+            For example, a dataset \textit{A} can have a class \textit{A:vehicle} while a dataset \textit{B}
+            has a class \textit{B:car}. By predicting an image from class \textit{B:car} using a model trained on dataset \textit{A}
+            as \textit{A:vehicle}, we can collect cross-domain co-occurrences and build a mapping between the two datasets~\cite{uijlings_missing_2022,bevandic_automatic_2022,bevandic_weakly_2024}.
 \end{itemize}
 
 We will base our taxonomy construction algorithm on the works of Bevandic et al.~\cite{bevandic_automatic_2022,bevandic_weakly_2024}.
@@ -47,3 +47,5 @@ Our method will be adapted to shift the focus from aligning labels in a universa
 towards building relationships between classes in different datasets.
 Relationships will not, as in the original work, define a hierarchical structure,
 but rather point out shared attributes between classes.
+
+% TODO Too short, write more

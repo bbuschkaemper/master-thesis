@@ -39,16 +39,16 @@ Our first task is finding an accurate mapping of shared concepts and features ac
 This mapping should be created without any manual intervention.
 Some challenges we might face include:
 \begin{itemize}
-    \item Creating a method that is able to distinguish where shared concepts and features exist across domains
-          and where no relations exist.
-          Depending on the domains we want to cover, there can be significant variations in the amount of inter-task similarity,
-          which can make the number of shared concepts and features quite limited.
-    \item Defining a consistent threshold on what is considered a shared concept or feature.
-          The definition of a \enquote{shared concept} can vary greatly depending on the combination of tasks we try to cover:
-          Two general-purpose datasets like ImageNet and CIFAR-100 might share straightforward concepts like \enquote{cat} and \enquote{dog} (shared concept \enquote{animals}),
-          while more specialized datasets have no overlap at all and would rely on entirely different concepts
-          (like specific textures, patterns, etc.).
-          Our method needs to find a way to identify the best-matching concepts and features available across these diverse datasets.
+      \item Creating a method that is able to distinguish where shared concepts and features exist across domains
+            and where no relations exist.
+            Depending on the domains we want to cover, there can be significant variations in the amount of inter-task similarity,
+            which can make the number of shared concepts and features quite limited.
+      \item Defining a consistent threshold on what is considered a shared concept or feature.
+            The definition of a \enquote{shared concept} can vary greatly depending on the combination of tasks we try to cover:
+            Two general-purpose datasets like ImageNet and CIFAR-100 might share straightforward concepts like \enquote{cat} and \enquote{dog} (shared concept \enquote{animals}),
+            while more specialized datasets have no overlap at all and would rely on entirely different concepts
+            (like specific textures, patterns, etc.).
+            Our method needs to find a way to identify the best-matching concepts and features available across these diverse datasets.
 \end{itemize}
 
 After we have created a mapping of shared concepts and features, we can use this information to guide the training of our universal model.
@@ -59,3 +59,6 @@ eliminating the need for task-specific learning.
 We will compare the performance of our universal model against baseline models trained on individual domain datasets.
 In this thesis, we will focus on general-purpose datasets like ImageNet~\cite{deng_imagenet_2009,russakovsky_imagenet_2015},
 CIFAR10 and CIFAR100~\cite{krizhevsky_learning_2009}, and Caltech101 and Caltech256~\cite{li_caltech_2022,griffin_caltech_2022}.
+
+Additionally, we compare our new relationship mapping methods against the existing taxonomy creation method
+by Bevandic et al.~\cite{bevandic_automatic_2022,bevandic_weakly_2024} and discuss their strengths and weaknesses.
