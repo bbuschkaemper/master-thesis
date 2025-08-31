@@ -1,51 +1,155 @@
 \chapter{Related Work}
 
+This chapter provides a comprehensive overview of the existing literature related to
+multi-dataset training for image classification with discrepant taxonomies. We organize
+the related work into several key areas that form the foundation of our research: label
+alignment and taxonomy learning, multi-domain learning approaches, knowledge transfer
+between datasets, and automated taxonomy construction methods.
 
-We will base our method of finding shared concepts between datasets on works
-in the field of label-alignment and taxonomy learning.
-Creating connections between datasets is an important and fundamental task
-in the field of machine learning: Many datasets are created for specific tasks
-and may not be directly comparable to each other. Also, inconsistency in labeling
-and data collection practices can further complicate the integration of datasets.
-Methods to create connections between datasets can help to align labels, improve
-data quality, and facilitate knowledge transfer between models trained on different
+\section{Multi-Dataset Training and Domain Adaptation}
+
+Multi-dataset training has emerged as a critical research area in computer vision and
+machine learning, driven by the need to leverage diverse data sources for improved model
+generalization~\cite{zamir_taskonomy_2018}. The fundamental challenge lies in reconciling
+different labeling schemes, annotation quality, and domain-specific biases across
 datasets.
 
-The most obvious and straightforward approach to align labels across datasets
-is a fully manual mapping of labels from one dataset to another.
-This method is time-consuming and error-prone, especially for large datasets.
-Also, it can lead to further inconsistencies if multiple annotators are involved
-or if the datasets are updated independently over time~\cite{bordea_semeval-2016_2016,jurgens_semeval-2016_2016,yang_literature-driven_2013}.
+Traditional domain adaptation approaches focus on adapting models trained on a source
+domain to perform well on a target domain~\cite{wang_deep_2018,ganin_domain-adversarial_2016}.
+However, these methods typically assume some form of correspondence between domains,
+either through shared label spaces or overlapping features. In contrast, multi-dataset
+training with discrepant taxonomies requires more sophisticated approaches that can
+handle completely different categorization schemes.
 
-An improvement over this manual approach is a hybrid method that works
-automated, but involves manual corrections.
-For example, Firmani et al.~\cite{firmani_building_2024} proposes a weakly supervised
-approach where domain experts answer targeted questions about the datasets
-to guide the automated label alignment process.
-This method tries to balance automation and human expertise, leveraging the strengths of both.
+The concept of universal models that can operate across multiple datasets simultaneously
+has gained significant attention~\cite{kolesnikov_big_2020,radford_learning_2021}.
+These approaches typically rely on large-scale pretraining followed by fine-tuning,
+but they often struggle with datasets that have fundamentally different organizational
+principles.
 
-With the rise of large language models (LLMs), new methods have emerged
-that replace the human domain experts with automated systems.
-These systems leverage the capabilities of LLMs to understand and align labels
-across datasets without the need for human input,
-creating a pseudo-hybrid approach where the human role is replaced with LLMs~\cite{kargupta_taxoadapt_2025,chen_prompting_2023,gunn_creating_2024}.
+\section{Label Alignment and Taxonomy Learning}
 
+The challenge of aligning labels across datasets is fundamental to our work. We base our
+method of finding shared concepts between datasets on established works in the field of
+label-alignment and taxonomy learning. Creating connections between datasets is an
+important and fundamental task in the field of machine learning: Many datasets are
+created for specific tasks and may not be directly comparable to each other.
+Additionally, inconsistency in labeling and data collection practices can further
+complicate the integration of datasets. Methods to create connections between datasets
+can help to align labels, improve data quality, and facilitate knowledge transfer
+between models trained on different datasets.
 
-For fully automated, non-LLM-based approaches, there are several different options available:
-\begin{itemize}
-      \item \textbf{WordNet} is a lexical database that groups English words into sets of synonyms called synsets, providing short definitions and usage examples.
-            It can be used to find relationships between words and concepts, making it a valuable resource for aligning labels across datasets.
-            However, as we will later see in \ref{sec:wordnet_synsets}, this method is error-prone and not suitable for all datasets.
-      \item \textbf{Cross-Domain Classification} methods use domain models trained on a specific dataset to create cross-domain predictions.
-            For example, a dataset \textit{A} can have a class \textit{A:vehicle} while a dataset \textit{B}
-            has a class \textit{B:car}. By predicting an image from class \textit{B:car} using a model trained on dataset \textit{A}
-            as \textit{A:vehicle}, we can collect cross-domain co-occurrences and build a mapping between the two datasets~\cite{uijlings_missing_2022,bevandic_automatic_2022,bevandic_weakly_2024}.
-\end{itemize}
+\subsection{Manual and Semi-Automated Approaches}
 
-We will base our taxonomy construction algorithm on the works of Bevandic et al.~\cite{bevandic_automatic_2022,bevandic_weakly_2024}.
-Our method will be adapted to shift the focus from aligning labels in a universal cross-domain taxonomy
-towards building relationships between classes in different datasets.
-Relationships will not, as in the original work, define a hierarchical structure,
-but rather point out shared attributes between classes.
+The most obvious and straightforward approach to align labels across datasets is a fully
+manual mapping of labels from one dataset to another. This method, while providing high
+accuracy when performed by domain experts, is time-consuming and error-prone, especially
+for large datasets. Manual annotation also leads to further inconsistencies if multiple
+annotators are involved or if the datasets are updated independently over
+time~\cite{bordea_semeval-2016_2016,jurgens_semeval-2016_2016,yang_literature-driven_2013}.
 
-% TODO Too short, write more
+Snow et al.~\cite{snow_cheap_2008} demonstrated that crowdsourcing can be effective for
+certain annotation tasks, but the quality of manual alignments varies significantly with
+annotator expertise and task complexity. This variability becomes particularly
+problematic when dealing with fine-grained taxonomic distinctions or domain-specific
+terminology.
+
+An improvement over purely manual approaches is a hybrid method that works in an
+automated fashion but involves manual corrections. For example, Firmani et
+al.~\cite{firmani_building_2024} proposes a weakly supervised approach where domain
+experts answer targeted questions about the datasets to guide the automated label
+alignment process. This method attempts to balance automation and human expertise,
+leveraging the strengths of both approaches while minimizing the manual effort required.
+
+\subsection{Large Language Model-Based Approaches}
+
+With the rise of large language models (LLMs), new methods have emerged that replace
+human domain experts with automated systems. These systems leverage the capabilities of
+LLMs to understand and align labels across datasets without the need for human input,
+creating a pseudo-hybrid approach where the human role is replaced with sophisticated
+language understanding~\cite{kargupta_taxoadapt_2025,chen_prompting_2023,gunn_creating_2024}.
+
+Kargupta et al.~\cite{kargupta_taxoadapt_2025} introduced TaxoAdapt, which uses large
+language models to automatically generate taxonomic alignments between datasets. Their
+approach demonstrates significant improvements over baseline methods but requires careful
+prompt engineering and may inherit biases present in the language model's training data.
+
+Chen et al.~\cite{chen_prompting_2023} explored the use of prompting strategies for
+cross-dataset label alignment, showing that well-designed prompts can elicit meaningful
+semantic relationships from pre-trained language models. However, their work also
+highlights the challenges of ensuring consistency and accuracy in LLM-generated
+alignments.
+
+\subsection{Automated Non-LLM Approaches}
+
+For fully automated, non-LLM-based approaches, several different methodologies have been
+developed:
+
+\textbf{WordNet-Based Methods:} WordNet is a lexical database that groups English words
+into sets of synonyms called synsets, providing short definitions and usage
+examples~\cite{noauthor_wordnet_nodate,fellbaum_wordnet_1998}.
+It can be used to find relationships between words
+and concepts, making it a valuable resource for aligning labels across datasets. WordNet
+has been extensively used in various natural language processing and computer vision
+tasks for establishing semantic relationships,
+the most popular example being the ImageNet database~\cite{deng_imagenet_2009}.
+
+However, as we will later demonstrate in Section~\ref{sec:wordnet_synsets}, this method
+is error-prone and not suitable for all datasets. WordNet's coverage is limited to
+English and may not capture domain-specific terminology or modern usage patterns.
+Furthermore, the hierarchical structure of WordNet may not align with the organizational
+principles of specific datasets.
+
+\textbf{Cross-Domain Classification Methods:} These approaches use models trained on a
+specific dataset to create cross-domain predictions and infer label
+relationships~\cite{uijlings_missing_2022,bevandic_automatic_2022,bevandic_weakly_2024}.
+For example, if dataset \textit{A} has a class \textit{A:vehicle} while dataset
+\textit{B} has a class \textit{B:car}, by predicting an image from class \textit{B:car}
+using a model trained on dataset \textit{A} as \textit{A:vehicle}, we can collect
+cross-domain co-occurrences and build a mapping between the two datasets.
+
+This approach has the advantage of being grounded in actual model behavior and data
+distributions, making it more robust to semantic inconsistencies that might not be
+captured by purely linguistic approaches. However, it requires sufficient model
+performance across domains and may be sensitive to domain shift effects.
+
+\section{Knowledge Transfer and Representation Learning}
+
+Knowledge transfer between datasets with different taxonomies is closely related to the
+broader field of transfer learning and representation learning. The key insight is that
+while surface-level labels may differ, underlying visual features and semantic concepts
+often exhibit significant overlap across datasets.
+
+\subsection{Feature-Based Transfer Methods}
+
+Donahue et al.~\cite{donahue_decaf_2014} demonstrated that features learned on
+large-scale datasets like ImageNet can transfer effectively to other visual recognition
+tasks. This work established the foundation for using pre-trained features as a bridge
+between different datasets and taxonomies.
+
+More recent work has explored how to adapt these pre-trained representations to better
+capture the specific taxonomic structures of target
+datasets~\cite{kornblith_better_2019,he_rethinking_2019}.
+These approaches typically involve fine-tuning strategies that preserve
+useful general features while adapting to dataset-specific requirements.
+
+\section{Our Approach in Context}
+
+We will base our taxonomy construction algorithm on the works of Bevandic et
+al.~\cite{bevandic_automatic_2022,bevandic_weakly_2024}, who proposed cross-domain
+classification methods for automatic label alignment. Their approach uses trained models
+to establish correspondences between datasets by analyzing prediction patterns across
+domains.
+
+Our method will be adapted to shift the focus from aligning labels in a universal
+cross-domain taxonomy towards building relationships between classes in different
+datasets. Importantly, relationships will not, as in the original work, define a strict
+hierarchical structure, but rather point out shared attributes and semantic similarities
+between classes. This adaptation is motivated by the observation that many real-world
+datasets organize concepts in ways that are not naturally hierarchical but rather
+reflect different perspectives on the same underlying visual domain.
+
+By building on these established foundations while addressing their limitations, our
+approach aims to provide a more flexible and robust solution for multi-dataset training
+with discrepant taxonomies. The following chapters will detail our specific methodology
+and demonstrate its effectiveness across various datasets and domains.

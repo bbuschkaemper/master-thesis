@@ -365,6 +365,93 @@
       \field{pages}{141\bibrangedash 142}
       \range{pages}{2}
     \endentry
+    \entry{donahue_decaf_2014}{inproceedings}{}
+      \name{author}{7}{}{%
+        {{hash=913090a0d65c7a300c602f5a5a5a61e3}{%
+           family={Donahue},
+           familyi={D\bibinitperiod},
+           given={Jeff},
+           giveni={J\bibinitperiod}}}%
+        {{hash=9fce03efe6b3331a1b93ed2e7c0da9d5}{%
+           family={Jia},
+           familyi={J\bibinitperiod},
+           given={Yangqing},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=494b568c5dc85ba8f3f409635f9c5f25}{%
+           family={Vinyals},
+           familyi={V\bibinitperiod},
+           given={Oriol},
+           giveni={O\bibinitperiod}}}%
+        {{hash=98392893f850ec17a67d971c57631579}{%
+           family={Hoffman},
+           familyi={H\bibinitperiod},
+           given={Judy},
+           giveni={J\bibinitperiod}}}%
+        {{hash=803fb0c7ba592ff2ac5109218a4a8211}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Ning},
+           giveni={N\bibinitperiod}}}%
+        {{hash=fbca5fa50691269bdc9f6ee6c7f6f9e1}{%
+           family={Tzeng},
+           familyi={T\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+        {{hash=90180e1a30742e0d15328bfe637c2ef4}{%
+           family={Darrell},
+           familyi={D\bibinitperiod},
+           given={Trevor},
+           giveni={T\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=b80203b0ba1299db35073382e835b485}{%
+           family={Xing},
+           familyi={X\bibinitperiod},
+           given={Eric\bibnamedelima P.},
+           giveni={E\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=b60ee7d2fae24ba9546e322d5471d27f}{%
+           family={Jebara},
+           familyi={J\bibinitperiod},
+           given={Tony},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Bejing, China}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{617fb1a34c53e2698baa9326156295d0}
+      \strng{fullhash}{617fb1a34c53e2698baa9326156295d0}
+      \strng{bibnamehash}{617fb1a34c53e2698baa9326156295d0}
+      \strng{authorbibnamehash}{617fb1a34c53e2698baa9326156295d0}
+      \strng{authornamehash}{617fb1a34c53e2698baa9326156295d0}
+      \strng{authorfullhash}{617fb1a34c53e2698baa9326156295d0}
+      \strng{editorbibnamehash}{8779f8110a0366a8dad555be758c5829}
+      \strng{editornamehash}{8779f8110a0366a8dad555be758c5829}
+      \strng{editorfullhash}{8779f8110a0366a8dad555be758c5829}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We evaluate whether features extracted from the activation of a deep convolutional network trained in a fully supervised fashion on a large, fixed set of object recognition tasks can be re-purposed to novel generic tasks. Our generic tasks may differ significantly from the originally trained tasks and there may be insufficient labeled or unlabeled data to conventionally train or adapt a deep architecture to the new tasks. We investigate and visualize the semantic clustering of deep convolutional features with respect to a variety of such tasks, including scene recognition, domain adaptation, and fine-grained recognition challenges. We compare the efficacy of relying on various network levels to define a fixed feature, and report novel results that significantly outperform the state-of-the-art on several important vision challenges. We are releasing {DeCAF}, an open-source implementation of these deep convolutional activation features, along with all associated network parameters to enable vision researchers to be able to conduct experimentation with deep representations across a range of visual concept learning paradigms.}
+      \field{booktitle}{Proceedings of the 31st International Conference on Machine Learning}
+      \field{day}{22}
+      \field{month}{6}
+      \field{series}{Proceedings of Machine Learning Research}
+      \field{title}{{DeCAF}: A Deep Convolutional Activation Feature for Generic Visual Recognition}
+      \field{volume}{32}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \field{pages}{647\bibrangedash 655}
+      \range{pages}{9}
+      \verb{urlraw}
+      \verb https://proceedings.mlr.press/v32/donahue14.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.mlr.press/v32/donahue14.html
+      \endverb
+    \endentry
     \entry{falcon_pytorch_2019}{software}{}
       \name{author}{2}{}{%
         {{hash=c79553dc17ef05e7d1ef9e6149db42c5}{%
@@ -486,6 +573,72 @@
       \verb{url}
       \verb https://www.semanticscholar.org/paper/Building-Taxonomies-with-Triplet-Queries-Firmani-Galhotra/91e314dd5df505d036aa49ddeb3562551770afb6
       \endverb
+    \endentry
+    \entry{ganin_domain-adversarial_2016}{article}{}
+      \name{author}{8}{}{%
+        {{hash=08ddf7ec3c94815436149213b48c1dc1}{%
+           family={Ganin},
+           familyi={G\bibinitperiod},
+           given={Yaroslav},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=f0545417d4cb164d2e9ca0befd28033a}{%
+           family={Ustinova},
+           familyi={U\bibinitperiod},
+           given={Evgeniya},
+           giveni={E\bibinitperiod}}}%
+        {{hash=8c48e0ad12ae2a6416cfe169bea601f9}{%
+           family={Ajakan},
+           familyi={A\bibinitperiod},
+           given={Hana},
+           giveni={H\bibinitperiod}}}%
+        {{hash=2b6d90d4e0026111eb2f0688e393bfaf}{%
+           family={Germain},
+           familyi={G\bibinitperiod},
+           given={Pascal},
+           giveni={P\bibinitperiod}}}%
+        {{hash=42a970b0a0f1ed24b23064370cc9392f}{%
+           family={Larochelle},
+           familyi={L\bibinitperiod},
+           given={Hugo},
+           giveni={H\bibinitperiod}}}%
+        {{hash=9a70c7f25b974869715a0308185b8609}{%
+           family={Laviolette},
+           familyi={L\bibinitperiod},
+           given={François},
+           giveni={F\bibinitperiod}}}%
+        {{hash=f488feb62c48b0b8545f07789ffe13c6}{%
+           family={Marchand},
+           familyi={M\bibinitperiod},
+           given={Mario},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a48f60762c88685a899455e12615e1df}{%
+           family={Lempitsky},
+           familyi={L\bibinitperiod},
+           given={Victor},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{0bad1d5d762b49d423819ed8ca70bc3c}
+      \strng{fullhash}{0bad1d5d762b49d423819ed8ca70bc3c}
+      \strng{bibnamehash}{0bad1d5d762b49d423819ed8ca70bc3c}
+      \strng{authorbibnamehash}{0bad1d5d762b49d423819ed8ca70bc3c}
+      \strng{authornamehash}{0bad1d5d762b49d423819ed8ca70bc3c}
+      \strng{authorfullhash}{0bad1d5d762b49d423819ed8ca70bc3c}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We introduce a new representation learning approach for domain adaptation, in which data at training and test time come from similar but different distributions. Our approach is directly inspired by the theory on domain adaptation suggesting that, for effective domain transfer to be achieved, predictions must be made based on features that cannot discriminate between the training (source) and test (target) domains.The approach implements this idea in the context of neural network architectures that are trained on labeled data from the source domain and unlabeled data from the target domain (no labeled target-domain data is necessary). As the training progresses, the approach promotes the emergence of features that are (i) discriminative for the main learning task on the source domain and (ii) indiscriminate with respect to the shift between the domains. We show that this adaptation behaviour can be achieved in almost any feed-forward model by augmenting it with few standard layers and a new gradient reversal layer. The resulting augmented architecture can be trained using standard backpropagation and stochastic gradient descent, and can thus be implemented with little effort using any of the deep learning packages.We demonstrate the success of our approach for two distinct classification problems (document sentiment analysis and image classification), where state-of-the-art domain adaptation performance on standard benchmarks is achieved. We also validate the approach for descriptor learning task in the context of person re-identification application.}
+      \field{issn}{1532-4435}
+      \field{journaltitle}{J. Mach. Learn. Res.}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{Domain-adversarial training of neural networks}
+      \field{volume}{17}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{pages}{2096\bibrangedash 2030}
+      \range{pages}{-59}
+      \keyw{deep learning,domain adaptation,image classification,neural network,person re-identification,representation learning,sentiment analysis,synthetic data}
     \endentry
     \entry{gewers_principal_2021}{article}{}
       \name{author}{7}{}{%
@@ -664,6 +817,45 @@
       \verb http://arxiv.org/abs/2402.12557
       \endverb
       \keyw{Computer Science - Computation and Language}
+    \endentry
+    \entry{he_rethinking_2019}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=6b4b60e909e78633945f3f9c9dc83e01}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Kaiming},
+           giveni={K\bibinitperiod}}}%
+        {{hash=bd5dadbe57bedc5957c19a3154c4d424}{%
+           family={Girshick},
+           familyi={G\bibinitperiod},
+           given={Ross},
+           giveni={R\bibinitperiod}}}%
+        {{hash=37843fd1a96680e7945ac1a059b6e8b8}{%
+           family={Dollar},
+           familyi={D\bibinitperiod},
+           given={Piotr},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{991960007d12a8428a8793a3064fe4eb}
+      \strng{fullhash}{991960007d12a8428a8793a3064fe4eb}
+      \strng{bibnamehash}{991960007d12a8428a8793a3064fe4eb}
+      \strng{authorbibnamehash}{991960007d12a8428a8793a3064fe4eb}
+      \strng{authornamehash}{991960007d12a8428a8793a3064fe4eb}
+      \strng{authorfullhash}{991960007d12a8428a8793a3064fe4eb}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2019 {IEEE}/{CVF} International Conference on Computer Vision ({ICCV})}
+      \field{title}{Rethinking {ImageNet} Pre-Training}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{pages}{4917\bibrangedash 4926}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1109/ICCV.2019.00502
+      \endverb
+      \keyw{Computer vision,Data models,Detectors,Object detection,Schedules,Task analysis,Training}
     \endentry
     \entry{he_deep_2015}{misc}{}
       \name{author}{4}{}{%
@@ -1110,6 +1302,124 @@
       \endverb
       \keyw{Computer Science - Computation and Language,Computer Science - Information Retrieval}
     \endentry
+    \entry{kolesnikov_big_2020}{misc}{}
+      \name{author}{7}{}{%
+        {{hash=6807e3c00242c6bf6a3179905040471b}{%
+           family={Kolesnikov},
+           familyi={K\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=836254958eac09b30d45dd67a75ce4fa}{%
+           family={Beyer},
+           familyi={B\bibinitperiod},
+           given={Lucas},
+           giveni={L\bibinitperiod}}}%
+        {{hash=00b950307c7d096765bb6df00c7c5c3a}{%
+           family={Zhai},
+           familyi={Z\bibinitperiod},
+           given={Xiaohua},
+           giveni={X\bibinitperiod}}}%
+        {{hash=6ed242c809064b5443143a6124c6ea50}{%
+           family={Puigcerver},
+           familyi={P\bibinitperiod},
+           given={Joan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1ea4844e1dad648dad2457fd050da6b3}{%
+           family={Yung},
+           familyi={Y\bibinitperiod},
+           given={Jessica},
+           giveni={J\bibinitperiod}}}%
+        {{hash=450963f966620925cb8fecd32f7a6ee1}{%
+           family={Gelly},
+           familyi={G\bibinitperiod},
+           given={Sylvain},
+           giveni={S\bibinitperiod}}}%
+        {{hash=493a532418540859dca92cf3b579de2a}{%
+           family={Houlsby},
+           familyi={H\bibinitperiod},
+           given={Neil},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{841cd48000bd724ed849d2e1df51fad4}
+      \strng{fullhash}{841cd48000bd724ed849d2e1df51fad4}
+      \strng{bibnamehash}{841cd48000bd724ed849d2e1df51fad4}
+      \strng{authorbibnamehash}{841cd48000bd724ed849d2e1df51fad4}
+      \strng{authornamehash}{841cd48000bd724ed849d2e1df51fad4}
+      \strng{authorfullhash}{841cd48000bd724ed849d2e1df51fad4}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Transfer of pre-trained representations improves sample efficiency and simplifies hyperparameter tuning when training deep neural networks for vision. We revisit the paradigm of pre-training on large supervised datasets and fine-tuning the model on a target task. We scale up pre-training, and propose a simple recipe that we call Big Transfer ({BiT}). By combining a few carefully selected components, and transferring using a simple heuristic, we achieve strong performance on over 20 datasets. {BiT} performs well across a surprisingly wide range of data regimes -- from 1 example per class to 1M total examples. {BiT} achieves 87.5\% top-1 accuracy on {ILSVRC}-2012, 99.4\% on {CIFAR}-10, and 76.3\% on the 19 task Visual Task Adaptation Benchmark ({VTAB}). On small datasets, {BiT} attains 76.8\% on {ILSVRC}-2012 with 10 examples per class, and 97.0\% on {CIFAR}-10 with 10 examples per class. We conduct detailed analysis of the main components that lead to high transfer performance.}
+      \field{day}{5}
+      \field{eprinttype}{arxiv}
+      \field{month}{5}
+      \field{note}{version: 3}
+      \field{number}{{arXiv}:1912.11370}
+      \field{shorttitle}{Big Transfer ({BiT})}
+      \field{title}{Big Transfer ({BiT}): General Visual Representation Learning}
+      \field{urlday}{31}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.1912.11370
+      \endverb
+      \verb{eprint}
+      \verb 1912.11370 [cs]
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1912.11370
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1912.11370
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning}
+    \endentry
+    \entry{kornblith_better_2019}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=7fc0edf04cce351dda404579ede3d0d1}{%
+           family={Kornblith},
+           familyi={K\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod}}}%
+        {{hash=8f128e70084608a2c29c497ebd794f87}{%
+           family={Shlens},
+           familyi={S\bibinitperiod},
+           given={Jonathon},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c636f146591d51579a8119b777394878}{%
+           family={Le},
+           familyi={L\bibinitperiod},
+           given={Quoc\bibnamedelima V.},
+           giveni={Q\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \strng{namehash}{baca3c6d3a1e144879142b81ae626b9f}
+      \strng{fullhash}{baca3c6d3a1e144879142b81ae626b9f}
+      \strng{bibnamehash}{baca3c6d3a1e144879142b81ae626b9f}
+      \strng{authorbibnamehash}{baca3c6d3a1e144879142b81ae626b9f}
+      \strng{authornamehash}{baca3c6d3a1e144879142b81ae626b9f}
+      \strng{authorfullhash}{baca3c6d3a1e144879142b81ae626b9f}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2019 {IEEE}/{CVF} Conference on Computer Vision and Pattern Recognition ({CVPR})}
+      \field{title}{Do Better {ImageNet} Models Transfer Better?}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{pages}{2656\bibrangedash 2666}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/CVPR.2019.00277
+      \endverb
+      \keyw{Accuracy,Computational modeling,Computer architecture,Computer vision,Correlation,Deep Learning,Feature extraction,Image classification,Pattern recognition,Representation Learning,Transfer learning}
+    \endentry
     \entry{krizhevsky_learning_2009}{article}{}
       \name{author}{2}{}{%
         {{hash=c5e3a676e2ac1164b3afcd539c131fc9}{%
@@ -1470,6 +1780,81 @@
       \endverb
       \keyw{Data mining,Knowledge engineering,Knowledge transfer,Labeling,Learning systems,Machine learning,Machine learning algorithms,Space technology,Testing,Training data,Transfer learning,data mining.,machine learning,survey}
     \endentry
+    \entry{radford_learning_2021}{inproceedings}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{10}{}{%
+        {{hash=a812c46caad94fc8701be37871f303ba}{%
+           family={Radford},
+           familyi={R\bibinitperiod},
+           given={Alec},
+           giveni={A\bibinitperiod}}}%
+        {{hash=37a96525bc70870f8509160f7eccf4b7}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Jong\bibnamedelima Wook},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=4d5d078d439e163a02d9d1ba0002bb12}{%
+           family={Hallacy},
+           familyi={H\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+        {{hash=82063a12702e7b2c026ae0ff03b8f102}{%
+           family={Ramesh},
+           familyi={R\bibinitperiod},
+           given={Aditya},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e5e3e996c0a95da7e97cae269822bbef}{%
+           family={Goh},
+           familyi={G\bibinitperiod},
+           given={Gabriel},
+           giveni={G\bibinitperiod}}}%
+        {{hash=abe4801e322e893b23785fd6d0800b5c}{%
+           family={Agarwal},
+           familyi={A\bibinitperiod},
+           given={Sandhini},
+           giveni={S\bibinitperiod}}}%
+        {{hash=3c1d9a663596faaf544c1a65aac581be}{%
+           family={Sastry},
+           familyi={S\bibinitperiod},
+           given={Girish},
+           giveni={G\bibinitperiod}}}%
+        {{hash=1e84eff933be9f4887bf369cf181bf12}{%
+           family={Askell},
+           familyi={A\bibinitperiod},
+           given={Amanda},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2321e04943bcadb0275819652b980521}{%
+           family={Mishkin},
+           familyi={M\bibinitperiod},
+           given={Pamela},
+           giveni={P\bibinitperiod}}}%
+        {{hash=1480c861b1a73e1d1de1b227e985b179}{%
+           family={Clark},
+           familyi={C\bibinitperiod},
+           given={Jack},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {PmLR}%
+      }
+      \strng{namehash}{ed1b50fbade7def4ab8cde47cdabaff0}
+      \strng{fullhash}{ed1b50fbade7def4ab8cde47cdabaff0}
+      \strng{bibnamehash}{ed1b50fbade7def4ab8cde47cdabaff0}
+      \strng{authorbibnamehash}{ed1b50fbade7def4ab8cde47cdabaff0}
+      \strng{authornamehash}{ed1b50fbade7def4ab8cde47cdabaff0}
+      \strng{authorfullhash}{ed1b50fbade7def4ab8cde47cdabaff0}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International conference on machine learning}
+      \field{title}{Learning transferable visual models from natural language supervision}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{pages}{8748\bibrangedash 8763}
+      \range{pages}{16}
+    \endentry
     \entry{russakovsky_imagenet_2015}{misc}{}
       \name{author}{12}{}{%
         {{hash=2a74ec28b731b015747e2af5f0b519e1}{%
@@ -1571,6 +1956,74 @@
       \verb http://arxiv.org/abs/1409.0575
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
+    \entry{snow_cheap_2008}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=ad87514c28800105e347eecd5770d77c}{%
+           family={Snow},
+           familyi={S\bibinitperiod},
+           given={Rion},
+           giveni={R\bibinitperiod}}}%
+        {{hash=9571b2b14f23c45ebda0321a8ac01394}{%
+           family={O'Connor},
+           familyi={O\bibinitperiod},
+           given={Brendan},
+           giveni={B\bibinitperiod}}}%
+        {{hash=bd33d7a70284b5ead9c7985cb5c9929c}{%
+           family={Jurafsky},
+           familyi={J\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=bdb4d740fc9548d1c32a62103c30169d}{%
+           family={Ng},
+           familyi={N\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=35b5bc53ec3fa2640225354af6ca0e1d}{%
+           family={Lapata},
+           familyi={L\bibinitperiod},
+           given={Mirella},
+           giveni={M\bibinitperiod}}}%
+        {{hash=214a2b72763c7cbb3521501c66e8f1bd}{%
+           family={Ng},
+           familyi={N\bibinitperiod},
+           given={Hwee\bibnamedelima Tou},
+           giveni={H\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Honolulu, Hawaii}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{b0515f7644797078ae8584f2ebc39758}
+      \strng{fullhash}{b0515f7644797078ae8584f2ebc39758}
+      \strng{bibnamehash}{b0515f7644797078ae8584f2ebc39758}
+      \strng{authorbibnamehash}{b0515f7644797078ae8584f2ebc39758}
+      \strng{authornamehash}{b0515f7644797078ae8584f2ebc39758}
+      \strng{authorfullhash}{b0515f7644797078ae8584f2ebc39758}
+      \strng{editorbibnamehash}{89aa583f3691168096492fb922134d68}
+      \strng{editornamehash}{89aa583f3691168096492fb922134d68}
+      \strng{editorfullhash}{89aa583f3691168096492fb922134d68}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2008 Conference on Empirical Methods in Natural Language Processing}
+      \field{month}{10}
+      \field{title}{Cheap and Fast – But is it Good? Evaluating Non-Expert Annotations for Natural Language Tasks}
+      \field{year}{2008}
+      \field{dateera}{ce}
+      \field{pages}{254\bibrangedash 263}
+      \range{pages}{10}
+      \verb{urlraw}
+      \verb https://aclanthology.org/D08-1027/
+      \endverb
+      \verb{url}
+      \verb https://aclanthology.org/D08-1027/
+      \endverb
     \endentry
     \entry{sutskever_importance_2013}{inproceedings}{}
       \name{author}{4}{}{%
@@ -1786,6 +2239,48 @@
       \endverb
       \keyw{Computer Science - Computation and Language,Computer Science - Machine Learning}
     \endentry
+    \entry{wang_deep_2018}{article}{}
+      \name{author}{2}{}{%
+        {{hash=80fe924785a5b3a12cc6765b234d56de}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Mei},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2ec197665ddc4935e136274967ffa4ae}{%
+           family={Deng},
+           familyi={D\bibinitperiod},
+           given={Weihong},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{5dad0299034e5613863509a915c3f18e}
+      \strng{fullhash}{5dad0299034e5613863509a915c3f18e}
+      \strng{bibnamehash}{5dad0299034e5613863509a915c3f18e}
+      \strng{authorbibnamehash}{5dad0299034e5613863509a915c3f18e}
+      \strng{authornamehash}{5dad0299034e5613863509a915c3f18e}
+      \strng{authorfullhash}{5dad0299034e5613863509a915c3f18e}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0925-2312}
+      \field{journaltitle}{Neurocomputing}
+      \field{month}{10}
+      \field{title}{Deep visual domain adaptation: A survey}
+      \field{volume}{312}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{pages}{135\bibrangedash 153}
+      \range{pages}{19}
+      \verb{doi}
+      \verb 10.1016/j.neucom.2018.05.083
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1016/j.neucom.2018.05.083
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1016/j.neucom.2018.05.083
+      \endverb
+    \endentry
     \entry{noauthor_wordnet_nodate}{online}{}
       \field{sortinit}{W}
       \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
@@ -1905,6 +2400,57 @@
       \verb{url}
       \verb https://aclanthology.org/W13-5207/
       \endverb
+    \endentry
+    \entry{zamir_taskonomy_2018}{inproceedings}{}
+      \name{author}{6}{}{%
+        {{hash=5c4d5bffbf12972d7fa07562ce912187}{%
+           family={Zamir},
+           familyi={Z\bibinitperiod},
+           given={Amir\bibnamedelima R.},
+           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=8cd893f366ff80380c32e708216b4aaa}{%
+           family={Sax},
+           familyi={S\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=11b7db731d015a9cac4cfc6b9cd78afd}{%
+           family={Shen},
+           familyi={S\bibinitperiod},
+           given={William\bibnamedelima B.},
+           giveni={W\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=03578abbf51650fbfaf563c532898f30}{%
+           family={Guibas},
+           familyi={G\bibinitperiod},
+           given={Leonidas\bibnamedelima J.},
+           giveni={L\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=c75a5377b6dc5213831576e88ffe553c}{%
+           family={Malik},
+           familyi={M\bibinitperiod},
+           given={Jitendra},
+           giveni={J\bibinitperiod}}}%
+        {{hash=e29c20003a517abaaac28852301c03c2}{%
+           family={Savarese},
+           familyi={S\bibinitperiod},
+           given={Silvio},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{d817ebfe1c2c2aac4ee4a4ae174233f5}
+      \strng{fullhash}{d817ebfe1c2c2aac4ee4a4ae174233f5}
+      \strng{bibnamehash}{d817ebfe1c2c2aac4ee4a4ae174233f5}
+      \strng{authorbibnamehash}{d817ebfe1c2c2aac4ee4a4ae174233f5}
+      \strng{authornamehash}{d817ebfe1c2c2aac4ee4a4ae174233f5}
+      \strng{authorfullhash}{d817ebfe1c2c2aac4ee4a4ae174233f5}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})}
+      \field{title}{Taskonomy: Disentangling Task Transfer Learning}
+      \field{year}{2018}
+      \field{dateera}{ce}
     \endentry
     \entry{zhang_overview_2018}{article}{}
       \name{author}{2}{}{%
