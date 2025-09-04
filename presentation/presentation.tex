@@ -1,0 +1,624 @@
+\documentclass[aspectratio=169]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgf}
+\def\mathdefault#1{#1}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% Font configuration for PGF compatibility
+\usepackage{ifxetex,ifluatex}
+\newif\ifxetexorluatex
+\ifxetex
+  \xetexorluatextrue
+\else
+  \ifluatex
+    \xetexorluatextrue
+  \else
+    \xetexorluatexfalse
+  \fi
+\fi
+
+\ifxetexorluatex
+  \usepackage{fontspec}
+  \setmainfont{EB Garamond}
+  \setmonofont[Scale=MatchLowercase]{Source Code Pro}
+\else
+  \usepackage[lf]{ebgaramond}
+  \usepackage[oldstyle,scale=0.7]{sourcecodepro}
+\fi
+
+% Theme
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% Title page information
+\title{Research and Implementation of Multi-Dataset Training for Image Classification with Discrepant Taxonomies}
+\subtitle{Master Thesis Presentation}
+\author{Björn Buschkämper}
+\institute{Technical Faculty, Bielefeld University}
+\date{\today}
+
+\begin{document}
+
+% Title slide
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% Outline
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+% Section 1: Introduction & Base Idea
+\section{Introduction \& Base Idea}
+
+\begin{frame}{The Challenge: Limited Scope of Traditional Models}
+    \begin{itemize}
+        \item Traditional image classification models are trained on specific datasets
+        \item Each model recognizes only a predefined set of categories
+        \item Multiple models needed for different domains = inefficient storage and deployment
+    \end{itemize}
+
+    \vspace{1em}
+
+    \textbf{Current Approaches:}
+    \begin{itemize}
+        \item \textbf{Transfer Learning}: Adapt pre-trained models to new tasks
+        \item \textbf{Multi-head Architecture}: Shared backbone + task-specific heads
+        \item \textbf{Multi-task Learning}: Train on multiple tasks simultaneously
+    \end{itemize}
+
+    \vspace{1em}
+
+    \textcolor{red}{\textbf{Problem:}} Still requires separate models or heads for each domain
+\end{frame}
+
+\begin{frame}{Our Base Idea: Universal Model vs. Multi-Head}
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \textbf{Multi-Head Approach}
+            \begin{itemize}
+                \item Shared backbone
+                \item Task-specific heads
+                \item Automatic feature distillation
+                \item Domain alignment challenges
+            \end{itemize}
+
+            \begin{center}
+                \begin{tikzpicture}[scale=0.8]
+                    % Backbone
+                    \draw[thick, blue] (0,0) rectangle (2,1.5);
+                    \node at (1,0.75) {\scriptsize Backbone};
+
+                    % Heads
+                    \draw[thick, red] (0.2,1.5) rectangle (0.8,2.5);
+                    \node at (0.5,2) {\tiny Head A};
+                    \draw[thick, red] (1.2,1.5) rectangle (1.8,2.5);
+                    \node at (1.5,2) {\tiny Head B};
+
+                    % Labels
+                    \node at (1,-0.3) {\tiny Input};
+                    \node at (0.5,2.8) {\tiny Domain A};
+                    \node at (1.5,2.8) {\tiny Domain B};
+                \end{tikzpicture}
+            \end{center}
+        \end{column}
+
+        \begin{column}{0.48\textwidth}
+            \textbf{Universal Model Approach}
+            \begin{itemize}
+                \item Single shared model
+                \item Universal output layer
+                \item Predefined concept mapping
+                \item Static domain conversion
+            \end{itemize}
+
+            \begin{center}
+                \begin{tikzpicture}[scale=0.8]
+                    % Model
+                    \draw[thick, blue] (0,0) rectangle (2,1.5);
+                    \node at (1,0.75) {\scriptsize Universal};
+                    \node at (1,0.45) {\scriptsize Model};
+
+                    % Universal output
+                    \draw[thick, green] (0.5,1.5) rectangle (1.5,2.5);
+                    \node at (1,2) {\tiny Universal};
+                    \node at (1,1.8) {\tiny Classes};
+
+                    % Conversion
+                    \draw[dashed] (1.5,2) -- (2.5,2.5);
+                    \draw[dashed] (1.5,2) -- (2.5,1.5);
+                    \node at (3,2.5) {\tiny Domain A};
+                    \node at (3,1.5) {\tiny Domain B};
+
+                    % Labels
+                    \node at (1,-0.3) {\tiny Input};
+                \end{tikzpicture}
+            \end{center}
+        \end{column}
+    \end{columns}
+
+    \vspace{1em}
+
+    \textcolor{blue}{\textbf{Key Insight:}} Build explicit mapping of shared concepts first, then use it to train a universal model
+\end{frame}
+
+% Section 2: Method Overview
+\section{Method Overview}
+
+\begin{frame}{Our Three-Step Methodology}
+    \begin{center}
+        \begin{tikzpicture}[node distance=3cm]
+            % Step 1
+            \draw[thick, blue] (0,0) rectangle (2.5,1.5);
+            \node[align=center] at (1.25,0.75) {\textbf{Step 1:}\\Cross-Domain\\Prediction};
+
+            % Step 2
+            \draw[thick, orange] (3.5,0) rectangle (6,1.5);
+            \node[align=center] at (4.75,0.75) {\textbf{Step 2:}\\Relationship\\Selection};
+
+            % Step 3
+            \draw[thick, green] (7,0) rectangle (9.5,1.5);
+            \node[align=center] at (8.25,0.75) {\textbf{Step 3:}\\Universal Model\\Training};
+
+            % Arrows
+            \draw[->, thick] (2.5,0.75) -- (3.5,0.75);
+            \draw[->, thick] (6,0.75) -- (7,0.75);
+        \end{tikzpicture}
+    \end{center}
+
+    \vspace{1em}
+
+    \begin{enumerate}
+        \item \textbf{Cross-Domain Prediction}: Train models on individual domains, then test each model on all other domains
+        \item \textbf{Relationship Selection}: Extract meaningful relationships from cross-domain predictions using various methods
+        \item \textbf{Universal Model Training}: Create and train a single model using universal taxonomy
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Cross-Domain Prediction Process}
+    \textbf{Goal}: Discover relationships between classes from different datasets
+
+    \vspace{0.5em}
+
+    \textbf{Process}:
+    \begin{enumerate}
+        \item Train domain-specific models (e.g., ResNet-50 on CIFAR-100, Caltech-101)
+        \item Run each model on images from \emph{all other} domains
+        \item Create probability matrices $P_{ab}(i,j)$ = probability of classifying class $c_i^a$ as class $c_j^b$
+    \end{enumerate}
+
+    \vspace{0.5em}
+
+    \textbf{Example}: CIFAR-100 model predicting on Caltech-101 images
+    \begin{itemize}
+        \item CIFAR-100 "automobile" $\rightarrow$ Caltech-101 "car\_side" (high probability)
+        \item CIFAR-100 "dog" $\rightarrow$ Caltech-101 "dalmatian" (moderate probability)
+        \item CIFAR-100 "airplane" $\rightarrow$ Caltech-101 "butterfly" (low probability)
+    \end{itemize}
+
+    \vspace{0.5em}
+
+    \begin{equation}
+        P_{ab}(i, j) = \frac{M_{ab}(i, j)}{\sum_{k=1}^{|C_a|} M_{ab}(i, k)}
+    \end{equation}
+\end{frame}
+
+% Section 3: Relationship Selection Methods
+\section{Relationship Selection Methods}
+
+\begin{frame}{Challenge: Selecting Relevant Relationships}
+    \textbf{Problems with raw probability matrices}:
+    \begin{itemize}
+        \item Noisy predictions from imperfect models
+        \item Unknown number of true relationships
+        \item Different datasets have different scales of similarity
+    \end{itemize}
+
+    \vspace{1em}
+
+    \textbf{Solution}: Develop multiple relationship selection methods
+
+    \vspace{1em}
+
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \textbf{Methods Evaluated:}
+            \begin{enumerate}
+                \item Naive Thresholding
+                \item Most Common Foreign Prediction (MCFP)
+                \item Density Thresholding
+                \item Relationship Hypothesis
+            \end{enumerate}
+        \end{column}
+
+        \begin{column}{0.48\textwidth}
+            \textbf{Evaluation Metrics:}
+            \begin{itemize}
+                \item Edge Difference Ratio (EDR)
+                \item Precision \& Recall
+                \item F1 Score
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Relationship Selection Methods Explained}
+    \begin{enumerate}
+        \item \textbf{Naive Thresholding}:
+              \begin{equation}
+                  \text{select\_relationships}(P_{ab}) = \{(i, j) \mid P_{ab}(i, j) \geq t\}
+              \end{equation}
+
+        \item \textbf{Most Common Foreign Prediction (MCFP)}:
+              \begin{equation}
+                  \text{select\_relationships}(P_{ab}) = \{(i, j) \mid j = \text{argmax}_{j'} P_{ab}(i, j')\}
+              \end{equation}
+
+        \item \textbf{Density Thresholding}: Select minimum relationships covering $p\%$ of probability mass
+
+        \item \textbf{Relationship Hypothesis}: Find optimal $k$ relationships by minimizing:
+              \begin{equation}
+                  \sum_{j=1}^k \left| X_i(j) - \frac{1}{k} \right| + \sum_{j=k+1}^{|C_b|} X_i(j)
+              \end{equation}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Relationship Selection Results}
+    \textbf{Evaluation on synthetic datasets with known ground truth}
+
+    \vspace{0.5em}
+
+    \begin{table}[h]
+        \centering
+        \scriptsize
+        \begin{tabular}{lcccc}
+            \toprule
+            \textbf{Method}         & \textbf{EDR}   & \textbf{Precision} & \textbf{Recall} & \textbf{F1 Score} \\
+            \midrule
+            Naive Thresholding      & \textbf{0.463} & 0.675              & \textbf{0.889}  & \textbf{0.767}    \\
+            MCFP                    & 0.579          & \textbf{0.865}     & 0.421           & 0.566             \\
+            Density Thresholding    & 0.523          & 0.726              & 0.795           & 0.759             \\
+            Relationship Hypothesis & 0.493          & 0.746              & 0.823           & 0.783             \\
+            \bottomrule
+        \end{tabular}
+        \caption{Global optimal performance across all synthetic dataset variants}
+    \end{table}
+
+    \vspace{0.5em}
+
+    \textbf{Key Findings}:
+    \begin{itemize}
+        \item \textbf{Naive thresholding} achieves best overall performance (lowest EDR)
+        \item \textbf{MCFP} has highest precision but lowest recall
+        \item Trade-off between capturing all relationships vs. avoiding false positives
+    \end{itemize}
+\end{frame}
+
+% Section 4: Synthetic Ground Truth
+\section{Synthetic Ground Truth \& Domain Adaptation}
+
+\begin{frame}{The Need for Controlled Ground Truth}
+    \textbf{Problem}: Real datasets lack clear inter-dataset relationships
+
+    \begin{itemize}
+        \item \textbf{WordNet}: Text-based relationships don't match visual similarities
+        \item \textbf{Open Images}: Multi-label, automatically generated
+        \item \textbf{Existing taxonomies}: Too domain-specific or hierarchical
+    \end{itemize}
+
+    \vspace{1em}
+
+    \textbf{Solution}: Generate synthetic datasets with controlled relationships
+
+    \begin{enumerate}
+        \item Define \textbf{atomic concepts} $\mathcal{U} = \{1,2,\ldots,n\}$
+        \item Create synthetic classes as subsets: $c^i_j \subseteq \mathcal{U}$
+        \item Generate multiple domains by sampling concepts
+        \item Calculate relationships based on concept overlap
+    \end{enumerate}
+
+    \vspace{0.5em}
+
+    \begin{equation}
+        P_{i,j} = \frac{|c^A_i \cap c^B_j|}{|c^A_i|} + \frac{1 - \frac{|c^A_i \cap c^B_j|}{|c^A_i|}}{|C_B|}
+    \end{equation}
+\end{frame}
+
+\begin{frame}{Domain-Shifted Synthetic Datasets}
+    \textbf{Problem}: Original synthetic variants too easy (same underlying images)
+
+    \vspace{0.5em}
+
+    \textbf{Solution}: Apply domain transformations to create realistic challenges
+
+    \begin{columns}[T]
+        \begin{column}{0.6\textwidth}
+            \textbf{Transformations Applied}:
+            \begin{itemize}
+                \item \textbf{Domain A}: Noisy grayscale
+                \item \textbf{Domain B}: Rotation + blur
+                \item \textbf{Domain C}: Random erasing + color jitter + perspective shifts
+            \end{itemize}
+
+            \vspace{1em}
+
+            \textbf{Results}:
+            \begin{itemize}
+                \item Model accuracy drops by ~10\%
+                \item More realistic cross-domain predictions
+                \item Better evaluation of relationship selection methods
+            \end{itemize}
+        \end{column}
+
+        \begin{column}{0.35\textwidth}
+            \begin{center}
+                \includegraphics[width=\textwidth]{../thesis/figures/domain_shift_visualization.png}
+            \end{center}
+            \small{Example images from domain-shifted variants}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% Section 5: Universal Model Training
+\section{Universal Model Training}
+
+\begin{frame}{Universal Model Architecture}
+    \textbf{Key Differences from Baseline Models}:
+
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \textbf{Baseline Model}:
+            \begin{itemize}
+                \item 6-layer FC classifier
+                \item Dropout regularization
+                \item One-hot targets
+                \item Cross-entropy loss
+                \item Domain-specific outputs
+            \end{itemize}
+        \end{column}
+
+        \begin{column}{0.48\textwidth}
+            \textbf{Universal Model}:
+            \begin{itemize}
+                \item 2-layer FC classifier
+                \item No dropout
+                \item Probability distribution targets
+                \item Cross-entropy for discrete distributions
+                \item Universal class outputs
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+    \vspace{1em}
+
+    \textbf{Target Generation}: Convert domain labels to universal class distributions
+    \begin{equation}
+        \mathbf{t} = \hat{M}_i[j, :] \quad \text{where } \hat{M}_i(j, u) = \frac{M_i(j, u)}{\sum_{u'} M_i(j, u')}
+    \end{equation}
+
+    \textbf{Loss Function}:
+    \begin{equation}
+        \mathcal{L} = -\sum_{u=1}^{|U|} \mathbf{t}(u) \log(\mathbf{p}(u))
+    \end{equation}
+\end{frame}
+
+\begin{frame}{Multi-Domain Training Process}
+    \textbf{Training Procedure}:
+    \begin{enumerate}
+        \item Combine multiple datasets while preserving domain identity
+        \item Each sample: $(\text{image}, (\text{domain\_id}, \text{label})) \rightarrow (\text{image}, \text{universal\_target})$
+        \item Train single model on unified dataset
+        \item Use domain-specific mapping matrices for target generation
+    \end{enumerate}
+
+    \vspace{1em}
+
+    \textbf{Inference}:
+    \begin{align}
+        \mathbf{d}_i & = M_i^T \mathbf{p}            \\
+        \hat{c}_i    & = \text{argmax}(\mathbf{d}_i)
+    \end{align}
+
+    where $\mathbf{p}$ are universal class predictions and $\mathbf{d}_i$ are domain-specific predictions.
+
+    \vspace{1em}
+
+    \textbf{Key Challenge}: Validation loss increases while accuracy improves
+    \begin{itemize}
+        \item Solution: Monitor validation accuracy for checkpointing
+        \item Caused by label smoothing effects and multi-target distributions
+    \end{itemize}
+\end{frame}
+
+% Section 6: Results
+\section{Results}
+
+\begin{frame}{Universal Model Performance}
+    \textbf{Datasets}: Caltech-101, Caltech-256, CIFAR-100
+
+    \begin{table}[h]
+        \centering
+        \scriptsize
+        \begin{tabular}{lccc}
+            \toprule
+            \textbf{Model Type}      & \textbf{Caltech-101} & \textbf{Caltech-256} & \textbf{CIFAR-100} \\
+            \midrule
+            Baseline (Single Domain) & 0.828                & 0.798                & 0.734              \\
+            Universal (MCFP)         & \textbf{0.845}       & \textbf{0.812}       & 0.728              \\
+            Universal (Density)      & 0.834                & 0.809                & \textbf{0.741}     \\
+            Universal (Hypothesis)   & 0.831                & 0.801                & 0.735              \\
+            \bottomrule
+        \end{tabular}
+        \caption{Test accuracy comparison (2-domain: Caltech-101 + Caltech-256)}
+    \end{table}
+
+    \vspace{1em}
+
+    \textbf{Key Findings}:
+    \begin{itemize}
+        \item Universal models \textcolor{blue}{\textbf{outperform}} single-domain baselines
+        \item Different relationship selection methods excel on different datasets
+        \item No single method consistently optimal across all scenarios
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Feature Visualization with t-SNE}
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \textbf{2-Domain (Caltech-101 + 256)}
+            \begin{center}
+                \resizebox{\textwidth}{!}{\input{../thesis/figures/universal_features_2domain_tsne.pgf}}
+            \end{center}
+        \end{column}
+
+        \begin{column}{0.48\textwidth}
+            \textbf{3-Domain (+ CIFAR-100)}
+            \begin{center}
+                \resizebox{\textwidth}{!}{\input{../thesis/figures/universal_features_3domain_tsne.pgf}}
+            \end{center}
+        \end{column}
+    \end{columns}
+
+    \vspace{1em}
+
+    \textbf{Observations}:
+    \begin{itemize}
+        \item Mixed clusters indicate successful cross-domain feature learning
+        \item Some domain-specific clusters for unique classes
+        \item Rich feature space captures inter-dataset relationships
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Taxonomy Visualization Example}
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{../thesis/figures/wheel_concept.png}
+    \end{center}
+
+    \textbf{Good Example}: "Wheel" concept cluster
+    \begin{itemize}
+        \item Caltech-101 "wheelchair" connected to multiple Caltech-256 vehicle classes
+        \item Universal classes capture shared visual concepts
+        \item Enables meaningful cross-domain predictions
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Challenges and Limitations}
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{../thesis/figures/bad_taxonomy.png}
+    \end{center}
+
+    \textbf{Problematic Example}: "Binocular" cluster
+    \begin{itemize}
+        \item Many unrelated classes forced into single cluster
+        \item Occurs when datasets have poor concept overlap
+        \item Low relationship weights partially mitigate the issue
+    \end{itemize}
+
+    \vspace{1em}
+
+    \textbf{Other Challenges}:
+    \begin{itemize}
+        \item Parameter selection requires domain expertise
+        \item Relationship selection metrics don't perfectly predict model performance
+        \item Computational cost of evaluating all methods
+    \end{itemize}
+\end{frame}
+
+% Section 7: Conclusion
+\section{Conclusion}
+
+\begin{frame}{Key Contributions}
+    \begin{enumerate}
+        \item \textbf{Novel Universal Model Approach}: Single model for multiple domains without task-specific heads
+
+        \item \textbf{Comprehensive Relationship Selection Methods}: Four different approaches with systematic evaluation
+
+        \item \textbf{Synthetic Ground Truth Framework}: Controlled evaluation environment with domain-shifted variants
+
+        \item \textbf{Cross-Domain Prediction Pipeline}: Complete methodology from raw datasets to universal models
+
+        \item \textbf{Performance Validation}: Universal models outperform single-domain baselines
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Main Findings}
+    \textbf{Successful Aspects}:
+    \begin{itemize}
+        \item Universal models achieve better accuracy than single-domain models
+        \item Cross-domain prediction effectively captures semantic relationships
+        \item Synthetic datasets provide valuable controlled evaluation environment
+        \item Feature visualizations show meaningful cross-domain clustering
+    \end{itemize}
+
+    \vspace{1em}
+
+    \textbf{Challenges Identified}:
+    \begin{itemize}
+        \item No single relationship selection method works optimally for all cases
+        \item Gap between evaluation metrics and actual model performance
+        \item Parameter selection requires careful tuning for each dataset combination
+        \item Some false positive relationships in generated taxonomies
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Future Work \& Improvements}
+    \textbf{Immediate Improvements}:
+    \begin{itemize}
+        \item Grid search for optimal relationship selection parameters
+        \item Develop better correlation between evaluation metrics and model performance
+        \item Explore different universal model architectures
+    \end{itemize}
+
+    \vspace{1em}
+
+    \textbf{Extensions}:
+    \begin{itemize}
+        \item Scale to larger datasets (ImageNet, COCO)
+        \item Apply to other vision tasks (object detection, segmentation)
+        \item Investigate dynamic relationship adjustment during training
+        \item Explore unsupervised relationship discovery methods
+    \end{itemize}
+
+    \vspace{1em}
+
+    \textbf{Real-World Applications}:
+    \begin{itemize}
+        \item Multi-domain medical imaging
+        \item Cross-dataset autonomous driving
+        \item Unified content moderation systems
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Summary}
+    \textbf{Problem}: Traditional image classification limited to single domains
+
+    \textbf{Solution}: Universal model trained on cross-domain taxonomy
+
+    \textbf{Method}: Cross-domain prediction $\rightarrow$ Relationship selection $\rightarrow$ Universal training
+
+    \textbf{Results}: Universal models outperform single-domain baselines
+
+    \vspace{2em}
+
+    \begin{center}
+        \textbf{\Large Thank you for your attention!}
+
+        \vspace{1em}
+
+        \textbf{Questions?}
+    \end{center}
+\end{frame}
+
+\end{document}
