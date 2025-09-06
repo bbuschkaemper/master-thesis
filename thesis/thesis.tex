@@ -3,15 +3,12 @@
 \usepackage{metalogo}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Some of my favourite personal adjustments
+% Document configuration and adjustments
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% These are the adjustments that I consider necessary for typesetting
-% a nice thesis. However, they are *not* included in the template, as
-% I do not want to force you to use them.
+% Essential packages for proper typesetting and table formatting.
 
-% This ensures that I am able to typeset bold font in table while still aligning the numbers
-% correctly.
+% Enables bold font in tables while maintaining number alignment
 \usepackage{etoolbox}   
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -29,12 +26,11 @@
 \usepackage{bookmark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Bibliography
+% Bibliography configuration
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% I like the bibliography to be extremely plain, showing only a numeric
-% identifier and citing everything in simple brackets. The first names,
-% if present, will be initialized. DOIs and URLs will be preserved.
+% Numeric style bibliography with plain citation format.
+% Includes DOIs and URLs, with initialized first names.
  
 \usepackage[%
   autocite     = plain,
@@ -53,7 +49,7 @@
 \addbibresource{thesis.bib}
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Fonts
+% Font configuration
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 \ifxetexorluatex
@@ -61,7 +57,7 @@
   \setmainfont{EB Garamond}
   \setmathfont{Garamond Math}
 
-  % Load some missing symbols from another font.
+  % Load additional symbols from STIX Two Math font
   \setmathfont{STIX Two Math}[%
     range = {
       \sharp,
@@ -82,7 +78,7 @@
 \makeindex
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Ordinals
+% Ordinal number formatting
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \makeatletter
@@ -99,23 +95,33 @@
 
 \renewcommand{\th}{\textsuperscript{\textup{th}}\xspace}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Graphics and table packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-% For PGF figures and pandas tables
+% Support for PGF figures and pandas-generated tables
 \usepackage{pgf}
 \def\mathdefault#1{#1}
 \usepackage{float}
 \usepackage{scrhack}
 
 
+% For declaration of independence
+\usepackage{pdfpages}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Incipit
+% Document metadata
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{\texttt{Research and implementation of multi-dataset training for image classification with discrepant taxonomies}}
 \subtitle{A master thesis in the field of computer science}
 \author{Björn Buschkämper}
 \date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document structure
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
@@ -132,13 +138,17 @@
 \include{sources/results.tex}
 \include{sources/conclusion.tex}
 
-% This ensures that the subsequent sections are being included as root
-% items in the bookmark structure of your PDF reader.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Back matter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Ensure sections are included as root items in PDF bookmarks
 \bookmarksetup{startatroot}
 \backmatter
 
 \printindex
 \printbibliography
 
+\includepdf[pages=-]{../documents/Eigenstandigkeitserklarung-Master.pdf}
 
 \end{document}

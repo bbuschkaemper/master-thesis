@@ -5,30 +5,29 @@
 Our main goal is to create a universal taxonomy that connects multiple
 image classification datasets.
 This taxonomy maps every dataset class to a universal class,
-which allows us to analyse the relationships and shared concepts between datasets.
+enabling us to analyze relationships and shared concepts between datasets.
 
-In the end, our taxonomy will allow us to train models that can classify images
-from multiple datasets at once, building a robust and flexible system
-that can quickly adapt to new domains.
+Ultimately, our taxonomy will allow us to train models that can classify images
+from multiple datasets simultaneously, building a robust and flexible system
+that can adapt quickly to new domains.
 
 \section{Formal Definitions} \label{sec:taxonomy_definitions}
 
-To formalise our algorithm for building a universal taxonomy,
-we first need to define some terms:
+To formalize our algorithm for building a universal taxonomy,
+we first define key terms:
 
 \begin{itemize}
       \item \textbf{Dataset} $D$: A collection of images and labels
             written as $D = \{(x_1, c_1), (x_2, c_2), \ldots, (x_n, c_n)\}$,
             where $x_i$ is an image and $c_i$ is its label.
-            Since we are dealing with multiple datasets, we number them
-            as $D_i = \{(x_1^i, c_1^i), (x_2^i, c_2^i), \ldots, (x_n^i, c_n^i)\}$,
-            where $D_i$ is the dataset $D$ with index $i$.
-            In the same way, we denote the set of all classes in a dataset as $C_i = \{c_1^i, c_2^i, \ldots, c_k^i\}$.
+            For multiple datasets, we use indexing:
+            $D_i = \{(x_1^i, c_1^i), (x_2^i, c_2^i), \ldots, (x_n^i, c_n^i)\}$,
+            where $D_i$ is dataset $D$ with index $i$.
+            We denote the set of all classes in a dataset as $C_i = \{c_1^i, c_2^i, \ldots, c_k^i\}$.
       \item \textbf{Model} $m$: A neural network trained on a dataset $D_I$
             which maps an image $x\in X$ to a class $c_i^I\in C_I$, denoted as $m_I: X \mapsto C_I$.
       \item \textbf{Domain}: Since both models and classes are dataset-specific,
-            we define the term \textbf{domain} as the dataset $D_i$ and its classes $C_i$
-            that we are working with.
+            we define \textbf{domain} as dataset $D_i$ and its classes $C_i$.
       \item \textbf{Universal Classes}: Our universal taxonomy will contain a set of classes
             that are not specific to any dataset.
             We denote these classes as $C_U = \{c_1^U, c_2^U, \ldots, c_k^U\}$.
@@ -197,7 +196,7 @@ To evaluate our taxonomy generation methods, we need a reliable ground truth wit
 Instead of relying on existing taxonomies, we developed a method to generate synthetic datasets with controlled relationships. Our approach:
 
 \begin{enumerate}
-      \item Define a set of "atomic concepts" that serve as building blocks for classes
+      \item Define a set of \enquote{atomic concepts} that serve as building blocks for classes
       \item Create multiple domains by sampling these concepts to form classes
       \item Calculate inter-domain relationships based on shared concepts
 \end{enumerate}
@@ -287,7 +286,7 @@ Once we've generated multiple domains, we need to model the relationships betwee
 
 \subsubsection{Simulating Neural Network Predictions}
 
-Our taxonomy generation method assumes that neural network classifiers will predict related classes across domains with certain probabilities. To simulate this, we create "perfect" synthetic probabilities based on concept overlap.
+Our taxonomy generation method assumes that neural network classifiers will predict related classes across domains with certain probabilities. To simulate this, we create \enquote{perfect} synthetic probabilities based on concept overlap.
 
 \subsubsection{Relationship Calculation}
 

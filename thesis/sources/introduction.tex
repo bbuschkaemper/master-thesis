@@ -2,63 +2,62 @@
 \chapter{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-Image classification is one of the earliest and most widely researched tasks in the field of computer vision.
+Image classification is one of the earliest and most widely researched tasks in computer vision.
 It involves assigning a label to an image from a predefined set of categories.
 Over the years, numerous approaches have been proposed to tackle this problem, ranging from traditional handcrafted feature-based methods to modern deep learning techniques.
 
-One main issue in the field of image classification is the limited range of categories that a single model can effectively recognize.
-This limitation arises from the fact that most \enquote{traditional} models are trained on specific datasets, which have a predefined set of classes to be recognised.
-To mitigate this issue, researchers have explored various strategies to make a single model applicable to a broader range of datasets and categories.
+A major limitation in image classification is the restricted range of categories that a single model can effectively recognize.
+This limitation arises because most traditional models are trained on specific datasets with predefined class sets.
+To address this issue, researchers have explored various strategies to make a single model applicable to a broader range of datasets and categories.
 
-One of the most common approaches is to use transfer learning.
-Transfer learning works under the assumption that models, when trained on a large general-purpose dataset (e.g. ImageNet~\cite{deng_imagenet_2009,russakovsky_imagenet_2015}),
-has learned important fundamental visual features (like shapes and textures) that are useful for any downstream task.
-By replacing the final classification layer of these pre-trained models with a new layer that is specific to the target task/dataset,
-researchers can adapt the model to new categories without having to train it from scratch~\cite{pan_survey_2010,zhuang_comprehensive_2020}.
+One of the most common approaches is transfer learning.
+Transfer learning operates under the assumption that models trained on large general-purpose datasets (e.g., ImageNet~\cite{deng_imagenet_2009,russakovsky_imagenet_2015})
+have learned fundamental visual features (such as shapes and textures) that are useful for any downstream task.
+By replacing the final classification layer of these pre-trained models with a task-specific layer,
+researchers can adapt the model to new categories without training from scratch~\cite{pan_survey_2010,zhuang_comprehensive_2020}.
 
-However, this still results in separate models for each task,
-which can be inefficient in terms of storage and deployment.
-One way to address this is a shared backbone architecture, where a single model is used to extract features from the input data (the \enquote{backbone}),
-and multiple task-specific heads are added on top of this backbone for different tasks.
-This leverages the commonalities between tasks and allows for more efficient use of resources~\cite{vaswani_attention_2023}.
+However, this approach still results in separate models for each task,
+which is inefficient in terms of storage and deployment.
+One way to address this is through shared backbone architectures, where a single model extracts features from input data (the \enquote{backbone}),
+and multiple task-specific \enquote{heads} are added on top for different tasks.
+This approach leverages commonalities between tasks and enables more efficient resource usage~\cite{vaswani_attention_2023}.
 
-An extension of this technique are multi-task learning approaches, where a single model is trained on multiple tasks simultaneously.
-This enforces the learning of shared concepts and representations across tasks,
-which can lead to improved performance and generalization~\cite{zhang_overview_2018}.
-This approach however tries to distill shared features automatically,
-which, depending on how well the task domains align, can prove to be difficult.
+Multi-task learning extends this technique by training a single model on multiple tasks simultaneously.
+This approach enforces the learning of shared concepts and representations across tasks,
+potentially leading to improved performance and generalization~\cite{zhang_overview_2018}.
+However, this approach relies on automatic distillation of shared features,
+which can be challenging depending on task domain alignment.
 
-We try to address this issue by first building a map of shared concepts and features across tasks
-and then using this map to train a single universal model that works for all targeted tasks,
-without any task-specific adaptations or layers.
-This enforces predefined shared concepts and features to be learned by the model,
-instead of relying on automatic distillation.
+We address this issue by first building a map of shared concepts and features across tasks,
+then using this map to train a single universal model that works for all targeted tasks
+without task-specific adaptations or layers.
+This approach enforces predefined shared concepts and features to be learned by the model,
+rather than relying on automatic distillation.
 
-Our first task is finding an accurate mapping of shared concepts and features across tasks.
-This mapping should be created without any manual intervention.
-Some challenges we might face include:
+Our first challenge is finding an accurate mapping of shared concepts and features across tasks.
+This mapping should be created without manual intervention.
+Key challenges include:
 \begin{itemize}
-      \item Creating a method that is able to distinguish where shared concepts and features exist across domains
+      \item Creating a method that distinguishes where shared concepts and features exist across domains
             and where no relations exist.
-            Depending on the domains we want to cover, there can be significant variations in the amount of inter-task similarity,
-            which can make the number of shared concepts and features quite limited.
-      \item Defining a consistent threshold on what is considered a shared concept or feature.
-            The definition of a \enquote{shared concept} can vary greatly depending on the combination of tasks we try to cover:
-            Two general-purpose datasets like ImageNet and CIFAR-100 might share straightforward concepts like \enquote{cat} and \enquote{dog} (shared concept \enquote{animals}),
-            while more specialized datasets have no overlap at all and would rely on entirely different concepts
-            (like specific textures, patterns, etc.).
-            Our method needs to find a way to identify the best-matching concepts and features available across these diverse datasets.
+            Depending on the domains, there can be significant variations in inter-task similarity,
+            potentially limiting the number of shared concepts and features.
+      \item Defining a consistent threshold for what constitutes a shared concept or feature.
+            The definition of a \enquote{shared concept} varies greatly depending on the task combination:
+            General-purpose datasets like ImageNet and CIFAR-100 might share straightforward concepts like \enquote{cat} and \enquote{dog} (shared concept \enquote{animals}),
+            while specialized datasets may have no overlap and rely on entirely different concepts
+            (such as specific textures or patterns).
+            Our method must identify the best-matching concepts and features across these diverse datasets.
 \end{itemize}
 
-After we have created a mapping of shared concepts and features, we can use this information to guide the training of our universal model.
-We will build a custom learning function that uses the mapping to create a single, shared output layer for all tasks.
+After creating a mapping of shared concepts and features, we use this information to guide the training of our universal model.
+We build a custom learning function that uses the mapping to create a single, shared output layer for all tasks.
 This output layer can then be converted to create task-specific predictions based on a static function,
 eliminating the need for task-specific learning.
 
-We will compare the performance of our universal model against baseline models trained on individual domain datasets.
-In this thesis, we will focus on general-purpose datasets like ImageNet~\cite{deng_imagenet_2009,russakovsky_imagenet_2015},
-CIFAR10 and CIFAR100~\cite{krizhevsky_learning_2009}, and Caltech101 and Caltech256~\cite{li_caltech_2022,griffin_caltech_2022}.
+We compare the performance of our universal model against baseline models trained on individual domain datasets.
+In this thesis, we focus on general-purpose datasets such as ImageNet~\cite{deng_imagenet_2009,russakovsky_imagenet_2015},
+CIFAR-10 and CIFAR-100~\cite{krizhevsky_learning_2009}, and Caltech-101 and Caltech-256~\cite{li_caltech_2022,griffin_caltech_2022}.
 
-Additionally, we compare our new relationship mapping methods against the existing taxonomy creation method
-by Bevandic et al.~\cite{bevandic_automatic_2022,bevandic_weakly_2024} and discuss their strengths and weaknesses.
+Additionally, we compare our relationship mapping methods against the existing taxonomy creation method
+by Bevandic et al.~\cite{bevandic_automatic_2022,bevandic_weakly_2024} and discuss their respective strengths and weaknesses.

@@ -4,48 +4,48 @@
 
 \subsection{Datasets}
 
-To start with our taxonomy generation,
-we first need a set of datasets that we can use to train and evaluate our domain models:
+To begin our taxonomy generation,
+we first need datasets for training and evaluating our domain models:
 
 \begin{itemize}
       \item \textbf{Caltech-101 and Caltech-256}~\cite{li_caltech_2022,griffin_caltech_2022}:
-            The Caltech-101 dataset contains 101 general object categories with 40 to 800 images per category,
-            while the Caltech-256 dataset extends this to 256 categories with at least 80 images per category.
-            Both datasets have been widely used for image classification tasks\footnote{Over 500 open-access papers have cited the datasets, according to Papers with Code: \url{https://paperswithcode.com/dataset/caltech-101} and \url{https://paperswithcode.com/dataset/caltech-256}}.
-            The images are roughly 300x200 pixels in size and contain annotated outlines
-            for each object in the image, which we will not need for our purposes.
-            The dataset has no predefined train/test split,
-            so we will use a 80/10/10 split for training, validation, and testing.
+            The Caltech-101 dataset contains 101 object categories with 40 to 800 images per category,
+            while Caltech-256 extends this to 256 categories with at least 80 images per category.
+            Both datasets are widely used for image classification tasks\footnote{Over 500 open-access papers have cited the datasets, according to Papers with Code: \url{https://paperswithcode.com/dataset/caltech-101} and \url{https://paperswithcode.com/dataset/caltech-256}}.
+            Images are roughly 300x200 pixels and contain annotated outlines
+            for each object, which we do not need for our purposes.
+            Since the dataset has no predefined train/test split,
+            we use an 80/10/10 split for training, validation, and testing.
       \item \textbf{CIFAR-100}~\cite{krizhevsky_learning_2009}:
-            The CIFAR-100 datasets contains 100 classes grouped into 20 superclasses,
+            The CIFAR-100 dataset contains 100 classes grouped into 20 superclasses,
             with 600 images per class.
-            Each image is 32x32 pixels in size, which is significantly smaller than the Caltech datasets.
-            The dataset is one of the most popular datasets for image classification tasks\footnote{Over 5000 open-access papers have cited the dataset, according to Papers with Code: \url{https://paperswithcode.com/dataset/cifar-100}}.
-            The dataset has a train/test split of 50000 training images and 10000 test images,
-            which we will further split by dividing the training set into 80\% for training and 20\% for validation.
+            Each image is 32x32 pixels, significantly smaller than the Caltech datasets.
+            This dataset is among the most popular for image classification tasks\footnote{Over 5000 open-access papers have cited the dataset, according to Papers with Code: \url{https://paperswithcode.com/dataset/cifar-100}}.
+            The dataset provides a train/test split of 50,000 training and 10,000 test images,
+            which we further split by dividing the training set into 80\% for training and 20\% for validation.
       \item \textbf{Synthetic Datasets}:
-            To have a ground truth for our taxonomy generation,
-            we will also create synthetic datasets based on the Caltech-101 and CIFAR-100 datasets.
-            These datasets will be used to evaluate our cross-domain relationship graph generation
+            To have ground truth for our taxonomy generation,
+            we create synthetic datasets based on Caltech-101 and CIFAR-100.
+            These datasets evaluate our cross-domain relationship graph generation
             methods (see Section~\ref{sec:graph_construction}).
-            We will create synthetic datasets of varying sizes and complexity and evaluate
-            how well our methods perform for different challenges.
+            We create synthetic datasets of varying sizes and complexity to evaluate
+            how well our methods perform under different challenges.
 \end{itemize}
 
 \subsection{Training}
 
 \subsubsection{Model Architecture}
 
-To now start our training of domain models,
-we first need to define the architecture of our models.
-The ResNet architecture\cite{he_deep_2015,he_identity_2016} is a popular choice for image classification tasks
-and has been shown to perform well on a variety of datasets.
-It also has the advantage of being pre-trained on the ImageNet dataset~\cite{deng_imagenet_2009,russakovsky_imagenet_2015},
-which will save us the effort of training a model from scratch.
-From the available ResNet architecture sizes,
-we decide for the leaner ResNet-50 architecture to meet our resource constraints.
+To begin training our domain models,
+we first define the model architecture.
+The ResNet architecture~\cite{he_deep_2015,he_identity_2016} is a popular choice for image classification
+and has demonstrated strong performance across various datasets.
+It also has the advantage of being pre-trained on ImageNet~\cite{deng_imagenet_2009,russakovsky_imagenet_2015},
+saving us the effort of training from scratch.
+From the available ResNet sizes,
+we select the ResNet-50 architecture to meet our resource constraints.
 
-We adapt the ResNet-50 architecture to our datasets by switching out
+We adapt the ResNet-50 architecture to our datasets by replacing
 the final fully connected layer with a funnel architecture that ends
 in an output layer matching the number of classes per dataset (see Figure~\ref{fig:resnet_funnel}).
 
@@ -62,19 +62,19 @@ in an output layer matching the number of classes per dataset (see Figure~\ref{f
 \subsubsection{Training Procedure}
 
 In our initial training runs,
-we observe severe overfitting on the training data as can be seen in Figure~\ref{fig:overfitting}.
-To mitigate this, we apply several regularisation techniques:
+we observed severe overfitting on the training data as shown in Figure~\ref{fig:overfitting}.
+To mitigate this, we apply several regularization techniques:
 \begin{itemize}
       \item \textbf{Dropout}~\cite{hinton_improving_2012}:
-            As can be seen in Figure~\ref{fig:resnet_funnel},
+            As shown in Figure~\ref{fig:resnet_funnel},
             our fully connected layers contain dropout layers between them at rates of 0.5 and 0.2.
-            Dropout is a regularisation technique that randomly sets a fraction of the input units to zero during training,
-            which reinforces the model to learn more robust features and thereby reduces overfitting.
+            Dropout is a regularization technique that randomly sets a fraction of input units to zero during training,
+            encouraging the model to learn more robust features and thereby reducing overfitting.
       \item \textbf{Data Augmentation}:
             We apply data augmentation techniques to our training data,
-            such as random cropping, horizontal flipping, random erasing, and color jittering.
-            These techniques artificially increase the size of our training dataset
-            and help the model to generalise better by exposing it to a wider variety of input data.
+            including random cropping, horizontal flipping, random erasing, and color jittering.
+            These techniques artificially increase our training dataset size
+            and help the model generalize better by exposing it to a wider variety of input data.
 \end{itemize}
 
 \begin{figure}[H]
@@ -89,16 +89,16 @@ To mitigate this, we apply several regularisation techniques:
 \end{figure}
 
 We now train our models on the Caltech-101, Caltech-256, and CIFAR-100 datasets
-(i.e. their synthetic variants).
+(and their synthetic variants).
 
-For the easier Caltech-101 and Caltech-256 datasets,
-we use the SGD optimiser~\cite{sutskever_importance_2013} with a learning rate of 0.01,
-a Nesterov momentum of 0.9, and a weight decay of 0.0001 and train all variants for 50 epochs.
+For the Caltech-101 and Caltech-256 datasets,
+we use the SGD optimizer~\cite{sutskever_importance_2013} with a learning rate of 0.01,
+Nesterov momentum of 0.9, and weight decay of 0.0001, training all variants for 50 epochs.
 We also use a batch size of 64 for the datasets.
 
-For our more complex CIFAR-100 dataset,
-we use the AdamW optimiser~\cite{loshchilov_decoupled_2017} with an initial learning rate of 0.001, a weight decay of 0.001.
-We train for 100 epochs with a multistep learning rate scheduler that reduces the learning rate by a factor of 0.1 at epochs 30, 60 and 80.
+For the more complex CIFAR-100 dataset,
+we use the AdamW optimizer~\cite{loshchilov_decoupled_2017} with an initial learning rate of 0.001 and weight decay of 0.001.
+We train for 100 epochs with a multistep learning rate scheduler that reduces the learning rate by a factor of 0.1 at epochs 30, 60, and 80.
 For the smaller CIFAR-100 images we use a batch size of 256.
 
 The training is performed on a single NVIDIA RTX 3070 GPU with 8GB of VRAM

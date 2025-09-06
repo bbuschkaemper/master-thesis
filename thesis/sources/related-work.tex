@@ -16,13 +16,13 @@ datasets.
 
 Traditional domain adaptation approaches focus on adapting models trained on a source
 domain to perform well on a target domain~\cite{wang_deep_2018,ganin_domain-adversarial_2016}.
-However, these methods typically assume some form of correspondence between domains,
-either through shared label spaces or overlapping features. In contrast, multi-dataset
+However, these methods typically assume correspondence between domains,
+either through shared label spaces or overlapping features. Multi-dataset
 training with discrepant taxonomies requires more sophisticated approaches that can
 handle completely different categorization schemes.
 
-The concept of universal models that can operate across multiple datasets simultaneously
-has gained significant attention~\cite{kolesnikov_big_2020,radford_learning_2021}.
+Universal models that can operate across multiple datasets simultaneously
+have gained significant attention~\cite{kolesnikov_big_2020,radford_learning_2021}.
 These approaches typically rely on large-scale pretraining followed by fine-tuning,
 but they often struggle with datasets that have fundamentally different organizational
 principles.
@@ -30,23 +30,21 @@ principles.
 \section{Label Alignment and Taxonomy Learning}
 
 The challenge of aligning labels across datasets is fundamental to our work. We base our
-method of finding shared concepts between datasets on established works in the field of
-label-alignment and taxonomy learning. Creating connections between datasets is an
-important and fundamental task in the field of machine learning: Many datasets are
-created for specific tasks and may not be directly comparable to each other.
-Additionally, inconsistency in labeling and data collection practices can further
-complicate the integration of datasets. Methods to create connections between datasets
-can help to align labels, improve data quality, and facilitate knowledge transfer
+method for finding shared concepts between datasets on established works in label alignment
+and taxonomy learning. Creating connections between datasets is important in machine learning:
+Many datasets are created for specific tasks and may not be directly comparable.
+Additionally, inconsistencies in labeling and data collection practices can further
+complicate dataset integration. Methods for creating dataset connections
+can help align labels, improve data quality, and facilitate knowledge transfer
 between models trained on different datasets.
 
 \subsection{Manual and Semi-Automated Approaches}
 
-The most obvious and straightforward approach to align labels across datasets is a fully
-manual mapping of labels from one dataset to another. This method, while providing high
-accuracy when performed by domain experts, is time-consuming and error-prone, especially
-for large datasets. Manual annotation also leads to further inconsistencies if multiple
-annotators are involved or if the datasets are updated independently over
-time~\cite{bordea_semeval-2016_2016,jurgens_semeval-2016_2016,yang_literature-driven_2013}.
+The most straightforward approach for aligning labels across datasets is manual mapping
+from one dataset to another. While providing high accuracy when performed by domain experts,
+this method is time-consuming and error-prone, especially for large datasets. Manual annotation
+also introduces inconsistencies when multiple annotators are involved or when datasets
+are updated independently over time~\cite{bordea_semeval-2016_2016,jurgens_semeval-2016_2016,yang_literature-driven_2013}.
 
 Snow et al.~\cite{snow_cheap_2008} demonstrated that crowdsourcing can be effective for
 certain annotation tasks, but the quality of manual alignments varies significantly with
@@ -54,12 +52,12 @@ annotator expertise and task complexity. This variability becomes particularly
 problematic when dealing with fine-grained taxonomic distinctions or domain-specific
 terminology.
 
-An improvement over purely manual approaches is a hybrid method that works in an
-automated fashion but involves manual corrections. For example, Firmani et
-al.~\cite{firmani_building_2024} proposes a weakly supervised approach where domain
-experts answer targeted questions about the datasets to guide the automated label
-alignment process. This method attempts to balance automation and human expertise,
-leveraging the strengths of both approaches while minimizing the manual effort required.
+An improvement over purely manual approaches is a hybrid method that operates
+automatically but incorporates manual corrections. For example, Firmani et
+al.~\cite{firmani_building_2024} propose a weakly supervised approach where domain
+experts answer targeted questions about datasets to guide automated label
+alignment. This method balances automation and human expertise,
+leveraging the strengths of both approaches while minimizing required manual effort.
 
 \subsection{Large Language Model-Based Approaches}
 

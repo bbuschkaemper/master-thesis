@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  31 AUG 2025 16:08
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  6 SEP 2025 15:02
  system commands enabled.
  file:line:error style messages enabled.
 **/home/bjoern/dev/master-thesis/thesis/thesis.tex
@@ -1097,11 +1097,11 @@ Package fontspec Info: Font family 'EBGaramond(1)' created for font 'EB
 (fontspec)             <->"EBGaramond/BI:mode=base;script=latn;language=dflt;+smcp;"
 
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/EBGaramond(1)/m/n on input line 62.
+(Font)                  OT1/cmr/m/n --> TU/EBGaramond(1)/m/n on input line 58.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/EBGaramond(1)/m/it on input line 62.
+(Font)                  OT1/cmr/m/it --> TU/EBGaramond(1)/m/it on input line 58.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/EBGaramond(1)/b/n on input line 62.
+(Font)                  OT1/cmr/bx/n --> TU/EBGaramond(1)/b/n on input line 58.
 
 Package fontspec Info: Could not resolve font "GaramondMath/B" (it probably
 (fontspec)             doesn't exist).
@@ -1137,13 +1137,13 @@ Package fontspec Info: Font family 'GaramondMath(1)' created for font
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 63.
+(Font)              `operators' in the math version `normal' on input line 59.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/GaramondMath(1)/m/n on input line 63.
+(Font)                  OT1/cmr/m/n --> TU/GaramondMath(1)/m/n on input line 59.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 63.
+(Font)              `operators' in the math version `bold' on input line 59.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/GaramondMath(1)/b/n on input line 63.
+(Font)                  OT1/cmr/bx/n --> TU/GaramondMath(1)/b/n on input line 59.
 
 Package fontspec Info: Could not resolve font "GaramondMath/B" (it probably
 (fontspec)             doesn't exist).
@@ -1163,13 +1163,13 @@ Package fontspec Info: Font family 'GaramondMath(2)' created for font
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 63.
+(Font)              `symbols' in the math version `normal' on input line 59.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/cmsy/m/n --> TU/GaramondMath(2)/m/n on input line 63.
+(Font)                  OMS/cmsy/m/n --> TU/GaramondMath(2)/m/n on input line 59.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 63.
+(Font)              `symbols' in the math version `bold' on input line 59.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/cmsy/b/n --> TU/GaramondMath(2)/b/n on input line 63.
+(Font)                  OMS/cmsy/b/n --> TU/GaramondMath(2)/b/n on input line 59.
 
 Package fontspec Info: Could not resolve font "GaramondMath/B" (it probably
 (fontspec)             doesn't exist).
@@ -1189,13 +1189,13 @@ Package fontspec Info: Font family 'GaramondMath(3)' created for font
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `normal' on input line 63.
+(Font)              `largesymbols' in the math version `normal' on input line 59.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/cmex/m/n --> TU/GaramondMath(3)/m/n on input line 63.
+(Font)                  OMX/cmex/m/n --> TU/GaramondMath(3)/m/n on input line 59.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 63.
+(Font)              `largesymbols' in the math version `bold' on input line 59.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/cmex/m/n --> TU/GaramondMath(3)/b/n on input line 63.
+(Font)                  OMX/cmex/m/n --> TU/GaramondMath(3)/b/n on input line 59.
 
 Package fontspec Info: Could not resolve font "STIXTwoMath/B" (it probably
 (fontspec)             doesn't exist).
@@ -1216,9 +1216,9 @@ Package fontspec Info: Font family 'STIXTwoMath(0)' created for font 'STIX Two
 
 \sym__um_fam1=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `__um_fam1' in version `normal'
-(Font)                  TU/STIXTwoMath(0)/m/n --> TU/STIXTwoMath(0)/m/n on input line 74.
+(Font)                  TU/STIXTwoMath(0)/m/n --> TU/STIXTwoMath(0)/m/n on input line 70.
 LaTeX Font Info:    Overwriting symbol font `__um_fam1' in version `bold'
-(Font)                  TU/STIXTwoMath(0)/m/n --> TU/STIXTwoMath(0)/b/n on input line 74.
+(Font)                  TU/STIXTwoMath(0)/m/n --> TU/STIXTwoMath(0)/b/n on input line 70.
 
 Package fontspec Info: SourceCodePro scale = 0.8333323656294817.
 
@@ -1320,9 +1320,9 @@ Package fontspec Info: Font family 'SourceCodePro(1)' created for font 'Source
 (fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
 
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/SourceCodePro(1)/m/n on input line 76.
+(Font)                  OT1/cmtt/m/n --> TU/SourceCodePro(1)/m/n on input line 72.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/SourceCodePro(1)/b/n on input line 76.
+(Font)                  OT1/cmtt/m/n --> TU/SourceCodePro(1)/b/n on input line 72.
 \@indexfile=\write4
 
 \openout4 = thesis.idx
@@ -1489,55 +1489,88 @@ Package scrhack Info: undefining \float@addtolists on input line 163.
 Package scrhack Info: loading setspace hack on input line 199.
  (/usr/share/texlive/texmf-dist/tex/latex/koma-script/setspace.hak
 File: setspace.hak 2023/07/07 v3.41 KOMA-Script scrhack part (hacking package setspace)
-))
+)) (/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2024/01/21 v0.5y Insert pages of external PDF documents (AM)
+ (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count497
+\calc@Bcount=\count498
+\calc@Adimen=\dimen296
+\calc@Bdimen=\dimen297
+\calc@Askip=\skip115
+\calc@Bskip=\skip116
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count499
+\calc@Cskip=\skip117
+) (/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
+\ESO@tempdima=\dimen298
+\ESO@tempdimb=\dimen299
+)
+\AM@pagewidth=\dimen300
+\AM@pageheight=\dimen301
+\AM@fboxrule=\dimen302
+ (/usr/share/texlive/texmf-dist/tex/latex/pdfpages/ppluatex.def
+File: ppluatex.def 2024/01/21 v0.5y Pdfpages driver for LuaTeX (AM)
+)
+\pdfpages@includegraphics@status=\count500
+\AM@pagebox=\box81
+\AM@global@opts=\toks58
+\AM@pagecnt=\count501
+\AM@toc@title=\toks59
+\AM@lof@heading=\toks60
+\c@AM@survey=\count502
+\AM@templatesizebox=\box82
+)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
  (./thesis.aux (./sources/title.aux) (./sources/introduction.aux) (./sources/related-work.aux) (./sources/method.aux) (./sources/results.aux) (./sources/conclusion.aux))
 \openout1 = thesis.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-Package scrbase Info: activating english \partname on input line 120.
-Package scrbase Info: activating english \chaptername on input line 120.
-Package scrbase Info: activating english \appendixname on input line 120.
-Package scrbase Info: activating english \figurename on input line 120.
-Package scrbase Info: activating english \tablename on input line 120.
-Package scrbase Info: activating english \contentsname on input line 120.
-Package scrbase Info: activating english \listfigurename on input line 120.
-Package scrbase Info: activating english \listtablename on input line 120.
-Package scrbase Info: activating english \bibname on input line 120.
-Package scrbase Info: activating english \indexname on input line 120.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+Package scrbase Info: activating english \partname on input line 126.
+Package scrbase Info: activating english \chaptername on input line 126.
+Package scrbase Info: activating english \appendixname on input line 126.
+Package scrbase Info: activating english \figurename on input line 126.
+Package scrbase Info: activating english \tablename on input line 126.
+Package scrbase Info: activating english \contentsname on input line 126.
+Package scrbase Info: activating english \listfigurename on input line 126.
+Package scrbase Info: activating english \listtablename on input line 126.
+Package scrbase Info: activating english \bibname on input line 126.
+Package scrbase Info: activating english \indexname on input line 126.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count497
-\scratchdimen=\dimen296
-\scratchbox=\box81
-\nofMPsegments=\count498
-\nofMParguments=\count499
-\everyMPshowfont=\toks58
-\MPscratchCnt=\count500
-\MPscratchDim=\dimen297
-\MPnumerator=\count501
-\makeMPintoPDFobject=\count502
-\everyMPtoPDFconversion=\toks59
+\scratchcounter=\count503
+\scratchdimen=\dimen303
+\scratchbox=\box83
+\nofMPsegments=\count504
+\nofMParguments=\count505
+\everyMPshowfont=\toks61
+\MPscratchCnt=\count506
+\MPscratchDim=\dimen304
+\MPnumerator=\count507
+\makeMPintoPDFobject=\count508
+\everyMPtoPDFconversion=\toks62
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1556,8 +1589,8 @@ Package caption Info: End \AtBeginDocument code.
  (/usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 120.
-Package hyperref Info: Link coloring ON on input line 120.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 126.
+Package hyperref Info: Link coloring ON on input line 126.
 Package biblatex Info: Trying to load language 'english' -> 'english-mimosis'...
 Package biblatex Info: ... file 'english-mimosis.lbx' found.
  (./english-mimosis.lbx
@@ -1581,13 +1614,27 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'thesis.bbl' found.
  (./thesis.bbl)
-Package biblatex Info: Reference section=0 on input line 120.
-Package biblatex Info: Reference segment=0 on input line 120.
+Package biblatex Info: Reference section=0 on input line 126.
+Package biblatex Info: Reference segment=0 on input line 126.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 120.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 126.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 120.
-
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 126.
+ (/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
+ (/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
+Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PDF (HO)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package scrhack Info: loading lscape hack on input line 77.
+ (/usr/share/texlive/texmf-dist/tex/latex/koma-script/lscape.hak
+File: lscape.hak 2023/07/07 v3.41 KOMA-Script scrhack part (hacking package lscape)
+Package scrhack Info: \landscape patched to make \textheight change optional on input line 90.
+\scrh@LT@textheight=\skip118
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+))
 \openout2 = sources/title.aux
  (./sources/title.tex
 LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
@@ -1621,7 +1668,10 @@ Underfull \vbox (badness 1147) has occurred while \output is active []
 \openout2 = sources/introduction.aux
  (./sources/introduction.tex
 chapter 1.
-[1
+
+Underfull \vbox (badness 2538) has occurred while \output is active []
+
+ [1
 
 
 
@@ -1640,13 +1690,21 @@ Overfull \hbox (1.98938pt too wide) in paragraph at lines 11--16
 
 
 
-] [4] [5]) [6]
+]
+Underfull \vbox (badness 1668) has occurred while \output is active []
+
+ [4] [5]) [6]
 \openout2 = sources/method.aux
  (./sources/method.tex
 chapter 3.
 
 Overfull \hbox (2.54816pt too wide) in paragraph at lines 5--9
 \TU/EBGaramond(0)/m/n/10.95 Our main goal is to cre-ate a uni-ver-sal tax-on-omy that con-nects mul-ti-ple im-age clas-si-fi-ca-tion datasets.
+ []
+
+
+Overfull \hbox (79.44345pt too wide) in paragraph at lines 20--27
+\TU/EBGaramond(0)/m/n/10.95 where $\TU/GaramondMath(1)/m/n/10.95 𝑥[]$ \TU/EBGaramond(0)/m/n/10.95 is an im-age and $\TU/GaramondMath(1)/m/n/10.95 𝑐[]$ \TU/EBGaramond(0)/m/n/10.95 is its la-bel. For mul-ti-ple datasets, we use in-dex-ing: $\TU/GaramondMath(1)/m/n/10.95 𝐷[] = {(𝑥[], 𝑐[]), (𝑥[], 𝑐[]), … , (𝑥[], 𝑐[])}$\TU/EBGaramond(0)/m/n/10.95 ,
  []
 
 [7
@@ -1656,23 +1714,23 @@ Overfull \hbox (2.54816pt too wide) in paragraph at lines 5--9
 
 
 ] [8]
-Overfull \hbox (0.74869pt too wide) in paragraph at lines 106--111
+Overfull \hbox (0.74869pt too wide) in paragraph at lines 105--110
 []\TU/EBGaramond(0)/b/n/10.95 Un-bal-anced datasets\TU/EBGaramond(0)/m/n/10.95 : Some datasets might have more im-ages for a class than oth-ers, which
  []
 
 [9] [10]
 LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
-(Font)              scaled to size 7.49995pt on input line 185.
+(Font)              scaled to size 7.49995pt on input line 184.
  [11]
 LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
-(Font)              scaled to size 9.12494pt on input line 243.
+(Font)              scaled to size 9.12494pt on input line 242.
  [12] [13] [14] [15] [16]
-Overfull \hbox (1.41293pt too wide) in paragraph at lines 444--450
+Overfull \hbox (1.41293pt too wide) in paragraph at lines 443--449
 []\TU/EBGaramond(0)/b/n/10.95 Uni-ver-sal Tax-on-omy Com-par-i-son\TU/EBGaramond(0)/m/n/10.95 : Com-par-ing the pre-dicted uni-ver-sal tax-on-omy against
  []
 
 [17] [18]
-Overfull \hbox (5.48756pt too wide) in paragraph at lines 565--568
+Overfull \hbox (5.48756pt too wide) in paragraph at lines 564--567
 \TU/EBGaramond(0)/m/n/10.95 Our uni-ver-sal model ar-chi-tec-ture con-sists of a stan-dard con-vo-lu-tional neu-ral net-work (e.g. ResNet)
  []
 
@@ -1686,7 +1744,15 @@ Overfull \hbox (5.48756pt too wide) in paragraph at lines 565--568
 
 ]
 chapter 4.
-[23]
+
+Overfull \hbox (6.546pt too wide) in paragraph at lines 26--33
+\TU/EBGaramond(0)/m/n/10.95 domain re-la-tion-ship graph gen-er-a-tion meth-ods (see Sec-tion [][]3.2[][]). We cre-ate syn-thetic datasets
+ []
+
+
+Underfull \vbox (badness 1107) has occurred while \output is active []
+
+ [23]
 warning  (file figures/resnet_funnel.pdf) (pdf inclusion): PDF inclusion: found PDF version '1.7', but at most version '1.5' allowed
 <figures/resnet_funnel.pdf, id=466, 237.7683pt x 348.34138pt>
 File: figures/resnet_funnel.pdf Graphic file (type pdf)
@@ -1881,6 +1947,11 @@ Overfull \hbox (3.05913pt too wide) in paragraph at lines 19--23
 \TU/EBGaramond(0)/m/n/10.95 We de-vel-oped a com-pre-hen-sive frame-work for au-to-mat-i-cally gen-er-at-ing uni-ver-sal tax-onomies from
  []
 
+
+Overfull \hbox (1.14285pt too wide) in paragraph at lines 25--28
+\TU/EBGaramond(0)/m/n/10.95 to iden-tify re-la-tion-ships be-tween classes from dif-fer-ent datasets au-to-mat-i-cally with-out man-
+ []
+
 [47
 
 
@@ -1888,7 +1959,7 @@ Overfull \hbox (3.05913pt too wide) in paragraph at lines 19--23
 
 
 ] [48]
-Overfull \hbox (5.94627pt too wide) in paragraph at lines 90--94
+Overfull \hbox (5.94627pt too wide) in paragraph at lines 89--93
 \TU/EBGaramond(0)/m/n/10.95 Our uni-ver-sal mod-els demon-strated promis-ing re-sults, con-sis-tently out-per-form-ing domain-specific
  []
 
@@ -1900,7 +1971,7 @@ Overfull \hbox (5.94627pt too wide) in paragraph at lines 90--94
 ] (./thesis.ind)
 chapter without number
 
-Overfull \hbox (2.18365pt too wide) in paragraph at lines 142--142
+Overfull \hbox (2.18365pt too wide) in paragraph at lines 151--151
 []\TU/EBGaramond(0)/m/n/10.95 W. Fal-con and The Py-Torch Light-ning team. \TU/EBGaramond(0)/m/it/10.95 Py-Torch Light-ning\TU/EBGaramond(0)/m/n/10.95 . Ver-sion 1.4. 2019. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 .
  []
 
@@ -1908,61 +1979,94 @@ Overfull \hbox (2.18365pt too wide) in paragraph at lines 142--142
 
 
 ]
-Overfull \hbox (40.58322pt too wide) in paragraph at lines 142--142
+Overfull \hbox (40.58322pt too wide) in paragraph at lines 151--151
 []\TU/EBGaramond(0)/m/n/10.95 C. Fell-baum. \TU/EBGaramond(0)/m/it/10.95 Word-Net: An Elec-tronic Lex-i-cal Database\TU/EBGaramond(0)/m/n/10.95 . The MIT Press, 1998. \TU/EBGaramond(0)/m/sc/10.95 󰅱󰆢󰅑󰆈\TU/EBGaramond(0)/m/n/10.95 : 9780262272551.
  []
 
 
-Overfull \hbox (9.6265pt too wide) in paragraph at lines 142--142
+Overfull \hbox (9.6265pt too wide) in paragraph at lines 151--151
 \TU/EBGaramond(0)/m/n/10.95 Queries”. In: Sis-temi Evo-luti per Basi di Dati. 2024. \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 https : / / www . semanticscholar .
  []
 
 
-Overfull \hbox (2.72624pt too wide) in paragraph at lines 142--142
+Overfull \hbox (2.72624pt too wide) in paragraph at lines 151--151
 []\TU/EBGaramond(0)/m/n/10.95 K. He, R. Gir-shick, and P. Dol-lar. “  Re-think-ing Im-a-geNet Pre-Training”. In: \TU/EBGaramond(0)/m/it/10.95 2019 IEEE/CVF
  []
 
 
-Overfull \hbox (5.90498pt too wide) in paragraph at lines 142--142
+Overfull \hbox (5.90498pt too wide) in paragraph at lines 151--151
 \TU/SourceCodePro(0)/m/n/10.95 ARXIV . 1207 . 0580$[][]\TU/EBGaramond(0)/m/n/10.95 . \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 https : / / arxiv . org / abs / 1207 . 0580$[][] \TU/EBGaramond(0)/m/n/10.95 (vis-ited on 06/21/2025). 
  []
 
 [54]
-Overfull \hbox (2.6348pt too wide) in paragraph at lines 142--142
+Overfull \hbox (2.6348pt too wide) in paragraph at lines 151--151
 []\TU/EBGaramond(0)/m/n/10.95 F.[]F. Li, M. An-dreeto, M. Ran-zato, and P. Per-ona. \TU/EBGaramond(0)/m/it/10.95 Cal-tech 101\TU/EBGaramond(0)/m/n/10.95 . Ver-sion 1.0. 6, 2022. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 .
  []
 
 [55]
-Overfull \hbox (4.7355pt too wide) in paragraph at lines 142--142
+Overfull \hbox (4.7355pt too wide) in paragraph at lines 151--151
 []\TU/EBGaramond(0)/m/n/10.95 I. Loshchilov and F. Hut-ter. \TU/EBGaramond(0)/m/it/10.95 De-cou-pled Weight De-cay Reg-u-lar-iza-tion\TU/EBGaramond(0)/m/n/10.95 . 2017. \TU/EBGaramond(0)/m/sc/10.95 󰅚󰆏󰅱\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 10 . 48550 /
  []
 
 
-Overfull \hbox (44.2214pt too wide) in paragraph at lines 142--142
+Overfull \hbox (44.2214pt too wide) in paragraph at lines 151--151
 \TU/EBGaramond(0)/m/it/10.95 ing Re-search \TU/EBGaramond(0)/m/n/10.95 9:86, 2008, pp. 2579–2605. \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 http : / / jmlr . org / papers / v9 / vandermaaten08a .
  []
 
 
-Overfull \hbox (12.01189pt too wide) in paragraph at lines 142--142
+Overfull \hbox (12.01189pt too wide) in paragraph at lines 151--151
 []\TU/EBGaramond(0)/m/n/10.95 T. T. Tan-i-moto. \TU/EBGaramond(0)/m/it/10.95 An El-e-men-tary Math-e-mat-i-cal The-ory of Clas-si-fi-ca-tion and Pre-dic-tion\TU/EBGaramond(0)/m/n/10.95 . Google-
  []
 
 [56]
-Overfull \hbox (8.86124pt too wide) in paragraph at lines 142--142
+Overfull \hbox (8.86124pt too wide) in paragraph at lines 151--151
 []\TU/EBGaramond(0)/m/n/10.95 J. Ui-jlings, T. Mensink, and V. Fer-rari. \TU/EBGaramond(0)/m/it/10.95 The Miss-ing Link: Find-ing la-bel re-la-tions across datasets\TU/EBGaramond(0)/m/n/10.95 .
  []
 
 
-Overfull \hbox (1.91948pt too wide) in paragraph at lines 142--142
+Overfull \hbox (1.91948pt too wide) in paragraph at lines 151--151
 []\TU/EBGaramond(0)/m/it/10.95 Word-Net\TU/EBGaramond(0)/m/n/10.95 . \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 https : / / wordnet . princeton . edu / homepage$[][] \TU/EBGaramond(0)/m/n/10.95 (vis-ited on 08/06/2025). 
  []
 
 
-Overfull \hbox (26.1948pt too wide) in paragraph at lines 142--142
+Overfull \hbox (26.1948pt too wide) in paragraph at lines 151--151
 \TU/EBGaramond(0)/m/n/10.95 Ltd. Shoumen, BUL-GARIA, Hissar, Bul-garia, 2013, pp. 25–32. \TU/EBGaramond(0)/m/sc/10.95 󰆭󰆞󰆁\TU/EBGaramond(0)/m/n/10.95 : [][]$\TU/SourceCodePro(0)/m/n/10.95 https : / / aclanthology .
  []
 
-[57] (./thesis.aux (./sources/title.aux) (./sources/introduction.aux) (./sources/related-work.aux) (./sources/method.aux) (./sources/results.aux) (./sources/conclusion.aux))
+<../documents/Eigenstandigkeitserklarung-Master.pdf, id=887, 597.55246pt x 845.07718pt>
+File: ../documents/Eigenstandigkeitserklarung-Master.pdf Graphic file (type pdf)
+<use ../documents/Eigenstandigkeitserklarung-Master.pdf>
+Package luatex.def Info: ../documents/Eigenstandigkeitserklarung-Master.pdf  used on input line 152.
+(luatex.def)             Requested size: 597.551pt x 845.07512pt.
+File: ../documents/Eigenstandigkeitserklarung-Master.pdf Graphic file (type pdf)
+<use ../documents/Eigenstandigkeitserklarung-Master.pdf>
+Package luatex.def Info: ../documents/Eigenstandigkeitserklarung-Master.pdf  used on input line 152.
+(luatex.def)             Requested size: 597.551pt x 845.07512pt.
+<../documents/Eigenstandigkeitserklarung-Master.pdf, id=890, page=1, 597.55246pt x 845.07718pt>
+File: ../documents/Eigenstandigkeitserklarung-Master.pdf Graphic file (type pdf)
+<use ../documents/Eigenstandigkeitserklarung-Master.pdf, page 1>
+Package luatex.def Info: ../documents/Eigenstandigkeitserklarung-Master.pdf , page1 used on input line 152.
+(luatex.def)             Requested size: 597.551pt x 845.07512pt.
+File: ../documents/Eigenstandigkeitserklarung-Master.pdf Graphic file (type pdf)
+<use ../documents/Eigenstandigkeitserklarung-Master.pdf, page 1>
+Package luatex.def Info: ../documents/Eigenstandigkeitserklarung-Master.pdf , page1 used on input line 152.
+(luatex.def)             Requested size: 597.57834pt x 845.1138pt.
+[57]
+File: ../documents/Eigenstandigkeitserklarung-Master.pdf Graphic file (type pdf)
+<use ../documents/Eigenstandigkeitserklarung-Master.pdf, page 1>
+Package luatex.def Info: ../documents/Eigenstandigkeitserklarung-Master.pdf , page1 used on input line 152.
+(luatex.def)             Requested size: 597.57834pt x 845.1138pt.
+File: ../documents/Eigenstandigkeitserklarung-Master.pdf Graphic file (type pdf)
+<use ../documents/Eigenstandigkeitserklarung-Master.pdf, page 1>
+Package luatex.def Info: ../documents/Eigenstandigkeitserklarung-Master.pdf , page1 used on input line 152.
+(luatex.def)             Requested size: 597.57834pt x 845.1138pt.
+File: ../documents/Eigenstandigkeitserklarung-Master.pdf Graphic file (type pdf)
+<use ../documents/Eigenstandigkeitserklarung-Master.pdf, page 1>
+Package luatex.def Info: ../documents/Eigenstandigkeitserklarung-Master.pdf , page1 used on input line 152.
+(luatex.def)             Requested size: 597.57834pt x 845.1138pt.
+ [58
+
+<../documents/Eigenstandigkeitserklarung-Master.pdf>] (./thesis.aux (./sources/title.aux) (./sources/introduction.aux) (./sources/related-work.aux) (./sources/method.aux) (./sources/results.aux) (./sources/conclusion.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2020/03/25>
@@ -1973,19 +2077,19 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 51614 strings out of 476553
- 745120,4101490 words of node,token memory allocated
- 1218 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 sub_mlist, 1 glyph, 119 attribute, 93 glue_spec, 61 attribute_list, 2 write, 25 pdf_action nodes
-   avail lists: 1:18,2:150607,3:83497,4:968,5:624,6:218,7:11567,8:136,9:2465,10:16,11:749
- 72043 multiletter control sequences out of 65536+600000
+ 52464 strings out of 476553
+ 745111,4101490 words of node,token memory allocated
+ 1228 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 sub_mlist, 1 glyph, 119 attribute, 95 glue_spec, 61 attribute_list, 2 write, 25 pdf_action nodes
+   avail lists: 1:13,2:150670,3:83497,4:968,5:638,6:218,7:11575,8:136,9:2475,10:16,11:749
+ 72831 multiletter control sequences out of 65536+600000
  152 fonts using 77694331 bytes
  122i,21n,120p,10939b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf>
-Output written on thesis.pdf (63 pages, 8147821 bytes).
+Output written on thesis.pdf (64 pages, 8203286 bytes).
 
-PDF statistics: 1153 PDF objects out of 1200 (max. 8388607)
- 1000 compressed objects within 10 object streams
- 294 named destinations out of 1000 (max. 131072)
+PDF statistics: 1173 PDF objects out of 1200 (max. 8388607)
+ 1009 compressed objects within 11 object streams
+ 295 named destinations out of 1000 (max. 131072)
  512 words of extra memory for PDF output out of 10000 (max. 100000000)
 

@@ -6,13 +6,13 @@ across multiple datasets with discrepant taxonomies.
 Our research focused on developing automated methods for creating universal taxonomies
 that map relationships between classes across different domains
 from cross-domain predictions,
-enabling the training of unified models without requiring task-specific adaptations
-(in contrast to popular methods like multi-head architectures).
+enabling unified model training without task-specific adaptations
+(in contrast to popular multi-head architectures).
 
 \section{Summary of Contributions}
 
-We explored a range of different methods for addressing the challenges of multi-dataset image classification,
-building on existing work in the field of taxonomy learning and label alignment.
+We explored various methods for addressing multi-dataset image classification challenges,
+building on existing work in taxonomy learning and label alignment.
 
 \subsection{Automated Taxonomy Generation Framework}
 
@@ -22,44 +22,43 @@ Building upon the method of Bevandic et al.~\cite{bevandic_automatic_2022,bevand
 we adapted their semantic segmentation approach for image classification by:
 
 \begin{itemize}
-    \item Creating a cross-domain graph generation algorithm that uses neural network predictions
-          to identify relationships between classes from different datasets automatically
-          and without manual intervention or correction.
-    \item Developing four relationship selection methods
-          (naive thresholding, most common foreign predictions, density thresholding,
-          and relationship hypothesis) to filter relevant connections from noisy cross-domain predictions.
-    \item Implementing universal taxonomy building rules that resolve conflicts
-          between domains and create coherent universal class structures.
+      \item Creating a cross-domain graph generation algorithm that uses neural network predictions
+            to identify relationships between classes from different datasets automatically
+            without manual intervention.
+      \item Developing four relationship selection methods
+            (naive thresholding, most common foreign predictions, density thresholding,
+            and relationship hypothesis) to filter relevant connections from noisy cross-domain predictions.
+      \item Implementing universal taxonomy building rules that resolve conflicts
+            between domains and create coherent universal class structures.
 \end{itemize}
 
 \subsection{Synthetic Dataset Generation for Evaluation}
 
-Evaluation of cross-domain relationship graphs proves to be a difficult task due to the lack of ground truth data.
-To address this issue, we created a novel synthetic dataset generation framework that:
+Evaluation of cross-domain relationship graphs is challenging due to the lack of ground truth data.
+To address this, we created a novel synthetic dataset generation framework that:
 
 \begin{itemize}
-    \item Defines atomic concepts as building blocks for synthetic classes.
-    \item Uses probabilistic sampling to create realistic domain variations
-          with controlled complexity,
-          providing a flexible framework to test a range of different scenarios.
-    \item Generates ground truth relationships based on concept overlap,
-          allowing precise evaluation of taxonomy generation methods.
-    \item Includes domain-shifted variants to simulate realistic cross-domain challenges.
+      \item Defines atomic concepts as building blocks for synthetic classes.
+      \item Uses probabilistic sampling to create realistic domain variations
+            with controlled complexity,
+            providing a flexible framework to test a range of different scenarios.
+      \item Generates ground truth relationships based on concept overlap,
+            allowing precise evaluation of taxonomy generation methods.
+      \item Includes domain-shifted variants to simulate realistic cross-domain challenges.
 \end{itemize}
 
-This synthetic framework provided crucial ground truth data for evaluating relationship selection methods,
-something that existing real-world datasets could not offer reliably.
-The framework is built modularly to allow easy extension and adaptation for future research
-and new methods.
+This synthetic framework provided crucial ground truth data for evaluating relationship selection methods;
+something existing real-world datasets could not offer reliably.
+The framework is built modularly to enable easy extension and adaptation for future research.
 
 \subsection{Comprehensive Evaluation Metrics}
 
 We introduced specialized metrics for comparing predicted and ground truth taxonomies:
 
 \begin{itemize}
-    \item Edge Difference Ratio (EDR) to measure overall relationship accuracy
-          while considering edge weights.
-    \item Precision, recall, and F1 scores adapted for relationship graphs.
+      \item Edge Difference Ratio (EDR) to measure overall relationship accuracy
+            while considering edge weights
+      \item Precision, recall, and F1 scores adapted for relationship graphs
 \end{itemize}
 
 \subsection{Universal Model Learning Architecture}
@@ -67,17 +66,17 @@ We introduced specialized metrics for comparing predicted and ground truth taxon
 We designed and implemented a universal learning system that:
 
 \begin{itemize}
-    \item Creates mapping matrices from universal taxonomies to convert domain-specific labels
-          into universal class targets.
-    \item Uses discrete probability distributions as training targets
-          instead of traditional one-hot encodings.
-    \item Employs cross-entropy loss for probability distributions
-          to handle multi-target relationships.
-    \item Enables inference across multiple domains through a single unified model.
+      \item Creates mapping matrices from universal taxonomies to convert domain-specific labels
+            into universal class targets.
+      \item Uses discrete probability distributions as training targets
+            instead of traditional one-hot encodings.
+      \item Employs cross-entropy loss for probability distributions
+            to handle multi-target relationships.
+      \item Enables inference across multiple domains through a single unified model.
 \end{itemize}
 
-While this learning system is implemented for the ResNet model architecture,
-it can easily be adapted for other architectures as well,
+While this learning system is implemented for the ResNet architecture,
+it can be easily adapted to other architectures,
 making it reusable across different model types.
 
 \section{Key Findings}
@@ -89,10 +88,10 @@ revealed several important insights about the effectiveness of our approach:
 
 Our universal models demonstrated promising results,
 consistently outperforming domain-specific baseline models on individual datasets.
-We can conclude that leveraging a multi-domain training approach
-provides significant benefits compared to traditional, single-domain training.
+We conclude that leveraging multi-domain training approaches
+provides significant benefits compared to traditional single-domain training.
 
-In contrast to existing work,
+Unlike existing work,
 our approach can train on any number of datasets simultaneously,
 making it highly scalable and adaptable to various multi-domain scenarios.
 
@@ -101,7 +100,7 @@ making it highly scalable and adaptable to various multi-domain scenarios.
 t-SNE visualization of universal model representations revealed
 meaningful clustering patterns that reflected the underlying taxonomy structure.
 We observed both multi-domain and domain-specific clusters,
-indicating that the model successfully learned to identify both shared concepts
+indicating that the model successfully learned to identify shared concepts
 across different datasets and domain-specific classes.
 
 \subsection{Synthetic Evaluation Framework Validation}
@@ -114,21 +113,21 @@ enabling precise quantitative assessment of relationship selection approaches.
 
 \section{Limitations and Challenges}
 
-Despite the promising results, our work encountered several limitations
+Despite promising results, our work encountered several limitations
 that highlight areas requiring further investigation:
 
 \subsection{Relationship Selection Method Inconsistency}
 
-No single relationship selection method consistently outperformed the others across all scenarios.
-The performance varied significantly depending on the specific dataset combination
+No single relationship selection method consistently outperformed others across all scenarios.
+Performance varied significantly depending on specific dataset combinations
 and domain characteristics,
-indicating that the current approaches lack robustness across diverse scenarios.
+indicating that current approaches lack robustness across diverse scenarios.
 
 \subsection{Parameter Sensitivity}
 
-The performance of relationship selection methods showed significant sensitivity to parameter choices,
+Relationship selection methods showed significant sensitivity to parameter choices,
 and no single parameter configuration worked optimally across all dataset combinations.
-This parameter dependency limits the practical applicability of the methods
+This parameter dependency limits practical applicability
 without extensive hyperparameter tuning for each new dataset combination.
 
 \subsection{Evaluation Ground Truth Limitations}
@@ -150,9 +149,9 @@ Based on our findings and limitations, several promising research directions eme
 \subsection{Adaptive Relationship Selection}
 
 Future work should investigate hybrid relationship selection methods
-that can adapt to individual dataset characteristics
+that can adapt to dataset characteristics
 and automatically adjust parameters based on domain properties.
-This could address the current inconsistency issues
+This could address current inconsistency issues
 and improve robustness across diverse scenarios.
 
 \subsection{Enhanced Ground Truth Generation}
@@ -174,7 +173,7 @@ and automatically discovering relationships between all classes.
 
 \section{Final Remarks}
 
-This thesis presented a comprehensive approach to the challenge of multi-dataset image classification
+This thesis presented a comprehensive approach to multi-dataset image classification
 through automated universal taxonomy generation.
 Our work demonstrates that it is possible to automatically discover
 meaningful relationships between classes across different domains
@@ -191,9 +190,7 @@ over traditional single-domain methods.
 
 The scalability and adaptability of our approach,
 combined with its ability to work with any number of datasets simultaneously,
-positions it as a valuable contribution to the field of multi-domain machine learning.
-As the number of available image classification datasets continues to grow,
+positions it as a valuable contribution to multi-domain machine learning.
+As available image classification datasets continue to grow,
 methods like ours will become increasingly important
 for leveraging the full potential of diverse visual data sources.
-
-% TODO Eigenständigkeitserklärung
