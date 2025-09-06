@@ -60,8 +60,8 @@
     \tableofcontents
 \end{frame}
 
-% Section 1: Introduction & Base Idea
-\section{Introduction \& Base Idea}
+% Section 1: Introduction & Idea
+\section{Introduction \& Idea}
 
 \begin{frame}{The Challenge: Limited Scope of Traditional Models}
     \begin{itemize}
@@ -84,7 +84,7 @@
     \textcolor{red}{\textbf{Problem:}} Still requires separate models or heads for each domain
 \end{frame}
 
-\begin{frame}{Our Base Idea: Universal Model vs. Multi-Head}
+\begin{frame}{Our Idea: Universal Model vs. Multi-Head}
     \begin{columns}[T]
         \begin{column}{0.48\textwidth}
             \textbf{Multi-Head Approach}
@@ -101,16 +101,16 @@
                     \draw[thick, blue] (0,0) rectangle (2,1.5);
                     \node at (1,0.75) {\scriptsize Backbone};
 
-                    % Heads
-                    \draw[thick, red] (0.2,1.5) rectangle (0.8,2.5);
-                    \node at (0.5,2) {\tiny Head A};
-                    \draw[thick, red] (1.2,1.5) rectangle (1.8,2.5);
-                    \node at (1.5,2) {\tiny Head B};
+                    % Heads (made wider)
+                    \draw[thick, red] (0.1,1.5) rectangle (0.9,2.5);
+                    \node at (0.5,2) {\tiny Head};
+                    \draw[thick, red] (1.1,1.5) rectangle (1.9,2.5);
+                    \node at (1.5,2) {\tiny Head};
 
                     % Labels
                     \node at (1,-0.3) {\tiny Input};
-                    \node at (0.5,2.8) {\tiny Domain A};
-                    \node at (1.5,2.8) {\tiny Domain B};
+                    \node at (0.5,2.8) {\tiny A};
+                    \node at (1.5,2.8) {\tiny B};
                 \end{tikzpicture}
             \end{center}
         \end{column}
@@ -131,14 +131,14 @@
                     \node at (1,0.75) {\scriptsize Universal};
                     \node at (1,0.45) {\scriptsize Model};
 
-                    % Universal output
-                    \draw[thick, green] (0.5,1.5) rectangle (1.5,2.5);
+                    % Universal output (made wider)
+                    \draw[thick, green] (0.3,1.5) rectangle (1.7,2.5);
                     \node at (1,2) {\tiny Universal};
                     \node at (1,1.8) {\tiny Classes};
 
                     % Conversion
-                    \draw[dashed] (1.5,2) -- (2.5,2.5);
-                    \draw[dashed] (1.5,2) -- (2.5,1.5);
+                    \draw[dashed] (1.7,2) -- (2.5,2.5);
+                    \draw[dashed] (1.7,2) -- (2.5,1.5);
                     \node at (3,2.5) {\tiny Domain A};
                     \node at (3,1.5) {\tiny Domain B};
 
@@ -151,13 +151,13 @@
 
     \vspace{1em}
 
-    \textcolor{blue}{\textbf{Key Insight:}} Build explicit mapping of shared concepts first, then use it to train a universal model
+    \textcolor{blue}{\textbf{Key Insight:}} Build explicit concept-to-domain mappings to train a single universal model
 \end{frame}
 
 % Section 2: Method Overview
 \section{Method Overview}
 
-\begin{frame}{Our Three-Step Methodology}
+\begin{frame}{Our Method in 3 Steps}
     \begin{center}
         \begin{tikzpicture}[node distance=3cm]
             % Step 1
@@ -166,7 +166,7 @@
 
             % Step 2
             \draw[thick, orange] (3.5,0) rectangle (6,1.5);
-            \node[align=center] at (4.75,0.75) {\textbf{Step 2:}\\Relationship\\Selection};
+            \node[align=center] at (4.75,0.75) {\textbf{Step 2:}\\Relationship\\Building};
 
             % Step 3
             \draw[thick, green] (7,0) rectangle (9.5,1.5);
@@ -181,8 +181,8 @@
     \vspace{1em}
 
     \begin{enumerate}
-        \item \textbf{Cross-Domain Prediction}: Train models on individual domains, then test each model on all other domains
-        \item \textbf{Relationship Selection}: Extract meaningful relationships from cross-domain predictions using various methods
+        \item \textbf{Cross-Domain Prediction}: Train domain-specific models, run inference on other domains
+        \item \textbf{Relationship Building}: Extract meaningful relationships from cross-domain predictions and create universal taxonomy
         \item \textbf{Universal Model Training}: Create and train a single model using universal taxonomy
     \end{enumerate}
 \end{frame}
@@ -194,7 +194,7 @@
 
     \textbf{Process}:
     \begin{enumerate}
-        \item Train domain-specific models (e.g., ResNet-50 on CIFAR-100, Caltech-101)
+        \item Train domain-specific models
         \item Run each model on images from \emph{all other} domains
         \item Create probability matrices $P_{ab}(i,j)$ = probability of classifying class $c_i^a$ as class $c_j^b$
     \end{enumerate}
@@ -228,7 +228,7 @@
 
     \vspace{1em}
 
-    \textbf{Solution}: Develop multiple relationship selection methods
+    \textbf{Solution}: Develop \& evaluate multiple relationship selection methods
 
     \vspace{1em}
 
@@ -268,10 +268,11 @@
 
         \item \textbf{Density Thresholding}: Select minimum relationships covering $p\%$ of probability mass
 
-        \item \textbf{Relationship Hypothesis}: Find optimal $k$ relationships by minimizing:
+        \item \textbf{Relationship Hypothesis}: Assumes relationships based on shared concepts should have equal probabilities. For each class, find optimal $k$ relationships by minimizing:
               \begin{equation}
                   \sum_{j=1}^k \left| X_i(j) - \frac{1}{k} \right| + \sum_{j=k+1}^{|C_b|} X_i(j)
               \end{equation}
+              where $X_i(j)$ are sorted probabilities in descending order.
     \end{enumerate}
 \end{frame}
 

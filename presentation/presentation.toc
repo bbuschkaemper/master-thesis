@@ -1,5 +1,5 @@
 \babel@toc {english}{}\relax 
-\beamer@sectionintoc {1}{Introduction \& Base Idea}{3}{0}{1}
+\beamer@sectionintoc {1}{Introduction \& Idea}{3}{0}{1}
 \beamer@sectionintoc {2}{Method Overview}{5}{0}{2}
 \beamer@sectionintoc {3}{Relationship Selection Methods}{7}{0}{3}
 \beamer@sectionintoc {4}{Synthetic Ground Truth \& Domain Adaptation}{10}{0}{4}
