@@ -276,39 +276,8 @@
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{Relationship Selection Results}
-    \textbf{Evaluation on synthetic datasets with known ground truth}
-
-    \vspace{0.5em}
-
-    \begin{table}[h]
-        \centering
-        \scriptsize
-        \begin{tabular}{lcccc}
-            \toprule
-            \textbf{Method}         & \textbf{EDR}   & \textbf{Precision} & \textbf{Recall} & \textbf{F1 Score} \\
-            \midrule
-            Naive Thresholding      & \textbf{0.463} & 0.675              & \textbf{0.889}  & \textbf{0.767}    \\
-            MCFP                    & 0.579          & \textbf{0.865}     & 0.421           & 0.566             \\
-            Density Thresholding    & 0.523          & 0.726              & 0.795           & 0.759             \\
-            Relationship Hypothesis & 0.493          & 0.746              & 0.823           & 0.783             \\
-            \bottomrule
-        \end{tabular}
-        \caption{Global optimal performance across all synthetic dataset variants}
-    \end{table}
-
-    \vspace{0.5em}
-
-    \textbf{Key Findings}:
-    \begin{itemize}
-        \item \textbf{Naive thresholding} achieves best overall performance (lowest EDR)
-        \item \textbf{MCFP} has highest precision but lowest recall
-        \item Trade-off between capturing all relationships vs. avoiding false positives
-    \end{itemize}
-\end{frame}
-
 % Section 4: Synthetic Ground Truth
-\section{Synthetic Ground Truth \& Domain Adaptation}
+\section{Synthetic Ground Truth}
 
 \begin{frame}{The Need for Controlled Ground Truth}
     \textbf{Problem}: Real datasets lack clear inter-dataset relationships
@@ -372,8 +341,94 @@
     \end{columns}
 \end{frame}
 
-% Section 5: Universal Model Training
-\section{Universal Model Training}
+\begin{frame}{Evaluation Metrics for Relationship Selection}
+    \textbf{How do we measure the quality of selected relationships?}
+
+    \vspace{0.5em}
+
+    \begin{enumerate}
+        \item \textbf{Edge Difference Ratio (EDR)}: Measures difference in edge weights between predicted and ground truth graphs
+              \begin{equation}
+                  \text{EDR}(G_1, G_2) = \frac{\sum_{i,j} |A_1(i,j) - A_2(i,j)|}{\sum_{i,j} \max(A_1(i,j), A_2(i,j))}
+              \end{equation}
+              \textcolor{blue}{Range: [0,1], where 0 = identical graphs, 1 = no common edges}
+
+        \item \textbf{Precision \& Recall}: Binary evaluation of relationship presence
+              \begin{itemize}
+                  \item Convert adjacency matrices to binary: $B(i,j) = 1$ if $A(i,j) > 0$
+                  \item \textbf{Precision} = $\frac{TP}{TP + FP}$ (correctness of selected relationships)
+                  \item \textbf{Recall} = $\frac{TP}{TP + FN}$ (coverage of true relationships)
+                  \item \textbf{F1 Score} = Harmonic mean of precision and recall
+              \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Relationship Selection Results: Domain-Shifted Evaluation}
+    \textbf{Evaluation on domain-shifted synthetic datasets (more realistic)}
+
+    \vspace{0.5em}
+
+    \begin{table}[h]
+        \centering
+        \scriptsize
+        \begin{tabular}{lccccc}
+            \toprule
+            \textbf{Method}         & \textbf{Parameter} & \textbf{EDR}   & \textbf{Precision} & \textbf{Recall} & \textbf{F1 Score} \\
+            \midrule
+            Relationship Hypothesis & 5                  & \textbf{0.759} & 0.390              & 0.543           & 0.444             \\
+            Naive Thresholding      & 0.10               & 0.761          & 0.418              & 0.519           & \textbf{0.450}    \\
+            Density Thresholding    & 0.60               & 0.766          & 0.349              & \textbf{0.582}  & 0.426             \\
+            MCFP                    & N/A                & 0.842          & \textbf{0.490}     & 0.226           & 0.305             \\
+            \bottomrule
+        \end{tabular}
+        \caption{Performance on domain-shifted synthetic datasets with globally optimal parameters}
+    \end{table}
+
+    \vspace{0.5em}
+
+    \textbf{Key Observations}:
+    \begin{itemize}
+        \item \textbf{Relationship Hypothesis} achieves best EDR 0.759
+        \item \textbf{MCFP} maintains highest precision but lowest recall
+        \item Maybe still not realistic enough, but suitable for getting method parameters
+    \end{itemize}
+\end{frame}
+
+
+% Section 5: Universal Model
+\section{Universal Model}
+
+\begin{frame}{Universal Taxonomy Building Rules}
+    \textbf{How do we convert relationship graphs into universal taxonomies?}
+
+    \vspace{0.5em}
+
+    \begin{enumerate}
+        \item \textbf{Isolated Node Rule}: Classes with no relationships
+              \begin{itemize}
+                  \item Create new universal class for standalone domain classes
+                  \item Ensures all classes are represented in universal taxonomy
+              \end{itemize}
+
+        \item \textbf{Bidirectional Relationship Rule}: Classes with mutual relationships (A $\leftrightarrow$ B)
+              \begin{itemize}
+                  \item Create single universal class C with relationships A $\rightarrow$ C, B $\rightarrow$ C
+                  \item Indicates classes likely represent the same concept
+              \end{itemize}
+
+        \item \textbf{Transitive Cycle Rule}: Prevent invalid cycles (A $\rightarrow$ B $\rightarrow$ C where A, C same domain)
+              \begin{itemize}
+                  \item Remove relationship with lower probability
+                  \item Classes within same domain should be disjoint
+              \end{itemize}
+
+        \item \textbf{Unilateral Relationship Rule}: Handle subset relationships (A $\rightarrow$ B)
+              \begin{itemize}
+                  \item Create universal class for shared concepts (A $\cup$ B)
+                  \item Create universal class for unique concepts (B only)
+              \end{itemize}
+    \end{enumerate}
+\end{frame}
 
 \begin{frame}{Universal Model Architecture}
     \textbf{Key Differences from Baseline Models}:
