@@ -331,6 +331,12 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT ../thesis/figures/taxonomy.png
+INPUT ../thesis/figures/taxonomy.png
+INPUT ../thesis/figures/wheel_concept.png
+INPUT ../thesis/figures/wheel_concept.png
+INPUT ../thesis/figures/bad_taxonomy.png
+INPUT ../thesis/figures/bad_taxonomy.png
 INPUT ../thesis/figures/universal_features_2domain_tsne.pgf
 INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmss12.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmss8.tfm
@@ -349,10 +355,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT /home/bjoern/.texlive2023/texmf-var/luatex-cache/generic/fonts/otl/lmsans12-oblique.luc
 INPUT ../thesis/figures/universal_features_3domain_tsne.pgf
-INPUT ../thesis/figures/wheel_concept.png
-INPUT ../thesis/figures/wheel_concept.png
-INPUT ../thesis/figures/bad_taxonomy.png
-INPUT ../thesis/figures/bad_taxonomy.png
 OUTPUT presentation.nav
 OUTPUT presentation.toc
 OUTPUT presentation.snm

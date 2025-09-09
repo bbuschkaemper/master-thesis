@@ -154,6 +154,15 @@
     \textcolor{blue}{\textbf{Key Insight:}} Build explicit concept-to-domain mappings to train a single universal model
 \end{frame}
 
+\begin{frame}{Changes to Method of Bevandic et al.}
+    \begin{enumerate}
+        \item \textbf{Weighted Relationships:} Instead of binary, unweighted relationships, we use weighted relationships to capture the strength of associations between classes.
+        \item \textbf{Relationship Selection Methods:} We try multiple methods to select the most relevant relationships from noisy cross-domain predictions.
+        \item \textbf{Synthetic Ground Truth:} We develop a synthetic ground truth generation method to be able to evaluate relationship selection methods in a controlled manner.
+        \item \textbf{Discrete Probability Loss Function:} We use a loss function that allows training with probability distributions as targets, enabling the model to learn from the uncertainty in class relationships.
+    \end{enumerate}
+\end{frame}
+
 % Section 2: Method Overview
 \section{Method Overview}
 
@@ -195,24 +204,19 @@
     \textbf{Process}:
     \begin{enumerate}
         \item Train domain-specific models
-        \item Run each model on images from \emph{all other} domains
+        \item Run each model on images from \emph{all other} domains, building prediction matrices $M_{ab}(i,j)$ = number of times class $c_i^a$ predicted as class $c_j^b$
         \item Create probability matrices $P_{ab}(i,j)$ = probability of classifying class $c_i^a$ as class $c_j^b$
     \end{enumerate}
-
-    \vspace{0.5em}
-
-    \textbf{Example}: CIFAR-100 model predicting on Caltech-101 images
-    \begin{itemize}
-        \item CIFAR-100 "automobile" $\rightarrow$ Caltech-101 "car\_side" (high probability)
-        \item CIFAR-100 "dog" $\rightarrow$ Caltech-101 "dalmatian" (moderate probability)
-        \item CIFAR-100 "airplane" $\rightarrow$ Caltech-101 "butterfly" (low probability)
-    \end{itemize}
 
     \vspace{0.5em}
 
     \begin{equation}
         P_{ab}(i, j) = \frac{M_{ab}(i, j)}{\sum_{k=1}^{|C_a|} M_{ab}(i, k)}
     \end{equation}
+
+    \vspace{0.5em}
+
+    \textbf{Example}: Caltech-256 class "car" predicated by CIFAR-100 model as "automobile" ($80\%$), "truck" ($18\%$), "butterfly" ($2\%$)
 \end{frame}
 
 % Section 3: Relationship Selection Methods
@@ -228,42 +232,19 @@
 
     \vspace{1em}
 
-    \textbf{Solution}: Develop \& evaluate multiple relationship selection methods
-
-    \vspace{1em}
-
-    \begin{columns}[T]
-        \begin{column}{0.48\textwidth}
-            \textbf{Methods Evaluated:}
-            \begin{enumerate}
-                \item Naive Thresholding
-                \item Most Common Foreign Prediction (MCFP)
-                \item Density Thresholding
-                \item Relationship Hypothesis
-            \end{enumerate}
-        \end{column}
-
-        \begin{column}{0.48\textwidth}
-            \textbf{Evaluation Metrics:}
-            \begin{itemize}
-                \item Edge Difference Ratio (EDR)
-                \item Precision \& Recall
-                \item F1 Score
-            \end{itemize}
-        \end{column}
-    \end{columns}
+    \textbf{Solution}: Develop multiple relationship selection methods and evaluate them using a synthetic ground truth with custom metrics
 \end{frame}
 
 \begin{frame}{Relationship Selection Methods Explained}
     \begin{enumerate}
+        \item \textbf{Most Common Foreign Prediction (MCFP) by Bevandic et al.}:
+              \begin{equation}
+                  \text{select\_relationships}(P_{ab}) = \{(i, j) \mid j = \text{argmax}_{j'} P_{ab}(i, j')\}
+              \end{equation}
+
         \item \textbf{Naive Thresholding}:
               \begin{equation}
                   \text{select\_relationships}(P_{ab}) = \{(i, j) \mid P_{ab}(i, j) \geq t\}
-              \end{equation}
-
-        \item \textbf{Most Common Foreign Prediction (MCFP)}:
-              \begin{equation}
-                  \text{select\_relationships}(P_{ab}) = \{(i, j) \mid j = \text{argmax}_{j'} P_{ab}(i, j')\}
               \end{equation}
 
         \item \textbf{Density Thresholding}: Select minimum relationships covering $p\%$ of probability mass
@@ -283,27 +264,26 @@
     \textbf{Problem}: Real datasets lack clear inter-dataset relationships
 
     \begin{itemize}
+        \item \textbf{Manual}: Time-consuming, subjective
         \item \textbf{WordNet}: Text-based relationships don't match visual similarities
-        \item \textbf{Open Images}: Multi-label, automatically generated
-        \item \textbf{Existing taxonomies}: Too domain-specific or hierarchical
+        \item \textbf{Known taxonomies}: Do not represent our complex use case
     \end{itemize}
 
     \vspace{1em}
 
-    \textbf{Solution}: Generate synthetic datasets with controlled relationships
+    \textbf{Solution}: Merge classes from a single dataset into different variants with controlled relationships
 
-    \begin{enumerate}
-        \item Define \textbf{atomic concepts} $\mathcal{U} = \{1,2,\ldots,n\}$
-        \item Create synthetic classes as subsets: $c^i_j \subseteq \mathcal{U}$
-        \item Generate multiple domains by sampling concepts
-        \item Calculate relationships based on concept overlap
-    \end{enumerate}
+    \vspace{1em}
 
-    \vspace{0.5em}
+    \textbf{Example}:
 
-    \begin{equation}
-        P_{i,j} = \frac{|c^A_i \cap c^B_j|}{|c^A_i|} + \frac{1 - \frac{|c^A_i \cap c^B_j|}{|c^A_i|}}{|C_B|}
-    \end{equation}
+    \begin{itemize}
+        \item We have classes "car", "eye", "dog", "butterfly"
+        \item Create Domain A: "\{car, eye\}", "\{butterfly\}"
+        \item Create Domain B: "\{car, butterfly\}", "\{dog, eye\}"
+        \item "A:\{car, eye\}" $\rightarrow$ "B:\{car, butterfly\}" ($50\%$)
+        \item "A:\{butterfly\}" $\rightarrow$ "B:\{car, butterfly\}" ($100\%$)
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Domain-Shifted Synthetic Datasets}
@@ -381,7 +361,7 @@
             MCFP                    & N/A                & 0.842          & \textbf{0.490}     & 0.226           & 0.305             \\
             \bottomrule
         \end{tabular}
-        \caption{Performance on domain-shifted synthetic datasets with globally optimal parameters}
+        \caption{Performance on domain-shifted synthetic datasets (Caltech-101, Caltech-256, CIFAR-100) with globally optimal parameters}
     \end{table}
 
     \vspace{0.5em}
@@ -430,9 +410,25 @@
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{Universal Model Architecture}
-    \textbf{Key Differences from Baseline Models}:
+\begin{frame}{Taxonomy Visualization (Caltech-101 + Caltech-256)}
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{../thesis/figures/taxonomy.png}
+    \end{center}
+\end{frame}
 
+\begin{frame}{Good Cluster}
+    \begin{center}
+        \includegraphics[width=0.35\textwidth]{../thesis/figures/wheel_concept.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Bad Cluster}
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{../thesis/figures/bad_taxonomy.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Universal Model Architecture}
     \begin{columns}[T]
         \begin{column}{0.48\textwidth}
             \textbf{Baseline Model}:
@@ -440,8 +436,6 @@
                 \item 6-layer FC classifier
                 \item Dropout regularization
                 \item One-hot targets
-                \item Cross-entropy loss
-                \item Domain-specific outputs
             \end{itemize}
         \end{column}
 
@@ -451,8 +445,6 @@
                 \item 2-layer FC classifier
                 \item No dropout
                 \item Probability distribution targets
-                \item Cross-entropy for discrete distributions
-                \item Universal class outputs
             \end{itemize}
         \end{column}
     \end{columns}
@@ -488,14 +480,6 @@
     \end{align}
 
     where $\mathbf{p}$ are universal class predictions and $\mathbf{d}_i$ are domain-specific predictions.
-
-    \vspace{1em}
-
-    \textbf{Key Challenge}: Validation loss increases while accuracy improves
-    \begin{itemize}
-        \item Solution: Monitor validation accuracy for checkpointing
-        \item Caused by label smoothing effects and multi-target distributions
-    \end{itemize}
 \end{frame}
 
 % Section 6: Results
@@ -504,23 +488,49 @@
 \begin{frame}{Universal Model Performance}
     \textbf{Datasets}: Caltech-101, Caltech-256, CIFAR-100
 
-    \begin{table}[h]
-        \centering
-        \scriptsize
-        \begin{tabular}{lccc}
-            \toprule
-            \textbf{Model Type}      & \textbf{Caltech-101} & \textbf{Caltech-256} & \textbf{CIFAR-100} \\
-            \midrule
-            Baseline (Single Domain) & 0.828                & 0.798                & 0.734              \\
-            Universal (MCFP)         & \textbf{0.845}       & \textbf{0.812}       & 0.728              \\
-            Universal (Density)      & 0.834                & 0.809                & \textbf{0.741}     \\
-            Universal (Hypothesis)   & 0.831                & 0.801                & 0.735              \\
-            \bottomrule
-        \end{tabular}
-        \caption{Test accuracy comparison (2-domain: Caltech-101 + Caltech-256)}
-    \end{table}
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \textbf{Cal-101 + Cal-256 Results}
+            \begin{table}[h]
+                \centering
+                \tiny
+                \begin{tabular}{lcc}
+                    \toprule
+                    \textbf{Taxonomy} & \textbf{Cal-101}       & \textbf{Cal-256}        \\
+                    \midrule
+                    Hypothesis        & 91.81 (+0.00)          & 82.84 (+13.36)          \\
+                    MCFP              & 91.23 (-0.58)          & 80.75 (+11.27)          \\
+                    MCFP Binary       & 92.73 (+0.92)          & \textbf{89.71 (+20.23)} \\
+                    Density           & 92.96 (+1.15)          & 81.54 (+12.06)          \\
+                    Naive             & \textbf{93.19 (+1.38)} & 82.25 (+12.77)          \\
+                    \bottomrule
+                \end{tabular}
+            \end{table}
+        \end{column}
 
-    \vspace{1em}
+        \begin{column}{0.48\textwidth}
+            \textbf{Cal-101 + Cal-256 + CIFAR Results}
+            \begin{table}[h]
+                \centering
+                \tiny
+                \begin{tabular}{lccc}
+                    \toprule
+                    \textbf{Taxonomy} & \textbf{Cal-101}       & \textbf{Cal-256}        & \textbf{CIFAR}          \\
+                    \midrule
+                    Hypothesis        & 68.74 (-23.07)         & 58.17 (-11.31)          & 69.03 (+8.55)           \\
+                    MCFP              & 83.28 (-8.53)          & 76.50 (+7.02)           & 76.10 (+15.62)          \\
+                    MCFP Binary       & 94.58 (+2.77)          & 85.13 (+15.65)          & 82.71 (+22.23)          \\
+                    Density           & 95.39 (+3.58)          & 83.53 (+14.05)          & \textbf{83.14 (+22.66)} \\
+                    Naive             & \textbf{95.50 (+3.69)} & \textbf{85.36 (+15.88)} & 72.56 (+12.08)          \\
+                    \bottomrule
+                \end{tabular}
+            \end{table}
+        \end{column}
+    \end{columns}
+
+    \vspace{0.5em}
+
+    \textbf{Baselines}: Cal-101: 91.81\%, Cal-256: 69.48\%, CIFAR-100: 60.48\%
 
     \textbf{Key Findings}:
     \begin{itemize}
@@ -530,66 +540,16 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Feature Visualization with t-SNE}
-    \begin{columns}[T]
-        \begin{column}{0.48\textwidth}
-            \textbf{2-Domain (Caltech-101 + 256)}
-            \begin{center}
-                \resizebox{\textwidth}{!}{\input{../thesis/figures/universal_features_2domain_tsne.pgf}}
-            \end{center}
-        \end{column}
-
-        \begin{column}{0.48\textwidth}
-            \textbf{3-Domain (+ CIFAR-100)}
-            \begin{center}
-                \resizebox{\textwidth}{!}{\input{../thesis/figures/universal_features_3domain_tsne.pgf}}
-            \end{center}
-        \end{column}
-    \end{columns}
-
-    \vspace{1em}
-
-    \textbf{Observations}:
-    \begin{itemize}
-        \item Mixed clusters indicate successful cross-domain feature learning
-        \item Some domain-specific clusters for unique classes
-        \item Rich feature space captures inter-dataset relationships
-    \end{itemize}
+\begin{frame}{Feature Visualization with t-SNE (Caltech-101 + Caltech-256)}
+    \begin{center}
+        \resizebox{0.65\textwidth}{!}{\input{../thesis/figures/universal_features_2domain_tsne.pgf}}
+    \end{center}
 \end{frame}
 
-\begin{frame}{Taxonomy Visualization Example}
+\begin{frame}{Feature Visualization with t-SNE (Caltech-101 + Caltech-256 + CIFAR-100)}
     \begin{center}
-        \includegraphics[width=0.6\textwidth]{../thesis/figures/wheel_concept.png}
+        \resizebox{0.65\textwidth}{!}{\input{../thesis/figures/universal_features_3domain_tsne.pgf}}
     \end{center}
-
-    \textbf{Good Example}: "Wheel" concept cluster
-    \begin{itemize}
-        \item Caltech-101 "wheelchair" connected to multiple Caltech-256 vehicle classes
-        \item Universal classes capture shared visual concepts
-        \item Enables meaningful cross-domain predictions
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Challenges and Limitations}
-    \begin{center}
-        \includegraphics[width=0.5\textwidth]{../thesis/figures/bad_taxonomy.png}
-    \end{center}
-
-    \textbf{Problematic Example}: "Binocular" cluster
-    \begin{itemize}
-        \item Many unrelated classes forced into single cluster
-        \item Occurs when datasets have poor concept overlap
-        \item Low relationship weights partially mitigate the issue
-    \end{itemize}
-
-    \vspace{1em}
-
-    \textbf{Other Challenges}:
-    \begin{itemize}
-        \item Parameter selection requires domain expertise
-        \item Relationship selection metrics don't perfectly predict model performance
-        \item Computational cost of evaluating all methods
-    \end{itemize}
 \end{frame}
 
 % Section 7: Conclusion

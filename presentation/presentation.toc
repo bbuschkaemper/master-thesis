@@ -1,8 +1,8 @@
 \babel@toc {english}{}\relax 
 \beamer@sectionintoc {1}{Introduction \& Idea}{3}{0}{1}
-\beamer@sectionintoc {2}{Method Overview}{5}{0}{2}
-\beamer@sectionintoc {3}{Relationship Selection Methods}{7}{0}{3}
-\beamer@sectionintoc {4}{Synthetic Ground Truth}{9}{0}{4}
-\beamer@sectionintoc {5}{Universal Model}{13}{0}{5}
-\beamer@sectionintoc {6}{Results}{16}{0}{6}
-\beamer@sectionintoc {7}{Conclusion}{20}{0}{7}
+\beamer@sectionintoc {2}{Method Overview}{6}{0}{2}
+\beamer@sectionintoc {3}{Relationship Selection Methods}{8}{0}{3}
+\beamer@sectionintoc {4}{Synthetic Ground Truth}{10}{0}{4}
+\beamer@sectionintoc {5}{Universal Model}{14}{0}{5}
+\beamer@sectionintoc {6}{Results}{20}{0}{6}
+\beamer@sectionintoc {7}{Conclusion}{23}{0}{7}
