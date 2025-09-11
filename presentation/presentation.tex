@@ -154,18 +154,6 @@
     \textcolor{blue}{\textbf{Key Insight:}} Build explicit concept-to-domain mappings to train a single universal model
 \end{frame}
 
-\begin{frame}{Changes to Method of Bevandic et al.}
-    \begin{enumerate}
-        \item \textbf{Weighted Relationships:} Instead of binary, unweighted relationships, we use weighted relationships to capture the strength of associations between classes.
-        \item \textbf{Relationship Selection Methods:} We try multiple methods to select the most relevant relationships from noisy cross-domain predictions.
-        \item \textbf{Synthetic Ground Truth:} We develop a synthetic ground truth generation method to be able to evaluate relationship selection methods in a controlled manner.
-        \item \textbf{Discrete Probability Loss Function:} We use a loss function that allows training with probability distributions as targets, enabling the model to learn from the uncertainty in class relationships.
-    \end{enumerate}
-\end{frame}
-
-% Section 2: Method Overview
-\section{Method Overview}
-
 \begin{frame}{Our Method in 3 Steps}
     \begin{center}
         \begin{tikzpicture}[node distance=3cm]
@@ -196,6 +184,18 @@
     \end{enumerate}
 \end{frame}
 
+\begin{frame}{Changes to Method of Bevandic et al.}
+    \begin{enumerate}
+        \item \textbf{Weighted Relationships:} Instead of binary, unweighted relationships, we use weighted relationships to capture the strength of associations between classes.
+        \item \textbf{Relationship Selection Methods:} We try multiple methods to select the most relevant relationships from noisy cross-domain predictions.
+        \item \textbf{Synthetic Ground Truth:} We develop a synthetic ground truth generation method to be able to evaluate relationship selection methods in a controlled manner.
+        \item \textbf{Discrete Probability Loss Function:} We use a loss function that allows training with probability distributions as targets, enabling the model to learn from the uncertainty in class relationships.
+    \end{enumerate}
+\end{frame}
+
+% Section 2: Method Overview
+\section{Method Overview}
+
 \begin{frame}{Cross-Domain Prediction Process}
     \textbf{Goal}: Discover relationships between classes from different datasets
 
@@ -216,11 +216,8 @@
 
     \vspace{0.5em}
 
-    \textbf{Example}: Caltech-256 class "car" predicated by CIFAR-100 model as "automobile" ($80\%$), "truck" ($18\%$), "butterfly" ($2\%$)
+    \textbf{Example}: Caltech-256 class "car" predicated by CIFAR-100 model as "vehicle" ($80\%$), "bike" ($18\%$), "butterfly" ($2\%$)
 \end{frame}
-
-% Section 3: Relationship Selection Methods
-\section{Relationship Selection Methods}
 
 \begin{frame}{Challenge: Selecting Relevant Relationships}
     \textbf{Problems with raw probability matrices}:
@@ -257,8 +254,8 @@
     \end{enumerate}
 \end{frame}
 
-% Section 4: Synthetic Ground Truth
-\section{Synthetic Ground Truth}
+% Section 3: Method Evaluation
+\section{Method Evaluation}
 
 \begin{frame}{The Need for Controlled Ground Truth}
     \textbf{Problem}: Real datasets lack clear inter-dataset relationships
@@ -375,7 +372,7 @@
 \end{frame}
 
 
-% Section 5: Universal Model
+% Section 4: Universal Model
 \section{Universal Model}
 
 \begin{frame}{Universal Taxonomy Building Rules}
@@ -465,10 +462,9 @@
 \begin{frame}{Multi-Domain Training Process}
     \textbf{Training Procedure}:
     \begin{enumerate}
-        \item Combine multiple datasets while preserving domain identity
+        \item Concatenate domain datasets
         \item Each sample: $(\text{image}, (\text{domain\_id}, \text{label})) \rightarrow (\text{image}, \text{universal\_target})$
-        \item Train single model on unified dataset
-        \item Use domain-specific mapping matrices for target generation
+        \item Train universal model on unified dataset
     \end{enumerate}
 
     \vspace{1em}
@@ -482,7 +478,7 @@
     where $\mathbf{p}$ are universal class predictions and $\mathbf{d}_i$ are domain-specific predictions.
 \end{frame}
 
-% Section 6: Results
+% Section 5: Results
 \section{Results}
 
 \begin{frame}{Universal Model Performance}
@@ -552,20 +548,19 @@
     \end{center}
 \end{frame}
 
-% Section 7: Conclusion
+% Section 6: Conclusion
 \section{Conclusion}
 
 \begin{frame}{Key Contributions}
     \begin{enumerate}
-        \item \textbf{Novel Universal Model Approach}: Single model for multiple domains without task-specific heads
+        \item \textbf{Novel Weighted Graph Approach}: We have a \textit{weighted} relationship graph instead of binary edges
 
-        \item \textbf{Comprehensive Relationship Selection Methods}: Four different approaches with systematic evaluation
+        \item \textbf{Comprehensive Relationship Selection Methods}: Four new proposed methods with detailed evaluation
 
-        \item \textbf{Synthetic Ground Truth Framework}: Controlled evaluation environment with domain-shifted variants
+        \item \textbf{Synthetic Ground Truth}: Controlled evaluation environment with domain-shifted variants
 
-        \item \textbf{Cross-Domain Prediction Pipeline}: Complete methodology from raw datasets to universal models
-
-        \item \textbf{Performance Validation}: Universal models outperform single-domain baselines
+        \item \textbf{Reusable Taxonomy Framework}: Our code is adaptable to new taxonomy building rules,
+              relationship selection methods, datasets and model architectures
     \end{enumerate}
 \end{frame}
 
@@ -584,50 +579,22 @@
     \begin{itemize}
         \item No single relationship selection method works optimally for all cases
         \item Gap between evaluation metrics and actual model performance
-        \item Parameter selection requires careful tuning for each dataset combination
-        \item Some false positive relationships in generated taxonomies
+        \item Some bad clusters in universal taxonomy remain
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Future Work \& Improvements}
-    \textbf{Immediate Improvements}:
+    \textbf{Next Steps}:
+    \vspace{0.5em}
     \begin{itemize}
-        \item Grid search for optimal relationship selection parameters
-        \item Develop better correlation between evaluation metrics and model performance
+        \item Find a relationship selection method that works consistently well
         \item Explore different universal model architectures
-    \end{itemize}
-
-    \vspace{1em}
-
-    \textbf{Extensions}:
-    \begin{itemize}
-        \item Scale to larger datasets (ImageNet, COCO)
+        \item Scale to more, larger datasets (ImageNet, COCO)
         \item Apply to other vision tasks (object detection, segmentation)
-        \item Investigate dynamic relationship adjustment during training
-        \item Explore unsupervised relationship discovery methods
-    \end{itemize}
-
-    \vspace{1em}
-
-    \textbf{Real-World Applications}:
-    \begin{itemize}
-        \item Multi-domain medical imaging
-        \item Cross-dataset autonomous driving
-        \item Unified content moderation systems
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Summary}
-    \textbf{Problem}: Traditional image classification limited to single domains
-
-    \textbf{Solution}: Universal model trained on cross-domain taxonomy
-
-    \textbf{Method}: Cross-domain prediction $\rightarrow$ Relationship selection $\rightarrow$ Universal training
-
-    \textbf{Results}: Universal models outperform single-domain baselines
-
-    \vspace{2em}
-
+\begin{frame}{Questions?}
     \begin{center}
         \textbf{\Large Thank you for your attention!}
 

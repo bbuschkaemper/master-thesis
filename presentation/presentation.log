@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  9 SEP 2025 13:32
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  11 SEP 2025 15:26
  system commands enabled.
  file:line:error style messages enabled.
 **/home/bjoern/dev/master-thesis/presentation/presentation.tex
@@ -1181,12 +1181,12 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [4
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 164--164
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 185--185
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 164--164
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 185--185
  [][][][]  
  []
 
@@ -1203,12 +1203,12 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [5
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 197--197
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 194--194
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 197--197
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 194--194
  [][][][]  
  []
 
@@ -1283,12 +1283,12 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [7
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 236--236
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 233--233
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 236--236
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 233--233
  [][][][]  
  []
 
@@ -1305,12 +1305,12 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [8
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 258--258
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 255--255
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 258--258
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 255--255
  [][][][]  
  []
 
@@ -1327,12 +1327,12 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [9
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 287--287
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 284--284
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 287--287
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 284--284
  [][][][]  
  []
 
@@ -1349,19 +1349,19 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [10
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 322--322
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 319--319
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 322--322
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 319--319
  [][][][]  
  []
 
-<../thesis/figures/domain_shift_visualization.png, id=368, 1949.8446pt x 878.5623pt>
+<../thesis/figures/domain_shift_visualization.png, id=363, 1949.8446pt x 878.5623pt>
 File: ../thesis/figures/domain_shift_visualization.png Graphic file (type png)
 <use ../thesis/figures/domain_shift_visualization.png>
-Package luatex.def Info: ../thesis/figures/domain_shift_visualization.png  used on input line 322.
+Package luatex.def Info: ../thesis/figures/domain_shift_visualization.png  used on input line 319.
 (luatex.def)             Requested size: 151.67307pt x 68.32918pt.
 
 Overfull \hbox (8.97038pt too wide) has occurred while \output is active
@@ -1376,27 +1376,27 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [11
 
 <../thesis/figures/domain_shift_visualization.png>]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 344--344
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 341--341
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 344--344
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 341--341
  [][][][]  
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 344.
+(Font)              <10> on input line 341.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 344.
+(Font)              <7> on input line 341.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 344.
+(Font)              <5> on input line 341.
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 344.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 341.
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <7> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 344.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 341.
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <5> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 344.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 341.
 
 Overfull \hbox (8.97038pt too wide) has occurred while \output is active
  [][]  \TU/lmss/m/n/6 ([])  
@@ -1410,12 +1410,12 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [12
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 375--375
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 372--372
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 375--375
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 372--372
  [][][][]  
  []
 
@@ -1432,12 +1432,12 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [13
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 411--411
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 408--408
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 411--411
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 408--408
  [][][][]  
  []
 
@@ -1454,22 +1454,22 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [14
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 417--417
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 414--414
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 417--417
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 414--414
  [][][][]  
  []
 
-<../thesis/figures/taxonomy.png, id=487, 641.39626pt x 609.77812pt>
+<../thesis/figures/taxonomy.png, id=481, 641.39626pt x 609.77812pt>
 File: ../thesis/figures/taxonomy.png Graphic file (type png)
 <use ../thesis/figures/taxonomy.png>
-Package luatex.def Info: ../thesis/figures/taxonomy.png  used on input line 417.
+Package luatex.def Info: ../thesis/figures/taxonomy.png  used on input line 414.
 (luatex.def)             Requested size: 216.67204pt x 205.99127pt.
 
-Overfull \vbox (1.99663pt too high) detected at line 417
+Overfull \vbox (1.99663pt too high) detected at line 414
  []
 
 
@@ -1485,19 +1485,19 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [15
 
 <../thesis/figures/taxonomy.png>]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 423--423
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 420--420
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 423--423
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 420--420
  [][][][]  
  []
 
-<../thesis/figures/wheel_concept.png, id=517, 411.78844pt x 496.85625pt>
+<../thesis/figures/wheel_concept.png, id=512, 411.78844pt x 496.85625pt>
 File: ../thesis/figures/wheel_concept.png Graphic file (type png)
 <use ../thesis/figures/wheel_concept.png>
-Package luatex.def Info: ../thesis/figures/wheel_concept.png  used on input line 423.
+Package luatex.def Info: ../thesis/figures/wheel_concept.png  used on input line 420.
 (luatex.def)             Requested size: 151.67307pt x 183.00755pt.
 
 Overfull \hbox (8.97038pt too wide) has occurred while \output is active
@@ -1512,22 +1512,22 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [16
 
 <../thesis/figures/wheel_concept.png>]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 429--429
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 426--426
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 429--429
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 426--426
  [][][][]  
  []
 
-<../thesis/figures/bad_taxonomy.png, id=547, 494.59781pt x 465.99094pt>
+<../thesis/figures/bad_taxonomy.png, id=542, 494.59781pt x 465.99094pt>
 File: ../thesis/figures/bad_taxonomy.png Graphic file (type png)
 <use ../thesis/figures/bad_taxonomy.png>
-Package luatex.def Info: ../thesis/figures/bad_taxonomy.png  used on input line 429.
+Package luatex.def Info: ../thesis/figures/bad_taxonomy.png  used on input line 426.
 (luatex.def)             Requested size: 216.67204pt x 204.14072pt.
 
-Overfull \vbox (0.14607pt too high) detected at line 429
+Overfull \vbox (0.14607pt too high) detected at line 426
  []
 
 
@@ -1543,21 +1543,21 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [17
 
 <../thesis/figures/bad_taxonomy.png>]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 463--463
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 460--460
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 463--463
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 460--460
  [][][][]  
  []
 
 LaTeX Font Info:    Font shape `TU/lmss/b/n' in size <10.95> not available
-(Font)              Font shape `TU/lmss/bx/n' tried instead on input line 463.
+(Font)              Font shape `TU/lmss/bx/n' tried instead on input line 460.
 LaTeX Font Info:    Font shape `TU/lmss/b/n' in size <8> not available
-(Font)              Font shape `TU/lmss/bx/n' tried instead on input line 463.
+(Font)              Font shape `TU/lmss/bx/n' tried instead on input line 460.
 LaTeX Font Info:    Font shape `TU/lmss/b/n' in size <6> not available
-(Font)              Font shape `TU/lmss/bx/n' tried instead on input line 463.
+(Font)              Font shape `TU/lmss/bx/n' tried instead on input line 460.
 
 Overfull \hbox (8.97038pt too wide) has occurred while \output is active
  [][]  \TU/lmss/m/n/6 ([])  
@@ -1571,12 +1571,12 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [18
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 483--483
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 479--479
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 483--483
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 479--479
  [][][][]  
  []
 
@@ -1593,19 +1593,19 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [19
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 541--541
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 537--537
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 541--541
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 537--537
  [][][][]  
  []
 
 LaTeX Font Info:    Font shape `TU/lmss/b/n' in size <5> not available
-(Font)              Font shape `TU/lmss/bx/n' tried instead on input line 541.
+(Font)              Font shape `TU/lmss/bx/n' tried instead on input line 537.
 
-Overfull \hbox (0.87479pt too wide) in paragraph at lines 541--541
+Overfull \hbox (0.87479pt too wide) in paragraph at lines 537--537
  [] 
  []
 
@@ -1622,12 +1622,12 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [20
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 547--547
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 543--543
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 547--547
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 543--543
  [][][][]  
  []
 
@@ -1664,12 +1664,12 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [21
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 553--553
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 549--549
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 553--553
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 549--549
  [][][][]  
  []
 
@@ -1686,12 +1686,12 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [22
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 570--570
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 565--565
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 570--570
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 565--565
  [][][][]  
  []
 
@@ -1708,12 +1708,12 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [23
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 590--590
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 584--584
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 590--590
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 584--584
  [][][][]  
  []
 
@@ -1730,12 +1730,12 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [24
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 618--618
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 595--595
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 618--618
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 595--595
  [][][][]  
  []
 
@@ -1752,12 +1752,12 @@ Overfull \hbox (138.82841pt too wide) has occurred while \output is active
 [25
 
 ]
-Overfull \hbox (8.97038pt too wide) in paragraph at lines 638--638
+Overfull \hbox (8.97038pt too wide) in paragraph at lines 605--605
  [][]  \TU/lmss/m/n/6 ([])  
  []
 
 
-Overfull \hbox (138.82841pt too wide) in paragraph at lines 638--638
+Overfull \hbox (138.82841pt too wide) in paragraph at lines 605--605
  [][][][]  
  []
 
@@ -1789,23 +1789,23 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: F2025406CA45265CE0D1852D790AC258;918.
+(rerunfilecheck)             Checksum: 90B2414E5B533B258015FB7D353A0B06;691.
 )
 
 Here is how much of LuaTeX's memory you used:
- 30107 strings out of 476553
+ 30102 strings out of 476553
  745114,2848258 words of node,token memory allocated
- 5116 words of node memory still in use:
-   34 hlist, 9 vlist, 5 rule, 41 disc, 8 local_par, 4 math, 104 glue, 23 kern, 18 penalty, 2 sub_mlist, 321 glyph, 183 attribute, 61 glue_spec, 93 attribute_list, 4 write, 18 pdf_colorstack nodes
-   avail lists: 1:4,2:149926,3:87485,4:736,5:340,6:78,7:4309,8:57,9:1481,10:17,11:281
- 51100 multiletter control sequences out of 65536+600000
+ 2190 words of node memory still in use:
+   26 hlist, 9 vlist, 5 rule, 4 disc, 4 local_par, 56 glue, 11 kern, 14 penalty, 2 sub_mlist, 50 glyph, 153 attribute, 61 glue_spec, 78 attribute_list, 4 write, 18 pdf_colorstack nodes
+   avail lists: 1:6,2:149971,3:87489,4:736,5:350,6:82,7:4634,8:57,9:1489,10:17,11:303
+ 51096 multiletter control sequences out of 65536+600000
  116 fonts using 17436751 bytes
  128i,15n,119p,430b,973s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf>{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/opentype/public/lm/lmsans8-oblique.otf></usr/share/texmf/fonts/opentype/public/lm/lmsans10-oblique.otf></usr/share/texmf/fonts/opentype/public/lm/lmsans10-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmsans8-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmsans10-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmsans12-regular.otf></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on presentation.pdf (26 pages, 5945823 bytes).
+Output written on presentation.pdf (26 pages, 5945067 bytes).
 
-PDF statistics: 906 PDF objects out of 1000 (max. 8388607)
- 791 compressed objects within 8 object streams
- 60 named destinations out of 1000 (max. 131072)
- 162 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 901 PDF objects out of 1000 (max. 8388607)
+ 786 compressed objects within 8 object streams
+ 59 named destinations out of 1000 (max. 131072)
+ 154 words of extra memory for PDF output out of 10000 (max. 100000000)
 
