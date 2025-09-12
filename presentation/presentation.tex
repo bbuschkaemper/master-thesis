@@ -76,7 +76,6 @@
     \begin{itemize}
         \item \textbf{Transfer Learning}: Adapt pre-trained models to new tasks
         \item \textbf{Multi-head Architecture}: Shared backbone + task-specific heads
-        \item \textbf{Multi-task Learning}: Train on multiple tasks simultaneously
     \end{itemize}
 
     \vspace{1em}
@@ -258,17 +257,11 @@
 \section{Method Evaluation}
 
 \begin{frame}{The Need for Controlled Ground Truth}
-    \textbf{Problem}: Real datasets lack clear inter-dataset relationships
-
-    \begin{itemize}
-        \item \textbf{Manual}: Time-consuming, subjective
-        \item \textbf{WordNet}: Text-based relationships don't match visual similarities
-        \item \textbf{Known taxonomies}: Do not represent our complex use case
-    \end{itemize}
+    \textbf{Problem}: No existing datasets with known inter-dataset, \textit{weighted} class relationships
 
     \vspace{1em}
 
-    \textbf{Solution}: Merge classes from a single dataset into different variants with controlled relationships
+    \textbf{Solution}: Merge classes from a single dataset into different variants with controlled relationships.
 
     \vspace{1em}
 
@@ -276,10 +269,12 @@
 
     \begin{itemize}
         \item We have classes "car", "eye", "dog", "butterfly"
-        \item Create Domain A: "\{car, eye\}", "\{butterfly\}"
-        \item Create Domain B: "\{car, butterfly\}", "\{dog, eye\}"
+        \item Create Variant A: "\{car, eye\}", "\{butterfly\}"
+        \item Create Variant B: "\{car, butterfly\}", "\{dog, eye\}"
         \item "A:\{car, eye\}" $\rightarrow$ "B:\{car, butterfly\}" ($50\%$)
+        \item "B:\{car, butterfly\}" $\rightarrow$ "A:\{car, eye\}" ($50\%$)
         \item "A:\{butterfly\}" $\rightarrow$ "B:\{car, butterfly\}" ($100\%$)
+        \item "B:\{car, butterfly\}" $\rightarrow$ "A:\{butterfly\}" ($50\%$)
     \end{itemize}
 \end{frame}
 
@@ -294,9 +289,9 @@
         \begin{column}{0.6\textwidth}
             \textbf{Transformations Applied}:
             \begin{itemize}
-                \item \textbf{Domain A}: Noisy grayscale
-                \item \textbf{Domain B}: Rotation + blur
-                \item \textbf{Domain C}: Random erasing + color jitter + perspective shifts
+                \item \textbf{Variant A}: Noisy grayscale
+                \item \textbf{Variant B}: Rotation + blur
+                \item \textbf{Variant C}: Random erasing + color jitter + perspective shifts
             \end{itemize}
 
             \vspace{1em}
@@ -425,26 +420,13 @@
     \end{center}
 \end{frame}
 
-\begin{frame}{Universal Model Architecture}
-    \begin{columns}[T]
-        \begin{column}{0.48\textwidth}
-            \textbf{Baseline Model}:
-            \begin{itemize}
-                \item 6-layer FC classifier
-                \item Dropout regularization
-                \item One-hot targets
-            \end{itemize}
-        \end{column}
+\begin{frame}{Building the Universal Model}
 
-        \begin{column}{0.48\textwidth}
-            \textbf{Universal Model}:
-            \begin{itemize}
-                \item 2-layer FC classifier
-                \item No dropout
-                \item Probability distribution targets
-            \end{itemize}
-        \end{column}
-    \end{columns}
+    \begin{itemize}
+        \item Every universal class corresponds to one output neuron
+        \item Each domain class maps to one or more universal classes
+        \item Matrix $M_i$ maps domain $i$ classes to universal classes
+    \end{itemize}
 
     \vspace{1em}
 
@@ -475,7 +457,7 @@
         \hat{c}_i    & = \text{argmax}(\mathbf{d}_i)
     \end{align}
 
-    where $\mathbf{p}$ are universal class predictions and $\mathbf{d}_i$ are domain-specific predictions.
+    where $\mathbf{p}$ are universal class predictions and $\hat{c}_i$ is the predicted class in domain $i$.
 \end{frame}
 
 % Section 5: Results
