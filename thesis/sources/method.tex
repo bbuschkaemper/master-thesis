@@ -187,8 +187,7 @@ To evaluate our taxonomy generation methods, we need a reliable ground truth wit
             generated, it doesn't provide the verified ground truth we need.
 
       \item \textbf{iNaturalist}~\cite{horn_inaturalist_2018} offers a detailed taxonomy of
-            plant and animal species, but its domain-specific nature makes it unsuitable
-            for developing a general-purpose evaluation framework.
+            plant and animal species, but it misses \textit{weighted} relationships, which are crucial for testing our relationship selection methods.
 \end{itemize}
 
 \subsection{Our Approach: Building Synthetic Datasets}
@@ -414,7 +413,7 @@ Our approach adapts their methodology for image classification with several key 
       \item \textbf{Probabilistic Relationships}: Instead of binary relationships between classes,
             we derive probabilities from the cross-domain predictions of our neural networks.
             This allows us to not only evaluate the quantity of relationships but also their quality
-            e.g. useability for later classification tasks.
+            e.g. usability for later classification tasks.
 
       \item \textbf{Flexible Relationship Selection}: We introduce multiple methods for selecting relevant relationships from probability matrices (naive thresholding, most common predictions, density thresholding, relationship hypothesis)
             and try to evaluate their performance on a synthetic ground truth.

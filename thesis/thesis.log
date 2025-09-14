@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  6 SEP 2025 15:02
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.7.22)  14 SEP 2025 19:52
  system commands enabled.
  file:line:error style messages enabled.
 **/home/bjoern/dev/master-thesis/thesis/thesis.tex
@@ -1693,7 +1693,10 @@ Overfull \hbox (1.98938pt too wide) in paragraph at lines 11--16
 ]
 Underfull \vbox (badness 1668) has occurred while \output is active []
 
- [4] [5]) [6]
+ [4]
+LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
+(Font)              scaled to size 9.12494pt on input line 104.
+ [5]) [6]
 \openout2 = sources/method.aux
  (./sources/method.tex
 chapter 3.
@@ -1721,16 +1724,18 @@ Overfull \hbox (0.74869pt too wide) in paragraph at lines 105--110
 [9] [10]
 LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
 (Font)              scaled to size 7.49995pt on input line 184.
- [11]
-LaTeX Font Info:    Font shape `TU/SourceCodePro(0)/m/n' will be
-(Font)              scaled to size 9.12494pt on input line 242.
- [12] [13] [14] [15] [16]
-Overfull \hbox (1.41293pt too wide) in paragraph at lines 443--449
+
+Overfull \hbox (6.61072pt too wide) in paragraph at lines 189--191
+[]\TU/EBGaramond(0)/b/n/10.95 iNat-u-ral-ist \TU/EBGaramond(0)/m/n/9.99594 [[][]19[][]] \TU/EBGaramond(0)/m/n/10.95 of-fers a de-tailed tax-on-omy of plant and an-i-mal species, but it misses \TU/EBGaramond(0)/m/it/10.95 weighted
+ []
+
+[11] [12] [13] [14] [15] [16]
+Overfull \hbox (1.41293pt too wide) in paragraph at lines 442--448
 []\TU/EBGaramond(0)/b/n/10.95 Uni-ver-sal Tax-on-omy Com-par-i-son\TU/EBGaramond(0)/m/n/10.95 : Com-par-ing the pre-dicted uni-ver-sal tax-on-omy against
  []
 
 [17] [18]
-Overfull \hbox (5.48756pt too wide) in paragraph at lines 564--567
+Overfull \hbox (5.48756pt too wide) in paragraph at lines 563--566
 \TU/EBGaramond(0)/m/n/10.95 Our uni-ver-sal model ar-chi-tec-ture con-sists of a stan-dard con-vo-lu-tional neu-ral net-work (e.g. ResNet)
  []
 
@@ -2078,15 +2083,15 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 
 Here is how much of LuaTeX's memory you used:
  52464 strings out of 476553
- 745111,4101490 words of node,token memory allocated
+ 745114,4101490 words of node,token memory allocated
  1228 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 6 glue, 4 kern, 1 sub_mlist, 1 glyph, 119 attribute, 95 glue_spec, 61 attribute_list, 2 write, 25 pdf_action nodes
-   avail lists: 1:13,2:150670,3:83497,4:968,5:638,6:218,7:11575,8:136,9:2475,10:16,11:749
+   avail lists: 1:14,2:150670,3:83497,4:968,5:638,6:218,7:11575,8:136,9:2475,10:16,11:749
  72831 multiletter control sequences out of 65536+600000
  152 fonts using 77694331 bytes
  122i,21n,120p,10939b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/garamond-math/Garamond-Math.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Bold.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Italic.otf></usr/share/texlive/texmf-dist/fonts/opentype/public/ebgaramond/EBGaramond-Regular.otf></usr/share/texlive/texmf-dist/fonts/opentype/adobe/sourcecodepro/SourceCodePro-Regular.otf>
-Output written on thesis.pdf (64 pages, 8203286 bytes).
+Output written on thesis.pdf (64 pages, 8203279 bytes).
 
 PDF statistics: 1173 PDF objects out of 1200 (max. 8388607)
  1009 compressed objects within 11 object streams

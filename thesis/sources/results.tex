@@ -415,7 +415,7 @@ To verify or disprove our findings, we will try to create new, more realistic gr
 
 We test the usage of WordNet Synsets on the Caltech-101 and Caltech-256 datasets to build a relationship graph.
 It can be observed that the relationship weights (Wu \& Palmer similarity scores) are very high (ranging between 0.8 and 1.0),
-even for weakly related synsets (e.g. between the Caltech256 class \textit{snake} and the Caltech101 class \textit{crocodile},
+even for weakly related synsets (e.g. between the Caltech256 class \texttt{snake} and the Caltech101 class \texttt{crocodile},
 we observe a 0.88 relationship weight in both directions).
 
 \begin{figure}[H]
@@ -430,9 +430,9 @@ we observe a 0.88 relationship weight in both directions).
 Upon further observation, this problem turns out to be even more severe:
 WordNet's synsets build relations based on usage patterns in text corpora,
 which does not align with our visual relationships based on shared concepts and attributes.
-In Figure~\ref{fig:wordnet}, we see a relationship cluster with the classes \textit{gas pump}, \textit{anchor} and \textit{iris}.
+In Figure~\ref{fig:wordnet}, we see a relationship cluster with the classes \texttt{gas pump}, \texttt{anchor} and \texttt{iris}.
 These words do not share any visual similarities or attributes, yet they are clustered together based on their textual relationships
-(we guess that \textit{gas pump} and \textit{anchor} are related through their usage in similar contexts like ships and maritime activities).
+(we guess that \texttt{gas pump} and \texttt{anchor} are related through their usage in similar contexts like ships and maritime activities).
 Unfortunately upon manual inspection, these false positives occur frequently.
 
 Since we try to build a ground truth taxonomy to evaluate relationship selection methods,
@@ -660,7 +660,7 @@ so that we can process all images uniformly in the same model architecture.
 
 On the Caltech-101 + Caltech-256 multi-domain dataset,
 we train universal models on all four relationship selection methods.
-Additionally, we introduce a \textit{MCFP binary} relationship selection method,
+Additionally, we introduce a \texttt{MCFP binary} relationship selection method,
 which uses a fixed weight of 1 for every relationship.
 This additional variant mimics the original MCFP method by Bevandic et al.~\cite{bevandic_automatic_2022}
 and serves as an additional baseline for comparison.
