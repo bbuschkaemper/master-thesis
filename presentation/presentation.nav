@@ -53,23 +53,17 @@
 \headcommand {\sectionentry {5}{Results}{20}{Results}{0}}
 \headcommand {\slideentry {5}{0}{1}{20/20}{}{0}}
 \headcommand {\beamer@framepages {20}{20}}
-\headcommand {\slideentry {5}{0}{2}{21/21}{}{0}}
+\headcommand {\beamer@sectionpages {20}{20}}
+\headcommand {\beamer@subsectionpages {20}{20}}
+\headcommand {\sectionentry {6}{Conclusion}{21}{Conclusion}{0}}
+\headcommand {\slideentry {6}{0}{1}{21/21}{}{0}}
 \headcommand {\beamer@framepages {21}{21}}
-\headcommand {\slideentry {5}{0}{3}{22/22}{}{0}}
+\headcommand {\slideentry {6}{0}{2}{22/22}{}{0}}
 \headcommand {\beamer@framepages {22}{22}}
-\headcommand {\beamer@sectionpages {20}{22}}
-\headcommand {\beamer@subsectionpages {20}{22}}
-\headcommand {\sectionentry {6}{Conclusion}{23}{Conclusion}{0}}
-\headcommand {\slideentry {6}{0}{1}{23/23}{}{0}}
+\headcommand {\slideentry {6}{0}{3}{23/23}{}{0}}
 \headcommand {\beamer@framepages {23}{23}}
-\headcommand {\slideentry {6}{0}{2}{24/24}{}{0}}
-\headcommand {\beamer@framepages {24}{24}}
-\headcommand {\slideentry {6}{0}{3}{25/25}{}{0}}
-\headcommand {\beamer@framepages {25}{25}}
-\headcommand {\slideentry {6}{0}{4}{26/26}{}{0}}
-\headcommand {\beamer@framepages {26}{26}}
-\headcommand {\beamer@partpages {1}{26}}
-\headcommand {\beamer@subsectionpages {23}{26}}
-\headcommand {\beamer@sectionpages {23}{26}}
-\headcommand {\beamer@documentpages {26}}
-\headcommand {\gdef \inserttotalframenumber {26}}
+\headcommand {\beamer@partpages {1}{23}}
+\headcommand {\beamer@subsectionpages {21}{23}}
+\headcommand {\beamer@sectionpages {21}{23}}
+\headcommand {\beamer@documentpages {23}}
+\headcommand {\gdef \inserttotalframenumber {23}}

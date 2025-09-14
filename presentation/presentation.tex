@@ -518,18 +518,6 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Feature Visualization with t-SNE (Caltech-101 + Caltech-256)}
-    \begin{center}
-        \resizebox{0.65\textwidth}{!}{\input{../thesis/figures/universal_features_2domain_tsne.pgf}}
-    \end{center}
-\end{frame}
-
-\begin{frame}{Feature Visualization with t-SNE (Caltech-101 + Caltech-256 + CIFAR-100)}
-    \begin{center}
-        \resizebox{0.65\textwidth}{!}{\input{../thesis/figures/universal_features_3domain_tsne.pgf}}
-    \end{center}
-\end{frame}
-
 % Section 6: Conclusion
 \section{Conclusion}
 
@@ -550,29 +538,18 @@
     \textbf{Successful Aspects}:
     \begin{itemize}
         \item Universal models achieve better accuracy than single-domain models
-        \item Cross-domain prediction effectively captures semantic relationships
-        \item Synthetic datasets provide valuable controlled evaluation environment
-        \item Feature visualizations show meaningful cross-domain clustering
+        \item Our relationship graphs create meaningful, weighted inter-dataset class relationships
+        \item Synthetic datasets provide a valuable, customizable evaluation environment
     \end{itemize}
 
     \vspace{1em}
 
-    \textbf{Challenges Identified}:
+    \textbf{Future Work \& Limitations}:
     \begin{itemize}
         \item No single relationship selection method works optimally for all cases
-        \item Gap between evaluation metrics and actual model performance
         \item Some bad clusters in universal taxonomy remain
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Future Work \& Improvements}
-    \textbf{Next Steps}:
-    \vspace{0.5em}
-    \begin{itemize}
-        \item Find a relationship selection method that works consistently well
-        \item Explore different universal model architectures
-        \item Scale to more, larger datasets (ImageNet, COCO)
-        \item Apply to other vision tasks (object detection, segmentation)
+        \item Tests were limited to 3-domain scenarios $\rightarrow$ need to scale to more datasets
+        \item Try out for other vision tasks (e.g., object detection, segmentation)
     \end{itemize}
 \end{frame}
 
