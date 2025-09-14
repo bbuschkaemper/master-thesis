@@ -187,8 +187,8 @@
     \begin{enumerate}
         \item \textbf{Weighted Relationships:} Instead of binary, unweighted relationships, we use weighted relationships to capture the strength of associations between classes.
         \item \textbf{Relationship Selection Methods:} We try multiple methods to select the most relevant relationships from noisy cross-domain predictions.
-        \item \textbf{Synthetic Ground Truth:} We develop a synthetic ground truth generation method to be able to evaluate relationship selection methods in a controlled manner.
         \item \textbf{Discrete Probability Loss Function:} We use a loss function that allows training with probability distributions as targets, enabling the model to learn from the uncertainty in class relationships.
+        \item \textbf{Adapted to Image Classification:} The original method was designed for image segmentation, we adapt it for image classification tasks.
     \end{enumerate}
 \end{frame}
 
@@ -228,7 +228,7 @@
 
     \vspace{1em}
 
-    \textbf{Solution}: Develop multiple relationship selection methods and evaluate them using a synthetic ground truth with custom metrics
+    \textbf{Solution}: Develop multiple relationship selection methods and compare their effectiveness
 \end{frame}
 
 \begin{frame}{Relationship Selection Methods Explained}
@@ -251,119 +251,6 @@
               \end{equation}
               where $X_i(j)$ are sorted probabilities in descending order.
     \end{enumerate}
-\end{frame}
-
-% Section 3: Method Evaluation
-\section{Method Evaluation}
-
-\begin{frame}{The Need for Controlled Ground Truth}
-    \textbf{Problem}: No existing datasets with known inter-dataset, \textit{weighted} class relationships
-
-    \vspace{1em}
-
-    \textbf{Solution}: Merge classes from a single dataset into different variants with controlled relationships.
-
-    \vspace{1em}
-
-    \textbf{Example}:
-
-    \begin{itemize}
-        \item We have classes "car", "eye", "dog", "butterfly"
-        \item Create Variant A: "\{car, eye\}", "\{butterfly\}"
-        \item Create Variant B: "\{car, butterfly\}", "\{dog, eye\}"
-        \item "A:\{car, eye\}" $\rightarrow$ "B:\{car, butterfly\}" ($50\%$)
-        \item "B:\{car, butterfly\}" $\rightarrow$ "A:\{car, eye\}" ($50\%$)
-        \item "A:\{butterfly\}" $\rightarrow$ "B:\{car, butterfly\}" ($100\%$)
-        \item "B:\{car, butterfly\}" $\rightarrow$ "A:\{butterfly\}" ($50\%$)
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Domain-Shifted Synthetic Datasets}
-    \textbf{Problem}: Original synthetic variants too easy (same underlying images)
-
-    \vspace{0.5em}
-
-    \textbf{Solution}: Apply domain transformations to create realistic challenges
-
-    \begin{columns}[T]
-        \begin{column}{0.6\textwidth}
-            \textbf{Transformations Applied}:
-            \begin{itemize}
-                \item \textbf{Variant A}: Noisy grayscale
-                \item \textbf{Variant B}: Rotation + blur
-                \item \textbf{Variant C}: Random erasing + color jitter + perspective shifts
-            \end{itemize}
-
-            \vspace{1em}
-
-            \textbf{Results}:
-            \begin{itemize}
-                \item Model accuracy drops by ~10\%
-                \item More realistic cross-domain predictions
-                \item Better evaluation of relationship selection methods
-            \end{itemize}
-        \end{column}
-
-        \begin{column}{0.35\textwidth}
-            \begin{center}
-                \includegraphics[width=\textwidth]{../thesis/figures/domain_shift_visualization.png}
-            \end{center}
-            \small{Example images from domain-shifted variants}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}{Evaluation Metrics for Relationship Selection}
-    \textbf{How do we measure the quality of selected relationships?}
-
-    \vspace{0.5em}
-
-    \begin{enumerate}
-        \item \textbf{Edge Difference Ratio (EDR)}: Measures difference in edge weights between predicted and ground truth graphs
-              \begin{equation}
-                  \text{EDR}(G_1, G_2) = \frac{\sum_{i,j} |A_1(i,j) - A_2(i,j)|}{\sum_{i,j} \max(A_1(i,j), A_2(i,j))}
-              \end{equation}
-              \textcolor{blue}{Range: [0,1], where 0 = identical graphs, 1 = no common edges}
-
-        \item \textbf{Precision \& Recall}: Binary evaluation of relationship presence
-              \begin{itemize}
-                  \item Convert adjacency matrices to binary: $B(i,j) = 1$ if $A(i,j) > 0$
-                  \item \textbf{Precision} = $\frac{TP}{TP + FP}$ (correctness of selected relationships)
-                  \item \textbf{Recall} = $\frac{TP}{TP + FN}$ (coverage of true relationships)
-                  \item \textbf{F1 Score} = Harmonic mean of precision and recall
-              \end{itemize}
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}{Relationship Selection Results: Domain-Shifted Evaluation}
-    \textbf{Evaluation on domain-shifted synthetic datasets (more realistic)}
-
-    \vspace{0.5em}
-
-    \begin{table}[h]
-        \centering
-        \scriptsize
-        \begin{tabular}{lccccc}
-            \toprule
-            \textbf{Method}         & \textbf{Parameter} & \textbf{EDR}   & \textbf{Precision} & \textbf{Recall} & \textbf{F1 Score} \\
-            \midrule
-            Relationship Hypothesis & 5                  & \textbf{0.759} & 0.390              & 0.543           & 0.444             \\
-            Naive Thresholding      & 0.10               & 0.761          & 0.418              & 0.519           & \textbf{0.450}    \\
-            Density Thresholding    & 0.60               & 0.766          & 0.349              & \textbf{0.582}  & 0.426             \\
-            MCFP                    & N/A                & 0.842          & \textbf{0.490}     & 0.226           & 0.305             \\
-            \bottomrule
-        \end{tabular}
-        \caption{Performance on domain-shifted synthetic datasets (Caltech-101, Caltech-256, CIFAR-100) with globally optimal parameters}
-    \end{table}
-
-    \vspace{0.5em}
-
-    \textbf{Key Observations}:
-    \begin{itemize}
-        \item \textbf{Relationship Hypothesis} achieves best EDR 0.759
-        \item \textbf{MCFP} maintains highest precision but lowest recall
-        \item Maybe still not realistic enough, but suitable for getting method parameters
-    \end{itemize}
 \end{frame}
 
 
@@ -514,7 +401,6 @@
     \begin{itemize}
         \item Universal models \textcolor{blue}{\textbf{outperform}} single-domain baselines
         \item Different relationship selection methods excel on different datasets
-        \item No single method consistently optimal across all scenarios
     \end{itemize}
 \end{frame}
 
@@ -525,31 +411,30 @@
     \begin{enumerate}
         \item \textbf{Novel Weighted Graph Approach}: We have a \textit{weighted} relationship graph instead of binary edges
 
-        \item \textbf{Comprehensive Relationship Selection Methods}: Four new proposed methods with detailed evaluation
-
-        \item \textbf{Synthetic Ground Truth}: Controlled evaluation environment with domain-shifted variants
+        \item \textbf{Comprehensive Relationship Selection Methods}: Four different methods to select relevant relationships from noisy predictions
 
         \item \textbf{Reusable Taxonomy Framework}: Our code is adaptable to new taxonomy building rules,
               relationship selection methods, datasets and model architectures
+
+        \item \textbf{Full-automatic, multi-dataset training pipeline}: We provide a complete pipeline for training on multiple datasets without manual intervention or preprocessing
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{Main Findings}
-    \textbf{Successful Aspects}:
+\begin{frame}{Future Work}
+    \textbf{Findings}:
     \begin{itemize}
-        \item Universal models achieve better accuracy than single-domain models
-        \item Our relationship graphs create meaningful, weighted inter-dataset class relationships
-        \item Synthetic datasets provide a valuable, customizable evaluation environment
+        \item Bad clusters still exist in universal taxonomies
+        \item Multi-domain universal model training outperforms single-domain training
+        \item No single relationship selection method is best for all cases
     \end{itemize}
 
     \vspace{1em}
 
-    \textbf{Future Work \& Limitations}:
+    \textbf{Future Work}:
     \begin{itemize}
-        \item No single relationship selection method works optimally for all cases
-        \item Some bad clusters in universal taxonomy remain
-        \item Tests were limited to 3-domain scenarios $\rightarrow$ need to scale to more datasets
-        \item Try out for other vision tasks (e.g., object detection, segmentation)
+        \item Adaptive or hybrid relationship selection method to get best performance
+        \item Extended tests on larger, more diverse taxonomies and datasets
+        \item Application to other tasks (e.g., object detection, image segmentation)
     \end{itemize}
 \end{frame}
 
