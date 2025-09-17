@@ -1,5 +1,5 @@
 \babel@toc {english}{}\relax 
-\beamer@sectionintoc {1}{Introduction \& Idea}{3}{0}{1}
+\beamer@sectionintoc {1}{Introduction \& Motivation}{3}{0}{1}
 \beamer@sectionintoc {2}{Method Overview}{7}{0}{2}
 \beamer@sectionintoc {3}{Universal Model}{10}{0}{3}
 \beamer@sectionintoc {4}{Results}{16}{0}{4}
