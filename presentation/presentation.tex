@@ -15,6 +15,8 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 
+\usetikzlibrary{positioning}
+
 % Font configuration for PGF compatibility
 \usepackage{ifxetex,ifluatex}
 \newif\ifxetexorluatex
@@ -260,38 +262,266 @@
 \begin{frame}{Universal Taxonomy Building Rules}
     \textbf{How do we convert relationship graphs into universal taxonomies?}
 
-    \vspace{0.5em}
+    \vspace{1em}
+
+    We have developed four key rules to systematically transform cross-domain relationship graphs into universal taxonomies:
 
     \begin{enumerate}
-        \item \textbf{Isolated Node Rule}: Classes with no relationships
-              \begin{itemize}
-                  \item Create new universal class for standalone domain classes
-                  \item Ensures all classes are represented in universal taxonomy
-              \end{itemize}
-
-        \item \textbf{Bidirectional Relationship Rule}: Classes with mutual relationships (A $\leftrightarrow$ B)
-              \begin{itemize}
-                  \item Create single universal class C with relationships A $\rightarrow$ C, B $\rightarrow$ C
-                  \item Indicates classes likely represent the same concept
-              \end{itemize}
-
-        \item \textbf{Transitive Cycle Rule}: Prevent invalid cycles (A $\rightarrow$ B $\rightarrow$ C where A, C same domain)
-              \begin{itemize}
-                  \item Remove relationship with lower probability
-                  \item Classes within same domain should be disjoint
-              \end{itemize}
-
-        \item \textbf{Unilateral Relationship Rule}: Handle subset relationships (A $\rightarrow$ B)
-              \begin{itemize}
-                  \item Create universal class for shared concepts (A $\cup$ B)
-                  \item Create universal class for unique concepts (B only)
-              \end{itemize}
+        \item \textbf{Isolated Node Rule}: Handle classes with no relationships
+        \item \textbf{Bidirectional Relationship Rule}: Handle mutual relationships
+        \item \textbf{Transitive Cycle Rule}: Prevent invalid cycles
+        \item \textbf{Unilateral Relationship Rule}: Handle subset relationships
     \end{enumerate}
+
+    \vspace{1em}
+
+    \textbf{Let's examine each rule in detail...}
+\end{frame}
+
+\begin{frame}{Rule 1: Isolated Node Rule}
+    \begin{columns}[T]
+        \begin{column}{0.55\textwidth}
+            \textbf{Problem}: Classes with no relationships to other domains
+
+            \vspace{0.5em}
+
+            \textbf{Solution}:
+            \begin{itemize}
+                \item Create new universal class for each standalone domain class
+                \item Ensures all classes are represented in universal taxonomy
+            \end{itemize}
+
+            \vspace{0.5em}
+
+            \textbf{Example}: A specialized class like "Joshua tree" that has no equivalent in other datasets gets its own universal class.
+        \end{column}
+
+        \begin{column}{0.4\textwidth}
+            \begin{center}
+                \textbf{Before} \\
+                \vspace{0.5em}
+                \begin{tikzpicture}[scale=0.8]
+                    % Isolated node
+                    \node[circle, draw, blue, thick, minimum size=0.8cm] (A) at (0,0) {A};
+                    \node[below=0.2cm of A] {\tiny D1};
+                \end{tikzpicture}
+
+                \vspace{1em}
+
+                \textbf{After} \\
+                \vspace{0.5em}
+                \begin{tikzpicture}[scale=0.8]
+                    % Domain node
+                    \node[circle, draw, blue, thick, minimum size=0.8cm] (A) at (0,0) {A};
+                    \node[below=0.2cm of A] {\tiny D1};
+
+                    % Universal node
+                    \node[circle, draw, red, thick, minimum size=0.8cm] (U) at (3,0) {U1};
+                    \node[below=0.2cm of U] {\tiny Universal};
+
+                    % Arrow
+                    \draw[->, thick] (A) -- (U);
+                \end{tikzpicture}
+            \end{center}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Rule 2: Bidirectional Relationship Rule}
+    \begin{columns}[T]
+        \begin{column}{0.55\textwidth}
+            \textbf{Problem}: Classes with mutual relationships (A $\leftrightarrow$ B)
+
+            \vspace{0.5em}
+
+            \textbf{Solution}:
+            \begin{itemize}
+                \item Create single universal class C
+                \item Map both domain classes to this universal class: A $\rightarrow$ C, B $\rightarrow$ C
+                \item Indicates classes share a common concept
+            \end{itemize}
+
+            \vspace{0.5em}
+
+            \textbf{Example}: "car" from Caltech-256 and "automobile" from Caltech-101 have bidirectional relationships, so they merge into a single universal class.
+        \end{column}
+
+        \begin{column}{0.4\textwidth}
+            \begin{center}
+                \textbf{Before} \\
+                \vspace{0.5em}
+                \begin{tikzpicture}[scale=0.8]
+                    % Two nodes with bidirectional relationship
+                    \node[circle, draw, blue, thick, minimum size=0.8cm] (A) at (0,0) {A};
+                    \node[below=0.2cm of A] {\tiny D1};
+
+                    \node[circle, draw, green, thick, minimum size=0.8cm] (B) at (3,0) {B};
+                    \node[below=0.2cm of B] {\tiny D2};
+
+                    % Bidirectional arrows
+                    \draw[->, thick] (A) to[bend left=20] (B);
+                    \draw[->, thick] (B) to[bend left=20] (A);
+                \end{tikzpicture}
+
+                \vspace{1em}
+
+                \textbf{After} \\
+                \vspace{0.5em}
+                \begin{tikzpicture}[scale=0.8]
+                    % Domain nodes
+                    \node[circle, draw, blue, thick, minimum size=0.8cm] (A) at (0,0) {A};
+                    \node[below=0.2cm of A] {\tiny D1};
+
+                    \node[circle, draw, green, thick, minimum size=0.8cm] (B) at (0,-2) {B};
+                    \node[below=0.2cm of B] {\tiny D2};
+
+                    % Universal node
+                    \node[circle, draw, red, thick, minimum size=0.8cm] (U) at (3,-1) {U1};
+                    \node[below=0.2cm of U] {\tiny Universal};
+
+                    % Arrows to universal
+                    \draw[->, thick] (A) -- (U);
+                    \draw[->, thick] (B) -- (U);
+                \end{tikzpicture}
+            \end{center}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Rule 3: Transitive Cycle Rule}
+    \begin{columns}[T]
+        \begin{column}{0.55\textwidth}
+            \textbf{Problem}: Invalid cycles (A $\rightarrow$ B $\rightarrow$ C where A, C are from same domain)
+
+            \vspace{0.5em}
+
+            \textbf{Solution}:
+            \begin{itemize}
+                \item Classes within same domain should be disjoint
+                \item Cycle hints at subset between A and C
+                \item Remove weaker link in cycle
+            \end{itemize}
+
+            \vspace{0.5em}
+
+            \textbf{Example}: If "truck" from Caltech-256 maps to "automobile" from Caltech-101 which maps to "car" from Caltech-256, we remove the weaker link to prevent the invalid implication that "truck" and "car" have a relationship.
+        \end{column}
+
+        \begin{column}{0.4\textwidth}
+            \begin{center}
+                \textbf{Before} \\
+                \vspace{0.5em}
+                \begin{tikzpicture}[scale=0.8]
+                    % Three nodes forming invalid transitive relationship
+                    \node[circle, draw, blue, thick, minimum size=0.8cm] (A) at (0,1) {A};
+                    \node[left=0.1cm of A] {\tiny D1};
+
+                    \node[circle, draw, green, thick, minimum size=0.8cm] (B) at (2,0) {B};
+                    \node[below=0.1cm of B] {\tiny D2};
+
+                    \node[circle, draw, blue, thick, minimum size=0.8cm] (C) at (0,-1) {C};
+                    \node[left=0.1cm of C] {\tiny D1};
+
+                    % Transitive relationships with probabilities
+                    \draw[->, thick] (A) -- (B) node[midway, above] {\tiny 0.8};
+                    \draw[->, thick] (B) -- (C) node[midway, right] {\tiny 0.3};
+
+                    % Show the problematic implication with dashed line
+                    \draw[->, dashed, red] (A) to[bend right=30] (C) node[midway, left] {\tiny implies};
+                \end{tikzpicture}
+
+                \vspace{1em}
+
+                \textbf{After} \\
+                \vspace{0.5em}
+                \begin{tikzpicture}[scale=0.8]
+                    % Same nodes, weaker relationship removed
+                    \node[circle, draw, blue, thick, minimum size=0.8cm] (A) at (0,1) {A};
+                    \node[left=0.1cm of A] {\tiny D1};
+
+                    \node[circle, draw, green, thick, minimum size=0.8cm] (B) at (2,0) {B};
+                    \node[below=0.1cm of B] {\tiny D2};
+
+                    \node[circle, draw, blue, thick, minimum size=0.8cm] (C) at (0,-1) {C};
+                    \node[left=0.1cm of C] {\tiny D1};
+
+                    % Keep only the stronger relationship
+                    \draw[->, thick] (A) -- (B) node[midway, above] {\tiny 0.8};
+                    % Weaker relationship B→C (0.3) removed
+                \end{tikzpicture}
+            \end{center}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Rule 4: Unilateral Relationship Rule}
+    \begin{columns}[T]
+        \begin{column}{0.55\textwidth}
+            \textbf{Problem}: Handle subset relationships (A $\rightarrow$ B)
+
+            \vspace{0.5em}
+
+            \textbf{Solution}:
+            \begin{itemize}
+                \item Create universal class for shared concepts (A $\cup$ B)
+                \item Create universal class for unique concepts (B only)
+                \item Preserves both general and specific knowledge
+                \item Handles hierarchical relationships
+            \end{itemize}
+
+            \vspace{0.5em}
+
+            \textbf{Example}: "dog" from Caltech-101 relates to "animal" from CIFAR-100. We create both a "dog" universal class and an "animal (non-dog)" class.
+        \end{column}
+
+        \begin{column}{0.4\textwidth}
+            \begin{center}
+                \textbf{Before} \\
+                \vspace{0.5em}
+                \begin{tikzpicture}[scale=0.8]
+                    % Unilateral relationship
+                    \node[circle, draw, blue, thick, minimum size=0.8cm] (A) at (0,0) {A};
+                    \node[below=0.2cm of A] {\tiny D1};
+
+                    \node[circle, draw, green, thick, minimum size=0.8cm] (B) at (3,0) {B};
+                    \node[below=0.2cm of B] {\tiny D2};
+
+                    % Unilateral arrow
+                    \draw[->, thick] (A) -- (B);
+                \end{tikzpicture}
+
+                \vspace{1em}
+
+                \textbf{After} \\
+                \vspace{0.5em}
+                \begin{tikzpicture}[scale=0.7]
+                    % Domain nodes
+                    \node[circle, draw, blue, thick, minimum size=0.8cm] (A) at (0,0) {A};
+                    \node[below=0.2cm of A] {\tiny D1};
+
+                    \node[circle, draw, green, thick, minimum size=0.8cm] (B) at (0,-2) {B};
+                    \node[below=0.2cm of B] {\tiny D2};
+
+                    % Universal nodes
+                    \node[circle, draw, red, thick, minimum size=0.7cm] (U1) at (3,0) {U1};
+                    \node[below=0.1cm of U1] {\tiny A$\cup$B};
+
+                    \node[circle, draw, red, thick, minimum size=0.7cm] (U2) at (3,-2) {U2};
+                    \node[below=0.1cm of U2] {\tiny B only};
+
+                    % Arrows
+                    \draw[->, thick] (A) -- (U1);
+                    \draw[->, thick] (B) -- (U1);
+                    \draw[->, thick] (B) -- (U2);
+                \end{tikzpicture}
+            \end{center}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{Taxonomy Visualization (Caltech-101 + Caltech-256)}
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{../thesis/figures/taxonomy.png}
+        \includegraphics[width=0.45\textwidth]{../thesis/figures/taxonomy.png}
     \end{center}
 \end{frame}
 
@@ -303,7 +533,7 @@
 
 \begin{frame}{Bad Cluster}
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{../thesis/figures/bad_taxonomy.png}
+        \includegraphics[width=0.45\textwidth]{../thesis/figures/bad_taxonomy.png}
     \end{center}
 \end{frame}
 
@@ -354,7 +584,7 @@
     \textbf{Datasets}: Caltech-101, Caltech-256, CIFAR-100
 
     \begin{columns}[T]
-        \begin{column}{0.48\textwidth}
+        \begin{column}{0.5\textwidth}
             \textbf{Cal-101 + Cal-256 Results}
             \begin{table}[h]
                 \centering
@@ -373,7 +603,7 @@
             \end{table}
         \end{column}
 
-        \begin{column}{0.48\textwidth}
+        \begin{column}{0.5\textwidth}
             \textbf{Cal-101 + Cal-256 + CIFAR Results}
             \begin{table}[h]
                 \centering
@@ -445,6 +675,11 @@
         \vspace{1em}
 
         \textbf{Questions?}
+
+        \vspace{2em}
+
+        \textbf{GitHub Repository:}\\
+        \url{https://github.com/bbuschkaemper/master-thesis}
     \end{center}
 \end{frame}
 
